@@ -1,22 +1,15 @@
+```json
 {
-  "userData": {
-    "coins": {},
-    "bank": {},
-    "xp": {},
-    "weapons": {},
-    "items": {},
-    "pets": {},
-    "achievements": {},
-    "badges": {},
-    "streaks": {},
-    "married": {},
-    "rep": {},
-    "warnings": {}
+  "name": "discord-gg-bot",
+  "version": "1.0.0",
+  "description": "Discord.js v14 bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
   },
-  "staff": [],
-  "autoResponses": {},
-  "welcomeConfig": {},
-  "logsConfig": {},
-  "ticketConfig": {},
-  "suggestionConfig": {}
+  "dependencies": {
+    "discord.js": "^14.0.0",
+    "dotenv": "^16.0.0"
+  }
 }
+```
