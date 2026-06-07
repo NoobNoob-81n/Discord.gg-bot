@@ -118,6 +118,10 @@ let welcomeConfig    = {};
 let logsConfig       = {};
 let ticketConfig     = {};
 let suggestionConfig = {};
+
+let suggestions = {};
+let suggestionCounter = 1;
+
 let boss             = null;
 
 // ════════════════════════════════════════════════════════════════
@@ -605,17 +609,54 @@ const slashCommands = [
         .addUserOption(o => o.setName('user').setDescription('Who to unmute').setRequired(true)),
 
     // Setup (staff)
-    new SlashCommandBuilder().setName('setlogs').setDescription('📋 Set mod-log channel (staff)')
-        .addChannelOption(o => o.setName('channel').setDescription('Log channel').setRequired(true).addChannelTypes(ChannelType.GuildText)),
-    new SlashCommandBuilder().setName('setwelcome').setDescription('👋 Setup welcome system (staff)')
-        .addChannelOption(o => o.setName('channel').setDescription('Welcome channel').setRequired(true).addChannelTypes(ChannelType.GuildText))
-        .addRoleOption(o => o.setName('role').setDescription('Auto-role for new members').setRequired(false)),
-    new SlashCommandBuilder().setName('settickets').setDescription('🎫 Setup ticket system (staff)')
-        .addChannelOption(o => o.setName('channel').setDescription('Channel for ticket panel').setRequired(true).addChannelTypes(ChannelType.GuildText)),
-    new SlashCommandBuilder().setName('setsuggestions').setDescription('💡 Setup suggestion channel (staff)')
-        .addChannelOption(o => o.setName('channel').setDescription('Suggestion channel').setRequired(true).addChannelTypes(ChannelType.GuildText)),
+new SlashCommandBuilder().setName('setlogs').setDescription('📋 Set mod-log channel (staff)')
+    .addChannelOption(o => o.setName('channel').setDescription('Log channel').setRequired(true).addChannelTypes(ChannelType.GuildText)),
 
+new SlashCommandBuilder().setName('setwelcome').setDescription('👋 Setup welcome system (staff)')
+    .addChannelOption(o => o.setName('channel').setDescription('Welcome channel').setRequired(true).addChannelTypes(ChannelType.GuildText))
+    .addRoleOption(o => o.setName('role').setDescription('Auto-role for new members').setRequired(false)),
 
+new SlashCommandBuilder().setName('settickets').setDescription('🎫 Setup ticket system (staff)')
+    .addChannelOption(o => o.setName('channel').setDescription('Channel for ticket panel').setRequired(true).addChannelTypes(ChannelType.GuildText)),
+
+new SlashCommandBuilder().setName('setsuggestions').setDescription('💡 Setup suggestion channel (staff)')
+    .addChannelOption(o => o.setName('channel').setDescription('Suggestion channel').setRequired(true).addChannelTypes(ChannelType.GuildText)),
+
+new SlashCommandBuilder()
+    .setName('suggestion')
+    .setDescription('💡 Submit a suggestion')
+    .addStringOption(o =>
+        o.setName('idea')
+            .setDescription('Your suggestion')
+            .setRequired(true)
+    ),
+
+new SlashCommandBuilder()
+    .setName('suggestionlogs')
+    .setDescription('📋 View pending suggestions (staff)'),
+
+new SlashCommandBuilder()
+    .setName('approvesuggestion')
+    .setDescription('✅ Approve a suggestion (owner)')
+    .addIntegerOption(o =>
+        o.setName('id')
+            .setDescription('Suggestion ID')
+            .setRequired(true)
+    ),
+
+new SlashCommandBuilder()
+    .setName('denysuggestion')
+    .setDescription('❌ Deny a suggestion (owner)')
+    .addIntegerOption(o =>
+        o.setName('id')
+            .setDescription('Suggestion ID')
+            .setRequired(true)
+    )
+    .addStringOption(o =>
+        o.setName('reason')
+            .setDescription('Reason for denial')
+            .setRequired(true)
+    ),
           // Owner
     new SlashCommandBuilder().setName('addxp').setDescription('⭐ Add XP to a user (owner)')
         .addUserOption(o => o.setName('user').setDescription('Target user').setRequired(true))
@@ -1572,25 +1613,157 @@ if (interaction.commandName === 'leaderboard') {
             }
 
             // ─── SETSUGGESTIONS ────────────────────────────────────
-            if (interaction.commandName === 'setsuggestions') {
-                if (!await staffOnly(interaction, isStaff)) return;
-                const channel = interaction.options.getChannel('channel');
-                suggestionConfig[String(interaction.guildId)] = { channelId: channel.id };
-                await saveData();
-                await interaction.reply({ content: `💡 Suggestion channel set to <#${channel.id}>`, ephemeral: true });
-                return;
-            }
+if (interaction.commandName === 'setsuggestions') {
+    if (!await staffOnly(interaction, isStaff)) return;
 
-// ─── SETSUGGESTIONS ────────────────────────────────────
-            if (interaction.commandName === 'setsuggestions') {
-                if (!await staffOnly(interaction, isStaff)) return;
-                const channel = interaction.options.getChannel('channel');
-                suggestionConfig[String(interaction.guildId)] = { channelId: channel.id };
-                await saveData();
-                await interaction.reply({ content: `💡 Suggestion channel set to <#${channel.id}>`, ephemeral: true });
-                return;
-            }
+    const channel = interaction.options.getChannel('channel');
 
+    suggestionConfig[String(interaction.guildId)] = {
+        channelId: channel.id
+    };
+
+    await saveData();
+
+    await interaction.reply({
+        content:
+            `💡 Suggestion channel set to <#${channel.id}>\n\n` +
+            `Members can use \`/suggestion\` to submit ideas.\n` +
+            `Staff can use \`/suggestionlogs\` to review pending suggestions.\n` +
+            `The owner can use \`/approvesuggestion\` or \`/denysuggestion\`.`,
+        ephemeral: true
+    });
+
+    return;
+}
+
+// ─── SUGGESTION ────────────────────────────────────────
+if (interaction.commandName === 'suggestion') {
+    const idea = interaction.options.getString('idea');
+
+    suggestions[suggestionCounter] = {
+        id: suggestionCounter,
+        userId,
+        username: interaction.user.username,
+        idea,
+        status: 'pending',
+        createdAt: Date.now()
+    };
+
+    await saveData();
+
+    await interaction.reply({
+        content: `✅ Suggestion submitted!\n🆔 Suggestion ID: **${suggestionCounter}**`,
+        ephemeral: true
+    });
+
+    suggestionCounter++;
+    return;
+}
+
+// ─── SUGGESTION LOGS ───────────────────────────────────
+if (interaction.commandName === 'suggestionlogs') {
+    if (!await staffOnly(interaction, isStaff)) return;
+
+    const pending = Object.values(suggestions)
+        .filter(s => s.status === 'pending');
+
+    if (!pending.length) {
+        await interaction.reply({
+            content: '📋 No pending suggestions.',
+            ephemeral: true
+        });
+        return;
+    }
+
+    const embed = new EmbedBuilder()
+        .setColor(0x00AEFF)
+        .setTitle('📋 Pending Suggestions')
+        .setDescription(
+            pending.map(s =>
+                `**#${s.id}**\n👤 <@${s.userId}>\n💡 ${s.idea}`
+            ).join('\n\n')
+        );
+
+    await interaction.reply({
+        embeds: [embed],
+        ephemeral: true
+    });
+
+    return;
+}
+
+// ─── APPROVE SUGGESTION ────────────────────────────────
+if (interaction.commandName === 'approvesuggestion') {
+    if (!await ownerOnly(interaction, isOwner)) return;
+
+    const id = interaction.options.getInteger('id');
+    const suggestion = suggestions[id];
+
+    if (!suggestion) {
+        await interaction.reply({
+            content: '❌ Suggestion not found.',
+            ephemeral: true
+        });
+        return;
+    }
+
+    suggestion.status = 'approved';
+
+    const cfg = suggestionConfig[String(interaction.guildId)];
+
+    if (cfg?.channelId) {
+        const channel = await interaction.guild.channels.fetch(cfg.channelId).catch(() => null);
+
+        if (channel) {
+            await channel.send({
+                embeds: [
+                    new EmbedBuilder()
+                        .setColor(0x57F287)
+                        .setTitle('✅ Approved Suggestion')
+                        .setDescription(suggestion.idea)
+                        .setFooter({ text: `Suggested by ${suggestion.username}` })
+                ]
+            });
+        }
+    }
+
+    await saveData();
+
+    await interaction.reply({
+        content: `✅ Approved suggestion #${id}`
+    });
+
+    return;
+}
+
+// ─── DENY SUGGESTION ───────────────────────────────────
+if (interaction.commandName === 'denysuggestion') {
+    if (!await ownerOnly(interaction, isOwner)) return;
+
+    const id = interaction.options.getInteger('id');
+    const reason = interaction.options.getString('reason');
+
+    const suggestion = suggestions[id];
+
+    if (!suggestion) {
+        await interaction.reply({
+            content: '❌ Suggestion not found.',
+            ephemeral: true
+        });
+        return;
+    }
+
+    suggestion.status = 'denied';
+    suggestion.reason = reason;
+
+    await saveData();
+
+    await interaction.reply({
+        content: `❌ Denied suggestion #${id}\nReason: ${reason}`
+    });
+
+    return;
+        }
             // ─── ADDXP (OWNER) ────────────────────────────────────
             if (interaction.commandName === 'addxp') {
                 if (!await ownerOnly(interaction, isOwner)) return;
