@@ -1,1 +1,22 @@
-
+{
+  "userData": {
+    "coins": {},
+    "bank": {},
+    "xp": {},
+    "weapons": {},
+    "items": {},
+    "pets": {},
+    "achievements": {},
+    "badges": {},
+    "streaks": {},
+    "married": {},
+    "rep": {},
+    "warnings": {}
+  },
+  "staff": [],
+  "autoResponses": {},
+  "welcomeConfig": {},
+  "logsConfig": {},
+  "ticketConfig": {},
+  "suggestionConfig": {}
+}
