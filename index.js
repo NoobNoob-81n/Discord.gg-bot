@@ -2577,11 +2577,11 @@ if (cmd==='scyllakey') {
     ]});
 }
 
-If (cmd===’craftkey’) {
+if (cmd===’craftkey’) {
     Const caught=userData.fishCaught.get(userId)||{};
     Const completed=userData.completedQuests.get(userId)||[];
-    If (completed.includes(‘scylla_key’)) return interaction.reply({content:’✅ Already have the Scylla Key!’,ephemeral:true});
-    If (!(caught[‘crowned_anglerfish’]>0&&caught[‘frozen_leviathan’]>0&&caught[‘magma_leviathan’]>0))
+    if (completed.includes(‘scylla_key’)) return interaction.reply({content:’✅ Already have the Scylla Key!’,ephemeral:true});
+    if (!(caught[‘crowned_anglerfish’]>0&&caught[‘frozen_leviathan’]>0&&caught[‘magma_leviathan’]>0))
         Return interaction.reply({content:”❌ Need all 3 secret fish! Fish in Mariana’s Veil (Lv100+).”,ephemeral:true});
     Completed.push(‘scylla_key’); userData.completedQuests.set(userId,completed);
     checkAchievementGeneral(userId,’scylla’,1); await saveData();
