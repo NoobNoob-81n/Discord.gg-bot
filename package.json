@@ -1,0 +1,19 @@
+{
+  "name": "ultimate-discord-bot",
+  "version": "3.0.0",
+  "description": "Ultimate RPG + Fishing Discord Bot — Discord.js v14",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.16.0",
+    "dotenv": "^16.4.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": ["discord", "bot", "rpg", "fishing", "economy"],
+  "license": "MIT"
+}
