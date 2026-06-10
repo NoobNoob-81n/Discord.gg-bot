@@ -2157,8 +2157,8 @@ if (cmd==='deletepet') {
     await saveData();
     return interaction.reply({content:`✅ Removed **${pet.name||'pet'}** from **${target.username}**.`,ephemeral:true});
 
-          If (cmd===’deleterod’) {
-    If (!isOwner) return interaction.reply({content:’❌ Owner only!’,ephemeral:true});
+          if (cmd==='deleterod') {
+    if (!isOwner) return interaction.reply({content:’❌ Owner only!’,ephemeral:true});
     Const target=interaction.options.getUser(‘user’);
     Const tid=String(target.id);
     userData.rodEquipped.set(tid,’plastic’);
@@ -2168,14 +2168,14 @@ if (cmd==='deletepet') {
     return interaction.reply({content:`✅ Reset **${target.username}**’s rod to Plastic Rod and cleared all owned rods and enchantments.`,ephemeral:true});
 }
 
-If (cmd===’resetuser’) {
-    If (!isOwner) return interaction.reply({content:’❌ Owner only!’,ephemeral:true});
+if (cmd==='resetuser') {
+    if (!isOwner) return interaction.reply({content:’❌ Owner only!’,ephemeral:true});
     Const target=interaction.options.getUser(‘user’);
     Const tid=String(target.id);
     // Confirm step via button
     Const row=new ActionRowBuilder().addComponents(
-        New ButtonBuilder().setCustomId(`resetuser_confirm_${tid}_${userId}`).setLabel(‘⚠️ YES, FULL RESET’).setStyle(ButtonStyle.Danger),
-        New ButtonBuilder().setCustomId(`resetuser_cancel_${userId}`).setLabel(‘Cancel’).setStyle(ButtonStyle.Secondary),
+        new ButtonBuilder().setCustomId(`resetuser_confirm_${tid}_${userId}`).setLabel(‘⚠️ YES, FULL RESET’).setStyle(ButtonStyle.Danger),
+        new ButtonBuilder().setCustomId(`resetuser_cancel_${userId}`).setLabel(‘Cancel’).setStyle(ButtonStyle.Secondary),
     );
     Return interaction.reply({embeds:[new EmbedBuilder().setColor(0xF44336).setTitle(‘⚠️ Full User Reset’)
         .setDescription(`This will wipe **ALL** data for **${target.username}**:
@@ -2193,87 +2193,177 @@ If (cmd===’resetuser’) {
     ],components:[row],ephemeral:true});
 }
 
-If (cmd===’deleteguild’) {
-    If (!isOwner) return interaction.reply({content:’❌ Owner only!’,ephemeral:true});
+if (cmd==='deleteguild') {
+    if (!isOwner) return interaction.reply({content:’❌ Owner only!’,ephemeral:true});
     Const name=interaction.options.getString(‘name’).toLowerCase();
     Let foundId=null,foundG=null;
-    For (const [gid,g] of userData.guilds){if(g.name.toLowerCase()===name){foundId=gid;foundG=g;break;}}
-    If (!foundG) return interaction.reply({content:`❌ Guild **”${name}”** not found.`,ephemeral:true});
+    for (const [gid,g] of userData.guilds){if(g.name.toLowerCase()===name){foundId=gid;foundG=g;break;}}
+    if (!foundG) return interaction.reply({content:`❌ Guild **”${name}”** not found.`,ephemeral:true});
     // Remove all members from guild
-    For (const memberId of foundG.members) {
-        If (userData.guildOf.get(memberId)===foundId) userData.guildOf.delete(memberId);
+    for (const memberId of foundG.members) {
+        if (userData.guildOf.get(memberId)===foundId) userData.guildOf.delete(memberId);
     }
     userData.guilds.delete(foundId);
     await saveData();
     return interaction.reply({content:`✅ Disbanded guild **${foundG.name}** and removed all **${foundG.members.length}** members.`,ephemeral:true});
 }
 
-If (cmd===’deletemarketlisting’) {
+if (cmd==='deletemarketlisting') {
     Const lid=interaction.options.getString(‘listingid’);
     Const listing=userData.marketplace.get(lid);
-    If (!listing) return interaction.reply({content:’❌ Listing not found!’,ephemeral:true});
+    if (!listing) return interaction.reply({content:’❌ Listing not found!’,ephemeral:true});
     // Allow seller OR owner to delete
-    If (listing.seller!==userId&&!isOwner) return interaction.reply({content:’❌ You can only remove your own listings!’,ephemeral:true});
+    if (listing.seller!==userId&&!isOwner) return interaction.reply({content:’❌ You can only remove your own listings!’,ephemeral:true});
     userData.marketplace.delete(lid);
     await saveData();
     return interaction.reply({content:`✅ Removed listing \`${lid}\`.`,ephemeral:true});
 }
 
 // ── OWNER COMMANDS ──
-If (cmd===’addxp’) {
-    If (!isOwner) return interaction.reply({content:’❌ Owner only!’,ephemeral:true});
+if (cmd==='addxp') {
+    if (!isOwner) return interaction.reply({content:’❌ Owner only!’,ephemeral:true});
     Const t=interaction.options.getUser(‘user’),a=interaction.options.getInteger(‘amount’);
     addXP(String(t.id),a); await saveData();
     return interaction.reply({content:`⭐ Added **${fmtN(a)} XP** to **${t.username}**`});
 }
-If (cmd===’addcoins’) {
-    If (!isOwner) return interaction.reply({content:’❌ Owner only!’,ephemeral:true});
+if (cmd==='addcoins') {
+    if (!isOwner) return interaction.reply({content:’❌ Owner only!’,ephemeral:true});
     Const t=interaction.options.getUser(‘user’),a=interaction.options.getInteger(‘amount’);
     addCoins(String(t.id),a); await saveData();
     return interaction.reply({content:`💰 Added **${fmtN(a)} coins** to **${t.username}**`});
 }
-If (cmd===’addresponse’) {
-    If (!isOwner) return interaction.reply({content:’❌ Owner only!’,ephemeral:true});
+if (cmd===’addresponse’) {
+    if (!isOwner) return interaction.reply({content:’❌ Owner only!’,ephemeral:true});
     Const trigger=String(interaction.options.getString(‘trigger’)).toLowerCase();
     Const response=String(interaction.options.getString(‘response’));
     autoResponses.set(trigger,response); await saveData();
     return interaction.reply({content:`✅ Auto-response set: **”${trigger}”** → “${response}”`,ephemeral:true});
 }
-If (cmd===’resetcooldowns’) {
-    If (!isOwner) return interaction.reply({content:’❌ Owner only!’,ephemeral:true});
-    Const t=interaction.options.getUser(‘user’)||interaction.user;
+if (cmd === 'resetcooldowns') {
+    if (!isOwner)
+        return interaction.reply({
+            content: '❌ Owner only!',
+            ephemeral: true
+        });
+
+    const t =
+        interaction.options.getUser('user') ||
+        interaction.user;
+
     cooldownManager.clearAll(String(t.id));
-    return interaction.reply({content:`✅ Cleared all cooldowns for **${t.username}**`,ephemeral:true});
+
+    return interaction.reply({
+        content: `✅ Cleared all cooldowns for **${t.username}**`,
+        ephemeral: true
+    });
 }
-If (cmd===’giverod’) {
-    If (!isOwner) return interaction.reply({content:’❌ Owner only!’,ephemeral:true});
-    Const t=interaction.options.getUser(‘user’);
-    Const rid=interaction.options.getString(‘rod’);
-    Const rod=FISHING_RODS.find(r=>r.id===rid);
-    If (!rod) return interaction.reply({content:’❌ Invalid rod ID’,ephemeral:true});
-    Const owned=userData.rodOwned.get(String(t.id))||[];
-    If (!owned.includes(rid)){owned.push(rid);userData.rodOwned.set(String(t.id),owned);}
-    Await saveData();
-    Return interaction.reply({content:`✅ Gave **${rod.name}** to **${t.username}**`,ephemeral:true});
-}
-If (cmd===’forceevent’) {
-    If (!isOwner) return interaction.reply({content:’❌ Owner only!’,ephemeral:true});
-    Const eid=interaction.options.getString(‘event’);
-    Const ev=WORLD_EVENTS.find(e=>e.id===eid);
-    If (!ev) return interaction.reply({content:’❌ Invalid event’,ephemeral:true});
-    userData.worldEvent=ev; userData.worldEventEnd=Date.now()+ev.dur;
+
+if (cmd === 'giverod') {
+    if (!isOwner)
+        return interaction.reply({
+            content: '❌ Owner only!',
+            ephemeral: true
+        });
+
+    const t = interaction.options.getUser('user');
+
+    const rid =
+        interaction.options.getString('rod');
+
+    const rod =
+        FISHING_RODS.find(r => r.id === rid);
+
+    if (!rod)
+        return interaction.reply({
+            content: '❌ Invalid rod ID',
+            ephemeral: true
+        });
+
+    const owned =
+        userData.rodOwned.get(String(t.id)) || [];
+
+    if (!owned.includes(rid)) {
+        owned.push(rid);
+
+        userData.rodOwned.set(
+            String(t.id),
+            owned
+        );
+    }
+
     await saveData();
-    return interaction.reply({content:`✅ Forced event: **${ev.emoji} ${ev.name}**\n${ev.desc}`});
+
+    return interaction.reply({
+        content:
+            `✅ Gave **${rod.name}** to **${t.username}**`,
+        ephemeral: true
+    });
 }
-If (cmd===’forceboss’) {
-    If (!isOwner) return interaction.reply({content:’❌ Owner only!’,ephemeral:true});
-    Const bid=interaction.options.getString(‘boss’);
-    Const b=BOSS_FISH.find(b=>b.id===bid);
-    If (!b) return interaction.reply({content:’❌ Invalid boss’,ephemeral:true});
-    userData.activeBoss=b; userData.activeBossHp=b.hp;
+
+if (cmd === 'forceevent') {
+    if (!isOwner)
+        return interaction.reply({
+            content: '❌ Owner only!',
+            ephemeral: true
+        });
+
+    const eid =
+        interaction.options.getString('event');
+
+    const ev =
+        WORLD_EVENTS.find(
+            e => e.id === eid
+        );
+
+    if (!ev)
+        return interaction.reply({
+            content: '❌ Invalid event',
+            ephemeral: true
+        });
+
+    userData.worldEvent = ev;
+    userData.worldEventEnd =
+        Date.now() + ev.dur;
+
     await saveData();
-    return interaction.reply({content:`✅ Spawned: **${b.emoji} ${b.name}** (${fmtN(b.hp)} HP)`});
+
+    return interaction.reply({
+        content:
+            `✅ Forced event: **${ev.emoji} ${ev.name}**\n${ev.desc}`
+    });
 }
+
+if (cmd === 'forceboss') {
+    if (!isOwner)
+        return interaction.reply({
+            content: '❌ Owner only!',
+            ephemeral: true
+        });
+
+    const bid =
+        interaction.options.getString('boss');
+
+    const b =
+        BOSS_FISH.find(
+            b => b.id === bid
+        );
+
+    if (!b)
+        return interaction.reply({
+            content: '❌ Invalid boss',
+            ephemeral: true
+        });
+
+    userData.activeBoss = b;
+    userData.activeBossHp = b.hp;
+
+    await saveData();
+
+    return interaction.reply({
+        content:
+            `✅ Spawned: **${b.emoji} ${b.name}** (${fmtN(b.hp)} HP)`
+    });
+        }
 
 
 // ════════════════════════════════════════════════════════════════
