@@ -2615,7 +2615,7 @@ if (cmd==='rpgstats') {
     await interaction.deferReply();
     cooldownManager.set(userId,'dungeon',3_600_000);
     
-    const stats=userData.rpgStats.get(userId)||{hp:cls.hp,maxHp:cls.hp,atk:cls.atk,def:cls.def};
+    
     const armorId=userData.armorEquipped.get(userId);
     const armor=armorId?ARMOR_SETS.find(a=>a.id===armorId):null;
     const skills=userData.skillsLearned.get(userId)||[];
