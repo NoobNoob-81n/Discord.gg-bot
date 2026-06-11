@@ -1674,4 +1674,1912 @@ if (cmd==='wordle') {
 
 if (cmd==='trivia') {
     const q=TRIVIA_QUESTIONS[rng(0,TRIVIA_QUESTIONS.length-1)];
+    const row=new ActionRowBuilder().addComponents(new StringSelectMenuBuilder().setCustomId(`trivia_${userId}_${Date.now()}`).setPlaceholder('Choose your answer...')
+            .addOptions(q.options.map(opt=>({label:opt.charAt(0).toUpperCase()+opt.slice(1),value:opt}))),
+    );
+    await interaction.reply({content:`**🧠 ${q.q}**`,components:[row]});
+    const msg=await interaction.fetchReply();
+    const col=msg.createMessageComponentCollector({time:30_000});
+    let answered=false;
+    col.on('collect',async sel=>{
+        if (!sel.customId.includes(userId)) return sel.reply({content:'❌ Not your question!',ephemeral:true});
+        if (answered) return;
+        answered=true;
+        if (sel.values[0]===q.a){addCoins(userId,250);addXP(userId,100);await saveData();await sel.reply({content:`✅ Correct! **+250 coins** and **+100 XP**!`,ephemeral:true});}
+        else await sel.reply({content:`❌ Wrong! Answer: **${q.a}**`,ephemeral:true});
+        col.stop();
+    });
+    col.on('end',async()=>{
+        if (!answered) await interaction.editReply({content:`**🧠 ${q.q}**\n⏰ Time up! Answer: **${q.a}**`,components:[]}).catch(()=>{});
+        else await interaction.editReply({components:[]}).catch(()=>{});
+    });
+    return;
+}
+
+if (cmd==='slots') {
+    const bet=interaction.options.getInteger('bet');
+    if (coins(userId)<bet) return interaction.reply({content:'❌ Not enough coins!',ephemeral:true});
+    const s=playSlotsOnce(),win=calcSlotWin(s,bet);
+    addCoins(userId,-bet+win); addXP(userId,Math.floor(bet/10));
+    await saveData();
+    return interaction.reply({content:win>0?`🎰 **${s.join(' ')}** — 🎉 WIN! **+${fmtN(win)} coins**!`:`🎰 **${s.join(' ')}** — 💸 Loss! -${fmtN(bet)} coins`});
+}
+
+if (cmd==='blackjack') {
+    const bet=interaction.options.getInteger('bet');
+    if (coins(userId)<bet) return interaction.reply({content:'❌ Not enough coins!',ephemeral:true});
+    addCoins(userId,-bet);
+    const ph=[drawCard(),drawCard()],dh=[drawCard(),drawCard()];
+    const pv=handVal(ph);
+    bjGames.set(userId,{ph,dh,bet,active:true});
+    if (pv===21){addCoins(userId,Math.floor(bet*2.5));bjGames.delete(userId);await saveData();return interaction.reply({embeds:[new EmbedBuilder().setColor(0x57F287).setTitle('🃏 Blackjack! Natural 21!').setDescription(`+**${fmtN(Math.floor(bet*2.5))} coins**!`)]});}
     const row=new ActionRowBuilder().addComponents(
+        new ButtonBuilder().setCustomId(`bj_hit_${userId}`).setLabel('Hit 🃏').setStyle(ButtonStyle.Success),
+        new ButtonBuilder().setCustomId(`bj_stand_${userId}`).setLabel('Stand ✋').setStyle(ButtonStyle.Danger),
+    );
+    const embed=new EmbedBuilder().setColor(0x2196F3).setTitle('🃏 Blackjack')
+        .addFields({name:'Your Hand',value:`${ph.join(' ')} = **${pv}**`,inline:true},{name:"Dealer's Hand",value:`${dh[0]} + ❓`,inline:true});
+    return interaction.reply({embeds:[embed],components:[row]});
+}
+
+if (cmd==='bossfight') {
+    if (!boss) boss={name:'👹 Shadow Demon',health:3000,maxHealth:3000};
+    const weapons=userData.weapons.get(userId)||[];
+    const best=[...weapons].sort((a,b)=>(Number(b?.damage)||0)-(Number(a?.damage)||0))[0]||{damage:20};
+    const cls=userData.rpgClass.get(userId);
+    const clsAtk=cls?RPG_CLASSES[cls].atk:0;
+    const dmg=Math.max(1,Number(best.damage)+clsAtk+rng(0,50));
+    boss.health=Math.max(0,boss.health-dmg);
+    addCoins(userId,Math.floor(dmg/2));
+    if (boss.health<=0){const rew=rng(1000,5000);addCoins(userId,rew);addXP(userId,rew);await saveData();boss=null;return interaction.reply({content:`🎊 **Boss defeated!** +**${fmtN(rew)} coins**!`});}
+    await saveData();
+    return interaction.reply({content:`⚔️ Dealt **${dmg}** dmg!\n${boss.name}: \`${buildBar(boss.health,boss.maxHealth,20)}\` ${fmtN(boss.health)}/${fmtN(boss.maxHealth)}`});
+}
+
+if (cmd==='8ball') {
+    const ans=['Yes!','No.','Definitely!','Ask again later.','Absolutely!','Highly unlikely.','Signs point to yes.',"Don't count on it.",'Outlook good!','Very doubtful.'];
+    return interaction.reply({content:`🎱 **${interaction.options.getString('question')}**\n\n${ans[rng(0,ans.length-1)]}`});
+}
+
+if (cmd==='fnf') {
+    if (fnfGames.has(userId)) return interaction.reply({content:'❌ Already have a FNF game running!',ephemeral:true});
+    const difficulty=interaction.options.getString('difficulty');
+    const diff=FNF_DIFFICULTIES[difficulty];
+    const song=FNF_SONGS[rng(0,FNF_SONGS.length-1)];
+    const seq=buildFnfSeq(diff.arrows);
+    const gameId=`${userId}-${Date.now()}`;
+    const game={userId,gameId,difficulty,song,sequence:seq,currentIndex:0,hits:0,misses:0,score:0,health:diff.maxHealth,arrowTimeout:null,currentMessage:null};
+    fnfGames.set(userId,game);
+    const startEmbed=new EmbedBuilder().setColor(diff.color).setTitle('🎵 Friday Night Funkin\'!')
+        .setDescription(`**Difficulty:** ${diff.label}\n**Song:** ${song}\n\nHit the arrow buttons when shown!\n**${diff.timeMs/1000}s** per arrow\n\nGet ready... GO!`)
+        .setFooter({text:`${diff.arrows} arrows total`});
+    await interaction.reply({embeds:[startEmbed]});
+    await new Promise(r=>setTimeout(r,2000));
+    await fnfNextArrow(interaction,game);
+    return;
+}
+
+if (cmd==='marry') {
+    const target=interaction.options.getUser('user');
+    if (!target||target.bot||target.id===userId) return interaction.reply({content:'❌ Invalid target!',ephemeral:true});
+    if (userData.married.get(userId)) return interaction.reply({content:'❌ Already married!',ephemeral:true});
+    if (userData.married.get(String(target.id))) return interaction.reply({content:`❌ **${target.username}** is already married!`,ephemeral:true});
+    userData.married.set(userId,String(target.id));
+    userData.married.set(String(target.id),userId);
+    addCoins(userId,1000); addCoins(String(target.id),1000);
+    checkAchievementGeneral(userId,'married',1);
+    await saveData();
+    return interaction.reply({content:`💍 **${interaction.user.username}** married **${target.username}**! +1000 coins each! 🎉`});
+}
+if (cmd==='divorce') {
+    const spouse=userData.married.get(userId);
+    if (!spouse) return interaction.reply({content:'❌ Not married!',ephemeral:true});
+    userData.married.delete(userId); userData.married.delete(spouse);
+    await saveData();
+    return interaction.reply({content:'💔 Divorced.'});
+}
+if (cmd==='rep') {
+    const target=interaction.options.getUser('user');
+    if (!target||target.id===userId) return interaction.reply({content:'❌ Invalid target!',ephemeral:true});
+    const rem=cooldownManager.get(userId,'rep');
+    if (rem) return interaction.reply({content:`⏰ Rep cooldown: **${cdStr(rem)}**`,ephemeral:true});
+    const tid=String(target.id);
+    userData.rep.set(tid,(Number(userData.rep.get(tid))||0)+1);
+    cooldownManager.set(userId,'rep',86_400_000);
+    await saveData();
+    return interaction.reply({content:`👍 Gave rep to **${target.username}**! They now have **${userData.rep.get(tid)}** rep.`});
+}
+if (cmd==='adopt') {
+    if (userData.pets.get(userId)) return interaction.reply({content:'❌ Already have a pet! Use `/pet` to check it.',ephemeral:true});
+    const pc=interaction.options.getString('pet');
+    const pet=PETS.find(p=>p.id===pc);
+    if (!pet||coins(userId)<pet.price) return interaction.reply({content:`❌ Need **${fmtN(pet?.price||0)}** coins.`,ephemeral:true});
+    addCoins(userId,-pet.price);
+    userData.pets.set(userId,{id:pet.id,name:pet.name,xp:0,level:1});
+    await saveData();
+    return interaction.reply({content:`🐾 You adopted a **${pet.name}**! 🎉`});
+}
+if (cmd==='pet') {
+    const pet=userData.pets.get(userId);
+    if (!pet) return interaction.reply({content:'❌ No pet! Use `/adopt`.',ephemeral:true});
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0xFF69B4).setTitle(pet.name).addFields({name:'Level',value:`⭐ **${pet.level}**`,inline:true},{name:'XP',value:`📊 **${pet.xp||0}**`,inline:true},{name:'Status',value:'😊 Happy',inline:true})]});
+}
+if (cmd==='mine') {
+    const rem=cooldownManager.get(userId,'mine');
+    if (rem) return interaction.reply({content:`⏰ Mining cooldown: **${cdStr(rem)}**`,ephemeral:true});
+    const found=Math.random()>0.2;
+    if (found){addCoins(userId,rng(300,800));addXP(userId,50);}
+    const matPool=['iron_ore','wood','herbs'];
+    const mat=matPool[rng(0,matPool.length-1)];
+    const mats=userData.craftMats.get(userId)||{};
+    mats[mat]=(mats[mat]||0)+rng(1,4);
+    userData.craftMats.set(userId,mats);
+    cooldownManager.set(userId,'mine',900_000);
+    await saveData();
+    return interaction.reply({content:found?`⛏️ Struck gold! Found resources and **+${rng(300,800)} coins**!`:'⛏️ Hit a dead end, but grabbed some materials.'});
+}
+
+// ── MODERATION ──
+if (cmd==='warn') {
+    if (!isStaff) return interaction.reply({content:'❌ Staff only!',ephemeral:true});
+    const target=interaction.options.getUser('user');
+    const reason=interaction.options.getString('reason');
+    if (!target) return interaction.reply({content:'❌ User not found',ephemeral:true});
+    const tid=String(target.id);
+    if (!userData.warnings.has(tid)) userData.warnings.set(tid,[]);
+    userData.warnings.get(tid).push({reason,at:new Date().toISOString(),by:interaction.user.username});
+    await saveData();
+    const logCfg=logsConfig[guildId];
+    if (logCfg?.channelId){const lc=await interaction.guild?.channels.fetch(logCfg.channelId).catch(()=>null);if(lc)lc.send({embeds:[new EmbedBuilder().setColor(0xFEE75C).setTitle('⚠️ User Warned').addFields({name:'User',value:target.username,inline:true},{name:'By',value:interaction.user.username,inline:true},{name:'Reason',value:reason}).setTimestamp()]}).catch(()=>{});}
+    return interaction.reply({content:`⚠️ Warned **${target.username}** — ${reason}`});
+}
+if (cmd==='warnings') {
+    if (!isStaff) return interaction.reply({content:'❌ Staff only!',ephemeral:true});
+    const target=interaction.options.getUser('user');
+    if (!target) return interaction.reply({content:'❌ User not found',ephemeral:true});
+    const warns=userData.warnings.get(String(target.id))||[];
+    if (!warns.length) return interaction.reply({content:`✅ **${target.username}** has no warnings.`,ephemeral:true});
+    const embed=new EmbedBuilder().setColor(0xFEE75C).setTitle(`⚠️ ${target.username}'s Warnings`)
+        .setDescription(warns.map((w,i)=>`**${i+1}.** ${w.reason}\n> by ${w.by} on ${w.at.slice(0,10)}`).join('\n\n'));
+    return interaction.reply({embeds:[embed],ephemeral:true});
+}
+if (cmd==='mute') {
+    if (!isStaff) return interaction.reply({content:'❌ Staff only!',ephemeral:true});
+    const target=interaction.options.getUser('user');
+    const dur=interaction.options.getInteger('duration');
+    if (!target) return interaction.reply({content:'❌ User not found',ephemeral:true});
+    try {
+        const member=await interaction.guild.members.fetch(target.id);
+        await member.disableCommunicationUntil(Date.now()+dur*60_000,`Muted by ${interaction.user.username}`);
+        const lc=logsConfig[guildId]?.channelId?await interaction.guild.channels.fetch(logsConfig[guildId].channelId).catch(()=>null):null;
+        if(lc)lc.send({embeds:[new EmbedBuilder().setColor(0xED4245).setTitle('🤐 Timed Out').addFields({name:'User',value:target.username,inline:true},{name:'By',value:interaction.user.username,inline:true},{name:'Duration',value:`${dur}m`,inline:true}).setTimestamp()]}).catch(()=>{});
+        return interaction.reply({content:`🤐 **${target.username}** timed out for **${dur} minutes**`});
+    } catch(e){return interaction.reply({content:'❌ Failed. Check permissions.',ephemeral:true});}
+}
+if (cmd==='unmute') {
+    if (!isStaff) return interaction.reply({content:'❌ Staff only!',ephemeral:true});
+    const target=interaction.options.getUser('user');
+    if (!target) return interaction.reply({content:'❌ User not found',ephemeral:true});
+    try {
+        const member=await interaction.guild.members.fetch(target.id);
+        await member.disableCommunicationUntil(null);
+        return interaction.reply({content:`🔊 **${target.username}** unmuted!`});
+    } catch(e){return interaction.reply({content:'❌ Failed.',ephemeral:true});}
+}
+
+if (cmd==='kick') {
+    if (!isStaff) return interaction.reply({content:'❌ Staff only!',ephemeral:true});
+    const target=interaction.options.getUser('user');
+    const reason=interaction.options.getString('reason')||'No reason';
+    if (!target) return interaction.reply({content:'❌ User not found',ephemeral:true});
+    try {
+        const member=await interaction.guild.members.fetch(target.id);
+        await member.kick(reason);
+        const lc=logsConfig[guildId]?.channelId?await interaction.guild.channels.fetch(logsConfig[guildId].channelId).catch(()=>null):null;
+        if(lc)lc.send({embeds:[new EmbedBuilder().setColor(0xFFA500).setTitle('👢 User Kicked').addFields({name:'User',value:target.username,inline:true},{name:'By',value:interaction.user.username,inline:true},{name:'Reason',value:reason}).setTimestamp()]}).catch(()=>{});
+        return interaction.reply({content:`👢 **${target.username}** kicked — ${reason}`});
+    } catch(e){return interaction.reply({content:'❌ Failed to kick. Check permissions.',ephemeral:true});}
+}
+if (cmd==='ban') {
+    if (!isStaff) return interaction.reply({content:'❌ Staff only!',ephemeral:true});
+    const target=interaction.options.getUser('user');
+    const reason=interaction.options.getString('reason')||'No reason';
+    if (!target) return interaction.reply({content:'❌ User not found',ephemeral:true});
+    try {
+        await interaction.guild.members.ban(target.id,{reason});
+        const lc=logsConfig[guildId]?.channelId?await interaction.guild.channels.fetch(logsConfig[guildId].channelId).catch(()=>null):null;
+        if(lc)lc.send({embeds:[new EmbedBuilder().setColor(0xF44336).setTitle('🔨 User Banned').addFields({name:'User',value:target.username,inline:true},{name:'By',value:interaction.user.username,inline:true},{name:'Reason',value:reason}).setTimestamp()]}).catch(()=>{});
+        return interaction.reply({content:`🔨 **${target.username}** banned — ${reason}`});
+    } catch(e){return interaction.reply({content:'❌ Failed to ban. Check permissions.',ephemeral:true});}
+}
+
+
+// ── SETUP ──
+if (cmd==='setlogs') {
+    if (!isStaff) return interaction.reply({content:'❌ Staff only!',ephemeral:true});
+    const ch=interaction.options.getChannel('channel');
+    logsConfig[guildId]={channelId:ch.id}; await saveData();
+    return interaction.reply({content:`📋 Mod-log set to <#${ch.id}>`,ephemeral:true});
+}
+if (cmd==='setwelcome') {
+    if (!isStaff) return interaction.reply({content:'❌ Staff only!',ephemeral:true});
+    const ch=interaction.options.getChannel('channel');
+    const role=interaction.options.getRole('role');
+    welcomeConfig[guildId]={channelId:ch.id,roleId:role?.id||null,message:`Welcome to ${interaction.guild?.name||'the server'}!`};
+    await saveData();
+    return interaction.reply({content:`👋 Welcome channel → <#${ch.id}>${role?` | Auto-role: <@&${role.id}>`:''}`,ephemeral:true});
+}
+if (cmd==='settickets') {
+    if (!isStaff) return interaction.reply({content:'❌ Staff only!',ephemeral:true});
+    const ch=interaction.options.getChannel('channel');
+    ticketConfig[guildId]={channelId:ch.id}; await saveData();
+    const row=new ActionRowBuilder().addComponents(new ButtonBuilder().setCustomId('open_ticket').setLabel('🎫 Open a Ticket').setStyle(ButtonStyle.Primary));
+    const tc=await interaction.guild?.channels.fetch(ch.id).catch(()=>null);
+    if(tc)await tc.send({embeds:[new EmbedBuilder().setColor(0x5865F2).setTitle('🎫 Support Tickets').setDescription('Click below to open a private support ticket.')],components:[row]}).catch(()=>{});
+    return interaction.reply({content:`🎫 Ticket panel posted in <#${ch.id}>`,ephemeral:true});
+}
+if (cmd==='setsuggestions') {
+    if (!isStaff) return interaction.reply({content:'❌ Staff only!',ephemeral:true});
+    const ch=interaction.options.getChannel('channel');
+    suggestionConfig[guildId]={channelId:ch.id}; await saveData();
+    return interaction.reply({content:`💡 Suggestion channel → <#${ch.id}>`,ephemeral:true});
+}
+
+// ── SUGGESTIONS (with voting + staff approve/deny) ──
+if (cmd==='suggest') {
+    const text=interaction.options.getString('text');
+    const cfg=suggestionConfig[guildId];
+    if (!cfg?.channelId) return interaction.reply({content:'❌ No suggestion channel set! Staff: use `/setsuggestions`',ephemeral:true});
+    const ch=await interaction.guild?.channels.fetch(cfg.channelId).catch(()=>null);
+    if (!ch) return interaction.reply({content:'❌ Suggestion channel not found.',ephemeral:true});
+    const sugId=`sug_${Date.now()}`;
+    const embed=new EmbedBuilder().setColor(0x5865F2).setTitle('💡 New Suggestion')
+        .setDescription(text)
+        .addFields(
+            {name:'Submitted by',value:interaction.user.username,inline:true},
+            {name:'Status',value:'⏳ Pending — vote below!',inline:true},
+        ).setTimestamp();
+    const row=new ActionRowBuilder().addComponents(
+        new ButtonBuilder().setCustomId(`sug_approve_${sugId}`).setLabel('✅ Approve').setStyle(ButtonStyle.Success),
+        new ButtonBuilder().setCustomId(`sug_deny_${sugId}`).setLabel('❌ Deny').setStyle(ButtonStyle.Danger),
+    );
+    const msg=await ch.send({embeds:[embed],components:[row]});
+    await msg.react('👍').catch(()=>{});
+    await msg.react('👎').catch(()=>{});
+    return interaction.reply({content:'✅ Suggestion submitted! Staff can approve/deny; everyone can vote 👍/👎.',ephemeral:true});
+}
+
+// ── STAFF MANAGEMENT ──
+if (cmd==='addstaff') {
+    if (!isOwner && !interaction.memberPermissions?.has(PermissionFlagsBits.Administrator))
+        return interaction.reply({content:'❌ Admins only!',ephemeral:true});
+    const target=interaction.options.getUser('user');
+    if (!target) return interaction.reply({content:'❌ User not found',ephemeral:true});
+    staffSet.add(`${guildId}:${String(target.id)}`);
+    await saveData();
+    return interaction.reply({content:`👮 **${target.username}** is now staff in this server!`});
+}
+if (cmd==='removestaff') {
+    if (!isOwner && !interaction.memberPermissions?.has(PermissionFlagsBits.Administrator))
+        return interaction.reply({content:'❌ Admins only!',ephemeral:true});
+    const target=interaction.options.getUser('user');
+    if (!target) return interaction.reply({content:'❌ User not found',ephemeral:true});
+    staffSet.delete(`${guildId}:${String(target.id)}`);
+    await saveData();
+    return interaction.reply({content:`✅ Removed **${target.username}** from server staff.`,ephemeral:true});
+}
+if (cmd==='liststaffs') {
+    if (!isStaff) return interaction.reply({content:'❌ Staff only!',ephemeral:true});
+    const gStaff=[...staffSet].filter(s=>s.startsWith(`${guildId}:`)).map(s=>s.split(':')[1]);
+    if (!gStaff.length) return interaction.reply({content:'No staff set for this server. Use `/addstaff`.',ephemeral:true});
+    const lines=gStaff.map(uid=>{const cached=client.users.cache.get(uid);return `• ${cached?cached.username:`User#${uid.slice(-4)}`}`;});
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0x2196F3).setTitle('👮 Server Staff').setDescription(lines.join('\n'))],ephemeral:true});
+}
+
+// ── DELETE / RESET COMMANDS ──
+if (cmd==='deletestaff') {
+    if (!isOwner && !interaction.memberPermissions?.has(PermissionFlagsBits.Administrator))
+        return interaction.reply({content:'❌ Admins only!',ephemeral:true});
+    const target=interaction.options.getUser('user');
+    if (!target) return interaction.reply({content:'❌ Provide a user.',ephemeral:true});
+    staffSet.delete(`${guildId}:${String(target.id)}`);
+    await saveData();
+    return interaction.reply({content:`✅ Removed **${target.username}** from staff.`,ephemeral:true});
+}
+
+    if (cmd==='deletelogs') {
+    if (!isStaff) return interaction.reply({content:'❌ Staff only!',ephemeral:true});
+    delete logsConfig[guildId]; await saveData();
+    return interaction.reply({content:'✅ Mod-logs disabled for this server.',ephemeral:true});
+}
+if (cmd==='deletewelcome') {
+    if (!isStaff) return interaction.reply({content:'❌ Staff only!',ephemeral:true});
+    delete welcomeConfig[guildId]; await saveData();
+    return interaction.reply({content:'✅ Welcome system disabled.',ephemeral:true});
+}
+if (cmd==='deletetickets') {
+    if (!isStaff) return interaction.reply({content:'❌ Staff only!',ephemeral:true});
+    delete ticketConfig[guildId]; await saveData();
+    return interaction.reply({content:'✅ Ticket system disabled.',ephemeral:true});
+}
+if (cmd==='deletesuggestions') {
+    if (!isStaff) return interaction.reply({content:'❌ Staff only!',ephemeral:true});
+    delete suggestionConfig[guildId]; await saveData();
+    return interaction.reply({content:'✅ Suggestions disabled.',ephemeral:true});
+}
+if (cmd==='deletemoney') {
+    if (!isOwner) return interaction.reply({content:'❌ Owner only!',ephemeral:true});
+    const target=interaction.options.getUser('user');
+    if (!target) return interaction.reply({content:'❌ Provide a user.',ephemeral:true});
+    const tid=String(target.id);
+    userData.coins.set(tid,0); userData.bank.set(tid,0);
+    await saveData();
+    return interaction.reply({content:`✅ Reset all money for **${target.username}**.`,ephemeral:true});
+}
+
+if (cmd==='setlevelannounce') {
+    if (!isStaff) return interaction.reply({content:'❌ Staff only!',ephemeral:true});
+    const ch = interaction.options.getChannel('channel');
+    levelAnnounceConfig[guildId] = { channelId: ch.id };
+    await saveData();
+    return interaction.reply({embeds:[new EmbedBuilder()
+        .setColor(0x57F287)
+        .setTitle('📢 Level Announce Channel Set!')
+        .setDescription(`Level-up notifications will now be sent to <#${ch.id}>!`)
+        .addFields(
+            {name:'How it works', value:'Every time someone levels up from chatting or fishing, a level-up embed will appear in that channel.'},
+            {name:'Disable it', value:'Use `/deletelevelannounce` to turn it off.'},
+        )
+    ]});
+}
+if (cmd==='deletelevelannounce') {
+    if (!isStaff) return interaction.reply({content:'❌ Staff only!',ephemeral:true});
+    delete levelAnnounceConfig[guildId];
+    await saveData();
+    return interaction.reply({content:'✅ Level-up announcements disabled for this server.',ephemeral:true});
+}
+
+// ════════════════════════════════════════════════════════════════
+// DELETE / REVERSE COMMANDS
+// ════════════════════════════════════════════════════════════════
+
+if (cmd==='deletecoins') {
+    if (!isOwner) return interaction.reply({content:'❌ Owner only!',ephemeral:true});
+    const target=interaction.options.getUser('user');
+    const amount=interaction.options.getInteger('amount');
+    const tid=String(target.id);
+    if (amount) {
+        const newBal=Math.max(0,coins(tid)-amount);
+        userData.coins.set(tid,newBal);
+        await saveData();
+        return interaction.reply({content:`✅ Removed **${fmtN(amount)} coins** from **${target.username}**. New balance: **${fmtN(newBal)}**`,ephemeral:true});
+    } else {
+        userData.coins.set(tid,0); userData.bank.set(tid,0);
+        await saveData();
+        return interaction.reply({content:`✅ Reset all coins (wallet + bank) for **${target.username}** to 0.`,ephemeral:true});
+    }
+}
+
+if (cmd==='deletexp') {
+    if (!isOwner) return interaction.reply({content:'❌ Owner only!',ephemeral:true});
+    const target=interaction.options.getUser('user');
+    const amount=interaction.options.getInteger('amount');
+    const tid=String(target.id);
+    const before=getLevelInfo(userData.xp.get(tid)||0);
+    if (amount) {
+        const newXp=Math.max(0,(userData.xp.get(tid)||0)-amount);
+        userData.xp.set(tid,newXp);
+        const after=getLevelInfo(newXp);
+        await saveData();
+        return interaction.reply({content:`✅ Removed **${fmtN(amount)} XP** from **${target.username}**.
+Level: **${before.level}** → **${after.level}**`,ephemeral:true});
+    } else {
+        userData.xp.set(tid,0);
+        await saveData();
+        return interaction.reply({content:`✅ Reset XP for **${target.username}** to 0 (back to Level 0).`,ephemeral:true});
+    }
+}
+
+if (cmd==='deletelevel') {
+    if (!isOwner) return interaction.reply({content:'❌ Owner only!',ephemeral:true});
+    const target=interaction.options.getUser('user');
+    const tid=String(target.id);
+    const before=getLevelInfo(userData.xp.get(tid)||0).level;
+    userData.xp.set(tid,0);
+    userData.skillPoints.set(tid,0);
+    userData.skillsLearned.set(tid,[]);
+    await saveData();
+    return interaction.reply({content:`✅ Reset **${target.username}** from Level **${before}** back to Level **0**. Skill points and learned skills also cleared.`,ephemeral:true});
+}
+
+if (cmd==='deletewarnings') {
+    if (!isStaff) return interaction.reply({content:'❌ Staff only!',ephemeral:true});
+    const target=interaction.options.getUser('user');
+    const tid=String(target.id);
+    const count=(userData.warnings.get(tid)||[]).length;
+    if (!count) return interaction.reply({content:`✅ **${target.username}** already has no warnings.`,ephemeral:true});
+    userData.warnings.set(tid,[]);
+    await saveData();
+    const logCfg=logsConfig[guildId];
+    if (logCfg?.channelId){
+        const lc=await interaction.guild?.channels.fetch(logCfg.channelId).catch(()=>null);
+        if(lc) lc.send({embeds:[new EmbedBuilder().setColor(0x57F287).setTitle('🗑️ Warnings Cleared').addFields({name:'User',value:target.username,inline:true},{name:'By',value:interaction.user.username,inline:true},{name:'Warnings Removed',value:String(count),inline:true}).setTimestamp()]}).catch(()=>{});
+    }
+    return interaction.reply({content:`✅ Cleared **${count}** warning(s) from **${target.username}**.`,ephemeral:true});
+}
+
+if (cmd==='deleteresponse') {
+    if (!isOwner) return interaction.reply({content:'❌ Owner only!',ephemeral:true});
+    const trigger=interaction.options.getString('trigger').toLowerCase();
+    if (!autoResponses.has(trigger)) return interaction.reply({content:`❌ No auto-response found for trigger: **"${trigger}"**`,ephemeral:true});
+    autoResponses.delete(trigger);
+    await saveData();
+    return interaction.reply({content:`✅ Removed auto-response for trigger: **"${trigger}"**`,ephemeral:true});
+}
+
+if (cmd==='clearresponses') {
+    if (!isOwner) return interaction.reply({content:'❌ Owner only!',ephemeral:true});
+    const count=autoResponses.size;
+    autoResponses.clear();
+    await saveData();
+    return interaction.reply({content:`✅ Cleared all **${count}** auto-response(s).`,ephemeral:true});
+}
+
+if (cmd==='listresponses') {
+    if (!isStaff) return interaction.reply({content:'❌ Staff only!',ephemeral:true});
+    if (!autoResponses.size) return interaction.reply({content:'📋 No auto-responses set. Add one with `/addresponse`.',ephemeral:true});
+    const lines=[...autoResponses.entries()].map(([k,v])=>`**"${k}"** → ${v.length>60?v.slice(0,60)+'...':v}`);
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0x2196F3).setTitle(`📋 Auto-Responses (${autoResponses.size})`).setDescription(lines.join("\n")).setFooter({text:"Remove: /deleteresponse <trigger> | Clear all: /clearresponses"})],ephemeral:true});
+}
+
+if (cmd==='deleteinventory') {
+    if (!isOwner) return interaction.reply({content:'❌ Owner only!',ephemeral:true});
+    const target=interaction.options.getUser('user');
+    const type=interaction.options.getString('type');
+    const tid=String(target.id);
+    const cleared=[];
+    if (type==='weapons'||type==='all')  { userData.weapons.set(tid,[]);  cleared.push('weapons'); }
+    if (type==='items'  ||type==='all')  { userData.items.set(tid,[]);    cleared.push('items'); }
+    if (type==='fish'   ||type==='all')  { userData.fishInv.set(tid,[]);  userData.fishCaught.set(tid,{}); userData.fishStats.set(tid,{total:0,totalVal:0,biggest:0,biggestName:''}); cleared.push('fish inventory'); }
+    if (type==='bait'   ||type==='all')  { userData.baitInv.set(tid,{});  cleared.push('bait'); }
+    await saveData();
+    return interaction.reply({content:`✅ Cleared **${cleared.join(', ')}** for **${target.username}**.`,ephemeral:true});
+}
+
+if (cmd==='deletepet') {
+    if (!isOwner) return interaction.reply({content:'❌ Owner only!',ephemeral:true});
+    const target=interaction.options.getUser('user');
+    const tid=String(target.id);
+    const pet=userData.pets.get(tid);
+    if (!pet) return interaction.reply({content:`❌ **${target.username}** has no pet.`,ephemeral:true});
+    userData.pets.delete(tid);
+    await saveData();
+    return interaction.reply({content:`✅ Removed **${pet.name||'pet'}** from **${target.username}**.`,ephemeral:true});
+}
+
+if (cmd==='deleterod') {
+    if (!isOwner) return interaction.reply({content:'❌ Owner only!',ephemeral:true});
+    const target=interaction.options.getUser('user');
+    const tid=String(target.id);
+    userData.rodEquipped.set(tid,'plastic');
+    userData.rodOwned.set(tid,[]);
+    userData.rodEnchants.set(tid,[]);
+    await saveData();
+    return interaction.reply({content:`✅ Reset **${target.username}**'s rod to Plastic Rod and cleared all owned rods and enchantments.`,ephemeral:true});
+}
+
+if (cmd==='resetuser') {
+    if (!isOwner) return interaction.reply({content:'❌ Owner only!',ephemeral:true});
+    const target=interaction.options.getUser('user');
+    const tid=String(target.id);
+    // Confirm step via button
+    const row=new ActionRowBuilder().addComponents(
+        new ButtonBuilder().setCustomId(`resetuser_confirm_${tid}_${userId}`).setLabel('⚠️ YES, FULL RESET').setStyle(ButtonStyle.Danger),
+        new ButtonBuilder().setCustomId(`resetuser_cancel_${userId}`).setLabel('Cancel').setStyle(ButtonStyle.Secondary),
+    );
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0xF44336).setTitle('⚠️ Full User Reset')
+        .setDescription(`This will wipe **ALL** data for **${target.username}**:
+- Coins & bank
+- XP & level
+- Fish inventory
+- Rods & bait
+- Weapons & items
+- Pet
+- Warnings
+- Achievements
+- Guild membership
+
+**Are you sure?**`)
+    ],components:[row],ephemeral:true});
+}
+
+if (cmd==='deleteguild') {
+    if (!isOwner) return interaction.reply({content:'❌ Owner only!',ephemeral:true});
+    const name=interaction.options.getString('name').toLowerCase();
+    let foundId=null,foundG=null;
+    for (const [gid,g] of userData.guilds){if(g.name.toLowerCase()===name){foundId=gid;foundG=g;break;}}
+    if (!foundG) return interaction.reply({content:`❌ Guild **"${name}"** not found.`,ephemeral:true});
+    // Remove all members from guild
+    for (const memberId of foundG.members) {
+        if (userData.guildOf.get(memberId)===foundId) userData.guildOf.delete(memberId);
+    }
+    userData.guilds.delete(foundId);
+    await saveData();
+    return interaction.reply({content:`✅ Disbanded guild **${foundG.name}** and removed all **${foundG.members.length}** members.`,ephemeral:true});
+}
+
+if (cmd==='deletemarketlisting') {
+    const lid=interaction.options.getString('listingid');
+    const listing=userData.marketplace.get(lid);
+    if (!listing) return interaction.reply({content:'❌ Listing not found!',ephemeral:true});
+    // Allow seller OR owner to delete
+    if (listing.seller!==userId&&!isOwner) return interaction.reply({content:'❌ You can only remove your own listings!',ephemeral:true});
+    userData.marketplace.delete(lid);
+    await saveData();
+    return interaction.reply({content:`✅ Removed listing \`${lid}\`.`,ephemeral:true});
+        }
+
+        // ── OWNER COMMANDS ──
+if (cmd==='addxp') {
+    if (!isOwner) return interaction.reply({content:'❌ Owner only!',ephemeral:true});
+    const t=interaction.options.getUser('user'),a=interaction.options.getInteger('amount');
+    addXP(String(t.id),a); await saveData();
+    return interaction.reply({content:`⭐ Added **${fmtN(a)} XP** to **${t.username}**`});
+}
+if (cmd==='addcoins') {
+    if (!isOwner) return interaction.reply({content:'❌ Owner only!',ephemeral:true});
+    const t=interaction.options.getUser('user'),a=interaction.options.getInteger('amount');
+    addCoins(String(t.id),a); await saveData();
+    return interaction.reply({content:`💰 Added **${fmtN(a)} coins** to **${t.username}**`});
+}
+if (cmd==='addresponse') {
+    if (!isOwner) return interaction.reply({content:'❌ Owner only!',ephemeral:true});
+    const trigger=String(interaction.options.getString('trigger')).toLowerCase();
+    const response=String(interaction.options.getString('response'));
+    autoResponses.set(trigger,response); await saveData();
+    return interaction.reply({content:`✅ Auto-response set: **"${trigger}"** → "${response}"`,ephemeral:true});
+}
+if (cmd==='resetcooldowns') {
+    if (!isOwner) return interaction.reply({content:'❌ Owner only!',ephemeral:true});
+    const t=interaction.options.getUser('user')||interaction.user;
+    cooldownManager.clearAll(String(t.id));
+    return interaction.reply({content:`✅ Cleared all cooldowns for **${t.username}**`,ephemeral:true});
+}
+if (cmd==='giverod') {
+    if (!isOwner) return interaction.reply({content:'❌ Owner only!',ephemeral:true});
+    const t=interaction.options.getUser('user');
+    const rid=interaction.options.getString('rod');
+    const rod=FISHING_RODS.find(r=>r.id===rid);
+    if (!rod) return interaction.reply({content:'❌ Invalid rod ID',ephemeral:true});
+    const owned=userData.rodOwned.get(String(t.id))||[];
+    if (!owned.includes(rid)){owned.push(rid);userData.rodOwned.set(String(t.id),owned);}
+    await saveData();
+    return interaction.reply({content:`✅ Gave **${rod.name}** to **${t.username}**`,ephemeral:true});
+}
+if (cmd==='forceevent') {
+    if (!isOwner) return interaction.reply({content:'❌ Owner only!',ephemeral:true});
+    const eid=interaction.options.getString('event');
+    const ev=WORLD_EVENTS.find(e=>e.id===eid);
+    if (!ev) return interaction.reply({content:'❌ Invalid event',ephemeral:true});
+    userData.worldEvent=ev; userData.worldEventEnd=Date.now()+ev.dur;
+    await saveData();
+    return interaction.reply({content:`✅ Forced event: **${ev.emoji} ${ev.name}**\n${ev.desc}`});
+}
+if (cmd==='forceboss') {
+    if (!isOwner) return interaction.reply({content:'❌ Owner only!',ephemeral:true});
+    const bid=interaction.options.getString('boss');
+    const b=BOSS_FISH.find(b=>b.id===bid);
+    if (!b) return interaction.reply({content:'❌ Invalid boss',ephemeral:true});
+    userData.activeBoss=b; userData.activeBossHp=b.hp;
+    await saveData();
+    return interaction.reply({content:`✅ Spawned: **${b.emoji} ${b.name}** (${fmtN(b.hp)} HP)`});
+}
+
+// ════════════════════════════════════════════════════════════════
+// FISHING COMMANDS
+// ════════════════════════════════════════════════════════════════
+if (cmd==='fish') {
+    const rem=cooldownManager.get(userId,'fish');
+    if (rem) return interaction.reply({content:`⏰ Fishing cooldown: **${cdStr(rem)}**`,ephemeral:true});
+    const biomeId=interaction.options.getString('biome')||'pond';
+    const baitId=interaction.options.getString('bait')||null;
+    const biome=BIOMES.find(b=>b.id===biomeId)||BIOMES[0];
+    const lvInfo=getLevelInfo(userData.xp.get(userId)||0);
+    if (lvInfo.level<biome.unlockLv) return interaction.reply({content:`❌ Need **Level ${biome.unlockLv}** to fish in ${biome.name}! You are Level ${lvInfo.level}.`,ephemeral:true});
+    if (baitId){const inv=userData.baitInv.get(userId)||{};if (!inv[baitId]||inv[baitId]<=0) return interaction.reply({content:`❌ No ${baitId} bait! Buy with \`/buybait\`.`,ephemeral:true});}
+    await interaction.deferReply();
+    await new Promise(r=>setTimeout(r,1500));
+    const res=doFish(userId,biomeId,baitId);
+    if (!res) return interaction.editReply({content:'❌ Something went wrong. Try again!'});
+    const {fish,mutation,weight,value,xpGain,xpRes,weather,night,streak,chestGold,gained}=res;
+    const enchants=userData.rodEnchants.get(userId)||[];
+    cooldownManager.set(userId,'fish',enchants.includes('swift')?22_000:30_000);
+    const pet=userData.pets.get(userId);
+    if (pet){pet.xp=(pet.xp||0)+10;if(pet.xp>=(pet.level||1)*100){pet.level=(pet.level||1)+1;pet.xp=0;}userData.pets.set(userId,pet);}
+    // Battle pass XP
+    const bp=userData.battlePass.get(userId)||{tier:1,bpXp:0,premium:false,season:SEASON};
+    bp.bpXp=(bp.bpXp||0)+5;
+    const nextTier=BP_TIERS.find(t=>t.tier===bp.tier+1);
+    if (nextTier&&bp.bpXp>=nextTier.bpXp&&bp.tier<10){bp.tier++;if(nextTier.free.coins)addCoins(userId,nextTier.free.coins);if(nextTier.free.xp)addXP(userId,nextTier.free.xp);}
+    userData.battlePass.set(userId,bp);
+    const color=RARITY_COLORS[fish.r]||0x9E9E9E;
+    const mutStr=mutation.id!=='none'?` ${mutation.emoji} **${mutation.name}**`:'';
+    const embed=new EmbedBuilder().setColor(color)
+        .setTitle(`🎣 Caught a${mutStr} **${fish.name}**!`)
+        .setDescription(`${fish.emoji} *${fish.desc}*`)
+        .addFields(
+            {name:'🏷️ Rarity', value:fish.r,             inline:true},
+            {name:'⚖️ Weight', value:`${weight} kg`,      inline:true},
+            {name:'💰 Value',  value:`${fmtN(value)} coins`,inline:true},
+            {name:'⭐ XP',     value:`+${fmtN(xpGain)}`,  inline:true},
+            {name:'🌤️ Weather',value:`${weather.emoji} ${weather.name}`,inline:true},
+            {name:'🔥 Streak', value:`${streak} day(s)`,  inline:true},
+        )
+        .setFooter({text:`${biome.emoji} ${biome.name} • Use /sellfish to sell`});
+    if (mutation.id!=='none') embed.addFields({name:`${mutation.emoji} Mutation!`,value:`**${mutation.name}** — ${mutation.mult}x value multiplier!`});
+    if (chestGold>0) embed.addFields({name:'💰 Treasure Chest!',value:`Found **${fmtN(chestGold)} coins**!`});
+    if (xpRes.leveledUp) embed.addFields({name:'🎉 Level Up!',value:`You reached **Level ${xpRes.newLevel}**!`});
+    if (gained.length) embed.addFields({name:'🏆 Achievement!',value:gained.map(a=>`${a.emoji} **${a.name}** +${fmtN(a.reward)}c`).join('\n')});
+    if (night) embed.addFields({name:'🌙 Night Bonus',value:'Rare fish rate increased!'});
+    await saveData();
+    return interaction.editReply({embeds:[embed]});
+}
+
+if (cmd==='fishguide') {
+    const embed=new EmbedBuilder().setColor(0x2196F3).setTitle('🎣 Fishing Guide')
+        .addFields(
+            {name:'📍 Biomes',    value:BIOMES.map(b=>`${b.emoji} **${b.name}** (Lv${b.unlockLv}+) — ${b.desc}`).join('\n')},
+            {name:'🌤️ Weather',  value:'Changes every 2h. Storm = rare fish. Eclipse = legendary surge.'},
+            {name:'🌙 Night',    value:'Night (20:00–06:00 UTC) = +50% rare fish chance.'},
+            {name:'🧬 Mutations',value:'Multiply fish value. Prismatic = 15x! Use lucky bait or Lucky enchant.'},
+            {name:'💰 Selling',  value:'`/sellfish all` sells everything. Keep Legendary+!'},
+            {name:'📋 Quests',   value:'Daily quests give bonus coins. Use `/fishquest`.'},
+            {name:'🦈 Bosses',   value:'Boss fish spawn randomly. Use `/fishboss` to attack!'},
+            {name:'👑 Scylla',   value:'Catch all 3 secret fish to craft the Scylla Key!'},
+        );
+    return interaction.reply({embeds:[embed]});
+}
+
+if (cmd==='rodshop') {
+    const owned=userData.rodOwned.get(userId)||[];
+    const equip=userData.rodEquipped.get(userId)||'plastic';
+    const lvInfo=getLevelInfo(userData.xp.get(userId)||0);
+    const lines=FISHING_RODS.map(r=>{
+        const isOwned=owned.includes(r.id)||(r.id==='plastic');
+        const isEquip=equip===r.id;
+        const canBuy=lvInfo.level>=r.reqLv&&!r.reqQ&&r.price>0;
+        const status=isEquip?'✅ Equipped':isOwned?'📦 Owned':canBuy?`💰 ${fmtN(r.price)}c`:(r.reqQ?`🔒 Quest: ${r.reqQ}`:`🔒 Lv${r.reqLv}`);
+        return `${r.emoji} **${r.name}** [Lv${r.reqLv}] — ${status}\n  └ Power:x${r.pwr} Luck:+${r.luck} | ${r.desc}`;
+    });
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0x2196F3).setTitle('🎣 Rod Shop').setDescription(lines.join('\n\n')).setFooter({text:'Buy: /buyrod <id> | Equip: /equiprod <id>'})]});
+}
+
+if (cmd==='buyrod') {
+    const rid=interaction.options.getString('rod');
+    const rod=FISHING_RODS.find(r=>r.id===rid);
+    if (!rod) return interaction.reply({content:'❌ Invalid rod ID. Check `/rodshop`.',ephemeral:true});
+    if (!rod.price) return interaction.reply({content:'❌ This rod cannot be purchased directly.',ephemeral:true});
+    const owned=userData.rodOwned.get(userId)||[];
+    if (owned.includes(rid)) return interaction.reply({content:'❌ Already own this rod!',ephemeral:true});
+    const lvInfo=getLevelInfo(userData.xp.get(userId)||0);
+    if (lvInfo.level<rod.reqLv) return interaction.reply({content:`❌ Need **Level ${rod.reqLv}**! You are Level ${lvInfo.level}.`,ephemeral:true});
+    if (rod.reqQ) return interaction.reply({content:`❌ Requires quest: **${rod.reqQ}**`,ephemeral:true});
+    if (coins(userId)<rod.price) return interaction.reply({content:`❌ Need **${fmtN(rod.price)}** coins!`,ephemeral:true});
+    addCoins(userId,-rod.price);
+    owned.push(rid); userData.rodOwned.set(userId,owned);
+    userData.rodEquipped.set(userId,rid);
+    await saveData();
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0x57F287).setTitle(`${rod.emoji} Rod Purchased & Equipped!`).setDescription(`**${rod.name}**\n${rod.desc}`)]});
+}
+
+if (cmd==='equiprod') {
+    const rid=interaction.options.getString('rod');
+    const rod=FISHING_RODS.find(r=>r.id===rid);
+    if (!rod) return interaction.reply({content:'❌ Invalid rod ID.',ephemeral:true});
+    const owned=userData.rodOwned.get(userId)||[];
+    if (!owned.includes(rid)&&rid!=='plastic') return interaction.reply({content:"❌ Don't own this rod! Buy with `/buyrod`.",ephemeral:true});
+    userData.rodEquipped.set(userId,rid); await saveData();
+    return interaction.reply({content:`✅ Equipped **${rod.emoji} ${rod.name}**!`,ephemeral:true});
+}
+
+if (cmd==='enchantrod') {
+    const eid=interaction.options.getString('enchant');
+    const ench=ROD_ENCHANTS.find(e=>e.id===eid);
+    if (!ench) return interaction.reply({content:'❌ Invalid enchantment.',ephemeral:true});
+    const enchants=userData.rodEnchants.get(userId)||[];
+    if (enchants.includes(eid)) return interaction.reply({content:'❌ Rod already has this enchantment!',ephemeral:true});
+    if (coins(userId)<ench.cost) return interaction.reply({content:`❌ Need **${fmtN(ench.cost)}** coins!`,ephemeral:true});
+    addCoins(userId,-ench.cost); enchants.push(eid); userData.rodEnchants.set(userId,enchants);
+    await saveData();
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0x9C27B0).setTitle(`${ench.emoji} Enchantment Applied!`).setDescription(`**${ench.name}** — ${ench.desc}`)]});
+}
+
+if (cmd==='buybait') {
+    const bid=interaction.options.getString('bait');
+    const qty=interaction.options.getInteger('amount')||1;
+    const bait=BAIT_TYPES.find(b=>b.id===bid);
+    if (!bait) return interaction.reply({content:'❌ Invalid bait.',ephemeral:true});
+    const cost=bait.price*qty;
+    if (coins(userId)<cost) return interaction.reply({content:`❌ Need **${fmtN(cost)}** coins for ${qty}x ${bait.name}.`,ephemeral:true});
+    addCoins(userId,-cost);
+    const inv=userData.baitInv.get(userId)||{};
+    inv[bid]=(inv[bid]||0)+qty; userData.baitInv.set(userId,inv);
+    await saveData();
+    return interaction.reply({content:`✅ Bought **${qty}x ${bait.emoji} ${bait.name}** for **${fmtN(cost)} coins**!`});
+}
+
+if (cmd==='fishinv') {
+    const page=(interaction.options.getInteger('page')||1)-1;
+    const inv=userData.fishInv.get(userId)||[];
+    if (!inv.length) return interaction.reply({content:'❌ No fish! Go `/fish`!',ephemeral:true});
+    const perPage=10,start=page*perPage;
+    const slice=inv.slice(start,start+perPage);
+    if (!slice.length) return interaction.reply({content:'❌ No fish on this page.',ephemeral:true});
+    const lines=slice.map((f,i)=>{
+        const spec=FISH_SPECIES.find(s=>s.id===f.fishId);
+        const mut=MUTATIONS.find(m=>m.id===f.mutId);
+        const mutStr=f.mutId!=='none'?` ${mut?.emoji}${mut?.name}`:'';
+        return `**${start+i+1}.** ${spec?.emoji||'🐟'} **${spec?.name||f.fishId}**${mutStr} — ${f.weight}kg — 💰${fmtN(f.value)}`;
+    });
+    const totalVal=inv.reduce((s,f)=>s+f.value,0);
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0x2196F3).setTitle('🐠 Fish Inventory').setDescription(lines.join('\n'))
+        .setFooter({text:`Page ${page+1}/${Math.ceil(inv.length/perPage)} • ${inv.length} fish • Total: ${fmtN(totalVal)} coins`})]});
+}
+
+if (cmd==='sellfish') {
+    const filter=interaction.options.getString('filter');
+    const inv=userData.fishInv.get(userId)||[];
+    if (!inv.length) return interaction.reply({content:'❌ No fish to sell!',ephemeral:true});
+    let toSell=[],keep=[];
+    if (filter==='all'){toSell=inv;}
+    else if (filter==='belowepic'){
+        toSell=inv.filter(f=>{const s=FISH_SPECIES.find(x=>x.id===f.fishId);return s&&['Common','Uncommon','Rare'].includes(s.r);});
+        keep=inv.filter(f=>{const s=FISH_SPECIES.find(x=>x.id===f.fishId);return !s||!['Common','Uncommon','Rare'].includes(s.r);});
+    } else {
+        toSell=inv.filter(f=>{const s=FISH_SPECIES.find(x=>x.id===f.fishId);return s?.r===filter;});
+        keep=inv.filter(f=>{const s=FISH_SPECIES.find(x=>x.id===f.fishId);return s?.r!==filter;});
+    }
+    if (!toSell.length) return interaction.reply({content:'❌ No matching fish!',ephemeral:true});
+    const total=toSell.reduce((s,f)=>s+f.value,0);
+    addCoins(userId,total); userData.fishInv.set(userId,keep);
+    await saveData();
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0x57F287).setTitle('💵 Fish Sold!').setDescription(`Sold **${toSell.length}** fish for **${fmtN(total)} coins**!`)]});
+}
+
+if (cmd==='fishencyclopedia') {
+    const rarity=interaction.options.getString('rarity');
+    const caught=userData.fishCaught.get(userId)||{};
+    const pool=rarity?FISH_SPECIES.filter(f=>f.r===rarity):FISH_SPECIES;
+    const lines=pool.map(f=>{const cnt=caught[f.id]||0;return `${f.emoji} **${f.name}** [${f.r}] ${cnt>0?`✅ ×${cnt}`:'❓'}`;});
+    const shown=lines.slice(0,20);
+    if (lines.length>20) shown.push(`*...${lines.length-20} more. Filter by rarity.*`);
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0x9C27B0).setTitle('📖 Fish Encyclopedia').setDescription(shown.join('\n'))
+        .setFooter({text:`Discovered: ${Object.keys(caught).length}/${FISH_SPECIES.length}`})]});
+}
+
+if (cmd==='fishstats') {
+    const stats=userData.fishStats.get(userId)||{total:0,totalVal:0,biggest:0,biggestName:''};
+    const streak=userData.fishStreak.get(userId)||{streak:0};
+    const caught=userData.fishCaught.get(userId)||{};
+    const rodId=userData.rodEquipped.get(userId)||'plastic';
+    const rod=FISHING_RODS.find(r=>r.id===rodId);
+    const enchants=userData.rodEnchants.get(userId)||[];
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0xFF9800).setTitle('📊 Fishing Statistics')
+        .addFields(
+            {name:'🐟 Total Caught',  value:fmtN(stats.total),              inline:true},
+            {name:'💰 Total Value',   value:`${fmtN(stats.totalVal)} coins`, inline:true},
+            {name:'📚 Species Found', value:`${Object.keys(caught).length}/${FISH_SPECIES.length}`,inline:true},
+            {name:'⚖️ Biggest',       value:stats.biggest?`${stats.biggestName} (${stats.biggest}kg)`:'None',inline:true},
+            {name:'🔥 Streak',        value:`${streak.streak} days`,         inline:true},
+            {name:'🎣 Rod',           value:`${rod?.emoji||'🎣'} ${rod?.name||'Plastic'}`,inline:true},
+            {name:'✨ Enchants',      value:enchants.length?enchants.join(', '):'None',inline:true},
+        )
+    ]});
+}
+
+if (cmd==='fishquest') {
+    const q=genDailyQuest(userId);
+    const descs={catch_any:`Catch any **${q.goal}** fish`,catch_rarity:`Catch **${q.goal} ${q.target}** fish`,catch_mutation:`Catch **${q.goal}** mutated fish`};
+    const bar=buildBar(q.progress||0,q.goal,15);
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(q.done?0x57F287:0x2196F3).setTitle('📋 Daily Fishing Quest')
+        .setDescription(descs[q.type]||'Catch fish!')
+        .addFields(
+            {name:'Progress',value:`\`${bar}\` ${q.progress||0}/${q.goal}`},
+            {name:'Reward',  value:`💰 ${fmtN(q.reward)} coins + ⭐ ${q.xpReward||100} XP`},
+            {name:'Status',  value:q.done?'✅ Completed!':'⏳ In Progress'},
+        )
+    ]});
+}
+
+if (cmd==='fishleaderboard') {
+    const entries=[];
+    for (const [uid,stats] of userData.fishStats) {
+        const cached=client.users.cache.get(uid);
+        const name=cached?cached.username:`User#${uid.slice(-4)}`;
+        entries.push({name,total:stats.total||0,totalVal:stats.totalVal||0});
+    }
+    entries.sort((a,b)=>b.total-a.total);
+    const lines=entries.slice(0,10).map((e,i)=>`**#${i+1}** **${e.name}** — 🐟 ${fmtN(e.total)} | 💰 ${fmtN(e.totalVal)}`);
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0x2196F3).setTitle('🏆 Fishing Leaderboard').setDescription(lines.join('\n')||'No data yet.')]});
+}
+
+if (cmd==='fishweather') {
+    const w=getCurrentWeather();
+    const ev=userData.worldEvent&&userData.worldEventEnd>Date.now()?userData.worldEvent:null;
+    const b=userData.activeBoss;
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0x2196F3).setTitle('🌤️ Fishing Forecast')
+        .addFields(
+            {name:'Weather',        value:`${w.emoji} **${w.name}**`,  inline:true},
+            {name:'Time',           value:isNight()?'🌙 Night (+rare)':'☀️ Day',inline:true},
+            {name:'Common',         value:`×${w.commonMult}`,           inline:true},
+            {name:'Rare',           value:`×${w.rareMult}`,             inline:true},
+            {name:'Legendary',      value:`×${w.legMult}`,              inline:true},
+            {name:'🌍 World Event', value:ev?`${ev.emoji} **${ev.name}** — ${ev.desc}`:'None',inline:false},
+            {name:'🦈 Boss Fish',   value:b?`${b.emoji} **${b.name}** — ${fmtN(userData.activeBossHp)} HP`:'No boss active',inline:false},
+        )
+    ]});
+}
+
+if (cmd==='fishboss') {
+    if (!userData.activeBoss) return interaction.reply({content:'❌ No boss fish active! Check `/worldevent`.',ephemeral:true});
+    const rem=cooldownManager.get(userId,'fishboss');
+    if (rem) return interaction.reply({content:`⏰ Attack cooldown: **${cdStr(rem)}**`,ephemeral:true});
+    cooldownManager.set(userId,'fishboss',30_000);
+    const cls=userData.rpgClass.get(userId);
+    const clsAtk=cls?RPG_CLASSES[cls].atk:0;
+    const rod=FISHING_RODS.find(r=>r.id===(userData.rodEquipped.get(userId)||'plastic'))||FISHING_RODS[0];
+    const dmg=rng(100,500)+Math.floor(rod.pwr*50)+clsAtk;
+    const b=userData.activeBoss;
+    userData.activeBossHp=Math.max(0,userData.activeBossHp-dmg);
+    if (userData.activeBossHp<=0) {
+        addCoins(userId,b.reward); addXP(userId,b.xp);
+        checkAchievementGeneral(userId,'boss',1);
+        userData.activeBoss=null; userData.activeBossHp=0;
+        await saveData();
+        return interaction.reply({embeds:[new EmbedBuilder().setColor(0x57F287).setTitle(`🎉 Boss Defeated: ${b.emoji} ${b.name}!`).setDescription(`+**${fmtN(b.reward)} coins** and **+${fmtN(b.xp)} XP**!`)]});
+    }
+    await saveData();
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0xF44336).setTitle(`🦈 ${b.emoji} ${b.name}`)
+        .addFields({name:'Your Hit',value:`-${fmtN(dmg)} HP`},{name:'Boss HP',value:`\`${buildBar(userData.activeBossHp,b.hp,20)}\` ${fmtN(userData.activeBossHp)}/${fmtN(b.hp)}`})
+    ]});
+}
+
+if (cmd==='worldevent') {
+    const ev=userData.worldEvent,active=ev&&userData.worldEventEnd>Date.now();
+    if (!active) return interaction.reply({embeds:[new EmbedBuilder().setColor(0x9E9E9E).setTitle('🌍 World Events').setDescription('No event active.\nPossible events:\n'+WORLD_EVENTS.map(e=>`${e.emoji} **${e.name}** — ${e.desc}`).join('\n'))]});
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0xFF9800).setTitle(`🌍 ACTIVE: ${ev.emoji} ${ev.name}!`).setDescription(ev.desc).addFields({name:'Time Remaining',value:cdStr(userData.worldEventEnd-Date.now())})]});
+}
+
+if (cmd==='teleport') {
+    const bid=interaction.options.getString('biome');
+    const biome=BIOMES.find(b=>b.id===bid);
+    if (!biome) return interaction.reply({content:'❌ Invalid biome.',ephemeral:true});
+    const lvInfo=getLevelInfo(userData.xp.get(userId)||0);
+    if (lvInfo.level<biome.unlockLv) return interaction.reply({content:`❌ Need **Level ${biome.unlockLv}**! You are Level ${lvInfo.level}.`,ephemeral:true});
+    const cost=biome.unlockLv*100;
+    if (biome.unlockLv>0&&coins(userId)<cost) return interaction.reply({content:`❌ Travel costs **${fmtN(cost)}** coins!`,ephemeral:true});
+    if (biome.unlockLv>0) addCoins(userId,-cost);
+    await saveData();
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0x2196F3).setTitle(`🗺️ Teleported: ${biome.emoji} ${biome.name}!`).setDescription(`${biome.desc}\n\nNow use \`/fish biome:${biome.id}\`!\nMax rarity: **${biome.maxRarity}**`)]});
+}
+
+if (cmd==='scyllakey') {
+    const caught=userData.fishCaught.get(userId)||{};
+    const hasKey=(userData.completedQuests.get(userId)||[]).includes('scylla_key');
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(hasKey?0xFFD700:0x9E9E9E).setTitle('👑 Scylla Key Status')
+        .setDescription(hasKey?'✅ **You have the Scylla Key!**':'Obtain all 3 secret fish to craft it.')
+        .addFields(
+            {name:'👑 Crowned Angler Fish',value:(caught['crowned_anglerfish']||0)>0?'✅':'❌',inline:true},
+            {name:'❄️ Frozen Leviathan',   value:(caught['frozen_leviathan']||0)>0?'✅':'❌',inline:true},
+            {name:'🌋 Magma Leviathan',    value:(caught['magma_leviathan']||0)>0?'✅':'❌',inline:true},
+        ).setFooter({text:"Fish in Mariana's Veil (Lv100+) for secret fish"})
+    ]});
+}
+
+if (cmd==='craftkey') {
+    const caught=userData.fishCaught.get(userId)||{};
+    const completed=userData.completedQuests.get(userId)||[];
+    if (completed.includes('scylla_key')) return interaction.reply({content:'✅ Already have the Scylla Key!',ephemeral:true});
+    if (!(caught['crowned_anglerfish']>0&&caught['frozen_leviathan']>0&&caught['magma_leviathan']>0))
+        return interaction.reply({content:"❌ Need all 3 secret fish! Fish in Mariana's Veil (Lv100+).",ephemeral:true});
+    completed.push('scylla_key'); userData.completedQuests.set(userId,completed);
+    checkAchievementGeneral(userId,'scylla',1); await saveData();
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0xFFD700).setTitle('🔑 Scylla Key Crafted!').setDescription('You forged the **Scylla Key**! You may now enter the Scylla Chamber for exclusive rewards.')]});
+}
+
+// ════════════════════════════════════════════════════════════════
+// RPG COMMANDS
+// ════════════════════════════════════════════════════════════════
+if (cmd==='chooseclass') {
+    const cid=interaction.options.getString('class');
+    const cls=RPG_CLASSES[cid];
+    if (!cls) return interaction.reply({content:'❌ Invalid class.',ephemeral:true});
+    userData.rpgClass.set(userId,cid);
+    userData.rpgStats.set(userId,{hp:cls.hp,maxHp:cls.hp,atk:cls.atk,def:cls.def,mana:cls.mana,maxMana:cls.mana});
+    userData.skillPoints.set(userId,(userData.skillPoints.get(userId)||0)+1);
+    await saveData();
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0xFF9800).setTitle(`${cls.emoji} Class: ${cls.name}!`).setDescription(cls.desc).addFields({name:'Stats',value:`❤️ ${cls.hp} HP | ⚔️ ${cls.atk} ATK | 🛡️ ${cls.def} DEF | 💙 ${cls.mana} Mana`})]});
+}
+
+if (cmd==='rpgstats') {
+    const cid=userData.rpgClass.get(userId);
+    if (!cid) return interaction.reply({content:'❌ Choose a class first! `/chooseclass`',ephemeral:true});
+    const cls=RPG_CLASSES[cid];
+    const stats=userData.rpgStats.get(userId)||{hp:cls.hp,maxHp:cls.hp,atk:cls.atk,def:cls.def,mana:cls.mana,maxMana:cls.mana};
+    cid=userData.rpgClass.get(userId);
+    if (!cid) return interaction.reply({content:'❌ Choose a class first!',ephemeral:true});
+    const lvInfo=getLevelInfo(userData.xp.get(userId)||0);
+    if (lvInfo.level<dung.minLv) return interaction.reply({content:`❌ Need **Level ${dung.minLv}**!`,ephemeral:true});
+    const rem=cooldownManager.get(userId,'dungeon');
+    if (rem) return interaction.reply({content:`⏰ Dungeon cooldown: **${cdStr(rem)}**`,ephemeral:true});
+    await interaction.deferReply();
+    cooldownManager.set(userId,'dungeon',3_600_000);
+    const cls=RPG_CLASSES[cid];
+    const stats=userData.rpgStats.get(userId)||{hp:cls.hp,maxHp:cls.hp,atk:cls.atk,def:cls.def};
+    const armorId=userData.armorEquipped.get(userId);
+    const armor=armorId?ARMOR_SETS.find(a=>a.id===armorId):null;
+    const skills=userData.skillsLearned.get(userId)||[];
+    const pAtk=stats.atk+(skills.includes('power_strike')?10:0)+(skills.includes('warcry')?30:0);
+    const pDef=stats.def+(armor?.def||0)+(skills.includes('iron_skin')?8:0)+(skills.includes('fortify')?15:0);
+    const pHp=stats.maxHp+(skills.includes('juggernaut')?100:0);
+    let curHp=pHp,totalGold=0,totalXp=0;const log=[];let cleared=true;
+    for (const eName of dung.enemies) {
+        const enemy=ENEMIES[eName];
+        if (!enemy) continue;
+        let eHp=enemy.hp,round=0;
+        while (eHp>0&&curHp>0&&round<100) {
+            const crit=skills.includes('backstab')?0.25:skills.includes('berserker')?0.15:0.05;
+            const pd=Math.max(1,rng(pAtk,pAtk+15)-Math.floor(enemy.def/2));
+            const finalDmg=Math.random()<crit?pd*2:pd;
+            const ed=Math.max(1,rng(enemy.atk,enemy.atk+5)-Math.floor(pDef/2));
+            eHp-=finalDmg; curHp-=ed; round++;
+        }
+        if (curHp<=0){cleared=false;log.push(`💀 Defeated by **${eName}**`);break;}
+        totalGold+=enemy.gold; totalXp+=enemy.xp;
+        log.push(`✅ **${eName}** defeated`);
+    }
+    stats.hp=Math.max(1,curHp); userData.rpgStats.set(userId,stats);
+    if (cleared) {
+        totalGold+=dung.reward; totalXp+=dung.xp;
+        addCoins(userId,totalGold); addXP(userId,totalXp);
+        const clears=(userData.dungeonClears.get(userId)||0)+1;
+        userData.dungeonClears.set(userId,clears);
+        checkAchievementGeneral(userId,'dungeon',clears);
+        const mats=userData.craftMats.get(userId)||{};
+        const drop=CRAFT_MATS.filter(m=>m.src==='dungeon');
+        if (drop.length){const m=drop[rng(0,drop.length-1)];mats[m.id]=(mats[m.id]||0)+rng(1,3);userData.craftMats.set(userId,mats);}
+        await saveData();
+        return interaction.editReply({embeds:[new EmbedBuilder().setColor(0x57F287).setTitle(`🎉 ${dung.emoji} ${dung.name} Cleared!`)
+            .setDescription(log.slice(-4).join('\n'))
+            .addFields({name:'💰 Gold',value:fmtN(totalGold),inline:true},{name:'⭐ XP',value:fmtN(totalXp),inline:true},{name:'❤️ HP Left',value:`${Math.max(1,curHp)}/${pHp}`,inline:true})
+        ]});
+    } else {
+        await saveData();
+        return interaction.editReply({embeds:[new EmbedBuilder().setColor(0xF44336).setTitle(`💀 ${dung.name} Failed`)
+            .setDescription(log.slice(-3).join('\n'))
+            .addFields({name:'Result',value:'Defeated. Try better armor/skills!'})
+        ]});
+    }
+}
+
+if (cmd==='buyarmor') {
+    const aid=interaction.options.getString('armor');
+    const armor=ARMOR_SETS.find(a=>a.id===aid);
+    if (!armor) return interaction.reply({content:'❌ Invalid armor.',ephemeral:true});
+    if (coins(userId)<armor.price) return interaction.reply({content:`❌ Need **${fmtN(armor.price)}** coins!`,ephemeral:true});
+    addCoins(userId,-armor.price); userData.armorEquipped.set(userId,aid);
+    await saveData();
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0x57F287).setTitle(`${armor.emoji} Armor Equipped!`).setDescription(`**${armor.name}**\nDEF:+${armor.def} | ${armor.bonus}`)]});
+}
+
+if (cmd==='craftingrecipes') {
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0xFF9800).setTitle('🔨 Crafting Materials')
+        .setDescription('Gather materials with `/gathermaterials` or `/mine`.')
+        .addFields({name:'Materials',value:CRAFT_MATS.map(m=>`${m.emoji} **${m.name}** — from: ${m.src}`).join('\n')})
+    ]});
+}
+if (cmd==='craftstats') {
+    const mats=userData.craftMats.get(userId)||{};
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0xFF9800).setTitle('📦 Your Materials').setDescription(CRAFT_MATS.map(m=>`${m.emoji} **${m.name}**: ${mats[m.id]||0}`).join('\n'))]});
+}
+if (cmd==='gathermaterials') {
+    const rem=cooldownManager.get(userId,'gather');
+    if (rem) return interaction.reply({content:`⏰ Gather cooldown: **${cdStr(rem)}**`,ephemeral:true});
+    cooldownManager.set(userId,'gather',1_800_000);
+    const pool=CRAFT_MATS.filter(m=>m.src!=='dungeon');
+    const mat=pool[rng(0,pool.length-1)],qty=rng(1,5);
+    const mats=userData.craftMats.get(userId)||{};
+    mats[mat.id]=(mats[mat.id]||0)+qty; userData.craftMats.set(userId,mats);
+    addXP(userId,20); await saveData();
+    return interaction.reply({content:`⛏️ Gathered **${qty}x ${mat.emoji} ${mat.name}**!`});
+                                                                                     }
+    // ════════════════════════════════════════════════════════════════
+// GUILDS
+// ════════════════════════════════════════════════════════════════
+if (cmd==='createguild') {
+    const name=interaction.options.getString('name').slice(0,32);
+    if (userData.guildOf.has(userId)) return interaction.reply({content:'❌ Already in a guild!',ephemeral:true});
+    if (coins(userId)<5000) return interaction.reply({content:'❌ Creating a guild costs **5,000 coins**!',ephemeral:true});
+    const gid=`guild_${Date.now()}`;
+    userData.guilds.set(gid,{name,owner:userId,members:[userId],bank:0,level:1,xp:0,warScore:0,createdAt:Date.now()});
+    userData.guildOf.set(userId,gid); addCoins(userId,-5000); await saveData();
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0x57F287).setTitle('🏘️ Guild Created!').setDescription(`**${name}** founded! Invite with \`/guildinvite\``)]});
+}
+if (cmd==='joinguild') {
+    const name=interaction.options.getString('name').toLowerCase();
+    if (userData.guildOf.has(userId)) return interaction.reply({content:'❌ Already in a guild!',ephemeral:true});
+    let fId=null,fG=null;
+    for (const [gid,g] of userData.guilds){if(g.name.toLowerCase()===name){fId=gid;fG=g;break;}}
+    if (!fG) return interaction.reply({content:'❌ Guild not found!',ephemeral:true});
+    fG.members.push(userId); userData.guildOf.set(userId,fId); await saveData();
+    return interaction.reply({content:`✅ Joined **${fG.name}**!`});
+}
+if (cmd==='leaveguild') {
+    const gid=userData.guildOf.get(userId);
+    if (!gid) return interaction.reply({content:'❌ Not in a guild!',ephemeral:true});
+    const g=userData.guilds.get(gid);
+    if (g) g.members=g.members.filter(m=>m!==userId);
+    userData.guildOf.delete(userId); await saveData();
+    return interaction.reply({content:'✅ Left the guild.',ephemeral:true});
+}
+if (cmd==='guildinfo') {
+    const gid=userData.guildOf.get(userId);
+    if (!gid) return interaction.reply({content:'❌ Not in a guild!',ephemeral:true});
+    const g=userData.guilds.get(gid);
+    if (!g) return interaction.reply({content:'❌ Guild data missing!',ephemeral:true});
+    const ownerCached=client.users.cache.get(g.owner);
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0xFF9800).setTitle(`🏘️ ${g.name}`)
+        .addFields(
+            {name:'Owner',    value:ownerCached?ownerCached.username:'Unknown',inline:true},
+            {name:'Members',  value:String(g.members.length),                  inline:true},
+            {name:'Level',    value:String(g.level||1),                         inline:true},
+            {name:'Bank',     value:`${fmtN(g.bank)} coins`,                   inline:true},
+            {name:'War Score',value:String(g.warScore||0),                     inline:true},
+            {name:'Founded',  value:g.createdAt?new Date(g.createdAt).toLocaleDateString():'Unknown',inline:true},
+        )
+    ]});
+}
+if (cmd==='guildinvite') {
+    const target=interaction.options.getUser('user');
+    const gid=userData.guildOf.get(userId);
+    if (!gid) return interaction.reply({content:'❌ Not in a guild!',ephemeral:true});
+    const g=userData.guilds.get(gid);
+    if (!g||g.owner!==userId) return interaction.reply({content:'❌ Only the guild owner can invite!',ephemeral:true});
+    const tid=String(target.id);
+    if (userData.guildOf.has(tid)) return interaction.reply({content:'❌ That user is already in a guild!',ephemeral:true});
+    g.members.push(tid); userData.guildOf.set(tid,gid); await saveData();
+    return interaction.reply({content:`✅ Added **${target.username}** to **${g.name}**!`});
+}
+if (cmd==='guilddeposit') {
+    const amount=interaction.options.getInteger('amount');
+    const gid=userData.guildOf.get(userId);
+    if (!gid) return interaction.reply({content:'❌ Not in a guild!',ephemeral:true});
+    if (coins(userId)<amount) return interaction.reply({content:'❌ Not enough coins!',ephemeral:true});
+    const g=userData.guilds.get(gid);
+    addCoins(userId,-amount); g.bank+=amount;
+    g.xp=(g.xp||0)+Math.floor(amount/100);
+    g.level=Math.max(g.level||1,Math.floor(g.xp/1000)+1);
+    await saveData();
+    return interaction.reply({content:`✅ Deposited **${fmtN(amount)}** coins to **${g.name}**! Bank: **${fmtN(g.bank)}**`});
+}
+if (cmd==='guildleaderboard') {
+    const entries=[...userData.guilds.values()].sort((a,b)=>(b.bank+b.warScore*100)-(a.bank+a.warScore*100)).slice(0,10);
+    const lines=entries.map((g,i)=>`**#${i+1}** 🏘️ **${g.name}** — Lv${g.level||1} | ${g.members.length} members | 💰${fmtN(g.bank)}`);
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0xFF9800).setTitle('🏆 Guild Leaderboard').setDescription(lines.join('\n')||'No guilds yet!')]});
+}
+if (cmd==='guildwar') {
+    const gid=userData.guildOf.get(userId);
+    if (!gid) return interaction.reply({content:'❌ Not in a guild!',ephemeral:true});
+    const rem=cooldownManager.get(userId,'guildwar');
+    if (rem) return interaction.reply({content:`⏰ War cooldown: **${cdStr(rem)}**`,ephemeral:true});
+    cooldownManager.set(userId,'guildwar',3_600_000);
+    const g=userData.guilds.get(gid),won=Math.random()>0.4;
+    if (won){g.warScore=(g.warScore||0)+50;addCoins(userId,rng(500,2000));addXP(userId,100);await saveData();return interaction.reply({content:`⚔️ Victory! **${g.name}** gains +50 war score! You earned coins & XP.`});}
+    return interaction.reply({content:'⚔️ Defeated in battle this time. Keep fighting!'});
+}
+
+// ════════════════════════════════════════════════════════════════
+// ECONOMY+ COMMANDS
+// ════════════════════════════════════════════════════════════════
+if (cmd==='logindaily') {
+    const today=new Date().toDateString();
+    const ld=userData.loginStreak.get(userId)||{streak:0,lastLogin:''};
+    if (ld.lastLogin===today) return interaction.reply({content:'❌ Already claimed today! Come back tomorrow.',ephemeral:true});
+    const yest=new Date(Date.now()-86_400_000).toDateString();
+    ld.streak=ld.lastLogin===yest?(ld.streak||0)+1:1;
+    ld.lastLogin=today;
+    userData.loginStreak.set(userId,ld);
+    const base=300,bonus=Math.min(ld.streak*50,500),total=base+bonus;
+    addCoins(userId,total); addXP(userId,30);
+    checkAchievementGeneral(userId,'streak',ld.streak);
+    const bp=userData.battlePass.get(userId)||{tier:1,bpXp:0,premium:false,season:SEASON};
+    bp.bpXp=(bp.bpXp||0)+20;
+    const nextTier=BP_TIERS.find(t=>t.tier===bp.tier+1);
+    if (nextTier&&bp.bpXp>=nextTier.bpXp&&bp.tier<10){bp.tier++;if(nextTier.free.coins)addCoins(userId,nextTier.free.coins);}
+    userData.battlePass.set(userId,bp);
+    await saveData();
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0x57F287).setTitle('📅 Daily Login Reward!')
+        .addFields(
+            {name:'Base',         value:`${fmtN(base)} coins`,inline:true},
+            {name:'Streak Bonus', value:`+${fmtN(bonus)} coins`,inline:true},
+            {name:'Total',        value:`**${fmtN(total)} coins**`,inline:true},
+            {name:'🔥 Streak',    value:`${ld.streak} days!`,inline:true},
+        )
+    ]});
+}
+
+if (cmd==='achievements') {
+    const t=interaction.options.getUser('user')||interaction.user;
+    const tid=String(t.id);
+    const owned=userData.achievementsNew.get(tid)||[];
+    const lines=ACHIEVEMENTS.map(a=>`${owned.includes(a.id)?'✅':'⬜'} ${a.emoji} **${a.name}** — ${a.desc} (+${fmtN(a.reward)}c)`);
+    const shown=lines.slice(0,20);
+    if (lines.length>20) shown.push(`*...${lines.length-20} more.*`);
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0xFF9800).setTitle(`🏆 ${t.username}'s Achievements`).setDescription(shown.join('\n')).setFooter({text:`${owned.length}/${ACHIEVEMENTS.length} completed`})]});
+}
+
+if (cmd==='prestige') {
+    const lvInfo=getLevelInfo(userData.xp.get(userId)||0);
+    if (lvInfo.level<50) return interaction.reply({content:'❌ Need **Level 50** to prestige!',ephemeral:true});
+    const pres=userData.prestige.get(userId)||{level:0};
+    pres.level=(pres.level||0)+1; pres.lastPrestige=Date.now();
+    userData.prestige.set(userId,pres);
+    userData.xp.set(userId,0);
+    const bonus=50000*pres.level; addCoins(userId,bonus);
+    if (pres.level>=5){const owned=userData.rodOwned.get(userId)||[];if(!owned.includes('celestial')){owned.push('celestial');userData.rodOwned.set(userId,owned);}}
+    checkAchievementGeneral(userId,'prestige',pres.level);
+    await saveData();
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0xFF9800).setTitle(`🔄 Prestige ${pres.level}!`)
+        .setDescription(`XP reset to 0.\n+**${fmtN(bonus)} coins**${pres.level>=5?'\n🎣 **Celestial Rod unlocked!**':''}`)
+        .addFields({name:'Total Prestiges',value:String(pres.level),inline:true})
+    ]});
+}
+
+if (cmd==='battlepass') {
+    const bp=userData.battlePass.get(userId)||{tier:1,bpXp:0,premium:false,season:SEASON};
+    if (bp.season!==SEASON){bp.tier=1;bp.bpXp=0;bp.season=SEASON;userData.battlePass.set(userId,bp);}
+    const next=BP_TIERS.find(t=>t.tier===bp.tier+1);
+    const bar=buildBar(bp.bpXp,next?.bpXp||9999,15);
+    const lines=BP_TIERS.map(t=>`${t.tier<=bp.tier?'✅':'⬜'} **T${t.tier}** Free:${JSON.stringify(t.free)}${bp.premium?` | Prem:${JSON.stringify(t.prem)}`:''}`);
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0x9C27B0).setTitle(`🎫 Battle Pass — Season ${SEASON}`)
+        .addFields(
+            {name:'Tier',value:String(bp.tier),inline:true},
+            {name:'BP XP',value:fmtN(bp.bpXp),inline:true},
+            {name:'Premium',value:bp.premium?'✅':'❌',inline:true},
+            {name:'Progress',value:`\`${bar}\` ${fmtN(bp.bpXp)}/${fmtN(next?.bpXp||9999)}`},
+        )
+        .setDescription(lines.slice(0,5).join('\n'))
+        .setFooter({text:'Earn BP XP: fishing+5, daily login+20, dungeon+50'})
+    ]});
+}
+
+if (cmd==='marketplace') {
+    const listings=[...userData.marketplace.values()].slice(0,15);
+    if (!listings.length) return interaction.reply({embeds:[new EmbedBuilder().setColor(0x9E9E9E).setTitle('🏪 Marketplace').setDescription('No listings! Use `/listitem` to sell.')]});
+    const lines=listings.map(l=>`\`${l.id.slice(-8)}\` **${l.type}** — \`${l.itemId}\` — 💰${fmtN(l.price)}`);
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0xFF9800).setTitle('🏪 Player Marketplace').setDescription(lines.join('\n')).setFooter({text:'Buy: /buymarketitem <full listing id>'})]});
+}
+if (cmd==='listitem') {
+    const type=interaction.options.getString('type');
+    const itemId=interaction.options.getString('itemid');
+    const price=interaction.options.getInteger('price');
+    const lid=`list_${userId}_${Date.now()}`;
+    userData.marketplace.set(lid,{id:lid,seller:userId,type,itemId,price,ts:Date.now()});
+    await saveData();
+    return interaction.reply({content:`✅ Listed **${itemId}** for **${fmtN(price)} coins**!\nID: \`${lid}\``});
+}
+if (cmd==='buymarketitem') {
+    const lid=interaction.options.getString('listingid');
+    const listing=userData.marketplace.get(lid);
+    if (!listing) return interaction.reply({content:'❌ Listing not found!',ephemeral:true});
+    if (listing.seller===userId) return interaction.reply({content:"❌ Can't buy your own listing!",ephemeral:true});
+    if (coins(userId)<listing.price) return interaction.reply({content:'❌ Not enough coins!',ephemeral:true});
+    addCoins(userId,-listing.price); addCoins(listing.seller,Math.floor(listing.price*0.9));
+    userData.marketplace.delete(lid);
+    const inv=userData.items.get(userId)||[];
+    inv.push({id:listing.itemId,name:listing.itemId,price:listing.price,emoji:'📦'});
+    userData.items.set(userId,inv); await saveData();
+    return interaction.reply({content:`✅ Bought **${listing.itemId}** for **${fmtN(listing.price)} coins**!`});
+        }
+
+    // ════════════════════════════════════════════════════════════════
+// MINI-GAMES
+// ════════════════════════════════════════════════════════════════
+if (cmd==='hangman') {
+    const words=['discord','fishing','dungeon','warrior','legendary','mythical','celestial','prestige','enchant','assassin','narwhal','leviathan','kraken','anglerfish','mutation','treasure','biome','scylla','kraken','aquatic'];
+    const word=words[rng(0,words.length-1)];
+    hangGames.set(userId,{word,guessed:[],wrong:0,ts:Date.now()});
+    const disp=word.split('').map(()=>'_').join(' ');
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0x9C27B0).setTitle('🔤 Hangman')
+        .setDescription(`Word: \`${disp}\`\n\nGuesses: 0/6 wrong\n\n_Type a letter in chat to guess!_`)
+        .setFooter({text:`${word.length} letters`})
+    ]});
+}
+
+if (cmd==='tictactoe') {
+    const opp=interaction.options.getUser('opponent');
+    if (!opp||opp.id===userId) return interaction.reply({content:"❌ Can't play yourself!",ephemeral:true});
+    const gameKey=`${userId}v${String(opp.id)}`;
+    const board=Array(9).fill('');
+    tttGames.set(gameKey,{board,turn:userId,p1:userId,p2:String(opp.id),ts:Date.now()});
+    const rows=buildTTTRows(board,userId,String(opp.id),gameKey);
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0x2196F3).setTitle('❌⭕ Tic Tac Toe')
+        .setDescription(`**${interaction.user.username}** ❌ vs **${opp.username}** ⭕\n\n_${interaction.user.username}'s turn_`)
+    ],components:rows});
+}
+
+if (cmd==='connect4') {
+    const opp=interaction.options.getUser('opponent');
+    if (!opp||opp.id===userId) return interaction.reply({content:"❌ Can't play yourself!",ephemeral:true});
+    const gameKey=`${userId}v${String(opp.id)}`;
+    const board=Array(6).fill(null).map(()=>Array(7).fill(0));
+    c4Games.set(gameKey,{board,turn:userId,p1:userId,p2:String(opp.id),ts:Date.now()});
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0xFFD700).setTitle('🟡 Connect 4')
+        .setDescription(`**${interaction.user.username}** 🔴 vs **${opp.username}** 🟡\n\n${renderC4(board)}\n_${interaction.user.username}'s turn_ 🔴`)
+    ],components:[buildC4Row(userId,String(opp.id),gameKey)]});
+}
+
+if (cmd==='higherlower') {
+    const items=[
+        {name:'Eiffel Tower height (m)',val:330},{name:'Speed of sound (m/s)',val:343},
+        {name:'Bones in human body',val:206},{name:'Days in a leap year',val:366},
+        {name:'Countries in the world',val:195},{name:'Blue whale weight (tons)',val:150},
+        {name:'Mount Everest height (m)',val:8849},{name:'Amazon River length (km)',val:6575},
+        {name:'Human teeth (adult)',val:32},{name:'Chess pieces per side',val:16},
+    ];
+    const a=items[rng(0,items.length-1)];
+    let b; do {b=items[rng(0,items.length-1)];} while(b.name===a.name);
+    const embed=new EmbedBuilder().setColor(0xFF9800).setTitle('📈 Higher or Lower?')
+        .setDescription(`**${a.name}** = **${fmtN(a.val)}**\n\nIs **${b.name}** Higher or Lower?\n\nCorrect = +300 coins!`);
+    const row=new ActionRowBuilder().addComponents(
+        new ButtonBuilder().setCustomId(`hl_${userId}_higher_${b.val}_${a.val}`).setLabel('📈 Higher').setStyle(ButtonStyle.Success),
+        new ButtonBuilder().setCustomId(`hl_${userId}_lower_${b.val}_${a.val}`).setLabel('📉 Lower').setStyle(ButtonStyle.Danger),
+    );
+    return interaction.reply({embeds:[embed],components:[row]});
+}
+
+if (cmd==='coinflip') {
+    const side=interaction.options.getString('side');
+    const bet=interaction.options.getInteger('bet')||0;
+    if (bet>0&&coins(userId)<bet) return interaction.reply({content:'❌ Not enough coins!',ephemeral:true});
+    const result=Math.random()<0.5?'heads':'tails';
+    const won=result===side;
+    if (bet>0){if(won)addCoins(userId,bet);else addCoins(userId,-bet);}
+    await saveData();
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(won?0x57F287:0xF44336)
+        .setTitle(`🪙 ${result.charAt(0).toUpperCase()+result.slice(1)}!`)
+        .setDescription(`You picked **${side}** — ${won?'✅ WIN!':'❌ Wrong!'}${bet>0?`\n${won?'+':'-'}**${fmtN(bet)} coins**`:''}`)
+    ]});
+}
+
+// ════════════════════════════════════════════════════════════════
+// PROGRESSION
+// ════════════════════════════════════════════════════════════════
+if (cmd==='titles') {
+    const owned=userData.titlesOwned.get(userId)||[];
+    const active=userData.titleActive.get(userId)||'newbie';
+    const lines=TITLES.map(t=>`${owned.includes(t.id)||t.id==='newbie'?'✅':'🔒'} ${t.emoji} **${t.name}**${active===t.id?' ← Active':''}`);
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0xFF9800).setTitle('🏅 Your Titles').setDescription(lines.join('\n')).setFooter({text:'Set: /settitle <id>'})]});
+}
+if (cmd==='settitle') {
+    const tid=interaction.options.getString('title');
+    const title=TITLES.find(t=>t.id===tid);
+    if (!title) return interaction.reply({content:'❌ Invalid title ID.',ephemeral:true});
+    const owned=userData.titlesOwned.get(userId)||[];
+    if (tid!=='newbie'&&!owned.includes(tid)) return interaction.reply({content:"❌ Haven't unlocked this title!",ephemeral:true});
+    userData.titleActive.set(userId,tid); await saveData();
+    return interaction.reply({content:`✅ Active title: **${title.emoji} ${title.name}**`,ephemeral:true});
+}
+if (cmd==='collectionlog') {
+    const caught=userData.fishCaught.get(userId)||{};
+    const owned=userData.achievementsNew.get(userId)||[];
+    const weapons=userData.weapons.get(userId)||[];
+    const titles=userData.titlesOwned.get(userId)||[];
+    const skills=userData.skillsLearned.get(userId)||[];
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0x9C27B0).setTitle('📚 Collection Log')
+        .addFields(
+            {name:'🐟 Fish Species',  value:`${Object.keys(caught).length}/${FISH_SPECIES.length}`,inline:true},
+            {name:'🏆 Achievements',  value:`${owned.length}/${ACHIEVEMENTS.length}`,               inline:true},
+            {name:'⚔️ Weapons',       value:String(weapons.length),                                 inline:true},
+            {name:'🏅 Titles',        value:`${titles.length+1}/${TITLES.length}`,                  inline:true},
+            {name:'📚 Skills',        value:String(skills.length),                                  inline:true},
+            {name:'🏰 Dungeons',      value:fmtN(userData.dungeonClears.get(userId)||0),            inline:true},
+        )
+    ]});
+}
+if (cmd==='milestones') {
+    const lvInfo=getLevelInfo(userData.xp.get(userId)||0);
+    const fs=userData.fishStats.get(userId)||{total:0};
+    const ms=[
+        {name:'Catch 10 fish',        done:fs.total>=10},
+        {name:'Catch 100 fish',       done:fs.total>=100},
+        {name:'Catch 1,000 fish',     done:fs.total>=1000},
+        {name:'Reach Level 10',       done:lvInfo.level>=10},
+        {name:'Reach Level 50',       done:lvInfo.level>=50},
+        {name:'Reach Level 100',      done:lvInfo.level>=100},
+        {name:'Own 10,000 coins',     done:coins(userId)>=10000},
+        {name:'Own 100,000 coins',    done:coins(userId)>=100000},
+        {name:'Own 1,000,000 coins',  done:coins(userId)>=1000000},
+        {name:'Clear a dungeon',      done:(userData.dungeonClears.get(userId)||0)>=1},
+        {name:'Clear 10 dungeons',    done:(userData.dungeonClears.get(userId)||0)>=10},
+        {name:'Prestige once',        done:(userData.prestige.get(userId)||{level:0}).level>=1},
+        {name:'Craft the Scylla Key', done:(userData.completedQuests.get(userId)||[]).includes('scylla_key')},
+    ];
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0x2196F3).setTitle('🎯 Milestones')
+        .setDescription(ms.map(m=>`${m.done?'✅':'⬜'} ${m.name}`).join('\n'))
+    ]});
+}
+if (cmd==='season') {
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0x9C27B0).setTitle(`🌸 Season ${SEASON}`)
+        .setDescription('Complete quests, fish rare species, clear dungeons, and log in daily to earn Battle Pass XP!')
+        .addFields(
+            {name:'Battle Pass',   value:'Use `/battlepass` to view your progress.'},
+            {name:'Season Rewards',value:'Prestige 5+ unlocks Celestial Rod.\nCraft the Scylla Key for exclusive titles.'},
+        )
+    ]});
+}
+
+        } catch(cmdErr) {
+            console.error(`❌ /${cmd} error:`, cmdErr?.message, cmdErr?.stack?.split('\n')[0]);
+            try {
+                if (!interaction.replied&&!interaction.deferred)
+                    await interaction.reply({content:'❌ Something went wrong! Try again.',ephemeral:true});
+                else if (interaction.deferred)
+                    await interaction.editReply({content:'❌ Something went wrong! Try again.'});
+            } catch(_) {}
+        }
+    } catch(mainErr) { console.error('❌ Interaction handler error:', mainErr?.message); }
+});
+        // ════════════════════════════════════════════════════════════════
+// ♦️ BUTTON INTERACTION HANDLER
+// ════════════════════════════════════════════════════════════════
+client.on('interactionCreate', async interaction => {
+    if (!interaction.isButton()) return;
+    const {customId, user} = interaction;
+    const userId = String(user.id);
+    try {
+
+        // ── Blackjack ──
+        if (customId.startsWith('bj_hit_')||customId.startsWith('bj_stand_')) {
+            const owner=customId.split('_')[2];
+            if (userId!==owner) return interaction.reply({content:"❌ Not your game!",ephemeral:true});
+            const game=bjGames.get(userId);
+            if (!game||!game.active) return interaction.reply({content:'❌ No active blackjack game!',ephemeral:true});
+            if (customId.startsWith('bj_hit_')) {
+                game.ph.push(drawCard());
+                const pv=handVal(game.ph);
+                if (pv>21) {
+                    bjGames.delete(userId); await saveData();
+                    return interaction.update({embeds:[new EmbedBuilder().setColor(0xF44336).setTitle('🃏 Bust!')
+                        .setDescription(`Hand: ${game.ph.join(' ')} = **${pv}**\nBust! Lost **${fmtN(game.bet)} coins**.`)
+                    ],components:[]});
+                }
+                const row=new ActionRowBuilder().addComponents(
+                    new ButtonBuilder().setCustomId(`bj_hit_${userId}`).setLabel('Hit 🃏').setStyle(ButtonStyle.Success),
+                    new ButtonBuilder().setCustomId(`bj_stand_${userId}`).setLabel('Stand ✋').setStyle(ButtonStyle.Danger),
+                );
+                return interaction.update({embeds:[new EmbedBuilder().setColor(0x2196F3).setTitle('🃏 Blackjack')
+                    .addFields({name:'Your Hand',value:`${game.ph.join(' ')} = **${pv}**`,inline:true},{name:"Dealer",value:`${game.dh[0]} + ❓`,inline:true})
+                ],components:[row]});
+            } else {
+                while (handVal(game.dh)<17) game.dh.push(drawCard());
+                const pv=handVal(game.ph),dv=handVal(game.dh);
+                bjGames.delete(userId);
+                let result,color,payout=0;
+                if (dv>21||pv>dv){payout=game.bet*2;result=`You win! +**${fmtN(game.bet)} coins**`;color=0x57F287;}
+                else if (pv===dv){payout=game.bet;result='Push! Bet returned.';color=0xFEE75C;}
+                else{result=`Dealer wins. Lost **${fmtN(game.bet)} coins**.`;color=0xF44336;}
+                addCoins(userId,payout); await saveData();
+                return interaction.update({embeds:[new EmbedBuilder().setColor(color).setTitle('🃏 Blackjack Result')
+                    .addFields(
+                        {name:'Your Hand',value:`${game.ph.join(' ')} = **${pv}**`,inline:true},
+                        {name:"Dealer's Hand",value:`${game.dh.join(' ')} = **${dv}**`,inline:true},
+                        {name:'Result',value:result},
+                    )
+                ],components:[]});
+            }
+        }
+
+        // ── FNF arrow buttons ──
+        if (customId.startsWith('fnf_')) {
+            const parts=customId.split('_');
+            const gameId=parts[1]+'_'+parts[2];
+            const arrow=parts.slice(3).join('_');
+            const game=fnfGames.get(userId);
+            if (!game||game.gameId!==gameId) return interaction.reply({content:'❌ Not your game!',ephemeral:true});
+            clearTimeout(game.arrowTimeout);
+            const expected=game.sequence[game.currentIndex];
+            if (arrow===expected) {
+                game.hits++;
+                game.score+=100;
+                await interaction.deferUpdate().catch(()=>{});
+                game.currentIndex++;
+                if (game.currentIndex>=game.sequence.length) {
+                    await fnfEndGame(interaction,game,true);
+                } else {
+                    await fnfNextArrow(interaction,game);
+                }
+            } else {
+                await interaction.deferUpdate().catch(()=>{});
+                await fnfHandleMiss(interaction,game,'wrong');
+            }
+            return;
+        }
+
+        // ── Tic Tac Toe ──
+        if (customId.startsWith('ttt_')) {
+            const parts=customId.split('_');
+            const gameKey=parts[1];
+            const idx=parseInt(parts[2]);
+            const game=tttGames.get(gameKey);
+            if (!game) return interaction.reply({content:'❌ Game expired.',ephemeral:true});
+            if (userId!==game.turn) return interaction.reply({content:'❌ Not your turn!',ephemeral:true});
+            const mark=userId===game.p1?'❌':'⭕';
+            if (game.board[idx]) return interaction.reply({content:'❌ Already taken!',ephemeral:true});
+            game.board[idx]=mark;
+            if (checkTTTWin(game.board,mark)) {
+                tttGames.delete(gameKey);
+                addCoins(userId,500); addXP(userId,100); await saveData();
+                const rows=buildTTTRows(game.board,game.p1,game.p2,gameKey);
+                rows.forEach(r=>r.components.forEach(b=>b.setDisabled(true)));
+                return interaction.update({embeds:[new EmbedBuilder().setColor(0x57F287).setTitle(`🎉 ${mark} Wins!`).setDescription(`**${interaction.user.username}** wins! +500 coins`)],components:rows});
+            }
+            if (game.board.every(c=>c)) {
+                tttGames.delete(gameKey);
+                const rows=buildTTTRows(game.board,game.p1,game.p2,gameKey);
+                rows.forEach(r=>r.components.forEach(b=>b.setDisabled(true)));
+                return interaction.update({embeds:[new EmbedBuilder().setColor(0x9E9E9E).setTitle("🤝 It's a Draw!")],components:rows});
+            }
+            game.turn=userId===game.p1?game.p2:game.p1;
+            const nextUser=await client.users.fetch(game.turn).catch(()=>null);
+            const rows=buildTTTRows(game.board,game.p1,game.p2,gameKey);
+            return interaction.update({embeds:[new EmbedBuilder().setColor(0x2196F3).setTitle('❌⭕ Tic Tac Toe')
+                .setDescription(`_${nextUser?.username||'Next player'}'s turn_`)
+            ],components:rows});
+        }
+
+        // ── Connect 4 ──
+        if (customId.startsWith('c4_')) {
+            const parts=customId.split('_');
+            const gameKey=parts[1];
+            const col=parseInt(parts[2]);
+            const game=c4Games.get(gameKey);
+            if (!game) return interaction.reply({content:'❌ Game expired.',ephemeral:true});
+            if (userId!==game.turn) return interaction.reply({content:'❌ Not your turn!',ephemeral:true});
+            const playerNum=userId===game.p1?1:2;
+            // Drop piece
+            let placed=false;
+            for (let r=5;r>=0;r--) {
+                if (game.board[r][col]===0) {
+                    game.board[r][col]=playerNum;
+                    placed=true; break;
+                }
+            }
+            if (!placed) return interaction.reply({content:'❌ Column full!',ephemeral:true});
+            if (checkC4Win(game.board,playerNum)) {
+                c4Games.delete(gameKey);
+                addCoins(userId,600); addXP(userId,120); await saveData();
+                const emoji=playerNum===1?'🔴':'🟡';
+                return interaction.update({embeds:[new EmbedBuilder().setColor(0x57F287).setTitle(`🎉 ${emoji} Wins!`)
+                    .setDescription(`${renderC4(game.board)}\n**${interaction.user.username}** wins! +600 coins`)
+                ],components:[]});
+            }
+            if (game.board[0].every(c=>c!==0)) {
+                c4Games.delete(gameKey);
+                return interaction.update({embeds:[new EmbedBuilder().setColor(0x9E9E9E).setTitle("🤝 Draw!").setDescription(renderC4(game.board))],components:[]});
+            }
+            game.turn=userId===game.p1?game.p2:game.p1;
+            const nextEmoji=game.turn===game.p1?'🔴':'🟡';
+            const nextUser=await client.users.fetch(game.turn).catch(()=>null);
+            return interaction.update({embeds:[new EmbedBuilder().setColor(0xFFD700).setTitle('🟡 Connect 4')
+                .setDescription(`${renderC4(game.board)}\n_${nextUser?.username||'Next'}'s turn_ ${nextEmoji}`)
+            ],components:[buildC4Row(game.p1,game.p2,gameKey)]});
+        }
+
+        // ── Higher or Lower ──
+        if (customId.startsWith('hl_')) {
+            const parts=customId.split('_');
+            const owner=parts[1];
+            if (userId!==owner) return interaction.reply({content:'❌ Not your game!',ephemeral:true});
+            const choice=parts[2];
+            const nextVal=parseInt(parts[3]);
+            const curVal=parseInt(parts[4]);
+            const correct=(choice==='higher'&&nextVal>curVal)||(choice==='lower'&&nextVal<curVal);
+            if (correct){addCoins(userId,300);await saveData();}
+            return interaction.update({embeds:[new EmbedBuilder().setColor(correct?0x57F287:0xF44336)
+                .setTitle(correct?'✅ Correct! +300 coins!':'❌ Wrong!')
+                .setDescription(`The answer: **${fmtN(nextVal)}** (${nextVal>curVal?'Higher':'Lower'} than ${fmtN(curVal)})`)
+            ],components:[]});
+        }
+
+        // ── Suggestion approve/deny (staff only) ──
+        if (customId.startsWith('sug_approve_')||customId.startsWith('sug_deny_')) {
+            const guildId=String(interaction.guildId||'');
+            const isOwner=userId===OWNER_ID;
+            const isStaff=staffSet.has(`${guildId}:${userId}`)||staffSet.has(userId)||isOwner
+                ||!!interaction.memberPermissions?.has(PermissionFlagsBits.ModerateMembers);
+            if (!isStaff) return interaction.reply({content:'❌ Staff only!',ephemeral:true});
+            const approved=customId.startsWith('sug_approve_');
+            const embed=EmbedBuilder.from(interaction.message.embeds[0])
+                .setColor(approved?0x57F287:0xF44336)
+                .spliceFields(1,1,{name:'Status',value:approved?`✅ Approved by ${interaction.user.username}`:`❌ Denied by ${interaction.user.username}`,inline:true});
+            return interaction.update({embeds:[embed],components:[]});
+        }
+
+        // ── Open ticket ──
+        if (customId==='open_ticket') {
+            try {
+                const name=`ticket-${user.username.toLowerCase().replace(/[^a-z0-9]/g,'').slice(0,20)}-${Date.now().toString().slice(-4)}`;
+                const channel=await interaction.guild.channels.create({
+                    name,
+                    type:ChannelType.GuildText,
+                    permissionOverwrites:[
+                        {id:interaction.guild.id,deny:[PermissionFlagsBits.ViewChannel]},
+                        {id:user.id,allow:[PermissionFlagsBits.ViewChannel,PermissionFlagsBits.SendMessages,PermissionFlagsBits.ReadMessageHistory]},
+                    ],
+                });
+                const closeRow=new ActionRowBuilder().addComponents(
+                    new ButtonBuilder().setCustomId('close_ticket').setLabel('🔒 Close Ticket').setStyle(ButtonStyle.Danger)
+                );
+                await channel.send({
+                    embeds:[new EmbedBuilder().setColor(0x5865F2).setTitle('🎫 Support Ticket').setDescription(`Welcome ${user}! Describe your issue and staff will assist you.`)],
+                    components:[closeRow],
+                });
+                return interaction.reply({content:`✅ Ticket opened: ${channel}`,ephemeral:true});
+            } catch(e) {
+                return interaction.reply({content:'❌ Failed to create ticket. Check bot permissions.',ephemeral:true});
+            }
+        }
+
+        // ── Reset user confirm/cancel ──
+        if (customId.startsWith('resetuser_confirm_')) {
+            const parts=customId.split('_');
+            const targetId=parts[2];
+            const requesterId=parts[3];
+            if (userId!==requesterId) return interaction.reply({content:'❌ Not your action!',ephemeral:true});
+            if (userId!==OWNER_ID) return interaction.reply({content:'❌ Owner only!',ephemeral:true});
+            // Wipe everything
+            userData.coins.set(targetId,0);
+            userData.bank.set(targetId,0);
+            userData.xp.set(targetId,0);
+            userData.weapons.set(targetId,[]);
+            userData.items.set(targetId,[]);
+            userData.pets.delete(targetId);
+            userData.fishInv.set(targetId,[]);
+            userData.fishCaught.set(targetId,{});
+            userData.fishStats.set(targetId,{total:0,totalVal:0,biggest:0,biggestName:''});
+            userData.fishStreak.set(targetId,{streak:0,lastDay:''});
+            userData.rodOwned.set(targetId,[]);
+            userData.rodEquipped.set(targetId,'plastic');
+            userData.rodEnchants.set(targetId,[]);
+            userData.baitInv.set(targetId,{});
+            userData.warnings.set(targetId,[]);
+            userData.achievements.set(targetId,[]);
+            userData.achievementsNew.set(targetId,[]);
+            userData.titlesOwned.set(targetId,[]);
+            userData.titleActive.set(targetId,'newbie');
+            userData.skillPoints.set(targetId,0);
+            userData.skillsLearned.set(targetId,[]);
+            userData.rpgClass.delete(targetId);
+            userData.rpgStats.delete(targetId);
+            userData.armorEquipped.delete(targetId);
+            userData.dungeonClears.set(targetId,0);
+            userData.craftMats.set(targetId,{});
+            userData.prestige.set(targetId,{level:0});
+            userData.battlePass.set(targetId,{tier:1,bpXp:0,premium:false,season:SEASON});
+            userData.loginStreak.set(targetId,{streak:0,lastLogin:''});
+            userData.married.delete(targetId);
+            userData.rep.set(targetId,0);
+            userData.pvpWins.set(targetId,0);
+            // Remove from guild
+            const gid=userData.guildOf.get(targetId);
+            if (gid){const g=userData.guilds.get(gid);if(g)g.members=g.members.filter(m=>m!==targetId);userData.guildOf.delete(targetId);}
+            await saveData();
+            const cached=client.users.cache.get(targetId);
+            return interaction.update({embeds:[new EmbedBuilder().setColor(0x57F287).setTitle('✅ User Fully Reset').setDescription(`All data for **${cached?.username||targetId}** has been wiped.`)],components:[]});
+        }
+        if (customId.startsWith('resetuser_cancel_')) {
+            return interaction.update({embeds:[new EmbedBuilder().setColor(0x9E9E9E).setTitle('❌ Reset Cancelled').setDescription('No data was changed.')],components:[]});
+        }
+
+        // ── Close ticket ──
+        if (customId==='close_ticket') {
+            await interaction.reply({content:'🔒 Closing ticket in 5 seconds...'});
+            setTimeout(()=>interaction.channel.delete().catch(()=>{}),5000);
+        }
+
+    } catch(e) {
+        console.error('❌ Button error:', e?.message);
+        interaction.reply({content:'❌ Button error! Try again.',ephemeral:true}).catch(()=>{});
+    }
+});
+
+// ════════════════════════════════════════════════════════════════
+// ♦️ SELECT MENU HANDLER (trivia handled via collector above)
+// ════════════════════════════════════════════════════════════════
+client.on('interactionCreate', async interaction => {
+    if (!interaction.isStringSelectMenu()) return;
+    // Trivia is handled by the collector in the trivia command
+});
+
+// ════════════════════════════════════════════════════════════════
+// ♦️ MESSAGE HANDLER — XP, auto-responses, hangman, prefix cmds
+// ════════════════════════════════════════════════════════════════
+client.on('messageCreate', async message => {
+    try {
+        if (message.author.bot) return;
+        const userId = String(message.author.id);
+        const content = message.content;
+        const lower   = content.toLowerCase();
+        const guildId = String(message.guildId||'');
+        ensureJoinDate(userId);
+
+        // ── XP on message (cooldown 10s) ──
+        if (!cooldownManager.has(userId,'msg_xp')) {
+            const res=addXP(userId,5);
+            cooldownManager.set(userId,'msg_xp',10_000);
+            if (res.leveledUp) {
+                checkAchievementGeneral(userId,'level',res.newLevel);
+                const lvlCfg = levelAnnounceConfig[String(message.guildId||'')];
+                const lvlMsg = new EmbedBuilder()
+                    .setColor(0xFFD700)
+                    .setTitle('🎉 Level Up!')
+                    .setDescription(`**${message.author.username}** reached **Level ${res.newLevel}**!`)
+                    .addFields(
+                        {name:'⭐ New Level', value:String(res.newLevel), inline:true},
+                        {name:'💡 Tip', value:res.newLevel%5===0?`You earned a skill point! Use \`/skilltree\`.`:'Keep chatting and fishing!', inline:true},
+                    )
+                    .setThumbnail(message.author.displayAvatarURL())
+                    .setTimestamp();
+                if (lvlCfg?.channelId) {
+                    const annCh = message.guild?.channels.cache.get(lvlCfg.channelId);
+                    if (annCh) annCh.send({embeds:[lvlMsg]}).catch(()=>{});
+                    else message.channel.send({embeds:[lvlMsg]}).catch(()=>{});
+                } else {
+                    message.channel.send({embeds:[lvlMsg]}).catch(()=>{});
+                }
+                checkAchievementGeneral(userId,'level',res.newLevel);
+            }
+            // Battle pass XP
+            const bp=userData.battlePass.get(userId)||{tier:1,bpXp:0,premium:false,season:SEASON};
+            bp.bpXp=(bp.bpXp||0)+1;
+            const nextTier=BP_TIERS.find(t=>t.tier===bp.tier+1);
+            if (nextTier&&bp.bpXp>=nextTier.bpXp&&bp.tier<10){bp.tier++;}
+            userData.battlePass.set(userId,bp);
+            await saveData();
+        }
+
+        // ── Auto-responses ──
+        for (const [trigger,response] of autoResponses) {
+            if (lower.includes(trigger.toLowerCase())) {
+                message.reply(response).catch(()=>{});
+                break;
+            }
+        }
+
+        // ── Hangman guesses ──
+        if (hangGames.has(userId)&&content.length===1&&/^[a-zA-Z]$/.test(content)) {
+            const game=hangGames.get(userId);
+            const letter=content.toLowerCase();
+            if (!game.guessed.includes(letter)) {
+                game.guessed.push(letter);
+                if (!game.word.includes(letter)) game.wrong++;
+            }
+            const disp=game.word.split('').map(l=>game.guessed.includes(l)?l:'_').join(' ');
+            const won=!disp.includes('_');
+            const lost=game.wrong>=6;
+            const hangFrames=['```\n  +---+\n  |   |\n      |\n      |\n      |\n      |\n=========```','```\n  +---+\n  |   |\n  O   |\n      |\n      |\n      |\n=========```','```\n  +---+\n  |   |\n  O   |\n  |   |\n      |\n      |\n=========```','```\n  +---+\n  |   |\n  O   |\n /|   |\n      |\n      |\n=========```','```\n  +---+\n  |   |\n  O   |\n /|\\  |\n      |\n      |\n=========```','```\n  +---+\n  |   |\n  O   |\n /|\\  |\n /    |\n      |\n=========```','```\n  +---+\n  |   |\n  O   |\n /|\\  |\n / \\  |\n      |\n=========```'];
+            const embed=new EmbedBuilder()
+                .setColor(won?0x57F287:lost?0xF44336:0x9C27B0)
+                .setTitle('🔤 Hangman')
+                .setDescription(`${hangFrames[game.wrong]}\n\nWord: \`${disp}\`\nGuessed: ${game.guessed.join(', ')||'none'}\nWrong: ${game.wrong}/6`);
+            if (won){embed.addFields({name:'🎉 You Win!',value:`Word was **${game.word}**! +400 coins`});addCoins(userId,400);addXP(userId,80);hangGames.delete(userId);await saveData();}
+            else if (lost){embed.addFields({name:'💀 Game Over!',value:`Word was **${game.word}**`});hangGames.delete(userId);}
+            message.reply({embeds:[embed]}).catch(()=>{});
+            return;
+        }
+
+        // ── PREFIX COMMANDS ──
+        const prefix='!';
+        if (!content.startsWith(prefix)) return;
+        const args=content.slice(prefix.length).trim().split(/\s+/);
+        const cmd=args[0].toLowerCase();
+        const rest=args.slice(1).join(' ');
+
+        // ── Fun / Troll commands (obviously fake, no real actions) ──
+        if (cmd==='fakeban') {
+            const target=message.mentions.users.first();
+            const reason=args.slice(2).join(' ')||'No reason';
+            return message.channel.send(`🔨 **[FAKE]** ${target?target.username:'User'} has been banned for: *${reason}*\n*(This is not a real ban — just for laughs!)*`).catch(()=>{});
+        }
+        if (cmd==='fakekick') {
+            const target=message.mentions.users.first();
+            return message.channel.send(`👢 **[FAKE]** ${target?target.username:'User'} was kicked from the server!\n*(Totally fake, chill!)*`).catch(()=>{});
+        }
+        if (cmd==='fakemute') {
+            const target=message.mentions.users.first();
+            return message.channel.send(`🤐 **[FAKE]** ${target?target.username:'User'} has been muted for 69 years!\n*(Not real — no permissions were harmed.)*`).catch(()=>{});
+        }
+        if (cmd==='fakewarn') {
+            const target=message.mentions.users.first();
+            const reason=args.slice(2).join(' ')||'existing';
+            return message.channel.send(`⚠️ **[FAKE WARNING]** ${target?target.username:'User'} warned for: *${reason}*\n*(This does absolutely nothing.)*`).catch(()=>{});
+        }
+        if (cmd==='roast') {
+            const target=message.mentions.users.first();
+            const roasts=[
+                `${target?target.username:'You'} is so slow, even dial-up modems feel sorry for them.`,
+                `${target?target.username:'You'}'s brain cells are on a strict no-thinking diet.`,
+                `${target?target.username:'You'} brings everyone so much joy — by leaving the room.`,
+                `I'd roast ${target?target.username:'you'} but my mom told me not to burn trash.`,
+                `${target?target.username:'You'} is proof that even evolution makes mistakes sometimes.`,
+                `${target?target.username:'You'}'s wifi password is probably "password123".`,
+            ];
+            return message.reply(roasts[rng(0,roasts.length-1)]).catch(()=>{});
+        }
+        if (cmd==='ship') {
+            const users=message.mentions.users;
+            const names=users.size>=2?[...users.values()].slice(0,2).map(u=>u.username):[message.author.username, rest.split(' ')[0]||'Mystery Person'];
+            const pct=rng(1,100);
+            const bar='❤️'.repeat(Math.floor(pct/10))+'🖤'.repeat(10-Math.floor(pct/10));
+            return message.reply(`💕 **${names[0]}** + **${names[1]}**\n${bar} **${pct}%** compatibility!`).catch(()=>{});
+        }
+        if (cmd==='rate') {
+            const thing=rest||message.mentions.users.first()?.username||'that';
+            return message.reply(`📊 I rate **${thing}** a solid **${rng(0,10)}/10** ✨`).catch(()=>{});
+        }
+        if (cmd==='mock') {
+            if (!rest) return message.reply('❌ Provide text to mock!').catch(()=>{});
+            const mocked=rest.split('').map((c,i)=>i%2===0?c.toLowerCase():c.toUpperCase()).join('');
+            return message.reply(`🗣️ ${mocked}`).catch(()=>{});
+        }
+        if (cmd==='reverse') {
+            if (!rest) return message.reply('❌ Provide text to reverse!').catch(()=>{});
+            return message.reply(rest.split('').reverse().join('')).catch(()=>{});
+        }
+        if (cmd==='sus') {
+            const target=message.mentions.users.first()?.username||rest||message.author.username;
+            return message.reply(`📯 **${target}** is acting kinda sus... 🔴 *emergency meeting*`).catch(()=>{});
+        }
+        if (cmd==='8ball') {
+            const answers=['Yes!','No.','Definitely!','Ask again later.','Absolutely!','Highly unlikely.','Signs point to yes.',"Don't count on it.",'Outlook good!','Very doubtful.','It is certain.','My sources say no.'];
+            return message.reply(`🎱 ${answers[rng(0,answers.length-1)]}`).catch(()=>{});
+        }
+        if (cmd==='rickroll') {
+            return message.reply('https://www.youtube.com/watch?v=dQw4w9WgXcQ\n*Never gonna give you up... 🎵*').catch(()=>{});
+        }
+        if (cmd==='fact') {
+            const facts=[
+                'A group of flamingos is called a flamboyance. 🦩',
+                'Honey never expires. Archaeologists found 3000-year-old honey in Egyptian tombs. 🍯',
+                "Octopuses have three hearts and blue blood. 🐙",
+                'Bananas are slightly radioactive. 🍌',
+                'A day on Venus is longer than a year on Venus. 🪐',
+                'Sharks are older than trees. 🦈',
+                'The Eiffel Tower grows 6 inches taller in summer due to heat. 🗼',
+            ];
+            return message.reply(`💡 **Fun Fact:** ${facts[rng(0,facts.length-1)]}`).catch(()=>{});
+        }
+        if (cmd==='joke') {
+            const jokes=[
+                "Why don't scientists trust atoms? Because they make up everything!",
+                "Why did the scarecrow win an award? He was outstanding in his field!",
+                "I'm reading a book about anti-gravity. It's impossible to put down.",
+                "Did you hear about the mathematician who's afraid of negative numbers? He'll stop at nothing to avoid them!",
+                "Why did the bicycle fall over? Because it was two-tired!",
+                "What do you call a fake noodle? An impasta!",
+            ];
+            return message.reply(`😂 ${jokes[rng(0,jokes.length-1)]}`).catch(()=>{});
+        }
+        if (cmd==='impersonate'||cmd==='say') {
+            if (!rest) return message.reply('❌ Provide text!').catch(()=>{});
+            message.delete().catch(()=>{});
+            return message.channel.send(rest).catch(()=>{});
+        }
+        if (cmd==='coinflip') {
+            return message.reply(`🪙 ${Math.random()<0.5?'Heads!':'Tails!'}`).catch(()=>{});
+        }
+        if (cmd==='animequote') {
+            const quotes=[
+                '"It\'s not the face that makes someone a monster, it\'s the choices they make." — Naruto',
+                '"Whatever you lose, you\'ll find it again. But what you throw away you\'ll never get back." — FMA',
+                '"Fear is not evil. It tells you what your weakness is." — Fairy Tail',
+                '"The world is not beautiful, therefore it is." — Kino\'s Journey',
+                '"If you don\'t take risks, you can\'t create a future." — One Piece',
+            ];
+            return message.reply(`📖 ${quotes[rng(0,quotes.length-1)]}`).catch(()=>{});
+        }
+        if (cmd==='waifu') {
+            const waifus=['Zero Two 💗','Rem 💙','Asuna ⚔️','Mikasa 🗡️','Nezuko 🎋','Hinata 💜','Tohru 🐉','Megumin 💥'];
+            return message.reply(`Your waifu is: **${waifus[rng(0,waifus.length-1)]}**`).catch(()=>{});
+        }
+        if (cmd==='husbando') {
+            const husbandos=['Levi Ackerman 🗡️','Kakashi 🍃','Gojo Satoru 🔵','Itachi 👁️','Todoroki 🔥❄️','Killua ⚡','Yato ☁️','Hisoka 🃏'];
+            return message.reply(`Your husbando is: **${husbandos[rng(0,husbandos.length-1)]}**`).catch(()=>{});
+        }
+        if (cmd==='meme') {
+            const memes=['https://i.imgur.com/example.jpg','This meme machine is temporarily out of memes. Try `/fish` instead! 🎣'];
+            return message.reply('😂 Meme: https://memegen.link/buzz/when_you_fish_a_secret_fish/the_whole_server_goes_crazy.jpg').catch(()=>{});
+        }
+
+    } catch(e) { console.error('❌ Message handler error:', e?.message); }
+});
+
+// ════════════════════════════════════════════════════════════════
+// ♦️ WELCOME SYSTEM
+// ════════════════════════════════════════════════════════════════
+client.on('guildMemberAdd', async member => {
+    try {
+        const guildId=String(member.guild.id);
+        const cfg=welcomeConfig[guildId];
+        if (!cfg) return;
+        if (cfg.roleId) await member.roles.add(cfg.roleId).catch(()=>{});
+        const ch=await member.guild.channels.fetch(cfg.channelId).catch(()=>null);
+        if (!ch) return;
+        await ch.send({embeds:[new EmbedBuilder()
+            .setColor(0x57F287)
+            .setTitle('👋 Welcome!')
+            .setDescription(`Welcome to **${member.guild.name}**, ${member.user.username}!`)
+            .setThumbnail(member.user.displayAvatarURL())
+            .addFields({name:'Members',value:`#${member.guild.memberCount}`})
+            .setTimestamp()
+        ]}).catch(()=>{});
+    } catch(e) { console.error('Welcome error:', e?.message); }
+});
+
+// ════════════════════════════════════════════════════════════════
+// ♦️ GAME SESSION CLEANUP
+// ════════════════════════════════════════════════════════════════
+setInterval(() => {
+    const now=Date.now();
+    for (const [id,g] of wordleGames) if (now-g.startTime>WORDLE_TIMEOUT) wordleGames.delete(id);
+    for (const [id,g] of hangGames)   if (now-g.ts>GAME_TIMEOUT)          hangGames.delete(id);
+    for (const [id,g] of tttGames)    if (now-g.ts>GAME_TIMEOUT)          tttGames.delete(id);
+    for (const [id,g] of c4Games)     if (now-g.ts>GAME_TIMEOUT)          c4Games.delete(id);
+    for (const [id,g] of bjGames)     if (!g.active)                       bjGames.delete(id);
+}, CLEANUP_INTERVAL);
+
+// ════════════════════════════════════════════════════════════════
+// ♦️ ERROR HANDLERS
+// ════════════════════════════════════════════════════════════════
+process.on('unhandledRejection', err => console.error('⚠️ Unhandled:', err?.message||err));
+process.on('uncaughtException',  err => console.error('⚠️ Uncaught:', err?.message||err));
+client.on('error', err => console.error('⚠️ Client error:', err?.message||err));
+client.on('warn', info => console.warn('⚠️ Client warn:', info));
+
+// ════════════════════════════════════════════════════════════════
+// ♦️ GRACEFUL SHUTDOWN
+// ════════════════════════════════════════════════════════════════
+async function gracefulShutdown(signal) {
+    console.log(`\n🔴 ${signal} received — saving data and shutting down...`);
+    try {
+        await saveData();
+        cooldownManager.destroy();
+        client.destroy();
+        console.log('✅ Shutdown complete.');
+        process.exit(0);
+    } catch(e) {
+        console.error('❌ Shutdown error:', e?.message);
+        process.exit(1);
+    }
+}
+process.on('SIGINT',  () => gracefulShutdown('SIGINT'));
+process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
+
+// ════════════════════════════════════════════════════════════════
+// ♦️ BOOT
+// ════════════════════════════════════════════════════════════════
+if (!process.env.TOKEN) {
+    console.error('❌ TOKEN environment variable not set! Add it to your .env file.');
+    process.exit(1);
+}
+
+(async () => {
+    await loadData();
+    // Autosave every 5 minutes
+    setInterval(saveData, 300_000);
+    await client.login(process.env.TOKEN).catch(err => {
+        console.error('❌ Login failed:', err?.message);
+        process.exit(1);
+    });
+})();
