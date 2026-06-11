@@ -2592,7 +2592,7 @@ if (cmd==='craftkey') {
 // ════════════════════════════════════════════════════════════════
 if (cmd==='chooseclass') {
     const cid=interaction.options.getString('class');
-    const cls=RPG_CLASSES[cid];
+    
     if (!cls) return interaction.reply({content:'❌ Invalid class.',ephemeral:true});
     userData.rpgClass.set(userId,cid);
     userData.rpgStats.set(userId,{hp:cls.hp,maxHp:cls.hp,atk:cls.atk,def:cls.def,mana:cls.mana,maxMana:cls.mana});
@@ -2604,7 +2604,7 @@ if (cmd==='chooseclass') {
 if (cmd==='rpgstats') {
     const cid=userData.rpgClass.get(userId);
     if (!cid) return interaction.reply({content:'❌ Choose a class first! `/chooseclass`',ephemeral:true});
-    const cls=RPG_CLASSES[cid];
+    
     const stats=userData.rpgStats.get(userId)||{hp:cls.hp,maxHp:cls.hp,atk:cls.atk,def:cls.def,mana:cls.mana,maxMana:cls.mana};
     cid=userData.rpgClass.get(userId);
     if (!cid) return interaction.reply({content:'❌ Choose a class first!',ephemeral:true});
@@ -2614,7 +2614,7 @@ if (cmd==='rpgstats') {
     if (rem) return interaction.reply({content:`⏰ Dungeon cooldown: **${cdStr(rem)}**`,ephemeral:true});
     await interaction.deferReply();
     cooldownManager.set(userId,'dungeon',3_600_000);
-    const cls=RPG_CLASSES[cid];
+    
     const stats=userData.rpgStats.get(userId)||{hp:cls.hp,maxHp:cls.hp,atk:cls.atk,def:cls.def};
     const armorId=userData.armorEquipped.get(userId);
     const armor=armorId?ARMOR_SETS.find(a=>a.id===armorId):null;
