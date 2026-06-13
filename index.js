@@ -612,7 +612,7 @@ const hangGames   = new Map(); // hangman
         if (enchants.includes('magnetic') && rIdx >= 2) w *= 1.2;
 
         return { ...fish, weight: Math.max(0.1, w) };
-    });
+);
 
     const caughtFish = weightedRandom(pool, 'weight');
     if (!caughtFish) return null;
