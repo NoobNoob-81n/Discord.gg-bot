@@ -183,6 +183,7 @@ const BIOMES = [
 ];
 
 const RARITY_ORDER = ['Common','Uncommon','Rare','Epic','Legendary','Mythical','Secret'];
+const getRarityIdx = RARITY_ORDER
 
 // Weather effects
 const WEATHER_EFFECTS = [
