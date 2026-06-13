@@ -111,7 +111,6 @@ const FISH_SPECIES = [
     { id:'magma_leviathan',   name:'Magma Leviathan',     emoji:'🌋', r:'Secret', val:300000,wMin:1000, wMax:5000, xp:25000,desc:'A volcanic sea titan of liquid fire. Required to enter Scylla Chamber.' },
 ];
 
-const fish = FISH_SPECIES
 
 // Rarity weight table — lower weight = rarer
 const RARITY_WEIGHTS = {
@@ -185,7 +184,7 @@ const BIOMES = [
 ];
 
 const RARITY_ORDER = ['Common','Uncommon','Rare','Epic','Legendary','Mythical','Secret'];
-const getRarityIdx = RARITY_ORDER
+
 
 // Weather effects
 const WEATHER_EFFECTS = [
