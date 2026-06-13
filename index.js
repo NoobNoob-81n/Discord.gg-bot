@@ -689,7 +689,7 @@ const hangGames   = new Map(); // hangman
     }
 
     return { fish: caughtFish, mutation, weight, value, xpGain, xpRes, weather, night, streak: streak.streak, chestGold, gained };
-}
+
 
 function updateFishingQuest(userId, fish, mutation) {
     const q = userData.fishQuest.get(userId);
