@@ -1789,7 +1789,7 @@ if (cmd==='ban') {
     if (!gStaff.length) return interaction.reply({content:'No staff set for this server. Use `/addstaff`.',ephemeral:true});
     const lines=gStaff.map(uid=>{const cached=client.users.cache.get(uid);return `• ${cached?cached.username:`User#${uid.slice(-4)}`}`;});
     return interaction.reply({embeds:[new EmbedBuilder().setColor(0x2196F3).setTitle('👮 Server Staff').setDescription(lines.join('\n'))],ephemeral:true});
-}
+
 
 // ── DELETE / RESET COMMANDS ──
 if (cmd==='deletestaff') {
