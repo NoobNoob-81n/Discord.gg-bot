@@ -582,7 +582,7 @@ const hangGames   = new Map(); // hangman
 
           
         // Rod luck — flat rare multiplier
-        if ('getRarityIdx'(fish.r) >= 2) w *= (1 + rod.luck * 0.02);
+        if (getRarityIdx(fish.r) >= 2) w *= (1 + rod.luck * 0.02);
 
         // Weather
         const rIdx = getRarityIdx(fish.r);
