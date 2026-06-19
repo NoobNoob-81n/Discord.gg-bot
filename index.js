@@ -111,7 +111,6 @@ const FISH_SPECIES = [
     { id:'magma_leviathan',   name:'Magma Leviathan',     emoji:'🌋', r:'Secret', val:300000,wMin:1000, wMax:5000, xp:25000,desc:'A volcanic sea titan of liquid fire. Required to enter Scylla Chamber.' },
 ];
 
-
 // Rarity weight table — lower weight = rarer
 const RARITY_WEIGHTS = {
     Common:4000, Uncommon:2200, Rare:1200, Epic:600, Legendary:250, Mythical:80, Secret:5
@@ -185,7 +184,6 @@ const BIOMES = [
 
 const RARITY_ORDER = ['Common','Uncommon','Rare','Epic','Legendary','Mythical','Secret'];
 
-
 // Weather effects
 const WEATHER_EFFECTS = [
     { id:'sunny',   name:'Sunny',   emoji:'☀️',  commonMult:1.0, rareMult:0.9, legMult:0.8  },
@@ -223,7 +221,7 @@ const ACHIEVEMENTS = [
     { id:'catch100',      name:'Angler',            emoji:'🎣', desc:'Catch 100 fish',                     reward:1000,  cond:{t:'catch',  n:100}      },
     { id:'catch1000',     name:'Master Angler',     emoji:'🏅', desc:'Catch 1,000 fish',                   reward:10000, cond:{t:'catch',  n:1000}     },
     { id:'rare_first',    name:'Rare Find',         emoji:'💙', desc:'Catch your first Rare fish',         reward:500,   cond:{t:'rarity', r:'Rare'}   },
-     { id:'epic_first',    name:'Epic Catch',        emoji:'💜', desc:'Catch your first Epic fish',         reward:2000,  cond:{t:'rarity', r:'Epic'}   },
+    { id:'epic_first',    name:'Epic Catch',        emoji:'💜', desc:'Catch your first Epic fish',         reward:2000,  cond:{t:'rarity', r:'Epic'}   },
     { id:'legend_first',  name:'Legendary Catch',   emoji:'🧡', desc:'Catch a Legendary fish',             reward:8000,  cond:{t:'rarity', r:'Legendary'}},
     { id:'mythical_first',name:'Myth Hunter',       emoji:'❤️', desc:'Catch a Mythical fish',              reward:40000, cond:{t:'rarity', r:'Mythical'}},
     { id:'secret_first',  name:'Secret Keeper',     emoji:'🌑', desc:'Catch a Secret fish',                reward:200000,cond:{t:'rarity', r:'Secret'} },
@@ -367,7 +365,7 @@ const BP_TIERS = [
     {tier:9, bpXp:5000,free:{xp:500},           prem:{coins:35000,item:'void_bait'}},
     {tier:10,bpXp:7000,free:{coins:5000},       prem:{coins:100000,item:'season_title'}},
 ];
-     // ═══════════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════
 // ♦️ ORIGINAL SHOP CATALOGUE (unchanged)
 // ═══════════════════════════════════════════════════════════════
 const WEAPONS = [
@@ -582,7 +580,114 @@ const tttGames    = new Map(); // tic tac toe
 const c4Games     = new Map(); // connect 4
 const hangGames   = new Map(); // hangman
 
-          
+
+// ════════════════════════════════════════════════════════════════
+// ♦️ HELPER FUNCTIONS
+// ════════════════════════════════════════════════════════════════
+
+// ── Original helpers ──
+function coins(userId)  { return Number(userData.coins.get(userId))  || 0; }
+function bank(userId)   { return Number(userData.bank.get(userId))   || 0; }
+function addCoins(userId, amount) {
+    userData.coins.set(userId, Math.max(0, coins(userId) + amount));
+}
+
+function xpForLevel(n)       { return Math.max(1, 5*n*n + 50*n + 100); }
+function getLevelInfo(total) {
+    let level = 0, rem = Math.max(0, Number(total)||0);
+    const totalXP = rem;
+    while (rem >= xpForLevel(level)) { rem -= xpForLevel(level); level++; }
+    return { level, xpInLevel: rem, xpRequired: xpForLevel(level), totalXP };
+}
+function buildBar(cur, max, len=10) {
+    const pct  = Math.max(0, Math.min(1, Number(cur)/Number(max)));
+    const fill = Math.floor(pct * len);
+    return '█'.repeat(fill) + '░'.repeat(len - fill);
+}
+function addXP(userId, amount) {
+    const cur  = Number(userData.xp.get(userId)) || 0;
+    const next = cur + amount;
+    userData.xp.set(userId, next);
+    const oldLv = getLevelInfo(cur).level;
+    const newLv = getLevelInfo(next).level;
+    // Grant skill point per 5 levels
+    if (newLv > oldLv) {
+        const pts = Math.floor(newLv / 5) - Math.floor(oldLv / 5);
+        if (pts > 0) userData.skillPoints.set(userId, (userData.skillPoints.get(userId)||0) + pts);
+    }
+    return { leveledUp: newLv > oldLv, newLevel: newLv };
+}
+
+// ── New helpers ──
+function fmtN(n) { return Number(n||0).toLocaleString(); }
+
+function cdStr(ms) {
+    const s = Math.ceil(ms / 1000);
+    if (s < 60)   return `${s}s`;
+    if (s < 3600) return `${Math.floor(s/60)}m ${s%60}s`;
+    return `${Math.floor(s/3600)}h ${Math.floor((s%3600)/60)}m`;
+}
+
+function ensureJoinDate(userId) {
+    if (!userData.joinDate.has(userId)) userData.joinDate.set(userId, Date.now());
+}
+
+function weightedRandom(items, wKey = 'weight') {
+    const total = items.reduce((s, i) => s + (i[wKey]||1), 0);
+    let r = Math.random() * total;
+    for (const item of items) { r -= (item[wKey]||1); if (r <= 0) return item; }
+    return items[items.length - 1];
+}
+
+function rng(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+
+function getCurrentWeather() {
+    // Deterministic per 2h block — same for all users
+    const block = Math.floor(Date.now() / 7200000);
+    return WEATHER_EFFECTS[block % WEATHER_EFFECTS.length];
+}
+
+function isNight() {
+    const h = new Date().getUTCHours();
+    return h >= 20 || h < 6;
+}
+
+function getRarityIdx(r) { return RARITY_ORDER.indexOf(r); }
+
+// Get the fish pool filtered for a biome
+function getBiomeFishPool(biomeId) {
+    const biome = BIOMES.find(b => b.id === biomeId) || BIOMES[0];
+    const maxIdx = getRarityIdx(biome.maxRarity);
+    return FISH_SPECIES.filter(f => getRarityIdx(f.r) <= maxIdx);
+}
+
+// ── FISHING ENGINE ──
+function doFish(userId, biomeId = 'pond', baitId = null) {
+    const uid  = String(userId);
+    ensureJoinDate(uid);
+
+    const rodId    = userData.rodEquipped.get(uid) || 'plastic';
+    const rod      = FISHING_RODS.find(r => r.id === rodId) || FISHING_RODS[0];
+    const enchants = userData.rodEnchants.get(uid) || [];
+    const weather  = getCurrentWeather();
+    const night    = isNight();
+    const bait     = baitId ? BAIT_TYPES.find(b => b.id === baitId) : null;
+    const event    = (userData.worldEvent && userData.worldEventEnd > Date.now()) ? userData.worldEvent : null;
+
+    // Consume bait
+    if (bait) {
+        const inv = userData.baitInv.get(uid) || {};
+        if ((inv[bait.id]||0) > 0) { inv[bait.id]--; if (!inv[bait.id]) delete inv[bait.id]; }
+        userData.baitInv.set(uid, inv);
+    }
+
+    let pool = getBiomeFishPool(biomeId).map(fish => {
+        let w = RARITY_WEIGHTS[fish.r] || 100;
+
+        // Rod power boost (higher = more rare fish weight)
+        const rarityBonus = getRarityIdx(fish.r);
+        w *= (1 + (rod.pwr - 1) * 0.1 * rarityBonus);
+
         // Rod luck — flat rare multiplier
         if (getRarityIdx(fish.r) >= 2) w *= (1 + rod.luck * 0.02);
 
@@ -611,8 +716,11 @@ const hangGames   = new Map(); // hangman
         }
 
         // Magnetic enchant
-    if (enchants.includes('magnetic') && rIdx >= 2) w *= 1.2;
-    return { ...fish, weight: Math.max(0.1, w) };
+        if (enchants.includes('magnetic') && rIdx >= 2) w *= 1.2;
+
+        return { ...fish, weight: Math.max(0.1, w) };
+    });
+
     const caughtFish = weightedRandom(pool, 'weight');
     if (!caughtFish) return null;
 
@@ -691,7 +799,7 @@ const hangGames   = new Map(); // hangman
     }
 
     return { fish: caughtFish, mutation, weight, value, xpGain, xpRes, weather, night, streak: streak.streak, chestGold, gained };
-
+}
 
 function updateFishingQuest(userId, fish, mutation) {
     const q = userData.fishQuest.get(userId);
@@ -775,8 +883,8 @@ function checkAchievementGeneral(uid, type, value) {
     }
     if (gained.length) userData.achievementsNew.set(uid, owned);
     return gained;
-              }
-  
+}
+
 // ════════════════════════════════════════════════════════════════
 // ♦️ ORIGINAL LEVEL + XP UTILITIES (unchanged)
 // ════════════════════════════════════════════════════════════════
@@ -877,8 +985,7 @@ async function fnfEndGame(interaction, game, won, reason='') {
         .setFooter({text:won?'GG! Play again?':'Better luck next time!'});
     try{await interaction.editReply({embeds:[embed],components:[]});}
     catch(_){await interaction.followUp({embeds:[embed],components:[]}).catch(()=>{});}
-}
-
+     }
 // ════════════════════════════════════════════════════════════════
 // ♦️ FILE I/O (original structure preserved exactly)
 // ════════════════════════════════════════════════════════════════
@@ -917,7 +1024,6 @@ async function ownerOnly(interaction, isOwner) {
     if (!isOwner) { await interaction.reply({ content:'❌ Owner only!', ephemeral:true }); return false; }
     return true;
 }
-
 
 // ════════════════════════════════════════════════════════════════
 // ♦️ SLASH COMMANDS
@@ -1006,19 +1112,12 @@ const slashCommands = [
         .addChannelOption(o=>o.setName('channel').setDescription('Suggestion channel').setRequired(true).addChannelTypes(ChannelType.GuildText)),
     new SlashCommandBuilder().setName('suggest').setDescription('💡 Submit a suggestion')
         .addStringOption(o=>o.setName('text').setDescription('Your suggestion').setRequired(true)),
-    new SlashCommandBuilder().setName('addxp').setDescription('⭐ Add XP to a user (owner)')
-        .addUserOption(o=>o.setName('user').setDescription('Target user').setRequired(true))
-        .addIntegerOption(o=>o.setName('amount').setDescription('XP amount').setRequired(true).setMinValue(1)),
-    new SlashCommandBuilder().setName('addcoins').setDescription('💰 Add coins to a user (owner)')
-        .addUserOption(o=>o.setName('user').setDescription('Target user').setRequired(true))
-        .addIntegerOption(o=>o.setName('amount').setDescription('Coin amount').setRequired(true).setMinValue(1)),
-    new SlashCommandBuilder().setName('addstaff').setDescription('👮 Promote a user to staff (owner)')
-        .addUserOption(o=>o.setName('user').setDescription('Target user').setRequired(true)),
+    // addxp, addcoins, addstaff, deletecoins are prefix-only (!addxp !addcoins !addstaff !deletecoins)
     new SlashCommandBuilder().setName('addresponse').setDescription('🤖 Add an auto-response (owner)')
         .addStringOption(o=>o.setName('trigger').setDescription('Trigger word/phrase').setRequired(true))
         .addStringOption(o=>o.setName('response').setDescription('Response text').setRequired(true)),
 
-  // ── FISHING ──
+    // ── FISHING ──
     new SlashCommandBuilder().setName('fish').setDescription('🎣 Go fishing!')
         .addStringOption(o=>o.setName('biome').setDescription('Where to fish').setRequired(false)
             .addChoices(...BIOMES.map(b=>({name:`${b.emoji} ${b.name} (Lv${b.unlockLv}+)`,value:b.id}))))
@@ -1141,16 +1240,14 @@ const slashCommands = [
     new SlashCommandBuilder().setName('deletelevelannounce').setDescription('🗑️ Disable level-up announcements for this server'),
 
     // ── ADMIN DELETE / REVERSE COMMANDS ──
-    new SlashCommandBuilder().setName('deletecoins').setDescription('🗑️ Remove coins from a user (owner)')
-        .addUserOption(o=>o.setName('user').setDescription('Target user').setRequired(true))
-        .addIntegerOption(o=>o.setName('amount').setDescription('Amount to remove (leave blank = reset to 0)').setRequired(false).setMinValue(1)),
-
     new SlashCommandBuilder().setName('resetuser').setDescription('🗑️ Full reset of a users data (owner — use with care!)')
         .addUserOption(o=>o.setName('user').setDescription('Target user').setRequired(true)),
 
-
+    new SlashCommandBuilder().setName('botinfo').setDescription('ℹ️ Info and credits for this bot'),
 ];
-  // ════════════════════════════════════════════════════════════════
+
+
+// ════════════════════════════════════════════════════════════════
 // ♦️ CLIENT
 // ════════════════════════════════════════════════════════════════
 const client = new Client({
@@ -1167,7 +1264,13 @@ const client = new Client({
 // ════════════════════════════════════════════════════════════════
 // ♦️ READY EVENT
 // ════════════════════════════════════════════════════════════════
-client.once('clientReady', async () => {
+client.once('ready', async () => {
+    console.log(`╔══════════════════════════════════════════════╗`);
+    console.log(`║  🤖 Ultimate Discord Bot — by noobnoob_81    ║`);
+    console.log(`║  Nothing is AI'ly made. All was made by      ║`);
+    console.log(`║  noobnoob_81. All others who claim to have   ║`);
+    console.log(`║  this bot are wrong!                         ║`);
+    console.log(`╚══════════════════════════════════════════════╝`);
     console.log(`✅ Bot online as ${client.user?.tag}`);
     try {
         const rest = new REST({ version:'10' }).setToken(process.env.TOKEN);
@@ -1272,8 +1375,9 @@ function checkC4Win(board, player) {
         for (let c = 3; c < 7; c++)
             if ([0,1,2,3].every(i=>board[r+i][c-i]===player)) return true;
     return false;
-                                            }
-                     // ════════════════════════════════════════════════════════════════
+            }
+
+// ════════════════════════════════════════════════════════════════
 // ♦️ SLASH COMMAND HANDLER
 // ════════════════════════════════════════════════════════════════
 client.on('interactionCreate', async interaction => {
@@ -1289,6 +1393,29 @@ client.on('interactionCreate', async interaction => {
         try {
 
 if (cmd==='ping') return interaction.reply({content:`🏓 Pong! **${client.ws.ping}ms**`,ephemeral:true});
+
+if (cmd==='botinfo') {
+    return interaction.reply({embeds:[new EmbedBuilder()
+        .setColor(0xFFD700)
+        .setTitle('🤖 Ultimate Discord Bot — Credits')
+        .setDescription(
+            '> *"Nothing is AI\'ly made. All was made by **noobnoob_81**.\n' +
+            '> All others who claim to have this bot are wrong!"*'
+        )
+        .addFields(
+            {name:'👑 Created by',   value:'**noobnoob_81**',                          inline:true},
+            {name:'📦 Version',      value:'**v3.0.0**',                               inline:true},
+            {name:'🛠️ Framework',   value:'Discord.js v14',                            inline:true},
+            {name:'🎣 Fishing',      value:'Full rarity/mutation/biome/boss system',   inline:false},
+            {name:'⚔️ RPG',         value:'Classes, dungeons, skills, armor, crafting',inline:false},
+            {name:'🏘️ Guilds',      value:'Bank, leaderboard, wars',                  inline:false},
+            {name:'🎮 Games',        value:'Wordle, FNF, Blackjack, TTT, Connect4 & more',inline:false},
+            {name:'⚠️ Ownership',   value:'This bot was built by **noobnoob_81**. Anyone claiming ownership without credit is lying.',inline:false},
+        )
+        .setFooter({text:'Built with ❤️ by noobnoob_81 • Not AI-generated'})
+        .setTimestamp()
+    ]});
+}
 
 if (cmd==='help') {
     const embed=new EmbedBuilder().setColor(0x00ff88).setTitle('🤖 Ultimate Bot — Commands')
@@ -1601,8 +1728,7 @@ if (cmd==='bossfight') {
     if (bossRem) return interaction.reply({content:`⏰ Boss attack cooldown: **${cdStr(bossRem)}**`,ephemeral:true});
     if (!boss) boss={name:'👹 Shadow Demon',health:3000,maxHealth:3000};
     const weapons=userData.weapons.get(userId)||[];
-
-          const best=[...weapons].sort((a,b)=>(Number(b?.damage)||0)-(Number(a?.damage)||0))[0]||{damage:20};
+    const best=[...weapons].sort((a,b)=>(Number(b?.damage)||0)-(Number(a?.damage)||0))[0]||{damage:20};
     const cls=userData.rpgClass.get(userId);
     const clsAtk=cls?RPG_CLASSES[cls].atk:0;
     const dmg=Math.max(1,Number(best.damage)+clsAtk+rng(0,50));
@@ -1710,9 +1836,9 @@ if (cmd==='mine') {
     cooldownManager.set(userId,'mine',900_000);
     await saveData();
     return interaction.reply({content:found?`⛏️ Struck gold! Found resources and **+${rng(300,800)} coins**!`:'⛏️ Hit a dead end, but grabbed some materials.'});
-}
+                                             }
 
-// ── MODERATION ──
+            // ── MODERATION ──
 if (cmd==='warn') {
     if (!isStaff) return interaction.reply({content:'❌ Staff only!',ephemeral:true});
     const target=interaction.options.getUser('user');
@@ -1786,12 +1912,88 @@ if (cmd==='ban') {
     } catch(e){return interaction.reply({content:'❌ Failed to ban. Check permissions.',ephemeral:true});}
 }
 
-                interaction.reply({content:'❌ Staff only!',ephemeral:true});
+
+// ── SETUP ──
+if (cmd==='setlogs') {
+    if (!isStaff) return interaction.reply({content:'❌ Staff only!',ephemeral:true});
+    const ch=interaction.options.getChannel('channel');
+    logsConfig[guildId]={channelId:ch.id}; await saveData();
+    return interaction.reply({content:`📋 Mod-log set to <#${ch.id}>`,ephemeral:true});
+}
+if (cmd==='setwelcome') {
+    if (!isStaff) return interaction.reply({content:'❌ Staff only!',ephemeral:true});
+    const ch=interaction.options.getChannel('channel');
+    const role=interaction.options.getRole('role');
+    welcomeConfig[guildId]={channelId:ch.id,roleId:role?.id||null,message:`Welcome to ${interaction.guild?.name||'the server'}!`};
+    await saveData();
+    return interaction.reply({content:`👋 Welcome channel → <#${ch.id}>${role?` | Auto-role: <@&${role.id}>`:''}`,ephemeral:true});
+}
+if (cmd==='settickets') {
+    if (!isStaff) return interaction.reply({content:'❌ Staff only!',ephemeral:true});
+    const ch=interaction.options.getChannel('channel');
+    ticketConfig[guildId]={channelId:ch.id}; await saveData();
+    const row=new ActionRowBuilder().addComponents(new ButtonBuilder().setCustomId('open_ticket').setLabel('🎫 Open a Ticket').setStyle(ButtonStyle.Primary));
+    const tc=await interaction.guild?.channels.fetch(ch.id).catch(()=>null);
+    if(tc)await tc.send({embeds:[new EmbedBuilder().setColor(0x5865F2).setTitle('🎫 Support Tickets').setDescription('Click below to open a private support ticket.')],components:[row]}).catch(()=>{});
+    return interaction.reply({content:`🎫 Ticket panel posted in <#${ch.id}>`,ephemeral:true});
+}
+if (cmd==='setsuggestions') {
+    if (!isStaff) return interaction.reply({content:'❌ Staff only!',ephemeral:true});
+    const ch=interaction.options.getChannel('channel');
+    suggestionConfig[guildId]={channelId:ch.id}; await saveData();
+    return interaction.reply({content:`💡 Suggestion channel → <#${ch.id}>`,ephemeral:true});
+        }
+
+        // ── SUGGESTIONS (with voting + staff approve/deny) ──
+if (cmd==='suggest') {
+    const text=interaction.options.getString('text');
+    const cfg=suggestionConfig[guildId];
+    if (!cfg?.channelId) return interaction.reply({content:'❌ No suggestion channel set! Staff: use `/setsuggestions`',ephemeral:true});
+    const ch=await interaction.guild?.channels.fetch(cfg.channelId).catch(()=>null);
+    if (!ch) return interaction.reply({content:'❌ Suggestion channel not found.',ephemeral:true});
+    const sugId=`sug_${Date.now()}`;
+    const embed=new EmbedBuilder().setColor(0x5865F2).setTitle('💡 New Suggestion')
+        .setDescription(text)
+        .addFields(
+            {name:'Submitted by',value:interaction.user.username,inline:true},
+            {name:'Status',value:'⏳ Pending — vote below!',inline:true},
+        ).setTimestamp();
+    const row=new ActionRowBuilder().addComponents(
+        new ButtonBuilder().setCustomId(`sug_approve_${sugId}`).setLabel('✅ Approve').setStyle(ButtonStyle.Success),
+        new ButtonBuilder().setCustomId(`sug_deny_${sugId}`).setLabel('❌ Deny').setStyle(ButtonStyle.Danger),
+    );
+    const msg=await ch.send({embeds:[embed],components:[row]});
+    await msg.react('👍').catch(()=>{});
+    await msg.react('👎').catch(()=>{});
+    return interaction.reply({content:'✅ Suggestion submitted! Staff can approve/deny; everyone can vote 👍/👎.',ephemeral:true});
+}
+
+// ── STAFF MANAGEMENT ──
+if (cmd==='addstaff') {
+    if (!isOwner && !interaction.memberPermissions?.has(PermissionFlagsBits.Administrator))
+        return interaction.reply({content:'❌ Admins only!',ephemeral:true});
+    const target=interaction.options.getUser('user');
+    if (!target) return interaction.reply({content:'❌ User not found',ephemeral:true});
+    staffSet.add(`${guildId}:${String(target.id)}`);
+    await saveData();
+    return interaction.reply({content:`👮 **${target.username}** is now staff in this server!`});
+}
+if (cmd==='removestaff') {
+    if (!isOwner && !interaction.memberPermissions?.has(PermissionFlagsBits.Administrator))
+        return interaction.reply({content:'❌ Admins only!',ephemeral:true});
+    const target=interaction.options.getUser('user');
+    if (!target) return interaction.reply({content:'❌ User not found',ephemeral:true});
+    staffSet.delete(`${guildId}:${String(target.id)}`);
+    await saveData();
+    return interaction.reply({content:`✅ Removed **${target.username}** from server staff.`,ephemeral:true});
+}
+if (cmd==='liststaffs') {
+    if (!isStaff) return interaction.reply({content:'❌ Staff only!',ephemeral:true});
     const gStaff=[...staffSet].filter(s=>s.startsWith(`${guildId}:`)).map(s=>s.split(':')[1]);
     if (!gStaff.length) return interaction.reply({content:'No staff set for this server. Use `/addstaff`.',ephemeral:true});
     const lines=gStaff.map(uid=>{const cached=client.users.cache.get(uid);return `• ${cached?cached.username:`User#${uid.slice(-4)}`}`;});
     return interaction.reply({embeds:[new EmbedBuilder().setColor(0x2196F3).setTitle('👮 Server Staff').setDescription(lines.join('\n'))],ephemeral:true});
-
+}
 
 // ── DELETE / RESET COMMANDS ──
 if (cmd==='deletestaff') {
@@ -1853,8 +2055,8 @@ if (cmd==='deletelevelannounce') {
     delete levelAnnounceConfig[guildId];
     await saveData();
     return interaction.reply({content:'✅ Level-up announcements disabled for this server.',ephemeral:true});
-              }
-      // ════════════════════════════════════════════════════════════════
+        }
+            // ════════════════════════════════════════════════════════════════
 // DELETE / REVERSE COMMANDS
 // ════════════════════════════════════════════════════════════════
 
@@ -2071,63 +2273,9 @@ if (cmd==='deletemarketlisting') {
     userData.marketplace.delete(lid);
     await saveData();
     return interaction.reply({content:`✅ Removed listing \`${lid}\`.`,ephemeral:true});
-                        }
-      // ── OWNER COMMANDS ──
-if (cmd==='addxp') {
-    if (!isOwner) return interaction.reply({content:'❌ Owner only!',ephemeral:true});
-    const t=interaction.options.getUser('user'),a=interaction.options.getInteger('amount');
-    addXP(String(t.id),a); await saveData();
-    return interaction.reply({content:`⭐ Added **${fmtN(a)} XP** to **${t.username}**`});
-}
-if (cmd==='addcoins') {
-    if (!isOwner) return interaction.reply({content:'❌ Owner only!',ephemeral:true});
-    const t=interaction.options.getUser('user'),a=interaction.options.getInteger('amount');
-    addCoins(String(t.id),a); await saveData();
-    return interaction.reply({content:`💰 Added **${fmtN(a)} coins** to **${t.username}**`});
-}
-if (cmd==='addresponse') {
-    if (!isOwner) return interaction.reply({content:'❌ Owner only!',ephemeral:true});
-    const trigger=String(interaction.options.getString('trigger')).toLowerCase();
-    const response=String(interaction.options.getString('response'));
-    autoResponses.set(trigger,response); await saveData();
-    return interaction.reply({content:`✅ Auto-response set: **"${trigger}"** → "${response}"`,ephemeral:true});
-}
-if (cmd==='resetcooldowns') {
-    if (!isOwner) return interaction.reply({content:'❌ Owner only!',ephemeral:true});
-    const t=interaction.options.getUser('user')||interaction.user;
-    cooldownManager.clearAll(String(t.id));
-    return interaction.reply({content:`✅ Cleared all cooldowns for **${t.username}**`,ephemeral:true});
-}
-if (cmd==='giverod') {
-    if (!isOwner) return interaction.reply({content:'❌ Owner only!',ephemeral:true});
-    const t=interaction.options.getUser('user');
-    const rid=interaction.options.getString('rod');
-    const rod=FISHING_RODS.find(r=>r.id===rid);
-    if (!rod) return interaction.reply({content:'❌ Invalid rod ID',ephemeral:true});
-    const owned=userData.rodOwned.get(String(t.id))||[];
-    if (!owned.includes(rid)){owned.push(rid);userData.rodOwned.set(String(t.id),owned);}
-    await saveData();
-    return interaction.reply({content:`✅ Gave **${rod.name}** to **${t.username}**`,ephemeral:true});
-}
-if (cmd==='forceevent') {
-    if (!isOwner) return interaction.reply({content:'❌ Owner only!',ephemeral:true});
-    const eid=interaction.options.getString('event');
-    const ev=WORLD_EVENTS.find(e=>e.id===eid);
-    if (!ev) return interaction.reply({content:'❌ Invalid event',ephemeral:true});
-    userData.worldEvent=ev; userData.worldEventEnd=Date.now()+ev.dur;
-    await saveData();
-    return interaction.reply({content:`✅ Forced event: **${ev.emoji} ${ev.name}**\n${ev.desc}`});
-}
-if (cmd==='forceboss') {
-    if (!isOwner) return interaction.reply({content:'❌ Owner only!',ephemeral:true});
-    const bid=interaction.options.getString('boss');
-    const b=BOSS_FISH.find(b=>b.id===bid);
-    if (!b) return interaction.reply({content:'❌ Invalid boss',ephemeral:true});
-    userData.activeBoss=b; userData.activeBossHp=b.hp;
-    await saveData();
-    return interaction.reply({content:`✅ Spawned: **${b.emoji} ${b.name}** (${fmtN(b.hp)} HP)`});
-      }
-// ── OWNER COMMANDS ──
+        }
+
+            // ── OWNER COMMANDS ──
 if (cmd==='addxp') {
     if (!isOwner) return interaction.reply({content:'❌ Owner only!',ephemeral:true});
     const t=interaction.options.getUser('user'),a=interaction.options.getInteger('amount');
@@ -2182,7 +2330,127 @@ if (cmd==='forceboss') {
     await saveData();
     return interaction.reply({content:`✅ Spawned: **${b.emoji} ${b.name}** (${fmtN(b.hp)} HP)`});
 }
-  if (cmd==='buybait') {
+
+// ════════════════════════════════════════════════════════════════
+// FISHING COMMANDS
+// ════════════════════════════════════════════════════════════════
+if (cmd==='fish') {
+    const rem=cooldownManager.get(userId,'fish');
+    if (rem) return interaction.reply({content:`⏰ Fishing cooldown: **${cdStr(rem)}**`,ephemeral:true});
+    const biomeId=interaction.options.getString('biome')||'pond';
+    const baitId=interaction.options.getString('bait')||null;
+    const biome=BIOMES.find(b=>b.id===biomeId)||BIOMES[0];
+    const lvInfo=getLevelInfo(userData.xp.get(userId)||0);
+    if (lvInfo.level<biome.unlockLv) return interaction.reply({content:`❌ Need **Level ${biome.unlockLv}** to fish in ${biome.name}! You are Level ${lvInfo.level}.`,ephemeral:true});
+    if (baitId){const inv=userData.baitInv.get(userId)||{};if (!inv[baitId]||inv[baitId]<=0) return interaction.reply({content:`❌ No ${baitId} bait! Buy with \`/buybait\`.`,ephemeral:true});}
+    await interaction.deferReply();
+    await new Promise(r=>setTimeout(r,1500));
+    const res=doFish(userId,biomeId,baitId);
+    if (!res) return interaction.editReply({content:'❌ Something went wrong. Try again!'});
+    const {fish,mutation,weight,value,xpGain,xpRes,weather,night,streak,chestGold,gained}=res;
+    const enchants=userData.rodEnchants.get(userId)||[];
+    cooldownManager.set(userId,'fish',enchants.includes('swift')?22_000:30_000);
+    const pet=userData.pets.get(userId);
+    if (pet){pet.xp=(pet.xp||0)+10;if(pet.xp>=(pet.level||1)*100){pet.level=(pet.level||1)+1;pet.xp=0;}userData.pets.set(userId,pet);}
+    // Battle pass XP
+    const bp=userData.battlePass.get(userId)||{tier:1,bpXp:0,premium:false,season:SEASON};
+    bp.bpXp=(bp.bpXp||0)+5;
+    const nextTier=BP_TIERS.find(t=>t.tier===bp.tier+1);
+    if (nextTier&&bp.bpXp>=nextTier.bpXp&&bp.tier<10){bp.tier++;if(nextTier.free.coins)addCoins(userId,nextTier.free.coins);if(nextTier.free.xp)addXP(userId,nextTier.free.xp);}
+    userData.battlePass.set(userId,bp);
+    const color=RARITY_COLORS[fish.r]||0x9E9E9E;
+    const mutStr=mutation.id!=='none'?` ${mutation.emoji} **${mutation.name}**`:'';
+    const embed=new EmbedBuilder().setColor(color)
+        .setTitle(`🎣 Caught a${mutStr} **${fish.name}**!`)
+        .setDescription(`${fish.emoji} *${fish.desc}*`)
+        .addFields(
+            {name:'🏷️ Rarity', value:fish.r,             inline:true},
+            {name:'⚖️ Weight', value:`${weight} kg`,      inline:true},
+            {name:'💰 Value',  value:`${fmtN(value)} coins`,inline:true},
+            {name:'⭐ XP',     value:`+${fmtN(xpGain)}`,  inline:true},
+            {name:'🌤️ Weather',value:`${weather.emoji} ${weather.name}`,inline:true},
+            {name:'🔥 Streak', value:`${streak} day(s)`,  inline:true},
+        )
+        .setFooter({text:`${biome.emoji} ${biome.name} • Use /sellfish to sell`});
+    if (mutation.id!=='none') embed.addFields({name:`${mutation.emoji} Mutation!`,value:`**${mutation.name}** — ${mutation.mult}x value multiplier!`});
+    if (chestGold>0) embed.addFields({name:'💰 Treasure Chest!',value:`Found **${fmtN(chestGold)} coins**!`});
+    if (xpRes.leveledUp) embed.addFields({name:'🎉 Level Up!',value:`You reached **Level ${xpRes.newLevel}**!`});
+    if (gained.length) embed.addFields({name:'🏆 Achievement!',value:gained.map(a=>`${a.emoji} **${a.name}** +${fmtN(a.reward)}c`).join('\n')});
+    if (night) embed.addFields({name:'🌙 Night Bonus',value:'Rare fish rate increased!'});
+    await saveData();
+    return interaction.editReply({embeds:[embed]});
+}
+
+if (cmd==='fishguide') {
+    const embed=new EmbedBuilder().setColor(0x2196F3).setTitle('🎣 Fishing Guide')
+        .addFields(
+            {name:'📍 Biomes',    value:BIOMES.map(b=>`${b.emoji} **${b.name}** (Lv${b.unlockLv}+) — ${b.desc}`).join('\n')},
+            {name:'🌤️ Weather',  value:'Changes every 2h. Storm = rare fish. Eclipse = legendary surge.'},
+            {name:'🌙 Night',    value:'Night (20:00–06:00 UTC) = +50% rare fish chance.'},
+            {name:'🧬 Mutations',value:'Multiply fish value. Prismatic = 15x! Use lucky bait or Lucky enchant.'},
+            {name:'💰 Selling',  value:'`/sellfish all` sells everything. Keep Legendary+!'},
+            {name:'📋 Quests',   value:'Daily quests give bonus coins. Use `/fishquest`.'},
+            {name:'🦈 Bosses',   value:'Boss fish spawn randomly. Use `/fishboss` to attack!'},
+            {name:'👑 Scylla',   value:'Catch all 3 secret fish to craft the Scylla Key!'},
+        );
+    return interaction.reply({embeds:[embed]});
+}
+
+if (cmd==='rodshop') {
+    const owned=userData.rodOwned.get(userId)||[];
+    const equip=userData.rodEquipped.get(userId)||'plastic';
+    const lvInfo=getLevelInfo(userData.xp.get(userId)||0);
+    const lines=FISHING_RODS.map(r=>{
+        const isOwned=owned.includes(r.id)||(r.id==='plastic');
+        const isEquip=equip===r.id;
+        const canBuy=lvInfo.level>=r.reqLv&&!r.reqQ&&r.price>0;
+        const status=isEquip?'✅ Equipped':isOwned?'📦 Owned':canBuy?`💰 ${fmtN(r.price)}c`:(r.reqQ?`🔒 Quest: ${r.reqQ}`:`🔒 Lv${r.reqLv}`);
+        return `${r.emoji} **${r.name}** [Lv${r.reqLv}] — ${status}\n  └ Power:x${r.pwr} Luck:+${r.luck} | ${r.desc}`;
+    });
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0x2196F3).setTitle('🎣 Rod Shop').setDescription(lines.join('\n\n')).setFooter({text:'Buy: /buyrod <id> | Equip: /equiprod <id>'})]});
+}
+
+if (cmd==='buyrod') {
+    const rid=interaction.options.getString('rod');
+    const rod=FISHING_RODS.find(r=>r.id===rid);
+    if (!rod) return interaction.reply({content:'❌ Invalid rod ID. Check `/rodshop`.',ephemeral:true});
+    if (!rod.price) return interaction.reply({content:'❌ This rod cannot be purchased directly.',ephemeral:true});
+    const owned=userData.rodOwned.get(userId)||[];
+    if (owned.includes(rid)) return interaction.reply({content:'❌ Already own this rod!',ephemeral:true});
+    const lvInfo=getLevelInfo(userData.xp.get(userId)||0);
+    if (lvInfo.level<rod.reqLv) return interaction.reply({content:`❌ Need **Level ${rod.reqLv}**! You are Level ${lvInfo.level}.`,ephemeral:true});
+    if (rod.reqQ) return interaction.reply({content:`❌ Requires quest: **${rod.reqQ}**`,ephemeral:true});
+    if (coins(userId)<rod.price) return interaction.reply({content:`❌ Need **${fmtN(rod.price)}** coins!`,ephemeral:true});
+    addCoins(userId,-rod.price);
+    owned.push(rid); userData.rodOwned.set(userId,owned);
+    userData.rodEquipped.set(userId,rid);
+    await saveData();
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0x57F287).setTitle(`${rod.emoji} Rod Purchased & Equipped!`).setDescription(`**${rod.name}**\n${rod.desc}`)]});
+}
+
+if (cmd==='equiprod') {
+    const rid=interaction.options.getString('rod');
+    const rod=FISHING_RODS.find(r=>r.id===rid);
+    if (!rod) return interaction.reply({content:'❌ Invalid rod ID.',ephemeral:true});
+    const owned=userData.rodOwned.get(userId)||[];
+    if (!owned.includes(rid)&&rid!=='plastic') return interaction.reply({content:"❌ Don't own this rod! Buy with `/buyrod`.",ephemeral:true});
+    userData.rodEquipped.set(userId,rid); await saveData();
+    return interaction.reply({content:`✅ Equipped **${rod.emoji} ${rod.name}**!`,ephemeral:true});
+}
+
+if (cmd==='enchantrod') {
+    const eid=interaction.options.getString('enchant');
+    const ench=ROD_ENCHANTS.find(e=>e.id===eid);
+    if (!ench) return interaction.reply({content:'❌ Invalid enchantment.',ephemeral:true});
+    const enchants=userData.rodEnchants.get(userId)||[];
+    if (enchants.includes(eid)) return interaction.reply({content:'❌ Rod already has this enchantment!',ephemeral:true});
+    if (coins(userId)<ench.cost) return interaction.reply({content:`❌ Need **${fmtN(ench.cost)}** coins!`,ephemeral:true});
+    addCoins(userId,-ench.cost); enchants.push(eid); userData.rodEnchants.set(userId,enchants);
+    await saveData();
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0x9C27B0).setTitle(`${ench.emoji} Enchantment Applied!`).setDescription(`**${ench.name}** — ${ench.desc}`)]});
+}
+
+if (cmd==='buybait') {
     const bid=interaction.options.getString('bait');
     const qty=interaction.options.getInteger('amount')||1;
     const bait=BAIT_TYPES.find(b=>b.id===bid);
@@ -2369,19 +2637,19 @@ if (cmd==='craftkey') {
     const completed=userData.completedQuests.get(userId)||[];
     if (completed.includes('scylla_key')) return interaction.reply({content:'✅ Already have the Scylla Key!',ephemeral:true});
     if (!(caught['crowned_anglerfish']>0&&caught['frozen_leviathan']>0&&caught['magma_leviathan']>0))
-        return interaction.reply({content:"❌ Need all 3 secret fish! Fish in Mariana's Veil (Lv100+).",ephemeral:true});
+    return interaction.reply({content:"❌ Need all 3 secret fish! Fish in Mariana's Veil (Lv100+).",ephemeral:true});
     completed.push('scylla_key'); userData.completedQuests.set(userId,completed);
     checkAchievementGeneral(userId,'scylla',1); await saveData();
     return interaction.reply({embeds:[new EmbedBuilder().setColor(0xFFD700).setTitle('🔑 Scylla Key Crafted!').setDescription('You forged the **Scylla Key**! You may now enter the Scylla Chamber for exclusive rewards.')]});
-      }
+}
 
-      // ════════════════════════════════════════════════════════════════
+// ════════════════════════════════════════════════════════════════
 // RPG COMMANDS
 // ════════════════════════════════════════════════════════════════
 if (cmd==='chooseclass') {
     const cid=interaction.options.getString('class');
     const cls=RPG_CLASSES[cid];
-  if (!cls) return interaction.reply({content:'❌ Invalid class.',ephemeral:true});
+    if (!cls) return interaction.reply({content:'❌ Invalid class.',ephemeral:true});
     userData.rpgClass.set(userId,cid);
     userData.rpgStats.set(userId,{hp:cls.hp,maxHp:cls.hp,atk:cls.atk,def:cls.def,mana:cls.mana,maxMana:cls.mana});
     userData.skillPoints.set(userId,(userData.skillPoints.get(userId)||0)+1);
@@ -2534,6 +2802,397 @@ if (cmd==='gathermaterials') {
     return interaction.reply({content:'⛏️ Gathered **'+qty+'x '+mat.emoji+' '+mat.name+'**!'});
 }
 
+if (cmd==='gathermaterials') {
+    const rem=cooldownManager.get(userId,'gather');
+    if (rem) return interaction.reply({content:'⏰ Gather cooldown: **'+cdStr(rem)+'**',ephemeral:true});
+    cooldownManager.set(userId,'gather',1_800_000);
+    const pool=CRAFT_MATS.filter(m=>m.src!=='dungeon');
+    const mat=pool[rng(0,pool.length-1)],qty=rng(1,5);
+    const mats=userData.craftMats.get(userId)||{};
+    mats[mat.id]=(mats[mat.id]||0)+qty; userData.craftMats.set(userId,mats);
+    addXP(userId,20); await saveData();
+    return interaction.reply({content:'⛏️ Gathered **'+qty+'x '+mat.emoji+' '+mat.name+'**!'});
+        }
+
+        // ════════════════════════════════════════════════════════════════
+// GUILD COMMANDS
+// ════════════════════════════════════════════════════════════════
+if (cmd==='createguild') {
+    const existing=userData.guildOf.get(userId);
+    if (existing) return interaction.reply({content:'❌ Already in a guild! Leave with `/leaveguild` first.',ephemeral:true});
+    if (coins(userId)<5000) return interaction.reply({content:'❌ Need **5,000 coins** to create a guild!',ephemeral:true});
+    const name=interaction.options.getString('name').trim().slice(0,32);
+    for (const [,g] of userData.guilds) if (g.name.toLowerCase()===name.toLowerCase()) return interaction.reply({content:'❌ Guild name already taken!',ephemeral:true});
+    addCoins(userId,-5000);
+    const guildId2=`guild_${Date.now()}_${userId}`;
+    const newGuild={name,owner:userId,members:[userId],bank:0,level:1,xp:0,warScore:0};
+    userData.guilds.set(guildId2,newGuild);
+    userData.guildOf.set(userId,guildId2);
+    await saveData();
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0x57F287).setTitle('🏘️ Guild Created!')
+        .setDescription(`**${name}** is now open! Invite members with \`/guildinvite\`.`)
+        .addFields({name:'Owner',value:interaction.user.username,inline:true},{name:'Members',value:'1',inline:true},{name:'Bank',value:'0 coins',inline:true})
+    ]});
+}
+
+if (cmd==='joinguild') {
+    const existing=userData.guildOf.get(userId);
+    if (existing) return interaction.reply({content:'❌ Already in a guild! Leave first with `/leaveguild`.',ephemeral:true});
+    const name=interaction.options.getString('name').trim();
+    let foundId=null,foundG=null;
+    for (const [gid,g] of userData.guilds) if (g.name.toLowerCase()===name.toLowerCase()){foundId=gid;foundG=g;break;}
+    if (!foundG) return interaction.reply({content:'❌ Guild not found. Check the name.',ephemeral:true});
+    if (!foundG.open&&!foundG.invited?.includes(userId)) return interaction.reply({content:'❌ This guild is invite-only! Ask the owner to use `/guildinvite`.',ephemeral:true});
+    foundG.members.push(userId);
+    if (foundG.invited) foundG.invited=foundG.invited.filter(id=>id!==userId);
+    userData.guildOf.set(userId,foundId);
+    await saveData();
+    return interaction.reply({content:`✅ Joined **${foundG.name}**! Welcome! (${foundG.members.length} members)`});
+}
+
+if (cmd==='leaveguild') {
+    const gid=userData.guildOf.get(userId);
+    if (!gid) return interaction.reply({content:'❌ Not in a guild!',ephemeral:true});
+    const g=userData.guilds.get(gid);
+    if (!g) { userData.guildOf.delete(userId); return interaction.reply({content:'❌ Guild data missing. Removed you.',ephemeral:true}); }
+    if (g.owner===userId&&g.members.length>1) return interaction.reply({content:'❌ Transfer ownership or kick all members before leaving as owner.',ephemeral:true});
+    g.members=g.members.filter(m=>m!==userId);
+    userData.guildOf.delete(userId);
+    if (g.members.length===0) userData.guilds.delete(gid);
+    await saveData();
+    return interaction.reply({content:`✅ Left **${g.name}**.`,ephemeral:true});
+}
+
+if (cmd==='guildinfo') {
+    const gid=userData.guildOf.get(userId);
+    if (!gid) return interaction.reply({content:'❌ Not in a guild! Create one with `/createguild` or join with `/joinguild`.',ephemeral:true});
+    const g=userData.guilds.get(gid);
+    if (!g) return interaction.reply({content:'❌ Guild data missing.',ephemeral:true});
+    const ownerUser=await client.users.fetch(g.owner).catch(()=>null);
+    const memberNames=g.members.slice(0,10).map(id=>{const u=client.users.cache.get(id);return u?u.username:`User#${id.slice(-4)}`;});
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0x2196F3).setTitle(`🏘️ ${g.name}`)
+        .addFields(
+            {name:'👑 Owner',   value:ownerUser?.username||'Unknown',           inline:true},
+            {name:'👥 Members', value:`${g.members.length}`,                   inline:true},
+            {name:'🏦 Bank',    value:`${fmtN(g.bank||0)} coins`,              inline:true},
+            {name:'⭐ Level',   value:`${g.level||1}`,                         inline:true},
+            {name:'⚔️ War Score',value:`${fmtN(g.warScore||0)}`,               inline:true},
+            {name:'🆔 Guild ID',value:`\`${gid.slice(-12)}\``,                 inline:true},
+            {name:`Members (${Math.min(g.members.length,10)}/${g.members.length})`,value:memberNames.join(', ')||'None'},
+        )
+    ]});
+}
+
+if (cmd==='guildinvite') {
+    const gid=userData.guildOf.get(userId);
+    if (!gid) return interaction.reply({content:'❌ Not in a guild!',ephemeral:true});
+    const g=userData.guilds.get(gid);
+    if (g.owner!==userId) return interaction.reply({content:'❌ Only the guild owner can invite!',ephemeral:true});
+    const target=interaction.options.getUser('user');
+    if (!target||target.bot||target.id===userId) return interaction.reply({content:'❌ Invalid user.',ephemeral:true});
+    if (userData.guildOf.get(String(target.id))) return interaction.reply({content:'❌ **'+target.username+'** is already in a guild!',ephemeral:true});
+    if (!g.invited) g.invited=[];
+    if (g.invited.includes(String(target.id))) return interaction.reply({content:'❌ Already invited!',ephemeral:true});
+    g.invited.push(String(target.id));
+    await saveData();
+    return interaction.reply({content:`✅ Invited **${target.username}** to **${g.name}**! They can join with \`/joinguild ${g.name}\`.`});
+}
+
+if (cmd==='guilddeposit') {
+    const gid=userData.guildOf.get(userId);
+    if (!gid) return interaction.reply({content:'❌ Not in a guild!',ephemeral:true});
+    const amount=interaction.options.getInteger('amount');
+    if (coins(userId)<amount) return interaction.reply({content:'❌ Not enough coins!',ephemeral:true});
+    const g=userData.guilds.get(gid);
+    addCoins(userId,-amount);
+    g.bank=(g.bank||0)+amount;
+    g.xp=(g.xp||0)+Math.floor(amount/100);
+    const xpNeeded=(g.level||1)*1000;
+    if (g.xp>=xpNeeded&&(g.level||1)<20){g.level=(g.level||1)+1;g.xp=0;}
+    await saveData();
+    return interaction.reply({content:`✅ Deposited **${fmtN(amount)} coins** to **${g.name}** bank. Total: **${fmtN(g.bank)} coins** | Level: ${g.level}`});
+}
+
+if (cmd==='guildleaderboard') {
+    const entries=[...userData.guilds.entries()].map(([,g])=>({name:g.name,bank:g.bank||0,members:g.members.length,level:g.level||1,warScore:g.warScore||0}));
+    entries.sort((a,b)=>b.bank-a.bank);
+    const lines=entries.slice(0,10).map((g,i)=>`**#${i+1}** **${g.name}** — 🏦 ${fmtN(g.bank)}c | ⭐ Lv${g.level} | 👥 ${g.members} | ⚔️ ${fmtN(g.warScore)}`);
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0xFFD700).setTitle('🏆 Guild Leaderboard').setDescription(lines.join('\n')||'No guilds yet.')]});
+}
+
+if (cmd==='guildwar') {
+    const gid=userData.guildOf.get(userId);
+    if (!gid) return interaction.reply({content:'❌ Not in a guild!',ephemeral:true});
+    const rem=cooldownManager.get(userId,'guildwar');
+    if (rem) return interaction.reply({content:`⏰ War contribution cooldown: **${cdStr(rem)}**`,ephemeral:true});
+    const g=userData.guilds.get(gid);
+    const cls=userData.rpgClass.get(userId);
+    const stats=cls?userData.rpgStats.get(userId):null;
+    const contribution=rng(50,200)+(stats?.atk||0);
+    g.warScore=(g.warScore||0)+contribution;
+    cooldownManager.set(userId,'guildwar',3_600_000);
+    await saveData();
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0xF44336).setTitle('⚔️ War Contribution!')
+        .setDescription(`**${interaction.user.username}** contributed **${fmtN(contribution)}** war score to **${g.name}**!`)
+        .addFields({name:'Guild War Score',value:fmtN(g.warScore),inline:true},{name:'Cooldown',value:'1 hour',inline:true})
+    ]});
+        }
+
+            
+        // ════════════════════════════════════════════════════════════════
+// ECONOMY+ COMMANDS
+// ════════════════════════════════════════════════════════════════
+if (cmd==='logindaily') {
+    const rem=cooldownManager.get(userId,'logindaily');
+    if (rem) return interaction.reply({content:`⏰ Already claimed today! Come back in **${cdStr(rem)}**`,ephemeral:true});
+    const ls=userData.loginStreak.get(userId)||{streak:0,lastLogin:''};
+    const today=new Date().toDateString();
+    const yesterday=new Date(Date.now()-86400000).toDateString();
+    if (ls.lastLogin===yesterday) ls.streak++;
+    else if (ls.lastLogin!==today) ls.streak=1;
+    ls.lastLogin=today;
+    userData.loginStreak.set(userId,ls);
+    const base=500+ls.streak*50;
+    const bonus=ls.streak>=30?5000:ls.streak>=7?1000:0;
+    const reward=Math.min(base+bonus,10000);
+    addCoins(userId,reward); addXP(userId,100);
+    checkAchievementGeneral(userId,'streak',ls.streak);
+    cooldownManager.set(userId,'logindaily',86_400_000);
+    await saveData();
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0xFFD700).setTitle('📅 Daily Login Reward!')
+        .addFields(
+            {name:'💰 Coins',   value:`+${fmtN(reward)}`,   inline:true},
+            {name:'⭐ XP',      value:'+100',                inline:true},
+            {name:'🔥 Streak',  value:`${ls.streak} days`,   inline:true},
+        )
+        .setFooter({text:ls.streak>=7?'🔥 On fire! Come back tomorrow!':'Come back tomorrow to keep your streak!'})
+    ]});
+}
+
+if (cmd==='achievements') {
+    const t=interaction.options.getUser('user')||interaction.user;
+    const tid=String(t.id);
+    const owned=userData.achievementsNew.get(tid)||[];
+    const lines=ACHIEVEMENTS.map(a=>{
+        const has=owned.includes(a.id);
+        return `${has?'✅':'❌'} ${a.emoji} **${a.name}** — ${a.desc}${has?'':` *(+${fmtN(a.reward)}c on unlock)*`}`;
+    });
+    const chunks=[];
+    let cur='';
+    for (const l of lines){if ((cur+l+'\n').length>1000){chunks.push(cur);cur='';}cur+=l+'\n';}
+    if (cur) chunks.push(cur);
+    const embed=new EmbedBuilder().setColor(0xFFD700).setTitle(`🏆 ${t.username}'s Achievements`)
+        .setDescription(chunks[0]||'None')
+        .setFooter({text:`${owned.length}/${ACHIEVEMENTS.length} unlocked`});
+    return interaction.reply({embeds:[embed]});
+}
+
+if (cmd==='prestige') {
+    const lvInfo=getLevelInfo(userData.xp.get(userId)||0);
+    if (lvInfo.level<50) return interaction.reply({content:'❌ Need **Level 50** to prestige! You are Level '+lvInfo.level+'.',ephemeral:true});
+    const pres=userData.prestige.get(userId)||{level:0};
+    const prestigeLevel=(pres.level||0)+1;
+    // Reset XP and level
+    userData.xp.set(userId,0);
+    userData.skillPoints.set(userId,0);
+    userData.skillsLearned.set(userId,[]);
+    // Prestige bonuses
+    const bonus=prestigeLevel*500;
+    addCoins(userId,bonus);
+    pres.level=prestigeLevel; pres.lastPrestige=Date.now();
+    userData.prestige.set(userId,pres);
+    checkAchievementGeneral(userId,'prestige',prestigeLevel);
+    await saveData();
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0xFF69B4).setTitle('🔄 Prestige!')
+        .setDescription(`You have prestiged to **${prestigeLevel}x Prestige**! Your level has been reset, but you grow stronger.`)
+        .addFields(
+            {name:'🔄 Prestige Level', value:String(prestigeLevel),          inline:true},
+            {name:'💰 Bonus Coins',    value:`+${fmtN(bonus)}`,              inline:true},
+            {name:'📊 XP Reset',       value:'Back to Level 0',              inline:true},
+        )
+        .setFooter({text:'Each prestige makes future rewards stronger!'})
+    ]});
+}
+
+if (cmd==='battlepass') {
+    const bp=userData.battlePass.get(userId)||{tier:1,bpXp:0,premium:false,season:SEASON};
+    if (bp.season!==SEASON){bp.tier=1;bp.bpXp=0;bp.season=SEASON;userData.battlePass.set(userId,bp);}
+    const lines=BP_TIERS.map(t=>{
+        const done=bp.tier>t.tier;const current=bp.tier===t.tier;
+        const freeR=t.free.coins?`${fmtN(t.free.coins)}c`:t.free.xp?`${t.free.xp}xp`:'?';
+        const premR=t.prem.coins?`${fmtN(t.prem.coins)}c + ${t.prem.item||''}`:t.prem.item||'';
+        return `${done?'✅':current?'▶️':'🔒'} **Tier ${t.tier}** — Free: ${freeR}${bp.premium?` | 💎 ${premR}`:''}`;
+    });
+    const curTier=BP_TIERS.find(t=>t.tier===bp.tier)||BP_TIERS[0];
+    const nextTier=BP_TIERS.find(t=>t.tier===bp.tier+1);
+    const prog=nextTier?bp.bpXp+'/'+nextTier.bpXp+' BP XP':'MAX TIER';
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0x9C27B0).setTitle(`🎫 Battle Pass — Season ${SEASON}`)
+        .setDescription(lines.join('\n'))
+        .addFields(
+            {name:'Current Tier',  value:String(bp.tier),            inline:true},
+            {name:'Progress',      value:prog,                        inline:true},
+            {name:'Premium',       value:bp.premium?'✅ Active':'❌ Not active',inline:true},
+        )
+        .setFooter({text:'Earn BP XP by fishing, chatting, and completing quests!'})
+    ]});
+    }
+
+        // ════════════════════════════════════════════════════════════════
+// MINI-GAME COMMANDS
+// ════════════════════════════════════════════════════════════════
+if (cmd==='hangman') {
+    if (hangGames.has(userId)) return interaction.reply({content:'❌ Already have a Hangman game! Guess letters by typing them.',ephemeral:true});
+    const words=['discord','javascript','fishing','dungeon','legendary','mutation','enchant','prestige','battlepass','champion','kingdom','symphony','adventure','telescope','whirlpool'];
+    const word=words[rng(0,words.length-1)];
+    hangGames.set(userId,{word,guessed:[],wrong:0,ts:Date.now()});
+    const disp=word.split('').map(()=>'_').join(' ');
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0x9C27B0).setTitle('🔤 Hangman Started!')
+        .setDescription('```\n  +---+\n  |   |\n      |\n      |\n      |\n      |\n=========```\n\nWord: `'+disp+'`\nGuess letters by typing a single letter in chat!\n\nWrong: 0/6 | +400 coins on win')
+    ]});
+}
+
+if (cmd==='tictactoe') {
+    const opponent=interaction.options.getUser('opponent');
+    if (!opponent||opponent.bot||opponent.id===userId) return interaction.reply({content:'❌ Invalid opponent!',ephemeral:true});
+    const gameKey=`${userId}_${Date.now()}`;
+    tttGames.set(gameKey,{p1:userId,p2:String(opponent.id),board:Array(9).fill(null),turn:userId,ts:Date.now()});
+    const rows=buildTTTRows(Array(9).fill(null),userId,String(opponent.id),gameKey);
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0x2196F3).setTitle('❌⭕ Tic Tac Toe')
+        .setDescription(`**${interaction.user.username}** (❌) vs **${opponent.username}** (⭕)\n\n_${interaction.user.username}'s turn_`)
+    ],components:rows});
+}
+
+if (cmd==='higherlower') {
+    const val1=rng(1,100),val2=rng(1,100);
+    const row=new ActionRowBuilder().addComponents(
+        new ButtonBuilder().setCustomId(`hl_${userId}_higher_${val2}_${val1}`).setLabel('📈 Higher').setStyle(ButtonStyle.Success),
+        new ButtonBuilder().setCustomId(`hl_${userId}_lower_${val2}_${val1}`).setLabel('📉 Lower').setStyle(ButtonStyle.Danger),
+    );
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0xFF9800).setTitle('📈 Higher or Lower!')
+        .setDescription(`The number is **${fmtN(val1)}**\n\nIs the next number **Higher** or **Lower**?\n*Correct = +300 coins!*`)
+    ],components:[row]});
+}
+
+if (cmd==='coinflip') {
+    const side=interaction.options.getString('side');
+    const bet=interaction.options.getInteger('bet')||0;
+    if (bet>0&&coins(userId)<bet) return interaction.reply({content:'❌ Not enough coins!',ephemeral:true});
+    if (bet>50000) return interaction.reply({content:'❌ Max bet is **50,000 coins**.',ephemeral:true});
+    const result=Math.random()<0.5?'heads':'tails';
+    const won=result===side;
+    if (bet>0){if(won)addCoins(userId,bet);else addCoins(userId,-bet);}
+    await saveData();
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(won?0x57F287:0xF44336)
+        .setTitle(`🪙 ${result.toUpperCase()}!`)
+        .setDescription(`You called **${side}** — it landed **${result}**!\n${won?(bet>0?`🎉 You win **${fmtN(bet)} coins**!`:'✅ Correct!'):(bet>0?`💸 You lose **${fmtN(bet)} coins**.`:'❌ Wrong!')}`)
+    ]});
+}
+
+if (cmd==='connect4') {
+    const opponent=interaction.options.getUser('opponent');
+    if (!opponent||opponent.bot||opponent.id===userId) return interaction.reply({content:'❌ Invalid opponent!',ephemeral:true});
+    const gameKey=`${userId}_${Date.now()}`;
+    const board=Array(6).fill(null).map(()=>Array(7).fill(0));
+    c4Games.set(gameKey,{p1:userId,p2:String(opponent.id),board,turn:userId,ts:Date.now()});
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0xFFD700).setTitle('🟡 Connect 4')
+        .setDescription(`**${interaction.user.username}** 🔴 vs **${opponent.username}** 🟡\n\n${renderC4(board)}\n_${interaction.user.username}'s turn_ 🔴`)
+    ],components:[buildC4Row(userId,String(opponent.id),gameKey)]});
+}
+
+// ════════════════════════════════════════════════════════════════
+// PROGRESSION COMMANDS
+// ════════════════════════════════════════════════════════════════
+if (cmd==='titles') {
+    const owned=userData.titlesOwned.get(userId)||[];
+    if (!owned.includes('newbie')) owned.unshift('newbie');
+    const active=userData.titleActive.get(userId)||'newbie';
+    const lines=TITLES.map(t=>{
+        const has=owned.includes(t.id)||t.id==='newbie';
+        const isActive=t.id===active;
+        return `${isActive?'▶️':has?'✅':'🔒'} ${t.emoji} **${t.name}**${has&&!isActive?' — `/settitle '+t.id+'`':''}${t.req&&!has?' *(unlock: '+t.req+')*':''}`;
+    });
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0xFF9800).setTitle('🏅 Your Titles')
+        .setDescription(lines.join('\n'))
+        .setFooter({text:`Active: ${TITLES.find(t=>t.id===active)?.name||'Newbie'} | Set with /settitle <id>`})
+    ]});
+}
+
+if (cmd==='settitle') {
+    const tid2=interaction.options.getString('title');
+    const title=TITLES.find(t=>t.id===tid2);
+    if (!title) return interaction.reply({content:'❌ Unknown title ID. Check `/titles`.',ephemeral:true});
+    const owned=userData.titlesOwned.get(userId)||[];
+    if (tid2!=='newbie'&&!owned.includes(tid2)) return interaction.reply({content:'❌ You have not unlocked this title yet!',ephemeral:true});
+    userData.titleActive.set(userId,tid2);
+    await saveData();
+    return interaction.reply({content:`✅ Active title set to **${title.emoji} ${title.name}**!`,ephemeral:true});
+}
+
+if (cmd==='collectionlog') {
+    const caught=userData.fishCaught.get(userId)||{};
+    const weapons=userData.weapons.get(userId)||[];
+    const achCount=(userData.achievementsNew.get(userId)||[]).length;
+    const titles=(userData.titlesOwned.get(userId)||[]).length+1;
+    const dungeons=userData.dungeonClears.get(userId)||0;
+    const species=Object.keys(caught).length;
+    const rareCount=Object.entries(caught).filter(([id])=>{const f=FISH_SPECIES.find(x=>x.id===id);return f&&getRarityIdx(f.r)>=2;}).length;
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0x9C27B0).setTitle('📚 Collection Log')
+        .addFields(
+            {name:'🐟 Fish Species',   value:`${species}/${FISH_SPECIES.length}`,    inline:true},
+            {name:'💙 Rare+ Species',  value:`${rareCount}`,                          inline:true},
+            {name:'🏆 Achievements',   value:`${achCount}/${ACHIEVEMENTS.length}`,    inline:true},
+            {name:'🏅 Titles',         value:`${titles}/${TITLES.length}`,            inline:true},
+            {name:'🏰 Dungeons',       value:`${fmtN(dungeons)} clears`,              inline:true},
+            {name:'⚔️ Weapons',        value:`${weapons.length}`,                     inline:true},
+        )
+        .setFooter({text:'Fish every day to complete your collection!'})
+    ]});
+}
+
+if (cmd==='milestones') {
+    const lvInfo=getLevelInfo(userData.xp.get(userId)||0);
+    const stats=userData.fishStats.get(userId)||{total:0};
+    const pres=userData.prestige.get(userId)||{level:0};
+    const dungeons=userData.dungeonClears.get(userId)||0;
+    const achCount=(userData.achievementsNew.get(userId)||[]).length;
+    const milestones=[
+        {name:'🐟 Fish 10',     done:stats.total>=10,     goal:'Catch 10 fish'},
+        {name:'🐟 Fish 100',    done:stats.total>=100,    goal:'Catch 100 fish'},
+        {name:'🐟 Fish 1000',   done:stats.total>=1000,   goal:'Catch 1,000 fish'},
+        {name:'⭐ Level 10',    done:lvInfo.level>=10,    goal:'Reach Level 10'},
+        {name:'⭐ Level 50',    done:lvInfo.level>=50,    goal:'Reach Level 50'},
+        {name:'⭐ Level 100',   done:lvInfo.level>=100,   goal:'Reach Level 100'},
+        {name:'🏰 Dungeon 10',  done:dungeons>=10,        goal:'Clear 10 dungeons'},
+        {name:'🔄 Prestige',    done:(pres.level||0)>=1,  goal:'Prestige once'},
+        {name:'🏆 10 Achs',     done:achCount>=10,        goal:'Unlock 10 achievements'},
+        {name:'🏆 All Achs',    done:achCount>=ACHIEVEMENTS.length,goal:'Unlock all achievements'},
+    ];
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0xFFD700).setTitle('🎯 Milestones')
+        .setDescription(milestones.map(m=>`${m.done?'✅':'❌'} **${m.name}** — ${m.goal}`).join('\n'))
+    ]});
+}
+
+if (cmd==='season') {
+    const bp=userData.battlePass.get(userId)||{tier:1,bpXp:0,premium:false,season:SEASON};
+    return interaction.reply({embeds:[new EmbedBuilder().setColor(0xFF69B4).setTitle(`🌸 Season ${SEASON}`)
+        .setDescription(`**Current Season:** ${SEASON}\nEarn Battle Pass XP by fishing, chatting, and completing quests!`)
+        .addFields(
+            {name:'🎫 Your BP Tier',  value:`${bp.tier}/10`,       inline:true},
+            {name:'💎 Premium',        value:bp.premium?'Yes':'No', inline:true},
+            {name:'📊 BP XP',          value:fmtN(bp.bpXp||0),     inline:true},
+            {name:'🎁 Free Rewards',   value:'Coins & XP per tier', inline:false},
+        )
+        .setFooter({text:'Claim your Battle Pass rewards with /battlepass!'})
+    ]});
+}
+
+if (cmd==='resetcooldowns') {
+    if (!isOwner) return interaction.reply({content:'❌ Owner only!',ephemeral:true});
+    const target=interaction.options.getUser('user')||interaction.user;
+    cooldownManager.clearAll(String(target.id));
+    return interaction.reply({content:`✅ All cooldowns reset for **${target.username}**.`,ephemeral:true});
+}
+
         } catch(cmdErr) {
             console.error('❌ /'+cmd+' error:', cmdErr?.message, cmdErr?.stack?.split('\n')[0]);
             try {
@@ -2547,8 +3206,7 @@ if (cmd==='gathermaterials') {
     } catch(mainErr) { console.error('❌ Interaction handler error:', mainErr?.message); }
 });
 
-
-  // ════════════════════════════════════════════════════════════════
+// ════════════════════════════════════════════════════════════════
 // ♦️ BUTTON INTERACTION HANDLER
 // ════════════════════════════════════════════════════════════════
 client.on('interactionCreate', async interaction => {
@@ -2598,9 +3256,13 @@ client.on('interactionCreate', async interaction => {
 
         // ── FNF arrow buttons ──
         if (customId.startsWith('fnf_')) {
-            const parts=customId.split('_');
-            const gameId=parts[1]+'_'+parts[2];
-            const arrow=parts.slice(3).join('_');
+            // customId format: fnf_{userId}-{timestamp}_{arrow}
+            // gameId = "{userId}-{timestamp}" (contains dash, not underscore)
+            const firstUnderscore=customId.indexOf('_');
+            const rest=customId.slice(firstUnderscore+1); // "{userId}-{timestamp}_{arrow}"
+            const lastUnderscore=rest.lastIndexOf('_');
+            const gameId=rest.slice(0,lastUnderscore);    // "{userId}-{timestamp}"
+            const arrow=rest.slice(lastUnderscore+1);      // the arrow emoji
             const game=fnfGames.get(userId);
             if (!game||game.gameId!==gameId) return interaction.reply({content:'❌ Not your game!',ephemeral:true});
             clearTimeout(game.arrowTimeout);
@@ -2648,8 +3310,9 @@ client.on('interactionCreate', async interaction => {
             return interaction.update({embeds:[new EmbedBuilder().setColor(0x2196F3).setTitle('❌⭕ Tic Tac Toe')
                 .setDescription(`_${nextUser?.username||'Next player'}'s turn_`)
             ],components:rows});
-  }
-                // ── Connect 4 ──
+        }
+
+        // ── Connect 4 ──
         if (customId.startsWith('c4_')) {
             const parts=customId.split('_');
             const gameKey=parts[1];
@@ -2701,8 +3364,9 @@ client.on('interactionCreate', async interaction => {
                 .setTitle(correct?'✅ Correct! +300 coins!':'❌ Wrong!')
                 .setDescription(`The answer: **${fmtN(nextVal)}** (${nextVal>curVal?'Higher':'Lower'} than ${fmtN(curVal)})`)
             ],components:[]});
-                  }
-      // ── Suggestion approve/deny (staff only) ──
+                }
+
+    // ── Suggestion approve/deny (staff only) ──
         if (customId.startsWith('sug_approve_')||customId.startsWith('sug_deny_')) {
             const guildId=String(interaction.guildId||'');
             const isOwner=userId===OWNER_ID;
@@ -2859,11 +3523,13 @@ client.on('messageCreate', async message => {
             await saveData();
         }
 
-        // ── Auto-responses ──
-        for (const [trigger,response] of autoResponses) {
-            if (lower.includes(trigger.toLowerCase())) {
-                message.reply(response).catch(()=>{});
-                break;
+        // ── Auto-responses (skip if prefix command) ──
+        if (!content.startsWith('!')) {
+            for (const [trigger,response] of autoResponses) {
+                if (lower.includes(trigger.toLowerCase())) {
+                    message.reply(response).catch(()=>{});
+                    break;
+                }
             }
         }
 
@@ -3010,10 +3676,9 @@ client.on('messageCreate', async message => {
         if (cmd==='meme') {
             const memes=['https://i.imgur.com/example.jpg','This meme machine is temporarily out of memes. Try `/fish` instead! 🎣'];
             return message.reply('😂 Meme: https://memegen.link/buzz/when_you_fish_a_secret_fish/the_whole_server_goes_crazy.jpg').catch(()=>{});
-                }
+                    }
 
-  
-        // ════════════════════════════════════════════════════════
+            // ════════════════════════════════════════════════════════
         // OWNER/ADMIN PREFIX COMMANDS (converted from slash)
         // Use: !command
         // ════════════════════════════════════════════════════════
@@ -3086,6 +3751,50 @@ client.on('messageCreate', async message => {
             if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
             const count=autoResponses.size; autoResponses.clear(); await saveData();
             return message.reply('✅ Cleared all **'+count+'** auto-response(s).').catch(()=>{});
+        }
+        if (cmd==='addxp') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const target=message.mentions.users.first();
+            const amount=parseInt(args[2])||0;
+            if (!target||!amount) return message.reply('❌ Usage: !addxp @user <amount>').catch(()=>{});
+            const tid=String(target.id);
+            const before=getLevelInfo(userData.xp.get(tid)||0);
+            userData.xp.set(tid,(userData.xp.get(tid)||0)+amount);
+            const after=getLevelInfo(userData.xp.get(tid));
+            await saveData();
+            return message.reply('✅ Added **'+fmtN(amount)+' XP** to **'+target.username+'**. Level: **'+before.level+'** → **'+after.level+'**').catch(()=>{});
+        }
+        if (cmd==='addcoins') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const target=message.mentions.users.first();
+            const amount=parseInt(args[2])||0;
+            if (!target||amount<=0) return message.reply('❌ Usage: !addcoins @user <amount> (must be > 0)').catch(()=>{});
+            addCoins(String(target.id),amount); await saveData();
+            return message.reply('✅ Added **'+fmtN(amount)+' coins** to **'+target.username+'**.').catch(()=>{});
+        }
+        if (cmd==='addstaff') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const target=message.mentions.users.first();
+            if (!target) return message.reply('❌ Usage: !addstaff @user').catch(()=>{});
+            staffSet.add(guildIdMsg+':'+String(target.id)); await saveData();
+            return message.reply('✅ **'+target.username+'** is now staff!').catch(()=>{});
+        }
+        if (cmd==='deletecoins') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const target=message.mentions.users.first();
+            const amount=parseInt(args[2])||0;
+            if (!target) return message.reply('❌ Usage: !deletecoins @user [amount]').catch(()=>{});
+            const tid=String(target.id);
+            if (amount>0) {
+                const walletBal=userData.coins.get(tid)||0;
+                const bankBal=userData.bank.get(tid)||0;
+                const fromWallet=Math.min(amount,walletBal);
+                const fromBank=Math.min(amount-fromWallet,bankBal);
+                userData.coins.set(tid,walletBal-fromWallet);
+                userData.bank.set(tid,bankBal-fromBank);
+            } else { userData.coins.set(tid,0); userData.bank.set(tid,0); }
+            await saveData();
+            return message.reply('✅ '+(amount>0?'Removed **'+fmtN(amount)+' coins**':'Reset all money')+' from **'+target.username+'**.').catch(()=>{});
         }
         if (cmd==='deletepet') {
             if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
@@ -3238,7 +3947,8 @@ client.on('messageCreate', async message => {
 
     } catch(e) { console.error('❌ Message handler error:', e?.message); }
 });
-              // ════════════════════════════════════════════════════════════════
+
+// ════════════════════════════════════════════════════════════════
 // ♦️ WELCOME SYSTEM
 // ════════════════════════════════════════════════════════════════
 client.on('guildMemberAdd', async member => {
@@ -3265,10 +3975,10 @@ client.on('guildMemberAdd', async member => {
 // ════════════════════════════════════════════════════════════════
 setInterval(() => {
     const now=Date.now();
-    for (const [id,g] of wordleGames) if (now-g.startTime>WORDLE_TIMEOUT) wordleGames.delete(id);
-    for (const [id,g] of hangGames)   if (now-g.ts>GAME_TIMEOUT)          hangGames.delete(id);
-    for (const [id,g] of tttGames)    if (now-g.ts>GAME_TIMEOUT)          tttGames.delete(id);
-    for (const [id,g] of c4Games)     if (now-g.ts>GAME_TIMEOUT)          c4Games.delete(id);
+    for (const [id,g] of wordleGames) if (now-(g.startTime||0)>WORDLE_TIMEOUT) wordleGames.delete(id);
+    for (const [id,g] of hangGames)   if (now-(g.ts||g.startTime||0)>GAME_TIMEOUT) hangGames.delete(id);
+    for (const [id,g] of tttGames)    if (now-(g.ts||g.startTime||0)>GAME_TIMEOUT) tttGames.delete(id);
+    for (const [id,g] of c4Games)     if (now-(g.ts||g.startTime||0)>GAME_TIMEOUT) c4Games.delete(id);
     for (const [id,g] of bjGames)     if (!g.active)                       bjGames.delete(id);
 }, CLEANUP_INTERVAL);
 
