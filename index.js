@@ -42,7 +42,8 @@ const {
 // ♦️ CONFIG
 // ════════════════════════════════════════════════════════════════
 const OWNER_ID         = process.env.OWNER_ID || '1340069836096667859';
-const DATA_FILE        = path.join(__dirname, 'data.json');
+const DATA_DIR  = process.env.RAILWAY_VOLUME_MOUNT_PATH || __dirname;
+const DATA_FILE = path.join(DATA_DIR, 'data.json');
 const GAME_TIMEOUT     = 300_000;
 const CLEANUP_INTERVAL = 60_000;
 const WORDLE_TIMEOUT   = 300_000;
@@ -3282,9 +3283,10 @@ client.on('interactionCreate', async interaction => {
 
         // ── Tic Tac Toe ──
         if (customId.startsWith('ttt_')) {
-            const parts=customId.split('_');
-            const gameKey=parts[1];
-            const idx=parseInt(parts[2]);
+            const rest=customId.slice('ttt_'.length);
+            const lastUnderscore=rest.lastIndexOf('_');
+            const gameKey=rest.slice(0,lastUnderscore);
+            const idx=parseInt(rest.slice(lastUnderscore+1));
             const game=tttGames.get(gameKey);
             if (!game) return interaction.reply({content:'❌ Game expired.',ephemeral:true});
             if (userId!==game.turn) return interaction.reply({content:'❌ Not your turn!',ephemeral:true});
