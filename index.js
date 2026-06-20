@@ -3599,11 +3599,51 @@ client.on('messageCreate', async message => {
             return message.reply(roasts[rng(0,roasts.length-1)]).catch(()=>{});
         }
         if (cmd==='ship') {
-            const users=message.mentions.users;
-            const names=users.size>=2?[...users.values()].slice(0,2).map(u=>u.username):[message.author.username, rest.split(' ')[0]||'Mystery Person'];
-            const pct=rng(1,100);
-            const bar='❤️'.repeat(Math.floor(pct/10))+'🖤'.repeat(10-Math.floor(pct/10));
-            return message.reply(`💕 **${names[0]}** + **${names[1]}**\n${bar} **${pct}%** compatibility!`).catch(()=>{});
+    const users=[...message.mentions.users.values()];
+    const u1=users[0]||message.author;
+    const u2=users[1];
+    if (!u2) return message.reply('❌ Mention 2 people to ship! `!ship @user1 @user2`').catch(()=>{});
+    if (u1.id===u2.id) return message.reply('❌ You can\'t ship someone with themselves!').catch(()=>{});
+
+    // Deterministic % so the same pair always gets the same result
+    const pair=[u1.id,u2.id].sort().join('-');
+    let hash=0;
+    for (let i=0;i<pair.length;i++) hash=(hash*31+pair.charCodeAt(i))>>>0;
+    const pct=hash%101; // 0-100
+
+    const filled=Math.round(pct/10);
+    const bar='❤️'.repeat(filled)+'🖤'.repeat(10-filled);
+    const shipName=u1.username.slice(0,Math.ceil(u1.username.length/2))+u2.username.slice(Math.floor(u2.username.length/2));
+
+    const verdict = pct>=90?'💍 Soulmates!' : pct>=70?'💕 Great match!' : pct>=40?'🙂 Could work...' : pct>=15?'😬 Rocky road' : '💀 Run away';
+
+    const embed=new EmbedBuilder()
+        .setColor(0xFF6FA5)
+        .setTitle(`💘 ${shipName}`)
+        .setDescription(`**${u1.username}** 🔗 **${u2.username}**\n\n${bar}\n**${pct}%** compatibility\n${verdict}`)
+        .setThumbnail(u1.displayAvatarURL())
+        .setImage(u2.displayAvatarURL({size:256}))
+        .setFooter({text:'Result is fixed for this pair — it will always be the same!'});
+    return message.reply({embeds:[embed]}).catch(()=>{});
+}
+if (cmd==='ownership' || cmd==='ownship') {
+    if (userId!==OWNER_ID) return message.reply('❌ Owner only!').catch(()=>{});
+    const users=[...message.mentions.users.values()];
+    const u1=users[0];
+    const u2=users[1];
+    if (!u1||!u2) return message.reply('❌ Mention 2 people! `!ownership @user1 @user2`').catch(()=>{});
+
+    const bar='❤️'.repeat(10);
+    const shipName=u1.username.slice(0,Math.ceil(u1.username.length/2))+u2.username.slice(Math.floor(u2.username.length/2));
+
+    const embed=new EmbedBuilder()
+        .setColor(0xFFD700)
+        .setTitle(`👑 ${shipName}`)
+        .setDescription(`**${u1.username}** 🔗 **${u2.username}**\n\n${bar}\n**100%** compatibility\n💍 Soulmates! *(owner's word is final)*`)
+        .setThumbnail(u1.displayAvatarURL())
+        .setImage(u2.displayAvatarURL({size:256}))
+        .setFooter({text:'Owner-certified — always 100%, no exceptions.'});
+    return message.reply({embeds:[embed]}).catch(()=>{});
         }
         if (cmd==='rate') {
             const thing=rest||message.mentions.users.first()?.username||'that';
