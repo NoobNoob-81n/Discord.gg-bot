@@ -3352,8 +3352,8 @@ if (customId.startsWith('c4_')) {
     const nextUser=await client.users.fetch(game.turn).catch(()=>null);
     return interaction.update({embeds:[new EmbedBuilder().setColor(0xFFD700).setTitle('🟡 Connect 4')
         .setDescription(`${renderC4(game.board)}\n_${nextUser?.username||'Next'}'s turn_ ${nextEmoji}`)
-    ],components:[buildC4Row(game.p1,game.p2,gameKey)]});
-        }
+    ],components:buildC4Row(game.p1,game.p2,gameKey)});
+}
 
         // ── Higher or Lower ──
         if (customId.startsWith('hl_')) {
