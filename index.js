@@ -3315,41 +3315,42 @@ client.on('interactionCreate', async interaction => {
         }
 
         // ── Connect 4 ──
-        if (customId.startsWith('c4_')) {
-            const parts=customId.split('_');
-            const gameKey=parts[1];
-            const col=parseInt(parts[2]);
-            const game=c4Games.get(gameKey);
-            if (!game) return interaction.reply({content:'❌ Game expired.',ephemeral:true});
-            if (userId!==game.turn) return interaction.reply({content:'❌ Not your turn!',ephemeral:true});
-            const playerNum=userId===game.p1?1:2;
-            // Drop piece
-            let placed=false;
-            for (let r=5;r>=0;r--) {
-                if (game.board[r][col]===0) {
-                    game.board[r][col]=playerNum;
-                    placed=true; break;
-                }
-            }
-            if (!placed) return interaction.reply({content:'❌ Column full!',ephemeral:true});
-            if (checkC4Win(game.board,playerNum)) {
-                c4Games.delete(gameKey);
-                addCoins(userId,600); addXP(userId,120); await saveData();
-                const emoji=playerNum===1?'🔴':'🟡';
-                return interaction.update({embeds:[new EmbedBuilder().setColor(0x57F287).setTitle(`🎉 ${emoji} Wins!`)
-                    .setDescription(`${renderC4(game.board)}\n**${interaction.user.username}** wins! +600 coins`)
-                ],components:[]});
-            }
-            if (game.board[0].every(c=>c!==0)) {
-                c4Games.delete(gameKey);
-                return interaction.update({embeds:[new EmbedBuilder().setColor(0x9E9E9E).setTitle("🤝 Draw!").setDescription(renderC4(game.board))],components:[]});
-            }
-            game.turn=userId===game.p1?game.p2:game.p1;
-            const nextEmoji=game.turn===game.p1?'🔴':'🟡';
-            const nextUser=await client.users.fetch(game.turn).catch(()=>null);
-            return interaction.update({embeds:[new EmbedBuilder().setColor(0xFFD700).setTitle('🟡 Connect 4')
-                .setDescription(`${renderC4(game.board)}\n_${nextUser?.username||'Next'}'s turn_ ${nextEmoji}`)
-            ],components:[buildC4Row(game.p1,game.p2,gameKey)]});
+if (customId.startsWith('c4_')) {
+    const rest=customId.slice('c4_'.length);
+    const lastUnderscore=rest.lastIndexOf('_');
+    const gameKey=rest.slice(0,lastUnderscore);
+    const col=parseInt(rest.slice(lastUnderscore+1));
+    const game=c4Games.get(gameKey);
+    if (!game) return interaction.reply({content:'❌ Game expired.',ephemeral:true});
+    if (userId!==game.turn) return interaction.reply({content:'❌ Not your turn!',ephemeral:true});
+    const playerNum=userId===game.p1?1:2;
+    // Drop piece
+    let placed=false;
+    for (let r=5;r>=0;r--) {
+        if (game.board[r][col]===0) {
+            game.board[r][col]=playerNum;
+            placed=true; break;
+        }
+    }
+    if (!placed) return interaction.reply({content:'❌ Column full!',ephemeral:true});
+    if (checkC4Win(game.board,playerNum)) {
+        c4Games.delete(gameKey);
+        addCoins(userId,600); addXP(userId,120); await saveData();
+        const emoji=playerNum===1?'🔴':'🟡';
+        return interaction.update({embeds:[new EmbedBuilder().setColor(0x57F287).setTitle(`🎉 ${emoji} Wins!`)
+            .setDescription(`${renderC4(game.board)}\n**${interaction.user.username}** wins! +600 coins`)
+        ],components:[]});
+    }
+    if (game.board[0].every(c=>c!==0)) {
+        c4Games.delete(gameKey);
+        return interaction.update({embeds:[new EmbedBuilder().setColor(0x9E9E9E).setTitle("🤝 Draw!").setDescription(renderC4(game.board))],components:[]});
+    }
+    game.turn=userId===game.p1?game.p2:game.p1;
+    const nextEmoji=game.turn===game.p1?'🔴':'🟡';
+    const nextUser=await client.users.fetch(game.turn).catch(()=>null);
+    return interaction.update({embeds:[new EmbedBuilder().setColor(0xFFD700).setTitle('🟡 Connect 4')
+        .setDescription(`${renderC4(game.board)}\n_${nextUser?.username||'Next'}'s turn_ ${nextEmoji}`)
+    ],components:[buildC4Row(game.p1,game.p2,gameKey)]});
         }
 
         // ── Higher or Lower ──
