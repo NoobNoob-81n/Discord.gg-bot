@@ -3605,25 +3605,23 @@ client.on('messageCreate', async message => {
     if (!u2) return message.reply('❌ Mention 2 people to ship! `!ship @user1 @user2`').catch(()=>{});
     if (u1.id===u2.id) return message.reply('❌ You can\'t ship someone with themselves!').catch(()=>{});
 
-    // Deterministic % so the same pair always gets the same result
     const pair=[u1.id,u2.id].sort().join('-');
     let hash=0;
     for (let i=0;i<pair.length;i++) hash=(hash*31+pair.charCodeAt(i))>>>0;
-    const pct=hash%101; // 0-100
+    const pct=hash%101;
 
     const filled=Math.round(pct/10);
-    const bar='❤️'.repeat(filled)+'🖤'.repeat(10-filled);
+    const bar='🟪'.repeat(filled)+'⬜'.repeat(10-filled);
     const shipName=u1.username.slice(0,Math.ceil(u1.username.length/2))+u2.username.slice(Math.floor(u2.username.length/2));
-
     const verdict = pct>=90?'💍 Soulmates!' : pct>=70?'💕 Great match!' : pct>=40?'🙂 Could work...' : pct>=15?'😬 Rocky road' : '💀 Run away';
 
     const embed=new EmbedBuilder()
         .setColor(0xFF6FA5)
-        .setTitle(`💘 ${shipName}`)
-        .setDescription(`**${u1.username}** 🔗 **${u2.username}**\n\n${bar}\n**${pct}%** compatibility\n${verdict}`)
+        .setTitle(`${u1.username} 💞 ${u2.username}`)
+        .setDescription(`${bar}\n**${pct}% love**\n${verdict}`)
         .setThumbnail(u1.displayAvatarURL())
         .setImage(u2.displayAvatarURL({size:256}))
-        .setFooter({text:'Result is fixed for this pair — it will always be the same!'});
+        .setFooter({text:`${shipName} • Result is fixed for this pair!`});
     return message.reply({embeds:[embed]}).catch(()=>{});
 }
 if (cmd==='ownership' || cmd==='ownship') {
@@ -3633,18 +3631,18 @@ if (cmd==='ownership' || cmd==='ownship') {
     const u2=users[1];
     if (!u1||!u2) return message.reply('❌ Mention 2 people! `!ownership @user1 @user2`').catch(()=>{});
 
-    const bar='❤️'.repeat(10);
+    const bar='🟪'.repeat(10);
     const shipName=u1.username.slice(0,Math.ceil(u1.username.length/2))+u2.username.slice(Math.floor(u2.username.length/2));
 
     const embed=new EmbedBuilder()
         .setColor(0xFFD700)
-        .setTitle(`👑 ${shipName}`)
-        .setDescription(`**${u1.username}** 🔗 **${u2.username}**\n\n${bar}\n**100%** compatibility\n💍 Soulmates! *(owner's word is final)*`)
+        .setTitle(`${u1.username} 💞 ${u2.username}`)
+        .setDescription(`${bar}\n**100% love**\n💍 Soulmates! *(owner's word is final)*`)
         .setThumbnail(u1.displayAvatarURL())
         .setImage(u2.displayAvatarURL({size:256}))
-        .setFooter({text:'Owner-certified — always 100%, no exceptions.'});
+        .setFooter({text:`${shipName} • Owner-certified, always 100%`});
     return message.reply({embeds:[embed]}).catch(()=>{});
-        }
+                 }
         if (cmd==='rate') {
             const thing=rest||message.mentions.users.first()?.username||'that';
             return message.reply(`📊 I rate **${thing}** a solid **${rng(0,10)}/10** ✨`).catch(()=>{});
