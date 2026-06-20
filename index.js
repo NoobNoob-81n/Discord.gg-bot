@@ -1352,15 +1352,17 @@ function renderC4(board) {
     return s;
 }
 function buildC4Row(p1, p2, gameKey) {
-    const row = new ActionRowBuilder();
+    const row1 = new ActionRowBuilder();
+    const row2 = new ActionRowBuilder();
     for (let c = 0; c < 7; c++) {
-        row.addComponents(new ButtonBuilder()
+        const btn = new ButtonBuilder()
             .setCustomId(`c4_${gameKey}_${c}`)
             .setLabel(`${c+1}`)
-            .setStyle(ButtonStyle.Primary)
-        );
+            .setStyle(ButtonStyle.Primary);
+        if (c < 4) row1.addComponents(btn);
+        else row2.addComponents(btn);
     }
-    return row;
+    return [row1, row2];
 }
 function checkC4Win(board, player) {
     for (let r = 0; r < 6; r++)
@@ -1376,7 +1378,7 @@ function checkC4Win(board, player) {
         for (let c = 3; c < 7; c++)
             if ([0,1,2,3].every(i=>board[r+i][c-i]===player)) return true;
     return false;
-            }
+}
 
 // ════════════════════════════════════════════════════════════════
 // ♦️ SLASH COMMAND HANDLER
@@ -3097,7 +3099,7 @@ if (cmd==='connect4') {
     c4Games.set(gameKey,{p1:userId,p2:String(opponent.id),board,turn:userId,ts:Date.now()});
     return interaction.reply({embeds:[new EmbedBuilder().setColor(0xFFD700).setTitle('🟡 Connect 4')
         .setDescription(`**${interaction.user.username}** 🔴 vs **${opponent.username}** 🟡\n\n${renderC4(board)}\n_${interaction.user.username}'s turn_ 🔴`)
-    ],components:[buildC4Row(userId,String(opponent.id),gameKey)]});
+    ],components:buildC4Row(userId,String(opponent.id),gameKey)});
 }
 
 // ════════════════════════════════════════════════════════════════
