@@ -1,6 +1,6 @@
 {
   "name": "ultimate-discord-bot",
-  "version": "4.3.0",
+  "version": "4.3.1",
   "description": "Ultimate RPG + Fisch Discord Bot",
   "main": "index.js",
   "scripts": {
