@@ -5314,7 +5314,7 @@ function getAdjustedMutationWeights() {
 }
 
 if (!process.env.TOKEN) {
-    console.error('❌ TOKEN environment variable not set!');
+    console.error('❌ TOKEN environment variable not set! Add it to your .env file.');
     process.exit(1);
 }
 
@@ -5343,11 +5343,10 @@ client.on("guildMemberAdd", async member => {
                     .addFields({name:"Members",value:`#${member.guild.memberCount}`})
                     .setTimestamp()
                 ]}).catch(()=>{});
-                        }
+            }
         }
     } catch(e) { console.error("Welcome error:", e?.message); }
 
-    // 2. Advanced logging logic
     try {
         const embed = new EmbedBuilder()
             .setColor(0x00FF00)
@@ -5361,4 +5360,4 @@ client.on("guildMemberAdd", async member => {
             .setTimestamp();
         await sendAdvLog(member.guild, "member", embed);
     } catch(e) { console.error("Member log error:", e?.message); }
-}); // <--- ENSURE THIS FINAL CLOSING IS PRESENT
+});
