@@ -5278,149 +5278,86 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
 });
 
 // ════════════════════════════════════════════════════════════════
+// ♦️ APPRAISAL SYSTEM
+// ════════════════════════════════════════════════════════════════
+    const APPRAISAL_OUTCOMES = [
+    // outcome, weight, label, coinMult, description
+    { id:'jackpot',      weight:2,   label:'💎 JACKPOT!',          coinMult:5.0,  mutUpgrade:true,  mutLoss:false, desc:'Incredible! Fish value and mutation both upgraded!' },
+    { id:'great',        weight:8,   label:'✨ Great Appraisal!',   coinMult:2.5,  mutUpgrade:false, mutLoss:false, desc:'Fish appraised brilliantly! Big value boost!' },
+    { id:'good',         weight:20,  label:'👍 Good',               coinMult:1.5,  mutUpgrade:false, mutLoss:false, desc:'Solid result. Value increased.' },
+    { id:'neutral',      weight:30,  label:'😐 Unchanged',          coinMult:1.0,  mutUpgrade:false, mutLoss:false, desc:'Appraiser shrugged. Nothing changed.' },
+    { id:'bad',          weight:20,  label:'👎 Bad Appraisal',      coinMult:0.6,  mutUpgrade:false, mutLoss:false, desc:'Appraiser found flaws. Value dropped.' },
+    { id:'terrible',     weight:12,  label:'💸 Terrible!',          coinMult:0.3,  mutUpgrade:false, mutLoss:true,  desc:'Disaster! Mutation lost and value tanked.' },
+    { id:'catastrophic', weight:8,   label:'💀 CATASTROPHIC!',      coinMult:0.1,  mutUpgrade:false, mutLoss:true,  desc:'The fish was ruined. You lost almost everything.' },
+];
+
+// ════════════════════════════════════════════════════════════════
 // ♦️ INJECT ABUSE MULTIPLIERS INTO EXISTING CATCH LOGIC
 // ════════════════════════════════════════════════════════════════
-
 function getAdjustedRarityWeights() {
-    if (typeof RARITY_WEIGHTS !== "object") return {};
-
-    const w = { ...RARITY_WEIGHTS };
-
-    const secMult  = Number(getAbuseMultiplier?.("secret") ?? 1);
-    const legMult  = Number(getAbuseMultiplier?.("legendary") ?? 1);
-    const mythMult = Number(getAbuseMultiplier?.("mythical") ?? 1);
-
-    if (w.Secret && w.Mythical && secMult > 1) {
-        w.Secret = Math.min(w.Secret * secMult, w.Mythical * 0.8);
-    }
-
-    if (w.Legendary && w.Mythical && legMult > 1) {
-        w.Legendary = Math.min(w.Legendary * legMult, w.Mythical * 0.5);
-    }
-
-    if (w.Mythical && w.Secret && mythMult > 1) {
-        w.Mythical = Math.min(w.Mythical * mythMult, w.Secret * 0.5);
-    }
-
+    const w = {...RARITY_WEIGHTS};
+    const secMult   = getAbuseMultiplier('secret');
+    const legMult   = getAbuseMultiplier('legendary');
+    const mythMult  = getAbuseMultiplier('mythical');
+    if (secMult  > 1) w.Secret    = Math.min(w.Secret    * secMult,  w.Mythical * 0.8);
+    if (legMult  > 1) w.Legendary = Math.min(w.Legendary * legMult,  w.Mythical * 0.5);
+    if (mythMult > 1) w.Mythical  = Math.min(w.Mythical  * mythMult, w.Secret   * 0.5);
     return w;
 }
 
 function getAdjustedMutationWeights() {
-    if (!Array.isArray(MUTATIONS)) return [];
-
-    const mutMult = Number(getAbuseMultiplier?.("mutation") ?? 1);
-
+    const mutMult = getAbuseMultiplier('mutation');
     return MUTATIONS.map(m => ({
         ...m,
-        weight: m.id === "none"
-            ? Math.max(100, (m.weight || 0) / Math.max(mutMult, 1))
-            : (m.weight || 0) * mutMult
+        weight: m.id === 'none' ? Math.max(100, m.weight / mutMult) : m.weight * mutMult,
     }));
 }
-            // ════════════════════════════════════════════════════════════════
-// ♦️ COMBINED MEMBER JOIN LISTENER
-// ════════════════════════════════════════════════════════════════
 
-client.on("guildMemberAdd", async (member) => {
+if (!process.env.TOKEN) {
+    console.error('❌ TOKEN environment variable not set!');
+    process.exit(1);
+}
 
-    // Welcome System
+(async () => {
+    await loadData();
+    setInterval(saveData, 300_000);
+    await client.login(process.env.TOKEN).catch(err => {
+        console.error('❌ Login failed:', err?.message);
+        process.exit(1);
+    });
+})();
+
+client.on("guildMemberAdd", async member => {
     try {
-        const guildId = String(member.guild.id);
-        const cfg = welcomeConfig?.[guildId];
-
+        const guildId=String(member.guild.id);
+        const cfg=welcomeConfig[guildId];
         if (cfg) {
-            if (cfg.roleId) {
-                await member.roles.add(cfg.roleId).catch(() => {});
-            }
-
-            const ch = await member.guild.channels
-                .fetch(cfg.channelId)
-                .catch(() => null);
-
+            if (cfg.roleId) await member.roles.add(cfg.roleId).catch(()=>{});
+            const ch=await member.guild.channels.fetch(cfg.channelId).catch(()=>null);
             if (ch) {
-                const embed = new EmbedBuilder()
+                await ch.send({embeds:[new EmbedBuilder()
                     .setColor(0x57F287)
                     .setTitle("👋 Welcome!")
-                    .setDescription(
-                        `Welcome to **${member.guild.name}**, ${member.user.username}!`
-                    )
+                    .setDescription(`Welcome to **${member.guild.name}**, ${member.user.username}!`)
                     .setThumbnail(member.user.displayAvatarURL())
-                    .addFields({
-                        name: "Members",
-                        value: `#${member.guild.memberCount}`
-                    })
-                    .setTimestamp();
-
-                await ch.send({ embeds: [embed] }).catch(() => {});
+                    .addFields({name:"Members",value:`#${member.guild.memberCount}`})
+                    .setTimestamp()
+                ]}).catch(()=>{});
             }
         }
-    } catch (err) {
-        console.error("Welcome error:", err);
-    }
+    } catch(e) { console.error("Welcome error:", e?.message); }
 
-    // Advanced Logging
     try {
         const embed = new EmbedBuilder()
             .setColor(0x00FF00)
             .setTitle("📥 Member Joined")
             .setThumbnail(member.user.displayAvatarURL())
             .addFields(
-                {
-                    name: "User",
-                    value: `${member.user.tag} (<@${member.id}>)`,
-                    inline: true
-                },
-                {
-                    name: "Account Age",
-                    value: typeof cdStr === "function"
-                        ? cdStr(Date.now() - member.user.createdTimestamp)
-                        : "Unknown",
-                    inline: true
-                },
-                {
-                    name: "Members",
-                    value: `${member.guild.memberCount}`,
-                    inline: true
-                }
+                {name:"User", value:`${member.user.tag} (<@${member.id}>)`, inline:true},
+                {name:"Account Age", value:cdStr(Date.now()-member.user.createdTimestamp), inline:true},
+                {name:"Members", value:`${member.guild.memberCount}`, inline:true},
             )
             .setTimestamp();
-
-        if (typeof sendAdvLog === "function") {
-            await sendAdvLog(member.guild, "member", embed);
-        }
-    } catch (err) {
-        console.error("Member log error:", err);
-    }
+        await sendAdvLog(member.guild, "member", embed);
+    } catch(e) { console.error("Member log error:", e?.message); }
 });
-            
-
-// ════════════════════════════════════════════════════════════════
-// ♦️ STARTUP
-// ════════════════════════════════════════════════════════════════
-
-if (!process.env.TOKEN) {
-    console.error("❌ TOKEN environment variable not set!");
-    process.exit(1);
-}
-
-(async () => {
-    try {
-        await loadData();
-
-        setInterval(async () => {
-            try {
-                await saveData();
-            } catch (err) {
-                console.error("Autosave failed:", err);
-            }
-        }, 300000);
-
-        await client.login(process.env.TOKEN);
-
-        console.log(`✅ Logged in as ${client.user?.tag}`);
-    } catch (err) {
-        console.error("❌ Startup failed:", err);
-        process.exit(1);
-    }
-})();
-
