@@ -5317,38 +5317,7 @@ function getAdjustedMutationWeights() {
             : (m.weight || 0) * mutMult
     }));
 }
-
-// ════════════════════════════════════════════════════════════════
-// ♦️ STARTUP
-// ════════════════════════════════════════════════════════════════
-
-if (!process.env.TOKEN) {
-    console.error("❌ TOKEN environment variable not set!");
-    process.exit(1);
-}
-
-(async () => {
-    try {
-        await loadData();
-
-        setInterval(async () => {
-            try {
-                await saveData();
-            } catch (err) {
-                console.error("Autosave failed:", err);
-            }
-        }, 300000);
-
-        await client.login(process.env.TOKEN);
-
-        console.log(`✅ Logged in as ${client.user?.tag}`);
-    } catch (err) {
-        console.error("❌ Startup failed:", err);
-        process.exit(1);
-    }
-})();
-
-// ════════════════════════════════════════════════════════════════
+            // ════════════════════════════════════════════════════════════════
 // ♦️ COMBINED MEMBER JOIN LISTENER
 // ════════════════════════════════════════════════════════════════
 
@@ -5423,3 +5392,35 @@ client.on("guildMemberAdd", async (member) => {
         console.error("Member log error:", err);
     }
 });
+            
+
+// ════════════════════════════════════════════════════════════════
+// ♦️ STARTUP
+// ════════════════════════════════════════════════════════════════
+
+if (!process.env.TOKEN) {
+    console.error("❌ TOKEN environment variable not set!");
+    process.exit(1);
+}
+
+(async () => {
+    try {
+        await loadData();
+
+        setInterval(async () => {
+            try {
+                await saveData();
+            } catch (err) {
+                console.error("Autosave failed:", err);
+            }
+        }, 300000);
+
+        await client.login(process.env.TOKEN);
+
+        console.log(`✅ Logged in as ${client.user?.tag}`);
+    } catch (err) {
+        console.error("❌ Startup failed:", err);
+        process.exit(1);
+    }
+})();
+
