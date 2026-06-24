@@ -5343,10 +5343,11 @@ client.on("guildMemberAdd", async member => {
                     .addFields({name:"Members",value:`#${member.guild.memberCount}`})
                     .setTimestamp()
                 ]}).catch(()=>{});
-            }
+                        }
         }
     } catch(e) { console.error("Welcome error:", e?.message); }
 
+    // 2. Advanced logging logic
     try {
         const embed = new EmbedBuilder()
             .setColor(0x00FF00)
@@ -5360,4 +5361,4 @@ client.on("guildMemberAdd", async member => {
             .setTimestamp();
         await sendAdvLog(member.guild, "member", embed);
     } catch(e) { console.error("Member log error:", e?.message); }
-});
+}); // <--- ENSURE THIS FINAL CLOSING IS PRESENT
