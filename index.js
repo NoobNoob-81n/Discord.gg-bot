@@ -5352,4 +5352,4 @@ client.on("guildMemberAdd", async member => {
             .setTimestamp();
         await sendAdvLog(member.guild, "member", embed);
     } catch(e) { console.error("Member log error:", e?.message); }
-});                                  
+);                                  
