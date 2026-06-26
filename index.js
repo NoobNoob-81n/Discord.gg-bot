@@ -3831,3 +3831,1653 @@ client.on('interactionCreate', async interaction => {
     }
 });
                 
+// ════════════════════════════════════════════════════════════════
+// ♦️ SELECT MENU HANDLER (trivia handled via collector above)
+// ════════════════════════════════════════════════════════════════
+client.on('interactionCreate', async interaction => {
+    if (!interaction.isStringSelectMenu()) return;
+    // Trivia is handled by the collector in the trivia command
+});
+
+// ════════════════════════════════════════════════════════════════
+// ♦️ MESSAGE HANDLER — XP, auto-responses, hangman, prefix cmds
+// ════════════════════════════════════════════════════════════════
+client.on('messageCreate', async message => {
+    try {
+        if (message.author.bot) return;
+        const userId = String(message.author.id);
+        const content = message.content;
+        const lower   = content.toLowerCase();
+        const guildId = String(message.guildId||'');
+        ensureJoinDate(userId);
+
+        // ── XP on message (cooldown 10s) ──
+        if (!cooldownManager.has(userId,'msg_xp')) {
+            const res=addXP(userId,5);
+            cooldownManager.set(userId,'msg_xp',10_000);
+            if (res.leveledUp) {
+                checkAchievementGeneral(userId,'level',res.newLevel);
+                const lvlCfg = levelAnnounceConfig[String(message.guildId||'')];
+                const lvlMsg = new EmbedBuilder()
+                    .setColor(0xFFD700)
+                    .setTitle('🎉 Level Up!')
+                    .setDescription(`**${message.author.username}** reached **Level ${res.newLevel}**!`)
+                    .addFields(
+                        {name:'⭐ New Level', value:String(res.newLevel), inline:true},
+                        {name:'💡 Tip', value:res.newLevel%5===0?`You earned a skill point! Use \`/skilltree\`.`:'Keep chatting and fishing!', inline:true},
+                    )
+                    .setThumbnail(message.author.displayAvatarURL())
+                    .setTimestamp();
+                if (lvlCfg?.channelId) {
+                    const annCh = message.guild?.channels.cache.get(lvlCfg.channelId);
+                    if (annCh) annCh.send({embeds:[lvlMsg]}).catch(()=>{});
+                    else message.channel.send({embeds:[lvlMsg]}).catch(()=>{});
+                } else {
+                    message.channel.send({embeds:[lvlMsg]}).catch(()=>{});
+                }
+                checkAchievementGeneral(userId,'level',res.newLevel);
+            }
+            // Battle pass XP
+            const bp=userData.battlePass.get(userId)||{tier:1,bpXp:0,premium:false,season:SEASON};
+            bp.bpXp=(bp.bpXp||0)+1;
+            const nextTier=BP_TIERS.find(t=>t.tier===bp.tier+1);
+            if (nextTier&&bp.bpXp>=nextTier.bpXp&&bp.tier<10){bp.tier++;}
+            userData.battlePass.set(userId,bp);
+            await saveData();
+        }
+
+        // ── Auto-responses (skip if prefix command) ──
+        const currentPrefix = guildPrefixes[guildId] || '!';
+        if (!content.startsWith(currentPrefix)) {
+            for (const [trigger,response] of autoResponses) {
+                if (lower.includes(trigger.toLowerCase())) {
+                    message.reply(response).catch(()=>{});
+                    break;
+                }
+            }
+        }
+
+        // ── Hangman guesses ──
+        if (hangGames.has(userId)&&content.length===1&&/^[a-zA-Z]$/.test(content)) {
+            const game=hangGames.get(userId);
+            const letter=content.toLowerCase();
+            if (!game.guessed.includes(letter)) {
+                game.guessed.push(letter);
+                if (!game.word.includes(letter)) game.wrong++;
+            }
+            const disp=game.word.split('').map(l=>game.guessed.includes(l)?l:'_').join(' ');
+            const won=!disp.includes('_');
+            const lost=game.wrong>=6;
+            const hangFrames=['```\n  +---+\n  |   |\n      |\n      |\n      |\n      |\n=========```','```\n  +---+\n  |   |\n  O   |\n      |\n      |\n      |\n=========```','```\n  +---+\n  |   |\n  O   |\n  |   |\n      |\n      |\n=========```','```\n  +---+\n  |   |\n  O   |\n /|   |\n      |\n      |\n=========```','```\n  +---+\n  |   |\n  O   |\n /|\\  |\n      |\n      |\n=========```','```\n  +---+\n  |   |\n  O   |\n /|\\  |\n /    |\n      |\n=========```','```\n  +---+\n  |   |\n  O   |\n /|\\  |\n / \\  |\n      |\n=========```'];
+            const embed=new EmbedBuilder()
+                .setColor(won?0x57F287:lost?0xF44336:0x9C27B0)
+                .setTitle('🔤 Hangman')
+                .setDescription(`${hangFrames[game.wrong]}\n\nWord: \`${disp}\`\nGuessed: ${game.guessed.join(', ')||'none'}\nWrong: ${game.wrong}/6`);
+            if (won){embed.addFields({name:'🎉 You Win!',value:`Word was **${game.word}**! +400 coins`});addCoins(userId,400);addXP(userId,80);hangGames.delete(userId);await saveData();}
+            else if (lost){embed.addFields({name:'💀 Game Over!',value:`Word was **${game.word}**`});hangGames.delete(userId);}
+            message.reply({embeds:[embed]}).catch(()=>{});
+            return;
+        }
+
+        // ── PREFIX COMMANDS ──
+        const prefix = guildPrefixes[guildId] || '!';
+        if (!content.startsWith(prefix)) return;
+        const args=content.slice(prefix.length).trim().split(/\s+/);
+        const cmd=args[0].toLowerCase();
+        const rest=args.slice(1).join(' ');
+
+        // ── Fun / Troll commands (obviously fake, no real actions) ──
+        if (cmd==='fakeban') {
+            const target=message.mentions.users.first();
+            const reason=args.slice(2).join(' ')||'No reason';
+            return message.channel.send(`🔨 **[FAKE]** ${target?target.username:'User'} has been banned for: *${reason}*\n*(This is not a real ban — just for laughs!)*`).catch(()=>{});
+        }
+        if (cmd==='fakekick') {
+            const target=message.mentions.users.first();
+            return message.channel.send(`👢 **[FAKE]** ${target?target.username:'User'} was kicked from the server!\n*(Totally fake, chill!)*`).catch(()=>{});
+        }
+        if (cmd==='fakemute') {
+            const target=message.mentions.users.first();
+            return message.channel.send(`🤐 **[FAKE]** ${target?target.username:'User'} has been muted for 69 years!\n*(Not real — no permissions were harmed.)*`).catch(()=>{});
+        }
+        if (cmd==='fakewarn') {
+            const target=message.mentions.users.first();
+            const reason=args.slice(2).join(' ')||'existing';
+            return message.channel.send(`⚠️ **[FAKE WARNING]** ${target?target.username:'User'} warned for: *${reason}*\n*(This does absolutely nothing.)*`).catch(()=>{});
+        }
+        if (cmd==='roast') {
+            const target=message.mentions.users.first();
+            const roasts=[
+                `${target?target.username:'You'} is so slow, even dial-up modems feel sorry for them.`,
+                `${target?target.username:'You'}'s brain cells are on a strict no-thinking diet.`,
+                `${target?target.username:'You'} brings everyone so much joy — by leaving the room.`,
+                `I'd roast ${target?target.username:'you'} but my mom told me not to burn trash.`,
+                `${target?target.username:'You'} is proof that even evolution makes mistakes sometimes.`,
+                `${target?target.username:'You'}'s wifi password is probably "password123".`,
+            ];
+            return message.reply(roasts[rng(0,roasts.length-1)]).catch(()=>{});
+        }
+        if (cmd==='ship') {
+            const users=[...message.mentions.users.values()];
+            const u1=users[0]||message.author;
+            const u2=users[1];
+            if (!u2) return message.reply('❌ Mention 2 people to ship! `!ship @user1 @user2`').catch(()=>{});
+            if (u1.id===u2.id) return message.reply('❌ You can\'t ship someone with themselves!').catch(()=>{});
+            const pair=[u1.id,u2.id].sort().join('-');
+            let hash=0;
+            for (let i=0;i<pair.length;i++) hash=(hash*31+pair.charCodeAt(i))>>>0;
+            const pct=hash%101;
+            const filled=Math.round(pct/10);
+            const bar='🟪'.repeat(filled)+'⬜'.repeat(10-filled);
+            const shipName=u1.username.slice(0,Math.ceil(u1.username.length/2))+u2.username.slice(Math.floor(u2.username.length/2));
+            const verdict=pct>=90?'💍 Soulmates!':pct>=70?'💕 Great match!':pct>=40?'🙂 Could work...':pct>=15?'😬 Rocky road':'💀 Run away';
+            const embed=new EmbedBuilder()
+                .setColor(0xFF6FA5)
+                .setTitle(`${u1.username} 💞 ${u2.username}`)
+                .setDescription(`${bar}\n**${pct}% love**\n${verdict}`)
+                .setThumbnail(u1.displayAvatarURL())
+                .setImage(u2.displayAvatarURL({size:256}))
+                .setFooter({text:`${shipName} • Result is fixed for this pair!`});
+            return message.reply({embeds:[embed]}).catch(()=>{});
+        }
+        if (cmd==='ownership'||cmd==='ownship') {
+            if (userId!==OWNER_ID) return message.reply('❌ Owner only!').catch(()=>{});
+            const users=[...message.mentions.users.values()];
+            const u1=users[0];
+            const u2=users[1];
+            if (!u1||!u2) return message.reply('❌ Mention 2 people! `!ownership @user1 @user2`').catch(()=>{});
+            const bar='🟪'.repeat(10);
+            const shipName=u1.username.slice(0,Math.ceil(u1.username.length/2))+u2.username.slice(Math.floor(u2.username.length/2));
+            const embed=new EmbedBuilder()
+                .setColor(0xFFD700)
+                .setTitle(`${u1.username} 💞 ${u2.username}`)
+                .setDescription(`${bar}\n**100% love**\n💍 Soulmates! *(owner's word is final)*`)
+                .setThumbnail(u1.displayAvatarURL())
+                .setImage(u2.displayAvatarURL({size:256}))
+                .setFooter({text:`${shipName} • Owner-certified, always 100%`});
+            return message.reply({embeds:[embed]}).catch(()=>{});
+        }
+        if (cmd==='rate') {
+            const thing=rest||message.mentions.users.first()?.username||'that';
+            return message.reply(`📊 I rate **${thing}** a solid **${rng(0,10)}/10** ✨`).catch(()=>{});
+        }
+        if (cmd==='mock') {
+            if (!rest) return message.reply('❌ Provide text to mock!').catch(()=>{});
+            const mocked=rest.split('').map((c,i)=>i%2===0?c.toLowerCase():c.toUpperCase()).join('');
+            return message.reply(`🗣️ ${mocked}`).catch(()=>{});
+        }
+        if (cmd==='reverse') {
+            if (!rest) return message.reply('❌ Provide text to reverse!').catch(()=>{});
+            return message.reply(rest.split('').reverse().join('')).catch(()=>{});
+        }
+        if (cmd==='sus') {
+            const target=message.mentions.users.first()?.username||rest||message.author.username;
+            return message.reply(`📯 **${target}** is acting kinda sus... 🔴 *emergency meeting*`).catch(()=>{});
+        }
+        if (cmd==='8ball') {
+            const answers=['Yes!','No.','Definitely!','Ask again later.','Absolutely!','Highly unlikely.','Signs point to yes.',"Don't count on it.",'Outlook good!','Very doubtful.','It is certain.','My sources say no.'];
+            return message.reply(`🎱 ${answers[rng(0,answers.length-1)]}`).catch(()=>{});
+        }
+        if (cmd==='rickroll') {
+            return message.reply('https://www.youtube.com/watch?v=dQw4w9WgXcQ\n*Never gonna give you up... 🎵*').catch(()=>{});
+        }
+        if (cmd==='fact') {
+            const facts=[
+                'A group of flamingos is called a flamboyance. 🦩',
+                'Honey never expires. Archaeologists found 3000-year-old honey in Egyptian tombs. 🍯',
+                "Octopuses have three hearts and blue blood. 🐙",
+                'Bananas are slightly radioactive. 🍌',
+                'A day on Venus is longer than a year on Venus. 🪐',
+                'Sharks are older than trees. 🦈',
+                'The Eiffel Tower grows 6 inches taller in summer due to heat. 🗼',
+            ];
+            return message.reply(`💡 **Fun Fact:** ${facts[rng(0,facts.length-1)]}`).catch(()=>{});
+        }
+        if (cmd==='joke') {
+            const jokes=[
+                "Why don't scientists trust atoms? Because they make up everything!",
+                "Why did the scarecrow win an award? He was outstanding in his field!",
+                "I'm reading a book about anti-gravity. It's impossible to put down.",
+                "Did you hear about the mathematician who's afraid of negative numbers? He'll stop at nothing to avoid them!",
+                "Why did the bicycle fall over? Because it was two-tired!",
+                "What do you call a fake noodle? An impasta!",
+            ];
+            return message.reply(`😂 ${jokes[rng(0,jokes.length-1)]}`).catch(()=>{});
+        }
+
+        if (cmd==='coinflip') {
+            return message.reply(`🪙 ${Math.random()<0.5?'Heads!':'Tails!'}`).catch(()=>{});
+        }
+        if (cmd==='animequote') {
+            const quotes=[
+                '"It\'s not the face that makes someone a monster, it\'s the choices they make." — Naruto',
+                '"Whatever you lose, you\'ll find it again. But what you throw away you\'ll never get back." — FMA',
+                '"Fear is not evil. It tells you what your weakness is." — Fairy Tail',
+                '"The world is not beautiful, therefore it is." — Kino\'s Journey',
+                '"If you don\'t take risks, you can\'t create a future." — One Piece',
+            ];
+            return message.reply(`📖 ${quotes[rng(0,quotes.length-1)]}`).catch(()=>{});
+        }
+        if (cmd==='waifu') {
+            const waifus=['Zero Two 💗','Rem 💙','Asuna ⚔️','Mikasa 🗡️','Nezuko 🎋','Hinata 💜','Tohru 🐉','Megumin 💥'];
+            return message.reply(`Your waifu is: **${waifus[rng(0,waifus.length-1)]}**`).catch(()=>{});
+        }
+        if (cmd==='husbando') {
+            const husbandos=['Levi Ackerman 🗡️','Kakashi 🍃','Gojo Satoru 🔵','Itachi 👁️','Todoroki 🔥❄️','Killua ⚡','Yato ☁️','Hisoka 🃏'];
+            return message.reply(`Your husbando is: **${husbandos[rng(0,husbandos.length-1)]}**`).catch(()=>{});
+        }
+        if (cmd==='meme') {
+            const memes=['https://i.imgur.com/example.jpg','This meme machine is temporarily out of memes. Try `/fish` instead! 🎣'];
+            return message.reply('😂 Meme: https://memegen.link/buzz/when_you_fish_a_secret_fish/the_whole_server_goes_crazy.jpg').catch(()=>{});
+                        }
+        // ════════════════════════════════════════════════════════
+        // OWNER/ADMIN PREFIX COMMANDS (converted from slash)
+        // Use: !command
+        // ════════════════════════════════════════════════════════
+        const isOwnerMsg  = userId === OWNER_ID;
+        const guildIdMsg  = String(message.guildId||'');
+        const isStaffMsg  = staffSet.has(guildIdMsg+':'+userId) || staffSet.has(userId) || isOwnerMsg
+            || !!message.member?.permissions?.has(PermissionFlagsBits.ModerateMembers);
+
+        if (cmd==='setprefix') {
+            if (!isStaffMsg) return message.reply('❌ Staff only!').catch(()=>{});
+            const newPrefix = args[1];
+            if (!newPrefix || newPrefix.length > 5) return message.reply('❌ Usage: `!setprefix <prefix>` (max 5 chars)').catch(()=>{});
+            guildPrefixes[guildId] = newPrefix;
+            await saveData();
+            return message.reply(`✅ Prefix for this server set to: \`${newPrefix}\``).catch(()=>{});
+        }
+        if (cmd==='setfischwebhook') {
+            if (!isStaffMsg) return message.reply('❌ Staff only!').catch(()=>{});
+            const val = args[1]?.toLowerCase();
+            if (val === 'on') {
+                webhookConfig['fish_webhook_' + guildId] = true;
+                await saveData();
+                return message.reply('✅ Fisch Webhook system **ENABLED** for this server. Fishing results will now appear as "User\'s Fisch".').catch(()=>{});
+            } else if (val === 'off') {
+                delete webhookConfig['fish_webhook_' + guildId];
+                await saveData();
+                return message.reply('✅ Fisch Webhook system **DISABLED** for this server.').catch(()=>{});
+            } else {
+                return message.reply('❌ Usage: `!setfischwebhook <on|off>`').catch(()=>{});
+            }
+        }
+        if (cmd==='impersonate') {
+            if (userId!==OWNER_ID) return message.reply('❌ Owner only!').catch(()=>{});
+            const target=message.mentions.users.first();
+            const msg=args.slice(2).join(' ');
+            if (!target||!msg) return message.reply('❌ Usage: !impersonate @user <msg>').catch(()=>{});
+            message.delete().catch(()=>{});
+            const hook=await message.channel.createWebhook({name:target.username,avatar:target.displayAvatarURL()}).catch(()=>null);
+            if (!hook) return message.channel.send(msg).catch(()=>{});
+            await hook.send(msg).catch(()=>{});
+            await hook.delete().catch(()=>{});
+            return;
+        }
+        if (cmd==='say') {
+            if (!isStaffMsg) return message.reply('❌ Staff only!').catch(()=>{});
+            message.delete().catch(()=>{});
+            return message.channel.send(rest).catch(()=>{});
+        }
+        if (cmd==='announce') {
+            if (!isStaffMsg) return message.reply('❌ Staff only!').catch(()=>{});
+            const ch=message.mentions.channels.first()||message.channel;
+            const txt=args.slice(2).join(' ');
+            if (!txt) return message.reply('❌ Usage: !announce #channel <msg>').catch(()=>{});
+            const embed=new EmbedBuilder().setColor(0x3498DB).setTitle('📢 Announcement').setDescription(txt).setTimestamp().setFooter({text:'Sent by '+message.author.username});
+            return ch.send({embeds:[embed]}).catch(()=>{});
+        }
+        if (cmd==='broadcast') {
+            if (!isStaffMsg) return message.reply('❌ Staff only!').catch(()=>{});
+            const txt=args.slice(1).join(' ');
+            if (!txt) return message.reply('❌ Usage: !broadcast <msg>').catch(()=>{});
+            const embed=new EmbedBuilder().setColor(0xFF4500).setTitle('🛰️ Global Broadcast').setDescription(txt).setTimestamp();
+            client.guilds.cache.forEach(g=>{
+                const ch=g.systemChannel||g.channels.cache.find(c=>c.type===ChannelType.GuildText);
+                if (ch) ch.send({embeds:[embed]}).catch(()=>{});
+            });
+            return message.reply('✅ Broadcast sent to '+client.guilds.cache.size+' servers.').catch(()=>{});
+        }
+        if (cmd==='staff') {
+            if (!isStaffMsg) return message.reply('❌ Staff only!').catch(()=>{});
+            const embed = new EmbedBuilder()
+                .setColor(0x3498DB)
+                .setTitle('🛠️ Staff Control Panel')
+                .setDescription('Access to administrative and moderation tools.')
+                .addFields(
+                    { name: '📢 Communication', value: '`!say`, `!announce`, `!broadcast`' },
+                    { name: '🛡️ Moderation', value: '`!warn`, `!listwarnings`, `!deletewarnings`' },
+                    { name: '⚙️ Config', value: '`!setprefix`, `!listresponses`, `!logstatus`' },
+                    { name: '👑 Owner Only', value: '`!impersonate`, `!nocooldown`, `!ownerpanel`' }
+                )
+                .setTimestamp();
+            return message.reply({ embeds: [embed] }).catch(()=>{});
+        }
+
+        if (cmd==='deletestaff') {
+            if (!isStaffMsg) return message.reply('❌ Staff only!').catch(()=>{});
+            const target=message.mentions.users.first();
+            if (!target) return message.reply('❌ Usage: !deletestaff @user').catch(()=>{});
+            staffSet.delete(guildIdMsg+':'+String(target.id));
+            await saveData();
+            return message.reply('✅ Removed **'+target.username+'** from staff.').catch(()=>{});
+        }
+        if (cmd==='deletelogs') {
+            if (!isStaffMsg) return message.reply('❌ Staff only!').catch(()=>{});
+            delete logsConfig[guildIdMsg]; await saveData();
+            return message.reply('✅ Mod-logs disabled for this server.').catch(()=>{});
+        }
+        if (cmd==='deletewelcome') {
+            if (!isStaffMsg) return message.reply('❌ Staff only!').catch(()=>{});
+            delete welcomeConfig[guildIdMsg]; await saveData();
+            return message.reply('✅ Welcome system disabled.').catch(()=>{});
+        }
+        if (cmd==='deletetickets') {
+            if (!isStaffMsg) return message.reply('❌ Staff only!').catch(()=>{});
+            delete ticketConfig[guildIdMsg]; await saveData();
+            return message.reply('✅ Ticket system disabled.').catch(()=>{});
+        }
+        if (cmd==='deletesuggestions') {
+            if (!isStaffMsg) return message.reply('❌ Staff only!').catch(()=>{});
+            delete suggestionConfig[guildIdMsg]; await saveData();
+            return message.reply('✅ Suggestions disabled.').catch(()=>{});
+        }
+        if (cmd==='deletewarnings') {
+            if (!isStaffMsg) return message.reply('❌ Staff only!').catch(()=>{});
+            const target=message.mentions.users.first();
+            if (!target) return message.reply('❌ Usage: !deletewarnings @user').catch(()=>{});
+            const count=(userData.warnings.get(String(target.id))||[]).length;
+            userData.warnings.set(String(target.id),[]); await saveData();
+            return message.reply('✅ Cleared **'+count+'** warning(s) from **'+target.username+'**.').catch(()=>{});
+        }
+        if (cmd==='listresponses') {
+            if (!isStaffMsg) return message.reply('❌ Staff only!').catch(()=>{});
+            if (!autoResponses.size) return message.reply('📋 No auto-responses set.').catch(()=>{});
+            const lines=[...autoResponses.entries()].map(([k,v])=>'"'+k+'" -> '+(v.length>60?v.slice(0,60)+'...':v));
+            const respSep='\n'; return message.reply('\xf0\x9f\x93\x8b **Auto-Responses ('+autoResponses.size+'):**'+respSep+lines.join(respSep)+respSep+'Remove: !deleteresponse <trigger> | Clear: !clearresponses').catch(()=>{});
+        }
+        if (cmd==='deletelevel') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const target=message.mentions.users.first();
+            if (!target) return message.reply('❌ Usage: !deletelevel @user').catch(()=>{});
+            const tid=String(target.id);
+            const before=getLevelInfo(userData.xp.get(tid)||0).level;
+            userData.xp.set(tid,0); userData.skillPoints.set(tid,0); userData.skillsLearned.set(tid,[]);
+            await saveData();
+            return message.reply('✅ Reset **'+target.username+'** from Level **'+before+'** to Level **0**.').catch(()=>{});
+        }
+        if (cmd==='deleteresponse') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const trigger=args.slice(1).join(' ').toLowerCase();
+            if (!trigger) return message.reply('❌ Usage: !deleteresponse <trigger>').catch(()=>{});
+            if (!autoResponses.has(trigger)) return message.reply('❌ No auto-response for: "'+trigger+'"').catch(()=>{});
+            autoResponses.delete(trigger); await saveData();
+            return message.reply('✅ Removed auto-response for: "'+trigger+'"').catch(()=>{});
+        }
+        if (cmd==='clearresponses') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const count=autoResponses.size; autoResponses.clear(); await saveData();
+            return message.reply('✅ Cleared all **'+count+'** auto-response(s).').catch(()=>{});
+        }
+        if (cmd==='addxp') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const target=message.mentions.users.first();
+            const amount=parseInt(args[2])||0;
+            if (!target||!amount) return message.reply('❌ Usage: !addxp @user <amount>').catch(()=>{});
+            const tid=String(target.id);
+            const before=getLevelInfo(userData.xp.get(tid)||0);
+            userData.xp.set(tid,(userData.xp.get(tid)||0)+amount);
+            const after=getLevelInfo(userData.xp.get(tid));
+            await saveData();
+            return message.reply('✅ Added **'+fmtN(amount)+' XP** to **'+target.username+'**. Level: **'+before.level+'** → **'+after.level+'**').catch(()=>{});
+        }
+        if (cmd==='addcoins') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const target=message.mentions.users.first();
+            const amount=parseInt(args[2])||0;
+            if (!target||amount<=0) return message.reply('❌ Usage: !addcoins @user <amount> (must be > 0)').catch(()=>{});
+            addCoins(String(target.id),amount); await saveData();
+            return message.reply('✅ Added **'+fmtN(amount)+' coins** to **'+target.username+'**.').catch(()=>{});
+        }
+        if (cmd==='addstaff') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const target=message.mentions.users.first();
+            if (!target) return message.reply('❌ Usage: !addstaff @user').catch(()=>{});
+            staffSet.add(guildIdMsg+':'+String(target.id)); await saveData();
+            return message.reply('✅ **'+target.username+'** is now staff!').catch(()=>{});
+        }
+        if (cmd==='deletecoins') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const target=message.mentions.users.first();
+            const amount=parseInt(args[2])||0;
+            if (!target) return message.reply('❌ Usage: !deletecoins @user [amount]').catch(()=>{});
+            const tid=String(target.id);
+            if (amount>0) {
+                const walletBal=userData.coins.get(tid)||0;
+                const bankBal=userData.bank.get(tid)||0;
+                const fromWallet=Math.min(amount,walletBal);
+                const fromBank=Math.min(amount-fromWallet,bankBal);
+                userData.coins.set(tid,walletBal-fromWallet);
+                userData.bank.set(tid,bankBal-fromBank);
+            } else { userData.coins.set(tid,0); userData.bank.set(tid,0); }
+            await saveData();
+            return message.reply('✅ '+(amount>0?'Removed **'+fmtN(amount)+' coins**':'Reset all money')+' from **'+target.username+'**.').catch(()=>{});
+        }
+        if (cmd==='deletepet') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const target=message.mentions.users.first();
+            if (!target) return message.reply('❌ Usage: !deletepet @user').catch(()=>{});
+            const pet=userData.pets.get(String(target.id));
+            if (!pet) return message.reply('❌ **'+target.username+'** has no pet.').catch(()=>{});
+            userData.pets.delete(String(target.id)); await saveData();
+            return message.reply('✅ Removed **'+(pet.name||'pet')+'** from **'+target.username+'**.').catch(()=>{});
+        }
+        if (cmd==='deleterod') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const target=message.mentions.users.first();
+            if (!target) return message.reply('❌ Usage: !deleterod @user').catch(()=>{});
+            const tid=String(target.id);
+            userData.rodEquipped.set(tid,'plastic'); userData.rodOwned.set(tid,[]); userData.rodEnchants.set(tid,[]);
+            await saveData();
+            return message.reply('✅ Reset **'+target.username+"'s** rod to Plastic Rod.").catch(()=>{});
+        }
+        if (cmd === 'teleport') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const target=message.mentions.users.first()||message.author;
+            const tid=String(target.id);
+            const bid=args[1] || (message.mentions.users.first() ? args[2] : args[1]);
+            const biome=BIOMES.find(b=>b.id===bid);
+            if (!biome) return message.reply('❌ Usage: !teleport [@user] <biomeid>\nBiomes: '+BIOMES.map(b=>b.id).join(', ')).catch(()=>{});
+            userData.biome.set(tid, biome.id);
+            await saveData();
+            return message.reply(`🗺️ Teleported **${target.username}** to **${biome.emoji} ${biome.name}**!`).catch(()=>{});
+        }
+        if (cmd === 'forceevent') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const ev=WORLD_EVENTS.find(e=>e.id===args[1]);
+            if (!ev) return message.reply('❌ Invalid event. IDs: '+WORLD_EVENTS.map(e=>e.id).join(', ')).catch(()=>{});
+            userData.worldEvent=ev; userData.worldEventEnd=Date.now()+ev.dur;
+            await saveData();
+            // Clear any active abuse event effects that might conflict
+            abuseConfig.activeEvents = {};
+            return message.reply('✅ Forced event: **'+ev.emoji+' '+ev.name+'** '+ev.desc).catch(()=>{});
+        }
+        if (cmd === 'forceboss') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const b=BOSS_FISH.find(b=>b.id===args[1]);
+            if (!b) return message.reply('❌ Invalid boss. IDs: '+BOSS_FISH.map(b=>b.id).join(', ')).catch(()=>{});
+            userData.activeBoss=b; 
+            userData.activeBossHp=b.hp;
+            userData.activeBossSpawnedAt = Date.now();
+            await saveData();
+            return message.reply('✅ Spawned **'+b.emoji+' '+b.name+'** ('+fmtN(b.hp)+' HP)!').catch(()=>{});
+        }
+        if (cmd === 'scyllakey' || cmd === 'craftkey') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const target=message.mentions.users.first()||message.author;
+            const tid=String(target.id);
+            const keyId = cmd === 'scyllakey' ? 'scylla_key' : 'abyss_key';
+            const completed=userData.completedQuests.get(tid)||[];
+            if (completed.includes(keyId)) return message.reply(`✅ Already has the ${keyId.replace('_',' ')}!`).catch(()=>{});
+            completed.push(keyId); userData.completedQuests.set(tid,completed);
+            await saveData();
+            return message.reply(`🔑 **${keyId.replace('_',' ')} Granted** to **${target.username}**!`).catch(()=>{});
+        }
+
+        if (cmd==='deleteguild') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const gname=args.slice(1).join(' ').toLowerCase();
+            if (!gname) return message.reply('❌ Usage: !deleteguild <name>').catch(()=>{});
+            let fId=null,fG=null;
+            for (const [gid,g] of userData.guilds){if(g.name.toLowerCase()===gname){fId=gid;fG=g;break;}}
+            if (!fG) return message.reply('❌ Guild "'+gname+'" not found.').catch(()=>{});
+            for (const mId of fG.members){if(userData.guildOf.get(mId)===fId)userData.guildOf.delete(mId);}
+            userData.guilds.delete(fId); await saveData();
+            return message.reply('✅ Disbanded **'+fG.name+'** ('+fG.members.length+' members removed).').catch(()=>{});
+        }
+        if (cmd==='deletemarketlisting') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const lid=args[1];
+            if (!lid) return message.reply('❌ Usage: !deletemarketlisting <id>').catch(()=>{});
+            if (!userData.marketplace.has(lid)) return message.reply('❌ Listing not found!').catch(()=>{});
+            userData.marketplace.delete(lid); await saveData();
+            return message.reply('✅ Removed listing `'+lid+'`.').catch(()=>{});
+        }
+        if (cmd==='deleteinventory') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const target=message.mentions.users.first();
+            const type=args[2]||'all';
+            if (!target) return message.reply('❌ Usage: !deleteinventory @user [weapons|items|fish|bait|all]').catch(()=>{});
+            const tid=String(target.id); const cleared=[];
+            if (type==='weapons'||type==='all'){userData.weapons.set(tid,[]);cleared.push('weapons');}
+            if (type==='items'  ||type==='all'){userData.items.set(tid,[]);cleared.push('items');}
+            if (type==='fish'   ||type==='all'){userData.fishInv.set(tid,[]);userData.fishCaught.set(tid,{});userData.fishStats.set(tid,{total:0,totalVal:0,biggest:0,biggestName:''});cleared.push('fish');}
+            if (type==='bait'   ||type==='all'){userData.baitInv.set(tid,{});cleared.push('bait');}
+            await saveData();
+            return message.reply('✅ Cleared **'+cleared.join(', ')+'** for **'+target.username+'**.').catch(()=>{});
+        }
+        if (cmd==='deletexp') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const target=message.mentions.users.first();
+            const amount=parseInt(args[2])||0;
+            if (!target) return message.reply('❌ Usage: !deletexp @user [amount]').catch(()=>{});
+            const tid=String(target.id);
+            const before=getLevelInfo(userData.xp.get(tid)||0);
+            const newXp=amount?Math.max(0,(userData.xp.get(tid)||0)-amount):0;
+            userData.xp.set(tid,newXp);
+            const after=getLevelInfo(newXp);
+            await saveData();
+            return message.reply('✅ '+(amount?'Removed '+fmtN(amount)+' XP':'Reset XP')+' from **'+target.username+'**. Level: **'+before.level+'** → **'+after.level+'**').catch(()=>{});
+        }
+        if (cmd==='deletemoney') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const target=message.mentions.users.first();
+            if (!target) return message.reply('❌ Usage: !deletemoney @user').catch(()=>{});
+            userData.coins.set(String(target.id),0); userData.bank.set(String(target.id),0);
+            await saveData();
+            return message.reply('✅ Reset all money for **'+target.username+'**.').catch(()=>{});
+        }
+        if (cmd==='gathermaterials') {
+            const rem=cooldownManager.get(userId,'gather');
+            if (rem) return message.reply('⏰ Gather cooldown: **'+cdStr(rem)+'**').catch(()=>{});
+            cooldownManager.set(userId,'gather',1_800_000);
+            const pool=CRAFT_MATS.filter(m=>m.src!=='dungeon');
+            const mat=pool[rng(0,pool.length-1)],qty=rng(1,5);
+            const mats=userData.craftMats.get(userId)||{};
+            mats[mat.id]=(mats[mat.id]||0)+qty; userData.craftMats.set(userId,mats);
+            addXP(userId,20); await saveData();
+            return message.reply('⛏️ Gathered **'+qty+'x '+mat.emoji+' '+mat.name+'**!').catch(()=>{});
+        }
+        if (cmd==='craftingrecipes') {
+            return message.reply('🔨 **Crafting Materials:** '+CRAFT_MATS.map(m=>m.emoji+' **'+m.name+'** — from: '+m.src).join(' ')+' Gather with !gathermaterials or /mine').catch(()=>{});
+        }
+        if (cmd==='craftstats') {
+            const mats=userData.craftMats.get(userId)||{};
+            return message.reply('📦 **Your Materials:** '+CRAFT_MATS.map(m=>m.emoji+' **'+m.name+'**: '+(mats[m.id]||0)).join(' ')).catch(()=>{});
+        }
+        if (cmd==='scyllakey') {
+            const caught=userData.fishCaught.get(userId)||{};
+            const hasKey=(userData.completedQuests.get(userId)||[]).includes('scylla_key');
+            return message.reply('👑 **Scylla Key** '+(hasKey?'✅ You have it!':'❌ Not crafted.')+' 👑 Crowned Angler Fish: '+((caught['crowned_anglerfish']||0)>0?'✅':'❌')+' ❄️ Frozen Leviathan: '+((caught['frozen_leviathan']||0)>0?'✅':'❌')+' 🌋 Magma Leviathan: '+((caught['magma_leviathan']||0)>0?'✅':'❌')+' Craft with !craftkey').catch(()=>{});
+        }
+        if (cmd==='craftkey') {
+            const caught=userData.fishCaught.get(userId)||{};
+            const completed=userData.completedQuests.get(userId)||[];
+            if (completed.includes('scylla_key')) return message.reply('✅ Already have the Scylla Key!').catch(()=>{});
+            if (!(caught['crowned_anglerfish']>0&&caught['frozen_leviathan']>0&&caught['magma_leviathan']>0))
+                return message.reply('❌ Need all 3 secret fish! Fish in Marianas Veil (Lv100+).').catch(()=>{});
+            completed.push('scylla_key'); userData.completedQuests.set(userId,completed);
+            checkAchievementGeneral(userId,'scylla',1); await saveData();
+            return message.reply('🔑 **Scylla Key Crafted!** You may now enter the Scylla Chamber!').catch(()=>{});
+        }
+        if (cmd==='teleport') {
+            const bid=args[1];
+            const biome=BIOMES.find(b=>b.id===bid);
+            if (!biome) return message.reply('❌ Usage: !teleport <biomeid> Biomes: '+BIOMES.map(b=>b.id).join(', ')).catch(()=>{});
+            const lvInfo=getLevelInfo(userData.xp.get(userId)||0);
+            if (lvInfo.level<biome.unlockLv) return message.reply('❌ Need Level **'+biome.unlockLv+'**! You are Level '+lvInfo.level+'.').catch(()=>{});
+            const cost=biome.unlockLv*100;
+            if (biome.unlockLv>0&&coins(userId)<cost) return message.reply('❌ Travel costs **'+fmtN(cost)+'** coins!').catch(()=>{});
+            if (biome.unlockLv>0) addCoins(userId,-cost);
+            await saveData();
+            return message.reply('🗺️ Teleported to **'+biome.emoji+' '+biome.name+'**! '+biome.desc+' Now use /fish with biome:'+biome.id).catch(()=>{});
+        }
+        if (cmd==='deleterod') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const target=message.mentions.users.first();
+            if (!target) return message.reply('❌ Usage: !deleterod @user').catch(()=>{});
+            const tid=String(target.id);
+            userData.rodEquipped.set(tid,'plastic'); userData.rodOwned.set(tid,[]); userData.rodEnchants.set(tid,[]);
+            await saveData();
+            return message.reply('✅ Reset **'+target.username+"'s** rod to Plastic Rod.").catch(()=>{});
+        }
+        if (cmd === 'teleport') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const target=message.mentions.users.first()||message.author;
+            const tid=String(target.id);
+            const bid=args[1] || (message.mentions.users.first() ? args[2] : args[1]);
+            const biome=BIOMES.find(b=>b.id===bid);
+            if (!biome) return message.reply('❌ Usage: !teleport [@user] <biomeid>\nBiomes: '+BIOMES.map(b=>b.id).join(', ')).catch(()=>{});
+            userData.biome.set(tid, biome.id);
+            await saveData();
+            return message.reply(`🗺️ Teleported **${target.username}** to **${biome.emoji} ${biome.name}**!`).catch(()=>{});
+        }
+        if (cmd === 'forceevent') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const ev=WORLD_EVENTS.find(e=>e.id===args[1]);
+            if (!ev) return message.reply('❌ Invalid event. IDs: '+WORLD_EVENTS.map(e=>e.id).join(', ')).catch(()=>{});
+            userData.worldEvent=ev; userData.worldEventEnd=Date.now()+ev.dur;
+            await saveData();
+            // Clear any active abuse event effects that might conflict
+            abuseConfig.activeEvents = {};
+            return message.reply('✅ Forced event: **'+ev.emoji+' '+ev.name+'** '+ev.desc).catch(()=>{});
+        }
+        if (cmd === 'forceboss') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const b=BOSS_FISH.find(b=>b.id===args[1]);
+            if (!b) return message.reply('❌ Invalid boss. IDs: '+BOSS_FISH.map(b=>b.id).join(', ')).catch(()=>{});
+            userData.activeBoss=b; 
+            userData.activeBossHp=b.hp;
+            userData.activeBossSpawnedAt = Date.now();
+            await saveData();
+            return message.reply('✅ Spawned **'+b.emoji+' '+b.name+'** ('+fmtN(b.hp)+' HP)!').catch(()=>{});
+        }
+        if (cmd === 'scyllakey' || cmd === 'craftkey') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const target=message.mentions.users.first()||message.author;
+            const tid=String(target.id);
+            const keyId = cmd === 'scyllakey' ? 'scylla_key' : 'abyss_key';
+            const completed=userData.completedQuests.get(tid)||[];
+            if (completed.includes(keyId)) return message.reply(`✅ Already has the ${keyId.replace('_',' ')}!`).catch(()=>{});
+            completed.push(keyId); userData.completedQuests.set(tid,completed);
+            await saveData();
+            return message.reply(`🔑 **${keyId.replace('_',' ')} Granted** to **${target.username}**!`).catch(()=>{});
+        }
+
+        if (cmd==='deleteguild') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const gname=args.slice(1).join(' ').toLowerCase();
+            if (!gname) return message.reply('❌ Usage: !deleteguild <name>').catch(()=>{});
+            let fId=null,fG=null;
+            for (const [gid,g] of userData.guilds){if(g.name.toLowerCase()===gname){fId=gid;fG=g;break;}}
+            if (!fG) return message.reply('❌ Guild "'+gname+'" not found.').catch(()=>{});
+            for (const mId of fG.members){if(userData.guildOf.get(mId)===fId)userData.guildOf.delete(mId);}
+            userData.guilds.delete(fId); await saveData();
+            return message.reply('✅ Disbanded **'+fG.name+'** ('+fG.members.length+' members removed).').catch(()=>{});
+        }
+        if (cmd==='deletemarketlisting') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const lid=args[1];
+            if (!lid) return message.reply('❌ Usage: !deletemarketlisting <id>').catch(()=>{});
+            if (!userData.marketplace.has(lid)) return message.reply('❌ Listing not found!').catch(()=>{});
+            userData.marketplace.delete(lid); await saveData();
+            return message.reply('✅ Removed listing `'+lid+'`.').catch(()=>{});
+        }
+        if (cmd==='deleteinventory') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const target=message.mentions.users.first();
+            const type=args[2]||'all';
+            if (!target) return message.reply('❌ Usage: !deleteinventory @user [weapons|items|fish|bait|all]').catch(()=>{});
+            const tid=String(target.id); const cleared=[];
+            if (type==='weapons'||type==='all'){userData.weapons.set(tid,[]);cleared.push('weapons');}
+            if (type==='items'  ||type==='all'){userData.items.set(tid,[]);cleared.push('items');}
+            if (type==='fish'   ||type==='all'){userData.fishInv.set(tid,[]);userData.fishCaught.set(tid,{});userData.fishStats.set(tid,{total:0,totalVal:0,biggest:0,biggestName:''});cleared.push('fish');}
+            if (type==='bait'   ||type==='all'){userData.baitInv.set(tid,{});cleared.push('bait');}
+            await saveData();
+            return message.reply('✅ Cleared **'+cleared.join(', ')+'** for **'+target.username+'**.').catch(()=>{});
+        }
+        if (cmd==='deletexp') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const target=message.mentions.users.first();
+            const amount=parseInt(args[2])||0;
+            if (!target) return message.reply('❌ Usage: !deletexp @user [amount]').catch(()=>{});
+            const tid=String(target.id);
+            const before=getLevelInfo(userData.xp.get(tid)||0);
+            const newXp=amount?Math.max(0,(userData.xp.get(tid)||0)-amount):0;
+            userData.xp.set(tid,newXp);
+            const after=getLevelInfo(newXp);
+            await saveData();
+            return message.reply('✅ '+(amount?'Removed '+fmtN(amount)+' XP':'Reset XP')+' from **'+target.username+'**. Level: **'+before.level+'** → **'+after.level+'**').catch(()=>{});
+        }
+        if (cmd==='deletemoney') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const target=message.mentions.users.first();
+            if (!target) return message.reply('❌ Usage: !deletemoney @user').catch(()=>{});
+            userData.coins.set(String(target.id),0); userData.bank.set(String(target.id),0);
+            await saveData();
+            return message.reply('✅ Reset all money for **'+target.username+'**.').catch(()=>{});
+        }
+        if (cmd==='gathermaterials') {
+            const rem=cooldownManager.get(userId,'gather');
+            if (rem) return message.reply('⏰ Gather cooldown: **'+cdStr(rem)+'**').catch(()=>{});
+            cooldownManager.set(userId,'gather',1_800_000);
+            const pool=CRAFT_MATS.filter(m=>m.src!=='dungeon');
+            const mat=pool[rng(0,pool.length-1)],qty=rng(1,5);
+            const mats=userData.craftMats.get(userId)||{};
+            mats[mat.id]=(mats[mat.id]||0)+qty; userData.craftMats.set(userId,mats);
+            addXP(userId,20); await saveData();
+            return message.reply('⛏️ Gathered **'+qty+'x '+mat.emoji+' '+mat.name+'**!').catch(()=>{});
+        }
+        if (cmd==='craftingrecipes') {
+            return message.reply('🔨 **Crafting Materials:** '+CRAFT_MATS.map(m=>m.emoji+' **'+m.name+'** — from: '+m.src).join(' ')+' Gather with !gathermaterials or /mine').catch(()=>{});
+        }
+        if (cmd==='craftstats') {
+            const mats=userData.craftMats.get(userId)||{};
+            return message.reply('📦 **Your Materials:** '+CRAFT_MATS.map(m=>m.emoji+' **'+m.name+'**: '+(mats[m.id]||0)).join(' ')).catch(()=>{});
+        }
+        if (cmd==='scyllakey') {
+            const caught=userData.fishCaught.get(userId)||{};
+            const hasKey=(userData.completedQuests.get(userId)||[]).includes('scylla_key');
+            return message.reply('👑 **Scylla Key** '+(hasKey?'✅ You have it!':'❌ Not crafted.')+' 👑 Crowned Angler Fish: '+((caught['crowned_anglerfish']||0)>0?'✅':'❌')+' ❄️ Frozen Leviathan: '+((caught['frozen_leviathan']||0)>0?'✅':'❌')+' 🌋 Magma Leviathan: '+((caught['magma_leviathan']||0)>0?'✅':'❌')+' Craft with !craftkey').catch(()=>{});
+        }
+        if (cmd==='craftkey') {
+            const caught=userData.fishCaught.get(userId)||{};
+            const completed=userData.completedQuests.get(userId)||[];
+            if (completed.includes('scylla_key')) return message.reply('✅ Already have the Scylla Key!').catch(()=>{});
+            if (!(caught['crowned_anglerfish']>0&&caught['frozen_leviathan']>0&&caught['magma_leviathan']>0))
+                return message.reply('❌ Need all 3 secret fish! Fish in Marianas Veil (Lv100+).').catch(()=>{});
+            completed.push('scylla_key'); userData.completedQuests.set(userId,completed);
+            checkAchievementGeneral(userId,'scylla',1); await saveData();
+            return message.reply('🔑 **Scylla Key Crafted!** You may now enter the Scylla Chamber!').catch(()=>{});
+        }
+        if (cmd==='teleport') {
+            const bid=args[1];
+            const biome=BIOMES.find(b=>b.id===bid);
+            if (!biome) return message.reply('❌ Usage: !teleport <biomeid> Biomes: '+BIOMES.map(b=>b.id).join(', ')).catch(()=>{});
+            const lvInfo=getLevelInfo(userData.xp.get(userId)||0);
+            if (lvInfo.level<biome.unlockLv) return message.reply('❌ Need Level **'+biome.unlockLv+'**! You are Level '+lvInfo.level+'.').catch(()=>{});
+            const cost=biome.unlockLv*100;
+            if (biome.unlockLv>0&&coins(userId)<cost) return message.reply('❌ Travel costs **'+fmtN(cost)+'** coins!').catch(()=>{});
+            if (biome.unlockLv>0) addCoins(userId,-cost);
+            await saveData();
+            return message.reply('🗺️ Teleported to **'+biome.emoji+' '+biome.name+'**! '+biome.desc+' Now use /fish with biome:'+biome.id).catch(()=>{});
+        }
+        if (cmd==='giverod') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const target=message.mentions.users.first();
+            const rid=args[2];
+            if (!target||!rid) return message.reply('❌ Usage: !giverod @user <rodid>').catch(()=>{});
+            const rod=FISHING_RODS.find(r=>r.id===rid);
+            if (!rod) return message.reply('❌ Invalid rod. IDs: '+FISHING_RODS.map(r=>r.id).join(', ')).catch(()=>{});
+            const owned=userData.rodOwned.get(String(target.id))||[];
+            if (!owned.includes(rid)){owned.push(rid);userData.rodOwned.set(String(target.id),owned);}
+            await saveData();
+            return message.reply('✅ Gave **'+rod.name+'** to **'+target.username+'**.').catch(()=>{});
+        }
+        if (cmd==='forceevent') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const ev=WORLD_EVENTS.find(e=>e.id===args[1]);
+            if (!ev) return message.reply('❌ Invalid event. IDs: '+WORLD_EVENTS.map(e=>e.id).join(', ')).catch(()=>{});
+            userData.worldEvent=ev; userData.worldEventEnd=Date.now()+ev.dur;
+            await saveData();
+            return message.reply('✅ Forced event: **'+ev.emoji+' '+ev.name+'** '+ev.desc).catch(()=>{});
+        }
+        if (cmd==='forceboss') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const b=BOSS_FISH.find(b=>b.id===args[1]);
+            if (!b) return message.reply('❌ Invalid boss. IDs: '+BOSS_FISH.map(b=>b.id).join(', ')).catch(()=>{});
+            userData.activeBoss=b; userData.activeBossHp=b.hp;
+            await saveData();
+            return message.reply('✅ Spawned **'+b.emoji+' '+b.name+'** ('+fmtN(b.hp)+' HP)! Use /fishboss to attack.').catch(()=>{});
+        }
+        if (cmd==='adminhelp') {
+            const help='**Admin Prefix Commands**\n\nStaff: !deletestaff @user | !deletelogs | !deletewelcome | !deletetickets | !deletesuggestions | !deletewarnings @user | !listresponses\n\nOwner: !deletelevel @user | !deletexp @user [amt] | !deletemoney @user | !deleteresponse <trigger> | !clearresponses | !deletepet @user | !deleterod @user | !deleteinventory @user [type] | !deleteguild <name> | !deletemarketlisting <id> | !giverod @user <id> | !forceevent <id> | !forceboss <id> | !teleport <id> | !gathermaterials | !craftingrecipes | !craftstats | !scyllakey | !craftkey';
+            return message.reply(help).catch(()=>{});
+        }
+
+    // ════════════════════════════════════════════════════════
+        // 🚨 ADMIN ABUSE COMMANDS — OWNER ONLY
+        // ════════════════════════════════════════════════════════
+        if (!isOwnerMsg && [
+            'activate','deactivate','minorabuse','majorabuse','catastrophicabuse','developermeltdown',
+            'chaosmode','broadcast','eventannounce','spawnfish','spawnfishall','spawnboss','despawnboss',
+            'doublexp','triplexp','doublemoney','triplemoney','boostall',
+            'setsecretmultiplier','setlegendarymultiplier','setmutationmultiplier',
+            'setfishwebhook','seteconomywebhook','setbosswebhook','setadminabusewebhook',
+            'seteventwebhook','setguildwebhook','seterrorwebhook','testwebhook','webhookstatus',
+            'setmessagelog','setmemberlog','setrolelog','setmodlog','setserverlog','setvoicelog',
+            'logstatus','enablelog','disablelog','ownerpanel','appraise',
+        ].includes(cmd)) {
+            await sendWebhookLog('adminabuse', new EmbedBuilder()
+                .setColor(0xFF0000).setTitle('⛔ Unauthorized Owner Command Attempt')
+                .setDescription(`**User:** ${message.author.tag} (${userId})\n**Command:** !${cmd}\n**Server:** ${message.guild?.name||'DM'}`)
+                .setTimestamp());
+            return message.reply('❌ Owner only! This attempt has been logged.').catch(()=>{});
+        }
+
+        if (cmd==='activate') {
+            const id=args[1];
+            const ev=ABUSE_EVENTS[id];
+            if (!ev) return message.reply('❌ Unknown abuse event. IDs: '+Object.keys(ABUSE_EVENTS).join(', ')).catch(()=>{});
+            abuseConfig.activeEvents[id]={id, endTime:Date.now()+ev.dur};
+            await saveData();
+            await abuseAnnounce(message.channel, `${ev.emoji} ${ev.name} ACTIVATED!`, ev.desc, 0xFF4500);
+            return;
+        }
+
+        if (cmd==='deactivate') {
+            const id=args[1];
+            if (!abuseConfig.activeEvents[id]) return message.reply('❌ That event is not active.').catch(()=>{});
+            delete abuseConfig.activeEvents[id];
+            await saveData();
+            return message.reply(`✅ Deactivated **${id}**.`).catch(()=>{});
+        }
+
+        if (cmd==='minorabuse') {
+            abuseConfig.activeEvents['mutation_madness']={id:'mutation_madness',endTime:Date.now()+1800000};
+            abuseConfig.activeEvents['golden_tide']={id:'golden_tide',endTime:Date.now()+1800000};
+            await saveData();
+            await abuseAnnounce(message.channel,'⚠️ MINOR ABUSE ACTIVATED!',
+                '**Mutation Madness x8** + **Golden Tide x5** are now active for 30 minutes!\n🧬 Mutations are going crazy! 💰 Fish value boosted!', 0xFFAA00);
+            return;
+        }
+
+        if (cmd==='majorabuse') {
+            abuseConfig.activeEvents['mutation_madness']={id:'mutation_madness',endTime:Date.now()+3600000};
+            abuseConfig.activeEvents['golden_tide']={id:'golden_tide',endTime:Date.now()+3600000};
+            abuseConfig.activeEvents['celestial_surge']={id:'celestial_surge',endTime:Date.now()+3600000};
+            abuseConfig.activeEvents['secret_frenzy']={id:'secret_frenzy',endTime:Date.now()+3600000};
+            await saveData();
+            await abuseAnnounce(message.channel,'🔥 MAJOR ABUSE ACTIVATED!',
+                '**4 events** are now live for **1 hour**!\n🧬 Mutations x8 | 💰 Sell x5 | ✴️ Legendary x20 | 🌑 Secret x10\n**THIS IS HUGE!**', 0xFF6600);
+            return;
+        }
+
+        if (cmd==='catastrophicabuse') {
+            Object.keys(ABUSE_EVENTS).forEach(id => {
+                abuseConfig.activeEvents[id]={id,endTime:Date.now()+3600000};
+            });
+            abuseConfig.secretMult=20; abuseConfig.legendaryMult=30; abuseConfig.mutationMult=15;
+            abuseConfig.xpMult=10; abuseConfig.coinMult=10; abuseConfig.sellMult=10;
+            await saveData();
+            await abuseAnnounce(message.channel,'💀 ☠️ CATASTROPHIC ABUSE ☠️ 💀',
+                '**ALL ABUSE EVENTS ACTIVATED + ALL MULTIPLIERS AT MAXIMUM!**\n\n🌑 Secret x20 | ✴️ Legendary x30 | 🧬 Mutation x15\n💰 Sell x10 | ⭐ XP x10 | 💎 Coins x10\n\n**THE SERVER IS ON FIRE. EVERYONE FISH NOW.**', 0xFF0000);
+            return;
+        }
+
+        if (cmd==='developermeltdown') {
+            // The ultimate event — stacks everything, locks weather, spawns boss, announces massively
+            Object.keys(ABUSE_EVENTS).forEach(id => {
+                abuseConfig.activeEvents[id]={id,endTime:Date.now()+7200000};
+            });
+            abuseConfig.secretMult=50; abuseConfig.legendaryMult=50; abuseConfig.mutationMult=25;
+            abuseConfig.xpMult=20; abuseConfig.coinMult=20; abuseConfig.sellMult=20;
+            abuseConfig.weatherOverride='eclipse'; abuseConfig.weatherOverrideEnd=Date.now()+7200000;
+            const boss=BOSS_FISH[BOSS_FISH.length-1];
+            userData.activeBoss=boss; userData.activeBossHp=boss.hp;
+            await saveData();
+            await abuseAnnounce(message.channel,
+                '🌋 ⚠️ D E V E L O P E R   M E L T D O W N ⚠️ 🌋',
+                [
+                    '```',
+                    'THE DEVELOPER HAS LOST CONTROL.',
+                    'EVERYTHING IS BROKEN.',
+                    'EVERYTHING IS AMAZING.',
+                    '```',
+                    '',
+                    '🌑 **Eclipse weather LOCKED** for 2 hours',
+                    '💀 **Void Leviathan** has been spawned!',
+                    '🧬 Mutations: **x25** | 🌑 Secret: **x50**',
+                    '✴️ Legendary: **x50** | 💰 Sell: **x20**',
+                    '⭐ XP: **x20** | 💎 Coins: **x20**',
+                    '',
+                    '**ALL 10 ABUSE EVENTS ACTIVE FOR 2 HOURS.**',
+                    '',
+                    '🎣 **EVERYONE FISH. RIGHT NOW. NO EXCUSES.**',
+                ].join('\n'), 0xFF0000);
+            return;
+        }
+
+        if (cmd==='chaosmode') {
+            abuseConfig.chaosMode = !abuseConfig.chaosMode;
+            await saveData();
+            await abuseAnnounce(message.channel,
+                abuseConfig.chaosMode ? '🌀 CHAOS MODE ENABLED!' : '🌀 Chaos Mode Disabled',
+                abuseConfig.chaosMode
+                    ? 'Every fish caught has a random mutation applied. Nothing is safe.'
+                    : 'Chaos mode is off. Things are... normal again.',
+                abuseConfig.chaosMode ? 0x9B59B6 : 0x95A5A6);
+            return;
+        }
+
+        if (cmd==='broadcast') {
+            if (!rest) return message.reply('❌ Usage: !broadcast <message>').catch(()=>{});
+            const embed = new EmbedBuilder()
+                .setColor(0x3498DB)
+                .setTitle('📢 Server Broadcast')
+                .setDescription(rest)
+                .setTimestamp()
+                .setFooter({text:`Sent by ${message.author.tag}`});
+            await message.channel.send({embeds:[embed]}).catch(()=>{});
+            await sendWebhookLog('adminabuse', embed);
+            return;
+        }
+
+        if (cmd==='eventannounce') {
+            const evId=args[1]; const ev=WORLD_EVENTS.find(e=>e.id===evId)||ABUSE_EVENTS[evId];
+            if (!ev) return message.reply('❌ Unknown event ID.').catch(()=>{});
+            await abuseAnnounce(message.channel, `${ev.emoji} ${ev.name}!`, ev.desc, 0xFF9800);
+            return;
+        }
+
+        if (cmd==='spawnfish') {
+            const fishId=args[1];
+            const fish=FISH_SPECIES.find(f=>f.id===fishId);
+            if (!fish) return message.reply('❌ Unknown fish ID. Check /fishinfo for IDs.').catch(()=>{});
+            const embed = new EmbedBuilder()
+                .setColor(RARITY_COLORS[fish.r]||0x9E9E9E)
+                .setTitle(`🎣 ${fish.emoji} ${fish.name} Spotted!`)
+                .setDescription(`A wild **${fish.name}** (${fish.r}) has appeared in the waters!\nBe the first to catch it with \`/fish\`!`)
+                .addFields({name:'Base Value',value:`💰 ${fmtN(fish.val)} coins`,inline:true},{name:'Rarity',value:fish.r,inline:true})
+                .setTimestamp();
+            await message.channel.send({embeds:[embed]}).catch(()=>{});
+            return;
+        }
+
+        if (cmd==='spawnfishall') {
+            const fishId=args[1];
+            const fish=FISH_SPECIES.find(f=>f.id===fishId);
+            if (!fish) return message.reply('❌ Unknown fish ID.').catch(()=>{});
+            const embed = new EmbedBuilder()
+                .setColor(RARITY_COLORS[fish.r]||0x9E9E9E)
+                .setTitle(`🌊 ${fish.emoji} ${fish.name} EVERYWHERE!`)
+                .setDescription(`**${fish.name}** has flooded ALL fishing spots!\nEveryone fishing right now will catch one! Use \`/fish\` immediately!`)
+                .setTimestamp();
+            await message.channel.send({embeds:[embed]}).catch(()=>{});
+            // Temporarily boost secret/legendary so this fish appears
+            if (fish.r==='Secret') { abuseConfig.secretMult=1000; setTimeout(()=>{abuseConfig.secretMult=1;},60000); }
+            if (fish.r==='Legendary') { abuseConfig.legendaryMult=1000; setTimeout(()=>{abuseConfig.legendaryMult=1;},60000); }
+            return;
+        }
+
+        if (cmd==='spawnboss') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            const b=BOSS_FISH.find(b=>b.id===args[1]);
+            if (!b) return message.reply('❌ Invalid boss. IDs: '+BOSS_FISH.map(b=>b.id).join(', ')).catch(()=>{});
+            userData.activeBoss=b; userData.activeBossHp=b.hp;
+            await saveData();
+            await abuseAnnounce(message.channel, `${b.emoji} ${b.name} SPAWNED!`,
+                `**${b.name}** has appeared with **${fmtN(b.hp)} HP**!\nUse \`/fishboss\` to attack!\nReward: 💰 ${fmtN(b.reward)} coins | ⭐ ${fmtN(b.xp)} XP`, 0xFF4444);
+            await sendWebhookLog('boss', new EmbedBuilder().setColor(0xFF4444)
+                .setTitle(`[BOSS] ${b.emoji} ${b.name} Spawned`)
+                .setDescription(`HP: ${fmtN(b.hp)} | Reward: ${fmtN(b.reward)} | Spawned by: ${message.author.tag}`)
+                .setTimestamp());
+            return;
+        }
+
+        if (cmd==='despawnboss') {
+            userData.activeBoss=null; userData.activeBossHp=0;
+            await saveData();
+            return message.reply('✅ Boss despawned.').catch(()=>{});
+        }
+
+        if (cmd==='doublexp') {
+            abuseConfig.xpMult=2; abuseConfig.coinMult=abuseConfig.coinMult||1;
+            setTimeout(async()=>{abuseConfig.xpMult=1;await saveData();},3600000);
+            await saveData();
+            await abuseAnnounce(message.channel,'⭐ Double XP!','All XP gains are **2x** for 1 hour! Get fishing!',0x57F287);
+            return;
+        }
+        if (cmd==='triplexp') {
+            abuseConfig.xpMult=3;
+            setTimeout(async()=>{abuseConfig.xpMult=1;await saveData();},3600000);
+            await saveData();
+            await abuseAnnounce(message.channel,'⭐⭐ TRIPLE XP!','All XP gains are **3x** for 1 hour! GO GO GO!',0x57F287);
+            return;
+        }
+        if (cmd==='doublemoney') {
+            abuseConfig.sellMult=2;
+            setTimeout(async()=>{abuseConfig.sellMult=1;await saveData();},3600000);
+            await saveData();
+            await abuseAnnounce(message.channel,'💰 Double Money!','All fish sell for **2x** their value for 1 hour!',0xFFD700);
+            return;
+        }
+        if (cmd==='triplemoney') {
+            abuseConfig.sellMult=3;
+            setTimeout(async()=>{abuseConfig.sellMult=1;await saveData();},3600000);
+            await saveData();
+            await abuseAnnounce(message.channel,'💰💰 TRIPLE MONEY!','All fish sell for **3x** their value for 1 hour!',0xFFD700);
+            return;
+        }
+        if (cmd==='boostall') {
+            abuseConfig.xpMult=3; abuseConfig.coinMult=3; abuseConfig.sellMult=3;
+            abuseConfig.mutationMult=5; abuseConfig.legendaryMult=5;
+            setTimeout(async()=>{abuseConfig.xpMult=1;abuseConfig.coinMult=1;abuseConfig.sellMult=1;abuseConfig.mutationMult=1;abuseConfig.legendaryMult=1;await saveData();},3600000);
+            await saveData();
+            await abuseAnnounce(message.channel,'🚀 BOOST ALL!',
+                '**XP x3 | Coins x3 | Sell x3 | Mutations x5 | Legendary x5**\nAll active for 1 hour!',0xFF9800);
+            return;
+        }
+
+        if (cmd==='setsecretmultiplier') {
+            const v=parseFloat(args[1]);
+            if (isNaN(v)||v<1) return message.reply('❌ Usage: !setsecretmultiplier <number ≥ 1>').catch(()=>{});
+            abuseConfig.secretMult=v; await saveData();
+            return message.reply(`✅ Secret fish multiplier set to **${v}x**.`).catch(()=>{});
+        }
+        if (cmd==='setlegendarymultiplier') {
+            const v=parseFloat(args[1]);
+            if (isNaN(v)||v<1) return message.reply('❌ Usage: !setlegendarymultiplier <number ≥ 1>').catch(()=>{});
+            abuseConfig.legendaryMult=v; await saveData();
+            return message.reply(`✅ Legendary fish multiplier set to **${v}x**.`).catch(()=>{});
+        }
+        if (cmd==='setmutationmultiplier') {
+            const v=parseFloat(args[1]);
+            if (isNaN(v)||v<1) return message.reply('❌ Usage: !setmutationmultiplier <number ≥ 1>').catch(()=>{});
+            abuseConfig.mutationMult=v; await saveData();
+            return message.reply(`✅ Mutation multiplier set to **${v}x**.`).catch(()=>{});
+        }
+
+    // ════════════════════════════════════════════════════════
+        // 🔗 WEBHOOK COMMANDS — OWNER ONLY
+        // ════════════════════════════════════════════════════════
+        if (cmd==='setfishwebhook')       { webhookConfig.fish=args[1]||null;       await saveData(); return message.reply(`✅ Fish webhook ${args[1]?'set':'cleared'}.`).catch(()=>{}); }
+        if (cmd==='seteconomywebhook')    { webhookConfig.economy=args[1]||null;    await saveData(); return message.reply(`✅ Economy webhook ${args[1]?'set':'cleared'}.`).catch(()=>{}); }
+        if (cmd==='setbosswebhook')       { webhookConfig.boss=args[1]||null;       await saveData(); return message.reply(`✅ Boss webhook ${args[1]?'set':'cleared'}.`).catch(()=>{}); }
+        if (cmd==='setadminabusewebhook') { webhookConfig.adminabuse=args[1]||null; await saveData(); return message.reply(`✅ Admin Abuse webhook ${args[1]?'set':'cleared'}.`).catch(()=>{}); }
+        if (cmd==='seteventwebhook')      { webhookConfig.event=args[1]||null;      await saveData(); return message.reply(`✅ Event webhook ${args[1]?'set':'cleared'}.`).catch(()=>{}); }
+        if (cmd==='setguildwebhook')      { webhookConfig.guild=args[1]||null;      await saveData(); return message.reply(`✅ Guild webhook ${args[1]?'set':'cleared'}.`).catch(()=>{}); }
+        if (cmd==='seterrorwebhook')      { webhookConfig.error=args[1]||null;      await saveData(); return message.reply(`✅ Error webhook ${args[1]?'set':'cleared'}.`).catch(()=>{}); }
+
+        if (cmd==='testwebhook') {
+            const type=args[1]||'fish';
+            if (!webhookConfig[type]) return message.reply(`❌ No webhook set for **${type}**. Use !set${type}webhook <url>`).catch(()=>{});
+            await sendWebhookLog(type, new EmbedBuilder()
+                .setColor(0x57F287).setTitle('✅ Webhook Test').setDescription(`Test from **${message.author.tag}** — this webhook is working!`).setTimestamp());
+            return message.reply(`✅ Test embed sent to **${type}** webhook!`).catch(()=>{});
+        }
+
+        if (cmd==='webhookstatus') {
+            const lines=Object.entries(webhookConfig).map(([k,v])=>`**${k}:** ${v?'✅ Set':'❌ Not set'}`);
+            const embed=new EmbedBuilder().setColor(0x3498DB).setTitle('🔗 Webhook Status').setDescription(lines.join('\n')).setTimestamp();
+            return message.reply({embeds:[embed]}).catch(()=>{});
+        }
+
+        // ════════════════════════════════════════════════════════
+        // 📋 ADVANCED LOG SETUP COMMANDS — OWNER ONLY
+        // ════════════════════════════════════════════════════════
+        const logTypes=['message','member','role','mod','server','voice'];
+        const logCmds={setmessagelog:'message',setmemberlog:'member',setrolelog:'role',setmodlog:'mod',setserverlog:'server',setvoicelog:'voice'};
+        if (logCmds[cmd]) {
+            const cat=logCmds[cmd];
+            const chId=message.mentions.channels.first()?.id||args[1];
+            if (!chId) return message.reply(`❌ Usage: !${cmd} #channel`).catch(()=>{});
+            if (!advancedLogsConfig[cat]) advancedLogsConfig[cat]={};
+            advancedLogsConfig[cat][message.guildId]={channelId:chId,enabled:true};
+            await saveData();
+            return message.reply(`✅ **${cat}** logs → <#${chId}>`).catch(()=>{});
+        }
+
+        if (cmd==='enablelog') {
+            const cat=args[1];
+            if (!logTypes.includes(cat)) return message.reply('❌ Categories: '+logTypes.join(', ')).catch(()=>{});
+            if (!advancedLogsConfig[cat]) advancedLogsConfig[cat]={};
+            if (!advancedLogsConfig[cat][message.guildId]) return message.reply('❌ Set a channel first with !set'+cat+'log').catch(()=>{});
+            advancedLogsConfig[cat][message.guildId].enabled=true;
+            await saveData();
+            return message.reply(`✅ **${cat}** logs enabled.`).catch(()=>{});
+        }
+
+        if (cmd==='disablelog') {
+            const cat=args[1];
+            if (!logTypes.includes(cat)) return message.reply('❌ Categories: '+logTypes.join(', ')).catch(()=>{});
+            if (advancedLogsConfig[cat]?.[message.guildId]) advancedLogsConfig[cat][message.guildId].enabled=false;
+            await saveData();
+            return message.reply(`✅ **${cat}** logs disabled.`).catch(()=>{});
+        }
+
+        if (cmd==='logstatus') {
+            const lines=logTypes.map(cat=>{
+                const cfg=advancedLogsConfig[cat]?.[message.guildId];
+                return `**${cat}:** ${cfg?.channelId?`<#${cfg.channelId}> ${cfg.enabled?'✅':'⏸️'}`:'❌ Not set'}`;
+            });
+            const embed=new EmbedBuilder().setColor(0x3498DB).setTitle('📋 Log Status').setDescription(lines.join('\n')).setTimestamp();
+            return message.reply({embeds:[embed]}).catch(()=>{});
+        }
+
+        // ════════════════════════════════════════════════════════
+        // 🏆 OWNER PANEL
+        // ════════════════════════════════════════════════════════
+        // ════════════════════════════════════════════════════════
+        // 🚫⏰ OWNER COOLDOWN OVERRIDE COMMANDS
+        // ════════════════════════════════════════════════════════
+
+        if (cmd==='nocooldown') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            // Usage: !nocooldown <@user|userId> [minutes]
+            // Grants a user no-cooldown override for fishing (default: permanent until removed)
+            const target = message.mentions.users.first() || (args[1] ? await client.users.fetch(args[1]).catch(()=>null) : null);
+            if (!target) return message.reply('❌ Usage: `!nocooldown <@user|userId> [minutes]`').catch(()=>{});
+            const mins = parseInt(args[2]);
+            const expiry = (!isNaN(mins) && mins > 0) ? Date.now() + mins * 60000 : Date.now() + 365 * 24 * 60 * 60 * 1000; // 1 year = "permanent"
+            userData.noCooldown.set(String(target.id), expiry);
+            await saveData();
+            const expiryStr = (!isNaN(mins) && mins > 0) ? `for **${mins} minute(s)**` : '**permanently** (until removed)';
+            const embed = new EmbedBuilder()
+                .setColor(0x57F287)
+                .setTitle('🚫⏰ No-Cooldown Override Granted')
+                .setDescription(`${target} now has **no fishing cooldown** ${expiryStr}.`)
+                .addFields(
+                    { name: 'User', value: `${target.tag} (\`${target.id}\`)`, inline: true },
+                    { name: 'Expires', value: (!isNaN(mins) && mins > 0) ? `<t:${Math.floor(expiry/1000)}:R>` : 'Never (manual removal required)', inline: true }
+                )
+                .setTimestamp()
+                .setFooter({ text: `Granted by ${message.author.tag}` });
+            return message.reply({ embeds: [embed] }).catch(()=>{});
+        }
+
+        if (cmd==='removenocooldown') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            // Usage: !removenocooldown <@user|userId>
+            const target = message.mentions.users.first() || (args[1] ? await client.users.fetch(args[1]).catch(()=>null) : null);
+            if (!target) return message.reply('❌ Usage: `!removenocooldown <@user|userId>`').catch(()=>{});
+            const had = userData.noCooldown.has(String(target.id));
+            userData.noCooldown.delete(String(target.id));
+            await saveData();
+            const embed = new EmbedBuilder()
+                .setColor(had ? 0xFF4500 : 0x9E9E9E)
+                .setTitle('⏰ No-Cooldown Override Removed')
+                .setDescription(had
+                    ? `${target}'s no-cooldown override has been **removed**. Normal cooldowns apply.`
+                    : `${target} did not have a no-cooldown override.`)
+                .setTimestamp()
+                .setFooter({ text: `Removed by ${message.author.tag}` });
+            return message.reply({ embeds: [embed] }).catch(()=>{});
+        }
+
+        if (cmd==='nocooldownlist') {
+            if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
+            // Lists all users with active no-cooldown overrides
+            const now = Date.now();
+            const active = [];
+            for (const [uid, exp] of userData.noCooldown.entries()) {
+                if (exp > now) {
+                    const isPerm = exp > now + 364 * 24 * 60 * 60 * 1000;
+                    active.push({ uid, exp, isPerm });
+                } else {
+                    // Clean up expired entries
+                    userData.noCooldown.delete(uid);
+                }
+            }
+            if (active.length === 0) {
+                return message.reply('📋 No users currently have a no-cooldown override.').catch(()=>{});
+            }
+            const lines = await Promise.all(active.map(async ({ uid, exp, isPerm }) => {
+                const user = await client.users.fetch(uid).catch(()=>null);
+                const tag = user ? `**${user.tag}** (\`${uid}\`)` : `\`${uid}\``;
+                const expStr = isPerm ? '♾️ Permanent' : `<t:${Math.floor(exp/1000)}:R>`;
+                return `• ${tag} — ${expStr}`;
+            }));
+            const embed = new EmbedBuilder()
+                .setColor(0x3498DB)
+                .setTitle('🚫⏰ No-Cooldown Override List')
+                .setDescription(lines.join('\n') || 'None')
+                .setFooter({ text: `${active.length} active override(s)` })
+                .setTimestamp();
+            return message.reply({ embeds: [embed] }).catch(()=>{});
+        }
+
+        if (cmd==='ownerpanel') {
+            const activeAbuse=Object.entries(abuseConfig.activeEvents)
+                .map(([id,ae])=>`• **${ABUSE_EVENTS[id]?.name||id}** — ends <t:${Math.floor(ae.endTime/1000)}:R>`)
+                .join('\n')||'None';
+            const embed=new EmbedBuilder()
+                .setColor(0xFF4500)
+                .setTitle('👑 Owner Panel — Fisch Admin Abuse System')
+                .addFields(
+                    {name:'🌀 Active Abuse Events',  value:activeAbuse},
+                    {name:'🔢 Multipliers',value:[
+                        `🌑 Secret: **${abuseConfig.secretMult||1}x**`,
+                        `✴️ Legendary: **${abuseConfig.legendaryMult||1}x**`,
+                        `🧬 Mutation: **${abuseConfig.mutationMult||1}x**`,
+                        `⭐ XP: **${abuseConfig.xpMult||1}x**`,
+                        `💰 Sell: **${abuseConfig.sellMult||1}x**`,
+                    ].join(' | ')},
+                    {name:'🌤️ Weather Override', value:abuseConfig.weatherOverride&&abuseConfig.weatherOverrideEnd>Date.now()?`${abuseConfig.weatherOverride} until <t:${Math.floor(abuseConfig.weatherOverrideEnd/1000)}:R>`:'None'},
+                    {name:'🌀 Chaos Mode',value:abuseConfig.chaosMode?'✅ ENABLED':'❌ Off'},
+                    {name:'🔗 Webhooks',value:Object.entries(webhookConfig).map(([k,v])=>`**${k}:** ${v?'✅':'❌'}`).join(' | ')},
+                )
+                .setTimestamp()
+                .addFields({name:'🚫⏰ No-Cooldown Overrides', value:`**${userData.noCooldown.size}** active override(s)`})
+                .setFooter({text:'Visible to owner only'});
+            return message.reply({embeds:[embed]}).catch(()=>{});
+        }
+
+        // ════════════════════════════════════════════════════════
+        // 🎲 APPRAISAL COMMAND
+        // ════════════════════════════════════════════════════════
+        if (cmd==='appraise') {
+            // BUG FIX: appraise now works on actual inventory fish by slot number
+            const idxArg = parseInt(args[1]);
+            const inv = userData.fishInv.get(userId) || [];
+            if (!args[1] || isNaN(idxArg) || idxArg < 1 || idxArg > inv.length) {
+                return message.reply(`❌ Usage: \`!appraise <slot#>\`\nYou have **${inv.length}** fish in inventory. Appraisal gambles the fish's stored value!`).catch(()=>{});
+            }
+            const slot = inv[idxArg - 1];
+            const fish = FISH_SPECIES.find(f => f.id === slot.fishId);
+            if (!fish) return message.reply('❌ Fish data not found for that slot.').catch(()=>{});
+            const baseVal = slot.value;
+            const outcome = weightedRandom(APPRAISAL_OUTCOMES);
+            const newVal = Math.round(baseVal * outcome.coinMult);
+            const diff = newVal - baseVal;
+            const color = outcome.coinMult >= 2 ? 0x57F287 : outcome.coinMult >= 1 ? 0xFFA500 : 0xFF0000;
+            let mutNote = '';
+            const curMut = MUTATIONS.find(m => m.id === slot.mutId) || MUTATIONS[0];
+            if (outcome.mutUpgrade && curMut.id === 'none') {
+                const nonNone = MUTATIONS.filter(m => m.id !== 'none');
+                const newMut = weightedRandom(nonNone);
+                slot.mutId = newMut.id;
+                mutNote = `\n🧬 **Mutation gained!** Fish is now **${newMut.name}** (${newMut.mult}x)!`;
+            } else if (outcome.mutLoss && curMut.id !== 'none') {
+                slot.mutId = 'none';
+                mutNote = '\n💔 **Mutation lost!** The appraisal stripped your fish\'s mutation.';
+            }
+            slot.value = newVal;
+            inv[idxArg - 1] = slot;
+            userData.fishInv.set(userId, inv);
+            await saveData();
+            const embed = new EmbedBuilder()
+                .setColor(color)
+                .setTitle(`🎲 Fish Appraisal — ${fish.emoji} ${fish.name}`)
+                .setDescription([
+                    `**Result:** ${outcome.label}`,
+                    `${outcome.desc}${mutNote}`,
+                    '',
+                    `**Base Value:** 💰 ${fmtN(baseVal)}`,
+                    `**New Value:** 💰 ${fmtN(newVal)} (${diff >= 0 ? '+' : ''}${fmtN(diff)})`,
+                    `**Multiplier:** ${outcome.coinMult}x`,
+                ].join('\n'))
+                .setTimestamp()
+                .setFooter({text: 'Appraisal results are final. Gamble responsibly!'});
+            return message.reply({embeds: [embed]}).catch(()=>{});
+        }
+
+    } catch(e) { console.error('❌ Message handler error:', e?.message); }
+});
+            // ════════════════════════════════════════════════════════════════
+// ♦️ GAME SESSION CLEANUP
+// ════════════════════════════════════════════════════════════════
+setInterval(() => {
+    const now=Date.now();
+    for (const [id,g] of wordleGames) if (now-(g.startTime||0)>WORDLE_TIMEOUT) wordleGames.delete(id);
+    for (const [id,g] of hangGames)   if (now-(g.ts||g.startTime||0)>GAME_TIMEOUT) hangGames.delete(id);
+    for (const [id,g] of tttGames)    if (now-(g.ts||g.startTime||0)>GAME_TIMEOUT) tttGames.delete(id);
+    for (const [id,g] of c4Games)     if (now-(g.ts||g.startTime||0)>GAME_TIMEOUT) c4Games.delete(id);
+    for (const [id,g] of bjGames)     if (!g.active)                       bjGames.delete(id);
+}, CLEANUP_INTERVAL);
+
+// ════════════════════════════════════════════════════════════════
+// ♦️ ERROR HANDLERS
+// ════════════════════════════════════════════════════════════════
+process.on('unhandledRejection', err => console.error('⚠️ Unhandled:', err?.message||err));
+process.on('uncaughtException',  err => console.error('⚠️ Uncaught:', err?.message||err));
+client.on('error', err => console.error('⚠️ Client error:', err?.message||err));
+client.on('warn', info => console.warn('⚠️ Client warn:', info));
+
+// ════════════════════════════════════════════════════════════════
+// ♦️ GRACEFUL SHUTDOWN
+// ════════════════════════════════════════════════════════════════
+async function gracefulShutdown(signal) {
+    console.log(`\n🔴 ${signal} received — saving data and shutting down...`);
+    try {
+        await saveData(true); // Force immediate save
+        cooldownManager.destroy();
+        client.destroy();
+        console.log('✅ Shutdown complete.');
+        process.exit(0);
+    } catch(e) {
+        console.error('❌ Shutdown error:', e?.message);
+        process.exit(1);
+    }
+}
+process.on('SIGINT',  () => gracefulShutdown('SIGINT'));
+process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
+
+// ════════════════════════════════════════════════════════════════
+// ♦️ ADMIN ABUSE SYSTEM
+// ════════════════════════════════════════════════════════════════
+const ABUSE_EVENTS = {
+    secret_frenzy:    { name:'Secret Frenzy',      emoji:'🌑', desc:'Secret fish rates x10 for 30 minutes!',         secretMult:10, dur:1800000 },
+    mutation_madness: { name:'Mutation Madness',   emoji:'🧬', desc:'All mutation rates x8 for 30 minutes!',          mutMult:8,    dur:1800000 },
+    boss_rush:        { name:'Boss Rush',           emoji:'💀', desc:'Boss spawns x5 for 1 hour!',                    bossSpawn:5,  dur:3600000 },
+    golden_tide:      { name:'Golden Tide',         emoji:'✨', desc:'All fish sell for 5x value for 1 hour!',        sellMult:5,   dur:3600000 },
+    celestial_surge:  { name:'Celestial Surge',    emoji:'✴️', desc:'Legendary fish rates x20 for 30 minutes!',      legMult:20,   dur:1800000 },
+    void_corruption:  { name:'Void Corruption',    emoji:'🌀', desc:'Mythical fish rates x15 for 30 minutes!',       mythMult:15,  dur:1800000 },
+    leviathan_rampage:{ name:'Leviathan Rampage',  emoji:'🌊', desc:'All boss HP halved, rewards doubled for 1 hour!',bossReward:2, dur:3600000 },
+    kraken_takeover:  { name:'Kraken Takeover',    emoji:'🦑', desc:'Kraken mutation x20, rare fish everywhere!',    mutMult:20,   dur:1800000 },
+    eternal_eclipse:  { name:'Eternal Eclipse',    emoji:'🌑', desc:'Eclipse weather locked for 1 hour!',            weather:'eclipse', dur:3600000 },
+    storm_of_riches:  { name:'Storm of Riches',    emoji:'💰', desc:'XP x5, coins x5 for 1 hour!',                  xpMult:5, coinMult:5, dur:3600000 },
+};
+
+// Global abuse state — persists via abuseConfig in saveData
+let abuseConfig = {
+    activeEvents: {},   // id → { event, endTime }
+    secretMult: 1,
+    legendaryMult: 1,
+    mutationMult: 1,
+    xpMult: 1,
+    coinMult: 1,
+    sellMult: 1,
+    weatherOverride: null,
+    weatherOverrideEnd: 0,
+    chaosMode: false,
+};
+
+function getAbuseMultiplier(type) {
+    // Clean expired events first
+    const now = Date.now();
+    for (const [id, ae] of Object.entries(abuseConfig.activeEvents)) {
+        if (ae.endTime < now) delete abuseConfig.activeEvents[id];
+    }
+    let mult = 1;
+    for (const ae of Object.values(abuseConfig.activeEvents)) {
+        const ev = ABUSE_EVENTS[ae.id];
+        if (!ev) continue;
+        if (type === 'secret'    && ev.secretMult) mult *= ev.secretMult;
+        if (type === 'legendary' && ev.legMult)    mult *= ev.legMult;
+        if (type === 'mythical'  && ev.mythMult)   mult *= ev.mythMult;
+        if (type === 'mutation'  && ev.mutMult)    mult *= ev.mutMult;
+        if (type === 'sell'      && ev.sellMult)   mult *= ev.sellMult;
+        if (type === 'xp'        && ev.xpMult)     mult *= ev.xpMult;
+        if (type === 'coin'      && ev.coinMult)   mult *= ev.coinMult;
+    }
+    if (type === 'secret')    mult *= abuseConfig.secretMult   || 1;
+    if (type === 'legendary') mult *= abuseConfig.legendaryMult|| 1;
+    if (type === 'mutation')  mult *= abuseConfig.mutationMult || 1;
+    if (type === 'xp')        mult *= abuseConfig.xpMult       || 1;
+    if (type === 'coin')      mult *= abuseConfig.coinMult     || 1;
+    if (type === 'sell')      mult *= abuseConfig.sellMult     || 1;
+    return mult;
+}
+
+function getAbuseWeather() {
+    if (abuseConfig.weatherOverride && abuseConfig.weatherOverrideEnd > Date.now())
+        return WEATHER_EFFECTS.find(w=>w.id===abuseConfig.weatherOverride) || null;
+    return null;
+}
+
+async function abuseAnnounce(channel, title, desc, color=0xFF4500) {
+    const embed = new EmbedBuilder()
+        .setColor(color)
+        .setTitle(`🚨 ${title}`)
+        .setDescription(desc)
+        .setTimestamp()
+        .setFooter({text:'Admin Abuse System • Owner-Certified Event'});
+    await channel.send({embeds:[embed]}).catch(()=>{});
+    await sendWebhookLog('adminabuse', new EmbedBuilder()
+        .setColor(color).setTitle(`[ABUSE LOG] ${title}`).setDescription(desc).setTimestamp());
+            }
+
+// ════════════════════════════════════════════════════════════════
+// ♦️ WEBHOOK AUDIT SYSTEM
+// ════════════════════════════════════════════════════════════════
+let webhookConfig = {
+    fish:       null,   // webhook URL
+    economy:    null,
+    boss:       null,
+    adminabuse: null,
+    event:      null,
+    guild:      null,
+    error:      null,
+};
+
+async function sendWebhookLog(type, embed) {
+    const url = webhookConfig[type];
+    if (!url) return;
+    try {
+        const body = {
+            username: 'Fisch Audit Log',
+            avatar_url: 'https://media.discordapp.net/attachments/1340069836096667859/fisch_icon.png',
+            embeds: [embed.toJSON()],
+        };
+        await fetch(url, {
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify(body),
+        });
+    } catch(e) { console.error('Webhook error:', e?.message); }
+}
+
+// ════════════════════════════════════════════════════════════════
+// ♦️ ADVANCED LOGGING SYSTEM (Carl-bot style)
+// ════════════════════════════════════════════════════════════════
+// (guildPrefixes and advancedLogsConfig already declared at top)
+
+// Message cache for edit/delete logs
+const messageCache = new Map(); // messageId → {content, author, channel}
+
+async function sendAdvLog(guild, category, embed) {
+    try {
+        const cfg = advancedLogsConfig[category]?.[guild.id];
+        if (!cfg || !cfg.enabled || !cfg.channelId) return;
+        const ch = await guild.channels.fetch(cfg.channelId).catch(()=>null);
+        // BUG FIX: verify channel is text-based before sending
+        if (!ch || !ch.isTextBased()) return;
+        await ch.send({embeds:[embed]}).catch(()=>{});
+    } catch(e) {}
+}
+
+// Message events
+client.on('messageCreate', msg => {
+    if (msg.author?.bot) return;
+    const now = Date.now();
+    if (msg.content)         messageCache.set(msg.id, {
+            content: msg.content,
+            author: msg.author?.tag,
+            authorId: msg.author?.id,
+            channel: msg.channel?.name,
+            channelId: msg.channelId,
+            guildId: msg.guildId,
+            attachments: [...(msg.attachments?.values()||[])].map(a=>a.url),
+            timestamp: now, // Add timestamp for age-based cleanup
+        });
+    // Limit cache size and implement time-based cleanup
+    const MESSAGE_CACHE_MAX_AGE = 3600 * 1000; // 1 hour
+    if (messageCache.size > 2000) {
+        // Remove oldest entry if over size limit
+        const first = messageCache.keys().next().value;
+        messageCache.delete(first);
+    }
+    // Periodically clean up old messages (e.g., every 100 messages added)
+    if (Math.random() < 0.01) { // 1% chance to run cleanup on message add
+        for (const [id, msgData] of messageCache.entries()) {
+            if (now - (msgData.timestamp || 0) > MESSAGE_CACHE_MAX_AGE) {
+                messageCache.delete(id);
+            }
+        }
+    }
+});
+
+client.on('messageUpdate', async (oldMsg, newMsg) => {
+    if (!newMsg.guild || newMsg.author?.bot) return;
+    const cached = messageCache.get(newMsg.id);
+    const oldContent = cached?.content || oldMsg.content || '*Unknown*';
+    const newContent = newMsg.content || '*Empty*';
+    if (oldContent === newContent) return;
+    if (cached) cached.content = newContent;
+    const embed = new EmbedBuilder()
+        .setColor(0xFFA500)
+        .setTitle('✏️ Message Edited')
+        .addFields(
+            {name:'Author', value:`<@${newMsg.author?.id}> (${newMsg.author?.tag})`, inline:true},
+            {name:'Channel', value:`<#${newMsg.channelId}>`, inline:true},
+            {name:'Before', value:oldContent.slice(0,1000)||'*Empty*'},
+            {name:'After',  value:newContent.slice(0,1000)||'*Empty*'},
+        )
+        .setTimestamp();
+    await sendAdvLog(newMsg.guild, 'message', embed);
+});
+
+client.on('messageDelete', async msg => {
+    if (!msg.guild) return;
+    const cached = messageCache.get(msg.id);
+    const content = cached?.content || msg.content || '*Unknown (not cached)*';
+    const author = cached?.author || msg.author?.tag || '*Unknown*';
+    const attachments = cached?.attachments || [];
+    const embed = new EmbedBuilder()
+        .setColor(0xFF0000)
+        .setTitle('🗑️ Message Deleted')
+        .addFields(
+            {name:'Author', value:`${author} (<@${cached?.authorId||msg.author?.id||'?'}>)`, inline:true},
+            {name:'Channel', value:`<#${msg.channelId}>`, inline:true},
+            {name:'Content', value:content.slice(0,1000)||'*Empty*'},
+        )
+        .setTimestamp();
+    if (attachments.length) embed.addFields({name:'Attachments', value:attachments.join('\n').slice(0,500)});
+    await sendAdvLog(msg.guild, 'message', embed);
+    messageCache.delete(msg.id);
+});
+
+// Member events (guildMemberAdd is handled at the bottom of the file)
+
+client.on('guildMemberRemove', async member => {
+    const embed = new EmbedBuilder()
+        .setColor(0xFF6600)
+        .setTitle('📤 Member Left')
+        .setThumbnail(member.user.displayAvatarURL())
+        .addFields(
+            {name:'User', value:`${member.user.tag} (<@${member.id}>)`, inline:true},
+            {name:'Joined', value:member.joinedAt?cdStr(Date.now()-member.joinedTimestamp)+' ago':'Unknown', inline:true},
+        )
+        .setTimestamp();
+    await sendAdvLog(member.guild, 'member', embed);
+});
+
+client.on('guildMemberUpdate', async (oldMember, newMember) => {
+    const changes = [];
+    if (oldMember.nickname !== newMember.nickname)
+        changes.push(`**Nickname:** \`${oldMember.nickname||'None'}\` → \`${newMember.nickname||'None'}\``);
+    const addedRoles  = newMember.roles.cache.filter(r=>!oldMember.roles.cache.has(r.id));
+    const removedRoles= oldMember.roles.cache.filter(r=>!newMember.roles.cache.has(r.id));
+    if (addedRoles.size)   changes.push(`**Roles Added:** ${addedRoles.map(r=>`<@&${r.id}>`).join(', ')}`);
+    if (removedRoles.size) changes.push(`**Roles Removed:** ${removedRoles.map(r=>`<@&${r.id}>`).join(', ')}`);
+    if (!changes.length) return;
+    const embed = new EmbedBuilder()
+        .setColor(0x3498DB)
+        .setTitle('👤 Member Updated')
+        .setDescription(`<@${newMember.id}> (${newMember.user.tag})\n${changes.join('\n')}`)
+        .setTimestamp();
+    await sendAdvLog(newMember.guild, 'member', embed);
+    if (addedRoles.size || removedRoles.size) await sendAdvLog(newMember.guild, 'role', embed);
+});
+
+// Role events
+client.on('roleCreate', async role => {
+    const embed = new EmbedBuilder().setColor(0x00FF7F).setTitle('✅ Role Created')
+        .addFields({name:'Role', value:`<@&${role.id}> (${role.name})`, inline:true}).setTimestamp();
+    await sendAdvLog(role.guild, 'role', embed);
+});
+client.on('roleDelete', async role => {
+    const embed = new EmbedBuilder().setColor(0xFF0000).setTitle('❌ Role Deleted')
+        .addFields({name:'Role', value:role.name, inline:true}).setTimestamp();
+    await sendAdvLog(role.guild, 'role', embed);
+});
+client.on('roleUpdate', async (oldRole, newRole) => {
+    const changes = [];
+    if (oldRole.name !== newRole.name) changes.push(`**Name:** \`${oldRole.name}\` → \`${newRole.name}\``);
+    if (oldRole.color !== newRole.color) changes.push(`**Color:** \`#${oldRole.color.toString(16)}\` → \`#${newRole.color.toString(16)}\``);
+    if (!changes.length) return;
+    const embed = new EmbedBuilder().setColor(0xFFA500).setTitle('🔄 Role Updated')
+        .setDescription(`<@&${newRole.id}>\n${changes.join('\n')}`).setTimestamp();
+    await sendAdvLog(newRole.guild, 'role', embed);
+});
+
+// Server events
+client.on('channelCreate', async ch => {
+    if (!ch.guild) return;
+    const embed = new EmbedBuilder().setColor(0x00FF00).setTitle('📢 Channel Created')
+        .addFields({name:'Channel', value:`<#${ch.id}> (${ch.name})`, inline:true}).setTimestamp();
+    await sendAdvLog(ch.guild, 'server', embed);
+});
+client.on('channelDelete', async ch => {
+    if (!ch.guild) return;
+    const embed = new EmbedBuilder().setColor(0xFF0000).setTitle('🗑️ Channel Deleted')
+        .addFields({name:'Channel', value:ch.name, inline:true}).setTimestamp();
+    await sendAdvLog(ch.guild, 'server', embed);
+});
+
+// Voice events
+client.on('voiceStateUpdate', async (oldState, newState) => {
+    const user = newState.member?.user || oldState.member?.user;
+    const guild = newState.guild || oldState.guild;
+    if (!guild || !user) return;
+    let action = '';
+    if (!oldState.channelId && newState.channelId) action = `🔊 **${user.tag}** joined <#${newState.channelId}>`;
+    else if (oldState.channelId && !newState.channelId) action = `🔇 **${user.tag}** left <#${oldState.channelId}>`;
+    else if (oldState.channelId !== newState.channelId) action = `🔀 **${user.tag}** moved from <#${oldState.channelId}> to <#${newState.channelId}>`;
+    if (!action) return;
+    const embed = new EmbedBuilder().setColor(0x9B59B6).setTitle('🎙️ Voice Activity').setDescription(action).setTimestamp();
+    await sendAdvLog(guild, 'voice', embed);
+});
+
+
+// ════════════════════════════════════════════════════════════════
+// ♦️ APPRAISAL SYSTEM
+// ════════════════════════════════════════════════════════════════
+const APPRAISAL_OUTCOMES = [
+    // outcome, weight, label, coinMult, description
+    { id:'jackpot',      weight:2,   label:'💎 JACKPOT!',          coinMult:5.0,  mutUpgrade:true,  mutLoss:false, desc:'Incredible! Fish value and mutation both upgraded!' },
+    { id:'great',        weight:8,   label:'✨ Great Appraisal!',   coinMult:2.5,  mutUpgrade:false, mutLoss:false, desc:'Fish appraised brilliantly! Big value boost!' },
+    { id:'good',         weight:20,  label:'👍 Good',               coinMult:1.5,  mutUpgrade:false, mutLoss:false, desc:'Solid result. Value increased.' },
+    { id:'neutral',      weight:30,  label:'😐 Unchanged',          coinMult:1.0,  mutUpgrade:false, mutLoss:false, desc:'Appraiser shrugged. Nothing changed.' },
+    { id:'bad',          weight:20,  label:'👎 Bad Appraisal',      coinMult:0.6,  mutUpgrade:false, mutLoss:false, desc:'Appraiser found flaws. Value dropped.' },
+    { id:'terrible',     weight:12,  label:'💸 Terrible!',          coinMult:0.3,  mutUpgrade:false, mutLoss:true,  desc:'Disaster! Mutation lost and value tanked.' },
+    { id:'catastrophic', weight:8,   label:'💀 CATASTROPHIC!',      coinMult:0.1,  mutUpgrade:false, mutLoss:true,  desc:'The fish was ruined. You lost almost everything.' },
+];
+
+// ════════════════════════════════════════════════════════════════
+// ♦️ INJECT ABUSE MULTIPLIERS INTO EXISTING CATCH LOGIC
+// ════════════════════════════════════════════════════════════════
+// Patch RARITY_WEIGHTS to respect abuse multipliers at runtime
+function getAdjustedRarityWeights() {
+    const w = {...RARITY_WEIGHTS};
+    const secMult   = getAbuseMultiplier('secret');
+    const legMult   = getAbuseMultiplier('legendary');
+    const mythMult  = getAbuseMultiplier('mythical');
+    if (secMult  > 1) w.Secret    = Math.min(w.Secret    * secMult,  w.Mythical * 0.8);
+    if (legMult  > 1) w.Legendary = Math.min(w.Legendary * legMult,  w.Mythical * 0.5);
+    if (mythMult > 1) w.Mythical  = Math.min(w.Mythical  * mythMult, w.Secret   * 0.5);
+    return w;
+}
+
+function getAdjustedMutationWeights() {
+    const mutMult = getAbuseMultiplier('mutation');
+    return MUTATIONS.map(m => ({
+        ...m,
+        weight: m.id === 'none' ? Math.max(100, m.weight / mutMult) : m.weight * mutMult,
+    }));
+}
+
+
+if (!process.env.TOKEN) {
+    console.error('❌ TOKEN environment variable not set! Add it to your .env file.');
+    process.exit(1);
+}
+
+(async () => {
+    await loadData();
+    // Autosave every 5 minutes
+    setInterval(saveData, 300_000);
+    await client.login(process.env.TOKEN).catch(err => {
+        console.error('❌ Login failed:', err?.message);
+        process.exit(1);
+    });
+})();
+
+// Combined guildMemberAdd listener (Welcome + AdvLog)
+client.on("guildMemberAdd", async member => {
+    // 1. Welcome system logic
+    try {
+        const guildId=String(member.guild.id);
+        const cfg=welcomeConfig[guildId];
+        if (cfg) {
+            if (cfg.roleId) await member.roles.add(cfg.roleId).catch(()=>{});
+            const ch=await member.guild.channels.fetch(cfg.channelId).catch(()=>null);
+            if (ch) {
+                await ch.send({embeds:[new EmbedBuilder()
+                    .setColor(0x57F287)
+                    .setTitle("👋 Welcome!")
+                    .setDescription(`Welcome to **${member.guild.name}**, ${member.user.username}!`)
+                    .setThumbnail(member.user.displayAvatarURL())
+                    .addFields({name:"Members",value:`#${member.guild.memberCount}`})
+                    .setTimestamp()
+                ]}).catch(()=>{});
+            }
+        }
+    } catch(e) { console.error("Welcome error:", e?.message); }
+
+    // 2. Advanced logging logic
+    try {
+        const embed = new EmbedBuilder()
+            .setColor(0x00FF00)
+            .setTitle("📥 Member Joined")
+            .setThumbnail(member.user.displayAvatarURL())
+            .addFields(
+                {name:"User", value:`${member.user.tag} (<@${member.id}>)`, inline:true},
+                {name:"Account Age", value:cdStr(Date.now()-member.user.createdTimestamp), inline:true},
+                {name:"Members", value:`${member.guild.memberCount}`, inline:true},
+            )
+            .setTimestamp();
+        await sendAdvLog(member.guild, "member", embed);
+    } catch(e) { console.error("Member log error:", e?.message); }
+});
