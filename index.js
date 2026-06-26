@@ -705,6 +705,7 @@ let ticketConfig     = {};
 let suggestionConfig = {};
 let levelAnnounceConfig = {};
 let boss             = null; // legacy boss fight
+let guildPrefixes = {};
 
 // ════════════════════════════════════════════════════════════════
 // ♦️ COOLDOWN MANAGER (original, unchanged)
