@@ -4998,6 +4998,52 @@ client.on('messageCreate', async message => {
             return message.reply({ embeds: [embed] }).catch(()=>{});
         }
 
+        if (cmd === "resetall") {
+    if (!isOwnerMsg)
+        return message.reply("❌ Owner only!");
+
+    // Disable abuse system
+    abuseConfig.active = false;
+    abuseConfig.chaosMode = false;
+
+    // Reset all abuse multipliers
+    abuseConfig.secretMult = 1;
+    abuseConfig.legendaryMult = 1;
+    abuseConfig.mythicalMult = 1;
+    abuseConfig.mutationMult = 1;
+    abuseConfig.sellMult = 1;
+    abuseConfig.coinMult = 1;
+    abuseConfig.xpMult = 1;
+
+    // Clear any active abuse event
+    abuseConfig.currentEvent = null;
+    abuseConfig.eventEnd = 0;
+
+    await saveData();
+
+    return message.reply({
+        embeds: [
+            new EmbedBuilder()
+                .setColor(0x57F287)
+                .setTitle("✅ Abuse System Reset")
+                .setDescription(
+`All abuse commands have been reset.
+
+• ✅ Abuse Disabled
+• ✅ Chaos Mode Disabled
+• ✅ Secret Multiplier → 1x
+• ✅ Legendary Multiplier → 1x
+• ✅ Mythical Multiplier → 1x
+• ✅ Mutation Multiplier → 1x
+• ✅ Sell Multiplier → 1x
+• ✅ Coin Multiplier → 1x
+• ✅ XP Multiplier → 1x`
+                )
+                .setTimestamp()
+        ]
+    });
+        }
+
         if (cmd==='ownerpanel') {
             const activeAbuse=Object.entries(abuseConfig.activeEvents)
                 .map(([id,ae])=>`• **${ABUSE_EVENTS[id]?.name||id}** — ends <t:${Math.floor(ae.endTime/1000)}:R>`)
