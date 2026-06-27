@@ -4999,7 +4999,7 @@ client.on('messageCreate', async message => {
         }
 
     
-    if (if (cmd === 'resetall') {
+    if (cmd === 'resetall') {
     if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
 
     // Clear all active abuse events
