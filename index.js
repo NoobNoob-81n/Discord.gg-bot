@@ -4998,50 +4998,55 @@ client.on('messageCreate', async message => {
             return message.reply({ embeds: [embed] }).catch(()=>{});
         }
 
-        if (cmd === "resetall") {
-    if (!isOwnerMsg)
-        return message.reply("❌ Owner only!");
+    
+    if (if (cmd === 'resetall') {
+    if (!isOwnerMsg) return message.reply('❌ Owner only!').catch(()=>{});
 
-    // Disable abuse system
-    abuseConfig.active = false;
+    // Clear all active abuse events
+    abuseConfig.activeEvents = {};
+
+    // Reset all multipliers
+    abuseConfig.secretMult    = 1;
+    abuseConfig.legendaryMult = 1;
+    abuseConfig.mutationMult  = 1;
+    abuseConfig.xpMult        = 1;
+    abuseConfig.coinMult      = 1;
+    abuseConfig.sellMult      = 1;
+
+    // Clear weather override
+    abuseConfig.weatherOverride    = null;
+    abuseConfig.weatherOverrideEnd = 0;
+
+    // Disable chaos mode
     abuseConfig.chaosMode = false;
 
-    // Reset all abuse multipliers
-    abuseConfig.secretMult = 1;
-    abuseConfig.legendaryMult = 1;
-    abuseConfig.mythicalMult = 1;
-    abuseConfig.mutationMult = 1;
-    abuseConfig.sellMult = 1;
-    abuseConfig.coinMult = 1;
-    abuseConfig.xpMult = 1;
+    // Clear world event
+    userData.worldEvent    = null;
+    userData.worldEventEnd = 0;
 
-    // Clear any active abuse event
-    abuseConfig.currentEvent = null;
-    abuseConfig.eventEnd = 0;
+    // Clear active boss
+    userData.activeBoss   = null;
+    userData.activeBossHp = 0;
 
     await saveData();
 
-    return message.reply({
-        embeds: [
-            new EmbedBuilder()
-                .setColor(0x57F287)
-                .setTitle("✅ Abuse System Reset")
-                .setDescription(
-`All abuse commands have been reset.
+    return message.reply({ embeds: [
+        new EmbedBuilder()
+            .setColor(0x57F287)
+            .setTitle('✅ Full Reset Complete')
+            .setDescription(
+`Everything has been wiped back to normal.
 
-• ✅ Abuse Disabled
-• ✅ Chaos Mode Disabled
-• ✅ Secret Multiplier → 1x
-• ✅ Legendary Multiplier → 1x
-• ✅ Mythical Multiplier → 1x
-• ✅ Mutation Multiplier → 1x
-• ✅ Sell Multiplier → 1x
-• ✅ Coin Multiplier → 1x
-• ✅ XP Multiplier → 1x`
-                )
-                .setTimestamp()
-        ]
-    });
+• ✅ All abuse events cleared
+• ✅ All multipliers → 1x
+• ✅ Weather override cleared
+• ✅ Chaos mode disabled
+• ✅ World event cleared
+• ✅ Active boss cleared`
+            )
+            .setTimestamp()
+            .setFooter({ text: `Reset by ${message.author.tag}` })
+    ]}).catch(()=>{});
         }
 
         if (cmd==='ownerpanel') {
