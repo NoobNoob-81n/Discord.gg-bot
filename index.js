@@ -4103,18 +4103,33 @@ client.on('messageCreate', async message => {
                 return message.reply('❌ Usage: `!setfischwebhook <on|off>`').catch(()=>{});
             }
         }
-        if (cmd==='impersonate') {
-            if (userId!==OWNER_ID) return message.reply('❌ Owner only!').catch(()=>{});
-            const target=message.mentions.users.first();
-            const msg=args.slice(2).join(' ');
-            if (!target||!msg) return message.reply('❌ Usage: !impersonate @user <msg>').catch(()=>{});
-            message.delete().catch(()=>{});
-            const hook=await message.channel.createWebhook({name:target.username,avatar:target.displayAvatarURL()}).catch(()=>null);
-            if (!hook) return message.channel.send(msg).catch(()=>{});
-            await hook.send(msg).catch(()=>{});
-            await hook.delete().catch(()=>{});
-            return;
-        }
+          if (cmd === 'impersonate') {
+    // Allow Owner + Staff
+    if (!isStaffMsg)
+        return message.reply('❌ Staff only!').catch(() => {});
+
+    const target = message.mentions.users.first();
+    const msg = args.slice(2).join(' ');
+
+    if (!target || !msg)
+        return message.reply('❌ Usage: impersonate @user <message>').catch(() => {});
+
+    message.delete().catch(() => {});
+
+    const hook = await message.channel.createWebhook({
+        name: target.username,
+        avatar: target.displayAvatarURL()
+    }).catch(() => null);
+
+    if (!hook)
+        return message.channel.send(msg).catch(() => {});
+
+    await hook.send(msg).catch(() => {});
+    await hook.delete().catch(() => {});
+
+    return;
+                                                     }
+        
         if (cmd==='say') {
             if (!isStaffMsg) return message.reply('❌ Staff only!').catch(()=>{});
             message.delete().catch(()=>{});
