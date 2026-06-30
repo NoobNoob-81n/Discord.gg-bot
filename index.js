@@ -4148,6 +4148,43 @@ client.on('messageCreate', async message => {
             const memes=['https://i.imgur.com/example.jpg','This meme machine is temporarily out of memes. Try `/fish` instead! 🎣'];
             return message.reply('😂 Meme: https://memegen.link/buzz/when_you_fish_a_secret_fish/the_whole_server_goes_crazy.jpg').catch(()=>{});
                         }
+// Wordle
+        client.on('messageCreate', async message => {
+    try {
+        if (message.author?.bot) return;
+        const chanId = String(message.channelId);
+        const game = wordleGames.get(chanId);
+        if (!game) return;
+
+        const guess = message.content.toLowerCase();
+        if (guess.length !== game.word.length || !/^[a-z]+$/.test(guess)) return;
+
+        const result = evaluateWordleGuess(game.word, guess);
+        const emojiLine = result.join(' ');
+        const isCorrect = guess === game.word;
+
+        if (isCorrect) {
+            wordleGames.delete(chanId);
+            const userId = String(message.author.id);
+            let rewardLine = '';
+            if (game.reward > 0) {
+                const current = userData.wordleTokens.get(userId) || 0;
+                userData.wordleTokens.set(userId, current + game.reward);
+                rewardLine += `\n${message.author} got **${game.reward}** Wordle Token${game.reward===1?'':'s'} and now has **${current+game.reward}**!`;
+            }
+            if (game.coinReward > 0) {
+                addCoins(userId, game.coinReward);
+                rewardLine += `\n${message.author} also got **${fmtN(game.coinReward)}** coins!`;
+            }
+            await saveData();
+            await message.reply(`# ${emojiLine}\n${message.author} guessed the correct word!${rewardLine}`).catch(()=>{});
+        } else {
+            await message.reply(emojiLine).catch(()=>{});
+        }
+    } catch (e) {
+        console.error('Wordle guess listener error:', e?.message);
+    }
+});
         // ════════════════════════════════════════════════════════
         // OWNER/ADMIN PREFIX COMMANDS (converted from slash)
         // Use: !command
