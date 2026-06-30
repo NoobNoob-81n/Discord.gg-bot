@@ -603,6 +603,7 @@ class UserData {
         this.scyllaActive = false;
         // No-cooldown override system (owner command)
         this.noCooldown   = new Map(); // userId → expiry timestamp
+        this.wordleTokens = new Map(); // userId → token count
     }
 
     toJSON() {
@@ -633,6 +634,7 @@ class UserData {
             activeBoss:this.activeBoss, activeBossHp:this.activeBossHp,
             scyllaActive:this.scyllaActive,
             noCooldown:   Object.fromEntries(this.noCooldown),
+            wordleTokens: Object.fromEntries(this.wordleTokens),
         };
     }
 
@@ -693,8 +695,10 @@ class UserData {
                 if (exp > now) this.noCooldown.set(String(uid), Number(exp));
             }
         }
+        // Restore Wordle Token balances
+        lo(this.wordleTokens, obj.wordleTokens, v=>Number(v)||0);
     }
-}
+            }
 
 const userData       = new UserData();
 let staffSet         = new Set();
@@ -741,6 +745,7 @@ const cooldownManager = new CooldownManager();
 
 // Active game sessions
 const wordleGames = new Map();
+const WORDLE_BANNED_WORDS = new Set(['end','check']);
 const fnfGames    = new Map();
 const bjGames     = new Map(); // blackjack games in progress (button-based)
 const tttGames    = new Map(); // tic tac toe
@@ -1138,6 +1143,30 @@ function evaluateGuess(word, guess) {
     return result;
 }
 
+// ── WORDLE — variable-length evaluator for the staff-hosted system ──
+function evaluateWordleGuess(word, guess) {
+    const len = word.length;
+    const result = Array(len).fill('⬛');
+    const wordLetters = word.split('');
+    const guessLetters = guess.split('');
+    for (let i = 0; i < len; i++) {
+        if (guessLetters[i] === wordLetters[i]) {
+            result[i] = '🟩';
+            wordLetters[i] = null;
+            guessLetters[i] = null;
+        }
+    }
+    for (let i = 0; i < len; i++) {
+        if (guessLetters[i] === null) continue;
+        const idx = wordLetters.indexOf(guessLetters[i]);
+        if (idx !== -1) {
+            result[i] = '🟨';
+            wordLetters[idx] = null;
+        }
+    }
+    return result;
+}
+
 // ── TRIVIA (original) ──
 const TRIVIA_QUESTIONS = [
     { q:'What is the capital of France?',      a:'paris',       options:['london','berlin','paris','madrid']     },
@@ -1326,8 +1355,11 @@ const slashCommands = [
                 {name:'🏰 Dungeon Clears',value:'dungeons'},
                 {name:'🔄 Prestige',value:'prestige'},
             )),
-    new SlashCommandBuilder().setName('wordle').setDescription('🎮 Play Wordle')
-        .addStringOption(o=>o.setName('guess').setDescription('5-letter guess').setRequired(true).setMinLength(5).setMaxLength(5)),
+    new SlashCommandBuilder().setName('wordle').setDescription('🎮 Start or end a staff-hosted Wordle game')
+    .addStringOption(o=>o.setName('word').setDescription('Word for the wordle, or "end" to end it').setRequired(true).setMinLength(2).setMaxLength(10))
+    .addChannelOption(o=>o.setName('channel').setDescription('Channel for the wordle (defaults to current channel)').setRequired(false))
+    .addIntegerOption(o=>o.setName('reward').setDescription('Wordle Tokens to give the winner (max 10000)').setRequired(false).setMinValue(0).setMaxValue(10000))
+    .addIntegerOption(o=>o.setName('coins').setDescription('Bonus coins to give the winner (max 10000)').setRequired(false).setMinValue(0).setMaxValue(10000)),
     new SlashCommandBuilder().setName('trivia').setDescription('🧠 Answer a trivia question'),
     new SlashCommandBuilder().setName('slots').setDescription('🎰 Play the slot machine')
         .addIntegerOption(o=>o.setName('bet').setDescription('Bet amount').setRequired(true).setMinValue(10)),
@@ -1917,21 +1949,66 @@ if (cmd==='leaderboard') {
 }
 
 // ── GAMES ──
+// ── GAMES ──
 if (cmd==='wordle') {
-    const guess=String(interaction.options.getString('guess')).toLowerCase();
-    const chanId=String(interaction.channelId);
-    if (!wordleGames.has(chanId)) wordleGames.set(chanId,{word:WORDLE_WORDS[rng(0,WORDLE_WORDS.length-1)],guesses:[],maxGuesses:6,startTime:Date.now()});
-    const game=wordleGames.get(chanId);
-    if (!/^[a-z]+$/.test(guess)) return interaction.reply({content:'❌ Letters only!',ephemeral:true});
-    const result=evaluateGuess(game.word,guess);
-    game.guesses.push({guess,result});
-    let board='';
-    for (const {guess:g,result:r} of game.guesses) board+=r.join('')+'  `'+g.toUpperCase().split('').join(' ')+'`\n';
-    const embed=new EmbedBuilder().setTitle('🟩 Wordle').setDescription(board).setColor(guess===game.word?0x57F287:0x7289DA);
-    if (guess===game.word){embed.setFooter({text:`🎉 Solved in ${game.guesses.length} guess${game.guesses.length===1?'':'es'}!`});addCoins(userId,500);addXP(userId,250);await saveData();wordleGames.delete(chanId);}
-    else if (game.guesses.length>=game.maxGuesses){embed.setFooter({text:`Game over! Word: ${game.word.toUpperCase()}`});wordleGames.delete(chanId);}
-    else embed.setFooter({text:`${game.maxGuesses-game.guesses.length} guesses left`});
-    return interaction.reply({embeds:[embed]});
+    const isStaffSlash = staffSet.has(`${guildId}:${userId}`) || staffSet.has(userId) || userId===OWNER_ID;
+    if (!isStaffSlash) {
+        return interaction.reply({content:'❌ You do not have permission to use this command.',ephemeral:true});
+    }
+
+    const wordRaw = String(interaction.options.getString('word')||'').trim();
+    const wordLower = wordRaw.toLowerCase();
+    const targetChannel = interaction.options.getChannel('channel') || interaction.channel;
+    const chanId = String(targetChannel.id);
+    const rewardTokens = Math.min(10000, Math.max(0, interaction.options.getInteger('reward') ?? 0));
+    const rewardCoins  = Math.min(10000, Math.max(0, interaction.options.getInteger('coins')  ?? 0));
+
+    const botMember = targetChannel.guild?.members?.me;
+    const perms = botMember ? targetChannel.permissionsFor(botMember) : null;
+    if (!perms || !perms.has('SendMessages') || !perms.has('ReadMessageHistory') || !perms.has('ViewChannel')) {
+        return interaction.reply({content:'⚠️ To prevent errors, wordle is disabled in that channel because the bot is missing required permissions there.',ephemeral:true});
+    }
+
+    if (wordLower === 'end') {
+        if (!wordleGames.has(chanId)) {
+            return interaction.reply({content:'❌ There is no active wordle in that channel.',ephemeral:true});
+        }
+        wordleGames.delete(chanId);
+        await targetChannel.send(`## Wordle ended by ${interaction.user} in <#${chanId}>`).catch(()=>{});
+        return interaction.reply({content:'✅ Wordle ended.',ephemeral:false});
+    }
+
+    if (wordLower === 'check') {
+        if (userId !== OWNER_ID) return interaction.reply({content:'❌ Owner only.',ephemeral:true});
+        const g = wordleGames.get(chanId);
+        if (!g) return interaction.reply({content:'❌ No active wordle in that channel.',ephemeral:true});
+        return interaction.reply({content:`🔎 Current word: \`${g.word}\``,ephemeral:true});
+    }
+
+    if (wordRaw.length < 2 || wordRaw.length > 10 || !/^[a-zA-Z]+$/.test(wordRaw)) {
+        return interaction.reply({content:'❌ Word must be 2-10 letters, A-Z only.',ephemeral:true});
+    }
+    if (WORDLE_BANNED_WORDS.has(wordLower)) {
+        return interaction.reply({content:'❌ That word is not allowed.',ephemeral:true});
+    }
+    if (wordleGames.has(chanId)) {
+        return interaction.reply({content:'❌ That channel already has an ongoing wordle.',ephemeral:true});
+    }
+
+    wordleGames.set(chanId, {
+        word: wordLower,
+        reward: rewardTokens,
+        coinReward: rewardCoins,
+        hostId: userId,
+        guildId: guildId,
+        startedAt: Date.now(),
+    });
+
+    const rewardText = (rewardTokens > 0 || rewardCoins > 0)
+        ? ` with a reward of ${rewardTokens>0?`**${rewardTokens}** Wordle Token${rewardTokens===1?'':'s'}`:''}${rewardTokens>0&&rewardCoins>0?' and ':''}${rewardCoins>0?`**${fmtN(rewardCoins)}** coins`:''}`
+        : '';
+    await interaction.reply({content:`✅ Wordle started${rewardText}`,ephemeral:true});
+    await targetChannel.send(`## New wordle game started by ${interaction.user}\nWord length: ${wordLower.length}\nType your guess in this channel to play!`).catch(()=>{});
 }
 
 if (cmd==='trivia') {
