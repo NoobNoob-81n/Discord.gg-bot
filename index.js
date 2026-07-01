@@ -1947,7 +1947,12 @@ if (cmd==='leaderboard') {
         .setFooter({text:'No users are pinged • Joined date shown • Global rankings'})
     ]});
             // ── GAMES ──
-// ── GAMES ──
+// ── GAMES ─_
+
+console.log("=== WORDLE DEBUG ===");
+console.log("interaction.commandName:", interaction.commandName);
+console.log("cmd:", cmd);
+    
 if (cmd === 'wordle') {
     try {
         const isStaffSlash = staffSet.has(`${guildId}:${userId}`) || staffSet.has(userId) || userId === OWNER_ID;
