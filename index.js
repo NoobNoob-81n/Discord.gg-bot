@@ -1948,68 +1948,158 @@ if (cmd==='leaderboard') {
     ]});
             // ── GAMES ──
 // ── GAMES ──
-if (cmd==='wordle') {
-    const isStaffSlash = staffSet.has(`${guildId}:${userId}`) || staffSet.has(userId) || userId===OWNER_ID;
-    if (!isStaffSlash) {
-        return interaction.reply({content:'❌ You do not have permission to use this command.',ephemeral:true});
-    }
-
-    const wordRaw = String(interaction.options.getString('word')||'').trim();
-    const wordLower = wordRaw.toLowerCase();
-    const targetChannel = interaction.options.getChannel('channel') || interaction.channel;
-    const chanId = String(targetChannel.id);
-    const rewardTokens = Math.min(10000, Math.max(0, interaction.options.getInteger('reward') ?? 0));
-    const rewardCoins  = Math.min(10000, Math.max(0, interaction.options.getInteger('coins')  ?? 0));
-
-    const botMember = targetChannel.guild?.members?.me;
-    const perms = botMember ? targetChannel.permissionsFor(botMember) : null;
-    if (!perms || !perms.has('SendMessages') || !perms.has('ReadMessageHistory') || !perms.has('ViewChannel')) {
-        return interaction.reply({content:'⚠️ To prevent errors, wordle is disabled in that channel because the bot is missing required permissions there.',ephemeral:true});
-    }
-
-    if (wordLower === 'end') {
-        if (!wordleGames.has(chanId)) {
-            return interaction.reply({content:'❌ There is no active wordle in that channel.',ephemeral:true});
+if (cmd === 'wordle') {
+    try {
+        const isStaffSlash = staffSet.has(`${guildId}:${userId}`) || staffSet.has(userId) || userId === OWNER_ID;
+        if (!isStaffSlash) {
+            return interaction.reply({
+                content: '❌ You do not have permission to use this command.',
+                ephemeral: true
+            });
         }
-        wordleGames.delete(chanId);
-        await targetChannel.send(`## Wordle ended by ${interaction.user} in <#${chanId}>`).catch(()=>{});
-        return interaction.reply({content:'✅ Wordle ended.',ephemeral:false});
+
+        const wordRaw = String(interaction.options.getString('word') || '').trim();
+        const wordLower = wordRaw.toLowerCase();
+
+        const targetChannel = interaction.options.getChannel('channel') || interaction.channel;
+        const chanId = String(targetChannel.id);
+
+        const rewardTokens = Math.min(
+            10000,
+            Math.max(0, interaction.options.getInteger('reward') ?? 0)
+        );
+
+        const rewardCoins = Math.min(
+            10000,
+            Math.max(0, interaction.options.getInteger('coins') ?? 0)
+        );
+
+        const botMember = targetChannel.guild?.members?.me;
+        const perms = botMember ? targetChannel.permissionsFor(botMember) : null;
+
+        if (!perms || !perms.has('SendMessages') || !perms.has('ReadMessageHistory') || !perms.has('ViewChannel')) {
+            return interaction.reply({
+                content: '⚠️ The bot is missing permissions in that channel.',
+                ephemeral: true
+            });
+        }
+
+        if (wordLower === 'end') {
+            if (!wordleGames.has(chanId)) {
+                return interaction.reply({
+                    content: '❌ There is no active wordle in that channel.',
+                    ephemeral: true
+                });
+            }
+
+            wordleGames.delete(chanId);
+
+            await targetChannel.send(
+                `## Wordle ended by ${interaction.user} in <#${chanId}>`
+            ).catch(() => {});
+
+            return interaction.reply({
+                content: '✅ Wordle ended.',
+                ephemeral: false
+            });
+        }
+
+        if (wordLower === 'check') {
+            if (userId !== OWNER_ID) {
+                return interaction.reply({
+                    content: '❌ Owner only.',
+                    ephemeral: true
+                });
+            }
+
+            const g = wordleGames.get(chanId);
+
+            if (!g) {
+                return interaction.reply({
+                    content: '❌ No active wordle.',
+                    ephemeral: true
+                });
+            }
+
+            return interaction.reply({
+                content: `🔎 Current word: \`${g.word}\``,
+                ephemeral: true
+            });
+        }
+
+        if (wordRaw.length < 2 || wordRaw.length > 10 || !/^[a-zA-Z]+$/.test(wordRaw)) {
+            return interaction.reply({
+                content: '❌ Word must be 2-10 letters.',
+                ephemeral: true
+            });
+        }
+
+        if (WORDLE_BANNED_WORDS.has(wordLower)) {
+            return interaction.reply({
+                content: '❌ That word is not allowed.',
+                ephemeral: true
+            });
+        }
+
+        if (wordleGames.has(chanId)) {
+            return interaction.reply({
+                content: '❌ A wordle is already running there.',
+                ephemeral: true
+            });
+        }
+
+        wordleGames.set(chanId, {
+            word: wordLower,
+            reward: rewardTokens,
+            coinReward: rewardCoins,
+            hostId: userId,
+            guildId,
+            startedAt: Date.now(),
+        });
+
+        const rewardText =
+            (rewardTokens > 0 || rewardCoins > 0)
+                ? ` with a reward of ${
+                    rewardTokens > 0
+                        ? `**${rewardTokens}** Wordle Token${rewardTokens === 1 ? '' : 's'}`
+                        : ''
+                }${
+                    rewardTokens > 0 && rewardCoins > 0 ? ' and ' : ''
+                }${
+                    rewardCoins > 0
+                        ? `**${fmtN(rewardCoins)}** coins`
+                        : ''
+                }`
+                : '';
+
+        await interaction.reply({
+            content: `✅ Wordle started${rewardText}`,
+            ephemeral: true
+        });
+
+        await targetChannel.send(
+            `## 🎮 New Wordle Game!\n\nWord length: **${wordLower.length}**\n\nType your guesses in this channel!`
+        ).catch(() => {});
+
+    } catch (err) {
+        console.error("❌ WORDLE ERROR:", err);
+
+        if (interaction.replied || interaction.deferred) {
+            await interaction.editReply({
+                content: "❌ An internal Wordle error occurred."
+            }).catch(() => {});
+        } else {
+            await interaction.reply({
+                content: "❌ An internal Wordle error occurred.",
+                ephemeral: true
+            }).catch(() => {});
+        }
     }
 
-    if (wordLower === 'check') {
-        if (userId !== OWNER_ID) return interaction.reply({content:'❌ Owner only.',ephemeral:true});
-        const g = wordleGames.get(chanId);
-        if (!g) return interaction.reply({content:'❌ No active wordle in that channel.',ephemeral:true});
-        return interaction.reply({content:`🔎 Current word: \`${g.word}\``,ephemeral:true});
-    }
-
-    if (wordRaw.length < 2 || wordRaw.length > 10 || !/^[a-zA-Z]+$/.test(wordRaw)) {
-        return interaction.reply({content:'❌ Word must be 2-10 letters, A-Z only.',ephemeral:true});
-    }
-    if (WORDLE_BANNED_WORDS.has(wordLower)) {
-        return interaction.reply({content:'❌ That word is not allowed.',ephemeral:true});
-    }
-    if (wordleGames.has(chanId)) {
-        return interaction.reply({content:'❌ That channel already has an ongoing wordle.',ephemeral:true});
-    }
-
-    wordleGames.set(chanId, {
-        word: wordLower,
-        reward: rewardTokens,
-        coinReward: rewardCoins,
-        hostId: userId,
-        guildId: guildId,
-        startedAt: Date.now(),
-    });
-
-    const rewardText = (rewardTokens > 0 || rewardCoins > 0)
-        ? ` with a reward of ${rewardTokens>0?`**${rewardTokens}** Wordle Token${rewardTokens===1?'':'s'}`:''}${rewardTokens>0&&rewardCoins>0?' and ':''}${rewardCoins>0?`**${fmtN(rewardCoins)}** coins`:''}`
-        : '';
-    await interaction.reply({content:`✅ Wordle started${rewardText}`,ephemeral:true});
-    await targetChannel.send(`## New wordle game started by ${interaction.user}\nWord length: ${wordLower.length}\nType your guess in this channel to play!`).catch(()=>{});
+    return;
 }
 
-if (cmd==='trivia') {
+    if (cmd==='trivia') {
     const q=TRIVIA_QUESTIONS[rng(0,TRIVIA_QUESTIONS.length-1)];
     const row=new ActionRowBuilder().addComponents(
         new StringSelectMenuBuilder().setCustomId(`trivia_${userId}_${Date.now()}`).setPlaceholder('Choose your answer...')
