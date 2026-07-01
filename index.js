@@ -1,5 +1,5 @@
 /**
- * 🤖 DISCORD.JS v14 BOT — ULTIMATE EDITION v4.0.0
+ *  🤖 DISCORD.JS v14 BOT — ULTIMATE EDITION v4.0.0
  * =================================================
  * Railway-ready | All bugs fixed | Massive Fisch-style update
  * 6 new biomes | 56 new fish | New bosses | Owner cooldown system
