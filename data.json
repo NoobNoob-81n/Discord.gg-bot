@@ -1,6 +1,6 @@
 {
   "userData": {
-    "coins": {}, "bank": {}, "xp": {}, "weapons": {}, "items": {}, "pets": {},
+    "coins": {}, "bank": {}, "wordleTokens": {}, "xp": {}, "weapons": {}, "items": {}, "pets": {},
     "achievements": {}, "badges": {}, "streaks": {}, "married": {}, "rep": {},
     "warnings": {}, "fishInv": {}, "fishCaught": {}, "fishStats": {}, "fishStreak": {},
     "rodOwned": {}, "rodEquipped": {}, "rodEnchants": {}, "baitInv": {},
