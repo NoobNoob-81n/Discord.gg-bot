@@ -1946,6 +1946,7 @@ if (cmd==='leaderboard') {
         .setDescription(lines.join('\n')||'No data yet.')
         .setFooter({text:'No users are pinged • Joined date shown • Global rankings'})
     ]});
+}
             // ── GAMES ──
 // ── GAMES ─_
 
@@ -2273,7 +2274,7 @@ if (cmd==='mine') {
     await saveData();
     return interaction.reply({content:found?`⛏️ Struck gold! Found resources and **+${rng(300,800)} coins**!`:'⛏️ Hit a dead end, but grabbed some materials.'});
           }
-            }
+            
 
             
 // ── MODERATION ──
