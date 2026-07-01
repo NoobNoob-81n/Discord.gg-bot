@@ -5369,12 +5369,11 @@ client.on('messageCreate', async message => {
 
     } catch(e) { console.error('❌ Message handler error:', e?.message); }
 });
-            // ════════════════════════════════════════════════════════════════
+// ════════════════════════════════════════════════════════════════
 // ♦️ GAME SESSION CLEANUP
 // ════════════════════════════════════════════════════════════════
 setInterval(() => {
     const now=Date.now();
-    for (const [id,g] of wordleGames) if (now-(g.startTime||0)>WORDLE_TIMEOUT) wordleGames.delete(id);
     for (const [id,g] of hangGames)   if (now-(g.ts||g.startTime||0)>GAME_TIMEOUT) hangGames.delete(id);
     for (const [id,g] of tttGames)    if (now-(g.ts||g.startTime||0)>GAME_TIMEOUT) tttGames.delete(id);
     for (const [id,g] of c4Games)     if (now-(g.ts||g.startTime||0)>GAME_TIMEOUT) c4Games.delete(id);
