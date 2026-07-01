@@ -603,6 +603,7 @@ class UserData {
         // No-cooldown override system (owner command)
         this.noCooldown   = new Map(); // userId → expiry timestamp
         this.wordleTokens = new Map(); // userId → token count
+        this.dashboardTheme = new Map(); // userId → 'monochrome'|'discord'|'light'
         // ── NEW: Biome & Fish Leveling (previously missing — caused crashes) ──
         this.biome        = new Map(); // userId -> current biome id
         this.fishXP       = new Map(); // userId -> fishing XP
@@ -638,6 +639,7 @@ class UserData {
             scyllaActive:this.scyllaActive,
             noCooldown:   Object.fromEntries(this.noCooldown),
             wordleTokens: Object.fromEntries(this.wordleTokens),
+            dashboardTheme: Object.fromEntries(this.dashboardTheme),
             biome:m(this.biome), fishXP:m(this.fishXP), fishLevel:m(this.fishLevel),
         };
     }
@@ -701,6 +703,7 @@ class UserData {
         }
         // Restore Wordle Token balances
         lo(this.wordleTokens, obj.wordleTokens, v=>Number(v)||0);
+        lo(this.dashboardTheme, obj.dashboardTheme, v=>String(v));
         lo(this.biome,     obj.biome,     v=>String(v));
         lo(this.fishXP,    obj.fishXP,    v=>Number(v)||0);
         lo(this.fishLevel, obj.fishLevel, v=>Number(v)||1);
