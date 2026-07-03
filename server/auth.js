@@ -84,11 +84,11 @@ router.get('/callback', async (req, res) => {
         );
 
         res.cookie('dashboard_session', session, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'lax',
-            maxAge: 7 * 24 * 60 * 60 * 1000,
-        });
+    httpOnly: true,
+    secure: true,
+    sameSite: 'none',
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+});
 
         res.redirect(`${DASHBOARD_URL}/servers`);
     } catch (err) {
