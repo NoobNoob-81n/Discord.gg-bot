@@ -70,15 +70,4 @@ module.exports = function fishingRoutes(ctx) {
 
     return router;
 };
-    router.post('/multiplier', async (req, res) => {
-        const { type, value } = req.body || {};
-        const map = { secret: 'secretMult', legendary: 'legendaryMult', mutation: 'mutationMult', xp: 'xpMult', coin: 'coinMult', sell: 'sellMult' };
-        const field = map[type];
-        if (!field || typeof value !== 'number') return res.status(400).json({ error: 'Invalid type or value' });
-        ctx.abuseConfig[field] = value;
-        await ctx.saveData();
-        res.json({ ok: true });
-    });
-
-    return router;
-};
+    
