@@ -3,6 +3,14 @@ const express = require('express');
 module.exports = function eventsRoutes(ctx) {
     const router = express.Router();
 
+    // ── Owner-only: starting/stopping events is a live control action ──
+    router.use((req, res, next) => {
+        if (req.user.userId !== ctx.OWNER_ID) {
+            return res.status(403).json({ error: 'Only the bot owner can control events' });
+        }
+        next();
+    });
+
     router.post('/wordle/start', async (req, res) => {
         const { channelId, word, reward, coins } = req.body || {};
         if (!channelId || !word) return res.status(400).json({ error: 'channelId and word required' });
