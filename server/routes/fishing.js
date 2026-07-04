@@ -3,6 +3,29 @@ const express = require('express');
 module.exports = function fishingRoutes(ctx) {
     const router = express.Router();
 
+    // ── Staff-visible: read-only leaderboard, no controls ──
+    router.get('/leaderboard', (req, res) => {
+        const entries = [...ctx.userData.fishStats.entries()]
+            .map(([userId, stats]) => ({
+                userId,
+                total: stats.total || 0,
+                totalVal: stats.totalVal || 0,
+                biggest: stats.biggest || 0,
+                biggestName: stats.biggestName || '',
+            }))
+            .sort((a, b) => b.total - a.total)
+            .slice(0, 20);
+        res.json({ leaderboard: entries });
+    });
+
+    // ── Everything below is owner-only: live event/weather/multiplier controls ──
+    router.use((req, res, next) => {
+        if (req.user.userId !== ctx.OWNER_ID) {
+            return res.status(403).json({ error: 'Only the bot owner can control fishing events' });
+        }
+        next();
+    });
+
     router.get('/status', (req, res) => {
         res.json({
             weatherOverride: ctx.abuseConfig.weatherOverride || null,
@@ -35,6 +58,18 @@ module.exports = function fishingRoutes(ctx) {
         res.json({ ok: true });
     });
 
+    router.post('/multiplier', async (req, res) => {
+        const { type, value } = req.body || {};
+        const map = { secret: 'secretMult', legendary: 'legendaryMult', mutation: 'mutationMult', xp: 'xpMult', coin: 'coinMult', sell: 'sellMult' };
+        const field = map[type];
+        if (!field || typeof value !== 'number') return res.status(400).json({ error: 'Invalid type or value' });
+        ctx.abuseConfig[field] = value;
+        await ctx.saveData();
+        res.json({ ok: true });
+    });
+
+    return router;
+};
     router.post('/multiplier', async (req, res) => {
         const { type, value } = req.body || {};
         const map = { secret: 'secretMult', legendary: 'legendaryMult', mutation: 'mutationMult', xp: 'xpMult', coin: 'coinMult', sell: 'sellMult' };
