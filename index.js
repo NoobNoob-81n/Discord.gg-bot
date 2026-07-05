@@ -1620,16 +1620,17 @@ client.once('ready', async () => {
     // ── Start the dashboard API server ──
     const { startDashboardServer } = require('./server/api');
     startDashboardServer(client, {
-        userData,
-        logsConfig, welcomeConfig, ticketConfig, suggestionConfig,
-        autoResponses, staffSet,
-        wordleGames, abuseConfig,
-        OWNER_ID,
-        saveData,
-        addCoins, addXP,
-        fmtN, getLevelInfo,
-        BIOMES, RARITY_WEIGHTS,
-    });
+    userData,
+    logsConfig, welcomeConfig, ticketConfig, suggestionConfig,
+    autoResponses, staffSet,
+    wordleGames, abuseConfig,
+    guildPrefixes,
+    OWNER_ID,
+    saveData,
+    addCoins, addXP,
+    fmtN, getLevelInfo,
+    BIOMES, RARITY_WEIGHTS,
+});
 });
     // ════════════════════════════════════════════════════════════════
 // ♦️ TTT + CONNECT4 HELPERS
