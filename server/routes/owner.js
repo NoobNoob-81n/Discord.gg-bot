@@ -33,6 +33,7 @@ module.exports = function ownerRoutes(ctx) {
         res.json({ ok: true });
     });
 
+    // ── Database view (read-only preview, not raw file editing) ──
     router.get('/database/summary', (req, res) => {
         res.json({
             userCount: ctx.userData.coins.size,
@@ -44,10 +45,32 @@ module.exports = function ownerRoutes(ctx) {
         });
     });
 
+    // ── Backup: returns a JSON snapshot the browser can download ──
     router.get('/backup', (req, res) => {
         const snapshot = ctx.userData.toJSON ? ctx.userData.toJSON() : {};
         res.setHeader('Content-Disposition', `attachment; filename="backup-${Date.now()}.json"`);
         res.json(snapshot);
+    });
+
+    // ── Restore: accepts a previously-downloaded backup JSON and
+    // reloads it into the live UserData instance. Destructive — this
+    // fully replaces current data, so the frontend must confirm first. ──
+    router.post('/restore', async (req, res) => {
+        const backup = req.body;
+        if (!backup || typeof backup !== 'object') {
+            return res.status(400).json({ error: 'Request body must be a valid backup JSON object' });
+        }
+        try {
+            if (!ctx.userData.fromJSON) {
+                return res.status(500).json({ error: 'UserData has no fromJSON method — cannot restore' });
+            }
+            ctx.userData.fromJSON(backup);
+            await ctx.saveData();
+            res.json({ ok: true });
+        } catch (err) {
+            console.error('[Restore backup error]', err);
+            res.status(500).json({ error: 'Failed to restore backup — the file may be malformed' });
+        }
     });
 
     return router;
