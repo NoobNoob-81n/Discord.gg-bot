@@ -48,6 +48,7 @@ function startDashboardServer(client, ctx, port = process.env.DASHBOARD_PORT || 
     // ── Everything below is scoped to one guild + requires Manage Server ──
     app.use('/api/guild/:guildId', requireGuildAccess);
     app.use('/api/guild/:guildId/home',           require('./routes/home')(ctx));
+    app.use('/api/guild/:guildId/general',        require('./routes/general')(ctx));
     app.use('/api/guild/:guildId/staff',          require('./routes/staff')(ctx));
     app.use('/api/guild/:guildId/welcome',        require('./routes/welcome')(ctx));
     app.use('/api/guild/:guildId/logs',           require('./routes/logs')(ctx));
