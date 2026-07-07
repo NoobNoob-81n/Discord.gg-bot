@@ -1,0 +1,5 @@
+[
+  { "id": "gale",  "name": "Gale",  "emoji": "🌪️", "rarity": "Rare", "description": "A swirling vortex of wind with real presence.", "passive": "+2% luck", "value": 180, "rollable": true },
+  { "id": "tidal", "name": "Tidal", "emoji": "🌊", "rarity": "Rare", "description": "The pull of the ocean, restrained but powerful.", "passive": "+2% luck", "value": 190, "rollable": true },
+  { "id": "quake", "name": "Quake", "emoji": "🪨", "rarity": "Rare", "description": "The ground trembles faintly wherever you stand.", "passive": "+2% luck", "value": 200, "rollable": true }
+]
