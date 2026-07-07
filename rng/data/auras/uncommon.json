@@ -1,0 +1,5 @@
+[
+  { "id": "breeze", "name": "Breeze", "emoji": "🍃", "rarity": "Uncommon", "description": "A cool wind that hints at something a little special.", "passive": "+1% roll speed", "value": 40, "rollable": true },
+  { "id": "ember",  "name": "Ember",  "emoji": "🔥", "rarity": "Uncommon", "description": "A small flickering flame that never quite goes out.", "passive": "+1% roll speed", "value": 45, "rollable": true },
+  { "id": "frost",  "name": "Frost",  "emoji": "❄️", "rarity": "Uncommon", "description": "A thin layer of ice crystals clinging to the air.", "passive": "+1% roll speed", "value": 45, "rollable": true }
+]
