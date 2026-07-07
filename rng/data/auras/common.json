@@ -1,5 +1,0 @@
-[
-  { "id": "dust",    "name": "Dust",    "emoji": "🌫️", "rarity": "Common", "description": "A faint cloud of ordinary dust. Everyone starts somewhere.", "passive": "None", "value": 5, "rollable": true },
-  { "id": "pebble",  "name": "Pebble",  "emoji": "🪨", "rarity": "Common", "description": "A small, unremarkable rock aura.", "passive": "None", "value": 5, "rollable": true },
-  { "id": "drizzle", "name": "Drizzle", "emoji": "🌦️", "rarity": "Common", "description": "A light, gentle rain that follows you around.", "passive": "None", "value": 8, "rollable": true }
-]

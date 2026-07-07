@@ -1,5 +1,0 @@
-[
-  { "id": "inferno",  "name": "Inferno",  "emoji": "🔥", "rarity": "Epic", "description": "A raging fire that radiates real heat and menace.", "passive": "+4% luck", "value": 850, "rollable": true },
-  { "id": "glacier",  "name": "Glacier",  "emoji": "🧊", "rarity": "Epic", "description": "An ancient, unmoving wall of ice.", "passive": "+4% luck", "value": 900, "rollable": true },
-  { "id": "voidwalk", "name": "Voidwalk", "emoji": "🌑", "rarity": "Epic", "description": "A tear in reality that follows your every step.", "passive": "+4% luck", "value": 950, "rollable": true }
-]
