@@ -1,0 +1,92 @@
+[
+  {
+    "id": "aura_0959",
+    "name": "Archaic Ruin",
+    "rarity": "Ancient",
+    "odds": 15000000,
+    "color": 9584654,
+    "emoji": "⚱️",
+    "description": "A ancient-tier aura radiating with faint ancient power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.6
+    },
+    "value": 30000000,
+    "collectionValue": 1500000,
+    "rollAnimation": "epic_flash",
+    "title": "the Ancient",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0960",
+    "name": "Primordial Legacy",
+    "rarity": "Ancient",
+    "odds": 15000000,
+    "color": 9584654,
+    "emoji": "📜",
+    "description": "A ancient-tier aura radiating with faint ancient power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.6
+    },
+    "value": 30000000,
+    "collectionValue": 1500000,
+    "rollAnimation": "epic_flash",
+    "title": "the Ancient",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0961",
+    "name": "Lost Relic",
+    "rarity": "Ancient",
+    "odds": 15000000,
+    "color": 9584654,
+    "emoji": "🗿",
+    "description": "A ancient-tier aura radiating with faint ancient power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.6
+    },
+    "value": 30000000,
+    "collectionValue": 1500000,
+    "rollAnimation": "epic_flash",
+    "title": "the Ancient",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0962",
+    "name": "Timeworn Vestige",
+    "rarity": "Ancient",
+    "odds": 15000000,
+    "color": 9584654,
+    "emoji": "🗿",
+    "description": "A ancient-tier aura radiating with faint ancient power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.6
+    },
+    "value": 30000000,
+    "collectionValue": 1500000,
+    "rollAnimation": "epic_flash",
+    "title": "the Ancient",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0963",
+    "name": "Forgotten Vestige",
+    "rarity": "Ancient",
+    "odds": 15000000,
+    "color": 9584654,
+    "emoji": "⚱️",
+    "description": "A ancient-tier aura radiating with faint ancient power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.6
+    },
+    "value": 30000000,
+    "collectionValue": 1500000,
+    "rollAnimation": "epic_flash",
+    "title": "the Ancient",
+    "passiveAbility": null
+  }
+]
