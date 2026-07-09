@@ -31,7 +31,7 @@ require('dotenv').config();
 const fs      = require('fs/promises');
 const fsSync  = require('fs');
 const path    = require('path');
-const rngState = require('./rng-system/core/rngState');
+const rngState = require('./rng/core/rngState');
 const rngCommandRouter = require('./rng-system/core/commandRouter');
 const {
     Client, GatewayIntentBits, REST, Routes,
