@@ -31,6 +31,8 @@ require('dotenv').config();
 const fs      = require('fs/promises');
 const fsSync  = require('fs');
 const path    = require('path');
+const rngState = require('./rng-system/core/rngState');
+const rngCommandRouter = require('./rng-system/core/commandRouter');
 const {
     Client, GatewayIntentBits, REST, Routes,
     SlashCommandBuilder, EmbedBuilder,
@@ -1618,8 +1620,7 @@ client.once('ready', async () => {
     }, 1_800_000);
 
     // ── Start the dashboard API server ──
-    const { startDashboardServer } = require('./server/api');
-    startDashboardServer(client, {
+startDashboardServer(client, {
     userData,
     logsConfig, welcomeConfig, ticketConfig, suggestionConfig,
     autoResponses, staffSet,
@@ -1631,6 +1632,10 @@ client.once('ready', async () => {
     fmtN, getLevelInfo,
     BIOMES, RARITY_WEIGHTS,
 });
+
+    // ── Initialize the Aura RNG system ──
+    await rngState.init();
+    console.log('✨ Aura RNG system ready.');
 });
     // ════════════════════════════════════════════════════════════════
 // ♦️ TTT + CONNECT4 HELPERS
@@ -4104,6 +4109,15 @@ client.on('interactionCreate', async interaction => {
 client.on('messageCreate', async message => {
     try {
         if (message.author.bot) return;
+
+        // ── RNG system gets first look at every message ──
+        const rngHandled = await rngCommandRouter.handleMessage(message, {
+            rngData: rngState.getRngData(),
+            OWNER_ID,
+            client,
+        });
+        
+        if (rngHandled) return;
         const userId = String(message.author.id);
         const content = message.content;
         const lower   = content.toLowerCase();
