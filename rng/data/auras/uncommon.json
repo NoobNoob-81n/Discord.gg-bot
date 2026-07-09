@@ -1,0 +1,3242 @@
+[
+  {
+    "id": "aura_0201",
+    "name": "Verdant Sprout",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0202",
+    "name": "Verdant Root",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0203",
+    "name": "Budding Root",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0204",
+    "name": "Vivid Sprout",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0205",
+    "name": "Woven Bramble",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0206",
+    "name": "Woven Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0207",
+    "name": "Budding Bramble",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0208",
+    "name": "Budding Petal",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0209",
+    "name": "Fresh Bramble",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0210",
+    "name": "Blooming Root",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0211",
+    "name": "Verdant Petal",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0212",
+    "name": "Mossy Sprout",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0213",
+    "name": "Budding Grove",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0214",
+    "name": "Verdant Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0215",
+    "name": "Blooming Vine",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0216",
+    "name": "Woven Sprout",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0217",
+    "name": "Fresh Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0218",
+    "name": "Vivid Root",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0219",
+    "name": "Mossy Grove",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0220",
+    "name": "Budding Vine",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0221",
+    "name": "Fresh Grove",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0222",
+    "name": "Budding Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0223",
+    "name": "Verdant Vine",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0224",
+    "name": "Mossy Petal",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0225",
+    "name": "Vivid Bramble",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0226",
+    "name": "Vivid Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0227",
+    "name": "Mossy Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0228",
+    "name": "Budding Sprout",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0229",
+    "name": "Mossy Vine",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0230",
+    "name": "Mossy Root",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0231",
+    "name": "Woven Petal",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0232",
+    "name": "Woven Vine",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0233",
+    "name": "Fresh Sprout",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0234",
+    "name": "Verdant Bramble",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0235",
+    "name": "Fresh Vine",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0236",
+    "name": "Vivid Petal",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0237",
+    "name": "Fresh Petal",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0238",
+    "name": "Woven Root",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0239",
+    "name": "Blooming Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0240",
+    "name": "Blooming Bramble",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0241",
+    "name": "Verdant Grove",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0242",
+    "name": "Blooming Petal",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0243",
+    "name": "Mossy Bramble",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0244",
+    "name": "Blooming Sprout",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0245",
+    "name": "Woven Grove",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0246",
+    "name": "Vivid Vine",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0247",
+    "name": "Fresh Vine",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0248",
+    "name": "Blooming Grove",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0249",
+    "name": "Vivid Grove",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0250",
+    "name": "Fresh Root",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0251",
+    "name": "Mossy Vine",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0252",
+    "name": "Verdant Sprout",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0253",
+    "name": "Woven Grove",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0254",
+    "name": "Budding Vine",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0255",
+    "name": "Vivid Bramble",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0256",
+    "name": "Woven Petal",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0257",
+    "name": "Verdant Sprout",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0258",
+    "name": "Mossy Sprout",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0259",
+    "name": "Woven Sprout",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0260",
+    "name": "Budding Petal",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0261",
+    "name": "Vivid Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0262",
+    "name": "Verdant Petal",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0263",
+    "name": "Blooming Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0264",
+    "name": "Budding Bramble",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0265",
+    "name": "Budding Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0266",
+    "name": "Budding Grove",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0267",
+    "name": "Woven Grove",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0268",
+    "name": "Budding Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0269",
+    "name": "Woven Bramble",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0270",
+    "name": "Vivid Bramble",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0271",
+    "name": "Fresh Root",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0272",
+    "name": "Vivid Petal",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0273",
+    "name": "Woven Grove",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0274",
+    "name": "Budding Vine",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0275",
+    "name": "Fresh Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0276",
+    "name": "Blooming Root",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0277",
+    "name": "Budding Vine",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0278",
+    "name": "Woven Grove",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0279",
+    "name": "Mossy Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0280",
+    "name": "Mossy Root",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0281",
+    "name": "Mossy Root",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0282",
+    "name": "Woven Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0283",
+    "name": "Verdant Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0284",
+    "name": "Fresh Bramble",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0285",
+    "name": "Blooming Bramble",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0286",
+    "name": "Woven Sprout",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0287",
+    "name": "Budding Sprout",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0288",
+    "name": "Verdant Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0289",
+    "name": "Budding Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0290",
+    "name": "Vivid Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0291",
+    "name": "Verdant Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0292",
+    "name": "Mossy Bramble",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0293",
+    "name": "Fresh Root",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0294",
+    "name": "Woven Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0295",
+    "name": "Vivid Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0296",
+    "name": "Fresh Petal",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0297",
+    "name": "Woven Root",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0298",
+    "name": "Fresh Sprout",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0299",
+    "name": "Mossy Bramble",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0300",
+    "name": "Vivid Grove",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0301",
+    "name": "Budding Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0302",
+    "name": "Vivid Grove",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0303",
+    "name": "Verdant Petal",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0304",
+    "name": "Verdant Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0305",
+    "name": "Woven Bramble",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0306",
+    "name": "Woven Grove",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0307",
+    "name": "Vivid Root",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0308",
+    "name": "Vivid Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0309",
+    "name": "Mossy Sprout",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0310",
+    "name": "Fresh Root",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0311",
+    "name": "Woven Bramble",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0312",
+    "name": "Verdant Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0313",
+    "name": "Verdant Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0314",
+    "name": "Budding Grove",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0315",
+    "name": "Woven Sprout",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0316",
+    "name": "Verdant Petal",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0317",
+    "name": "Woven Sprout",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0318",
+    "name": "Woven Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0319",
+    "name": "Blooming Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0320",
+    "name": "Blooming Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0321",
+    "name": "Blooming Grove",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0322",
+    "name": "Verdant Petal",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0323",
+    "name": "Fresh Root",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0324",
+    "name": "Woven Sprout",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0325",
+    "name": "Woven Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0326",
+    "name": "Blooming Sprout",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0327",
+    "name": "Vivid Vine",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0328",
+    "name": "Fresh Vine",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0329",
+    "name": "Fresh Grove",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0330",
+    "name": "Vivid Sprout",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0331",
+    "name": "Fresh Bramble",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0332",
+    "name": "Woven Petal",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0333",
+    "name": "Vivid Grove",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0334",
+    "name": "Vivid Petal",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0335",
+    "name": "Budding Grove",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0336",
+    "name": "Budding Petal",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0337",
+    "name": "Woven Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0338",
+    "name": "Vivid Root",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0339",
+    "name": "Fresh Bramble",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0340",
+    "name": "Blooming Sprout",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0341",
+    "name": "Vivid Petal",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0342",
+    "name": "Blooming Grove",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0343",
+    "name": "Vivid Root",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0344",
+    "name": "Woven Vine",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0345",
+    "name": "Vivid Bramble",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0346",
+    "name": "Mossy Grove",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0347",
+    "name": "Mossy Grove",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0348",
+    "name": "Verdant Grove",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0349",
+    "name": "Fresh Sprout",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0350",
+    "name": "Budding Vine",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0351",
+    "name": "Budding Petal",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0352",
+    "name": "Verdant Root",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0353",
+    "name": "Vivid Vine",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0354",
+    "name": "Blooming Sprout",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0355",
+    "name": "Budding Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0356",
+    "name": "Verdant Vine",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0357",
+    "name": "Vivid Bramble",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0358",
+    "name": "Budding Sprout",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0359",
+    "name": "Mossy Bramble",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0360",
+    "name": "Vivid Root",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0361",
+    "name": "Verdant Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0362",
+    "name": "Vivid Petal",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0363",
+    "name": "Woven Petal",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0364",
+    "name": "Blooming Petal",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0365",
+    "name": "Vivid Petal",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0366",
+    "name": "Fresh Root",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0367",
+    "name": "Fresh Grove",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0368",
+    "name": "Vivid Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0369",
+    "name": "Vivid Grove",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0370",
+    "name": "Woven Bramble",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0371",
+    "name": "Verdant Petal",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0372",
+    "name": "Woven Grove",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0373",
+    "name": "Mossy Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0374",
+    "name": "Mossy Sprout",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0375",
+    "name": "Woven Root",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0376",
+    "name": "Fresh Sprout",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0377",
+    "name": "Mossy Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0378",
+    "name": "Verdant Grove",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🟢",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0379",
+    "name": "Vivid Petal",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🌿",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0380",
+    "name": "Woven Leaf",
+    "rarity": "Uncommon",
+    "odds": 5,
+    "color": 4906624,
+    "emoji": "🍀",
+    "description": "A uncommon-tier aura radiating with faint uncommon power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.05
+    },
+    "value": 10,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Uncommon",
+    "passiveAbility": null
+  }
+]

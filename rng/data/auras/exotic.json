@@ -1,0 +1,1622 @@
+[
+  {
+    "id": "aura_0651",
+    "name": "Radiant Aura",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🎀",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0652",
+    "name": "Opal Grace",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "💗",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0653",
+    "name": "Radiant Whisper",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0654",
+    "name": "Rosy Whisper",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🎀",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0655",
+    "name": "Silken Whisper",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "💗",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0656",
+    "name": "Blush Charm",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0657",
+    "name": "Opal Aura",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🎀",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0658",
+    "name": "Silken Charm",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0659",
+    "name": "Silken Aura",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🎀",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0660",
+    "name": "Opal Whisper",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "💗",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0661",
+    "name": "Rosy Charm",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🎀",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0662",
+    "name": "Radiant Grace",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0663",
+    "name": "Rosy Grace",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "💗",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0664",
+    "name": "Rosy Aura",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🎀",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0665",
+    "name": "Rosy Bloom",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0666",
+    "name": "Blush Bloom",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "💗",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0667",
+    "name": "Blush Glimmer",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🎀",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0668",
+    "name": "Gilded Aura",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🎀",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0669",
+    "name": "Gilded Grace",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0670",
+    "name": "Blush Whisper",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🎀",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0671",
+    "name": "Gilded Glimmer",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🎀",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0672",
+    "name": "Silken Grace",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0673",
+    "name": "Gilded Charm",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0674",
+    "name": "Blush Grace",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🎀",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0675",
+    "name": "Gilded Whisper",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🎀",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0676",
+    "name": "Opal Bloom",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "💗",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0677",
+    "name": "Radiant Charm",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "💗",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0678",
+    "name": "Silken Bloom",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0679",
+    "name": "Opal Glimmer",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🎀",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0680",
+    "name": "Gilded Bloom",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0681",
+    "name": "Blush Aura",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "💗",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0682",
+    "name": "Radiant Glimmer",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0683",
+    "name": "Rosy Glimmer",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0684",
+    "name": "Rosy Aura",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "💗",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0685",
+    "name": "Opal Charm",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "💗",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0686",
+    "name": "Radiant Bloom",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "💗",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0687",
+    "name": "Silken Glimmer",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0688",
+    "name": "Opal Aura",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0689",
+    "name": "Rosy Charm",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0690",
+    "name": "Gilded Bloom",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🎀",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0691",
+    "name": "Radiant Charm",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0692",
+    "name": "Opal Grace",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🎀",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0693",
+    "name": "Opal Aura",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0694",
+    "name": "Silken Bloom",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0695",
+    "name": "Radiant Glimmer",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0696",
+    "name": "Radiant Charm",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0697",
+    "name": "Gilded Whisper",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0698",
+    "name": "Blush Aura",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0699",
+    "name": "Blush Whisper",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "💗",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0700",
+    "name": "Blush Glimmer",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0701",
+    "name": "Blush Grace",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "💗",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0702",
+    "name": "Rosy Whisper",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0703",
+    "name": "Opal Aura",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🎀",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0704",
+    "name": "Gilded Bloom",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "💗",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0705",
+    "name": "Gilded Glimmer",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0706",
+    "name": "Gilded Aura",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0707",
+    "name": "Blush Aura",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0708",
+    "name": "Silken Charm",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0709",
+    "name": "Silken Grace",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "💗",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0710",
+    "name": "Opal Whisper",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "💗",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0711",
+    "name": "Opal Charm",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0712",
+    "name": "Opal Charm",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "💗",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0713",
+    "name": "Blush Grace",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🎀",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0714",
+    "name": "Opal Charm",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "💗",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0715",
+    "name": "Opal Grace",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0716",
+    "name": "Gilded Whisper",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "💗",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0717",
+    "name": "Opal Bloom",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🎀",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0718",
+    "name": "Rosy Aura",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "💗",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0719",
+    "name": "Blush Charm",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "💗",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0720",
+    "name": "Blush Grace",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0721",
+    "name": "Opal Glimmer",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🎀",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0722",
+    "name": "Opal Grace",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "💗",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0723",
+    "name": "Rosy Glimmer",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "💗",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0724",
+    "name": "Rosy Charm",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "💗",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0725",
+    "name": "Blush Glimmer",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🎀",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0726",
+    "name": "Rosy Aura",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🎀",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0727",
+    "name": "Gilded Aura",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "💗",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0728",
+    "name": "Silken Aura",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0729",
+    "name": "Blush Bloom",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0730",
+    "name": "Blush Charm",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0731",
+    "name": "Radiant Glimmer",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "💗",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0732",
+    "name": "Rosy Grace",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0733",
+    "name": "Rosy Whisper",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🎀",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0734",
+    "name": "Radiant Charm",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🎀",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0735",
+    "name": "Silken Charm",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "💗",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0736",
+    "name": "Gilded Bloom",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0737",
+    "name": "Silken Charm",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "💗",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0738",
+    "name": "Radiant Glimmer",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "🎀",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0739",
+    "name": "Blush Aura",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "💗",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0740",
+    "name": "Radiant Bloom",
+    "rarity": "Exotic",
+    "odds": 150,
+    "color": 15485081,
+    "emoji": "💗",
+    "description": "A exotic-tier aura radiating with faint exotic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 300,
+    "collectionValue": 15,
+    "rollAnimation": "simple_fade",
+    "title": "the Exotic",
+    "passiveAbility": null
+  }
+]

@@ -1,0 +1,452 @@
+[
+  {
+    "id": "aura_0896",
+    "name": "Warped Nebula",
+    "rarity": "Galaxy",
+    "odds": 35000,
+    "color": 6514417,
+    "emoji": "🌌",
+    "description": "A galaxy-tier aura radiating with faint galaxy power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.4
+    },
+    "value": 70000,
+    "collectionValue": 3500,
+    "rollAnimation": "glow_pulse",
+    "title": "the Galaxy",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0897",
+    "name": "Interstellar Galaxy",
+    "rarity": "Galaxy",
+    "odds": 35000,
+    "color": 6514417,
+    "emoji": "🪐",
+    "description": "A galaxy-tier aura radiating with faint galaxy power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.4
+    },
+    "value": 70000,
+    "collectionValue": 3500,
+    "rollAnimation": "glow_pulse",
+    "title": "the Galaxy",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0898",
+    "name": "Nebular Expanse",
+    "rarity": "Galaxy",
+    "odds": 35000,
+    "color": 6514417,
+    "emoji": "🌀",
+    "description": "A galaxy-tier aura radiating with faint galaxy power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.4
+    },
+    "value": 70000,
+    "collectionValue": 3500,
+    "rollAnimation": "glow_pulse",
+    "title": "the Galaxy",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0899",
+    "name": "Interstellar Vortex",
+    "rarity": "Galaxy",
+    "odds": 35000,
+    "color": 6514417,
+    "emoji": "🌌",
+    "description": "A galaxy-tier aura radiating with faint galaxy power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.4
+    },
+    "value": 70000,
+    "collectionValue": 3500,
+    "rollAnimation": "glow_pulse",
+    "title": "the Galaxy",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0900",
+    "name": "Stellar Expanse",
+    "rarity": "Galaxy",
+    "odds": 35000,
+    "color": 6514417,
+    "emoji": "🌌",
+    "description": "A galaxy-tier aura radiating with faint galaxy power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.4
+    },
+    "value": 70000,
+    "collectionValue": 3500,
+    "rollAnimation": "glow_pulse",
+    "title": "the Galaxy",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0901",
+    "name": "Interstellar Expanse",
+    "rarity": "Galaxy",
+    "odds": 35000,
+    "color": 6514417,
+    "emoji": "🌀",
+    "description": "A galaxy-tier aura radiating with faint galaxy power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.4
+    },
+    "value": 70000,
+    "collectionValue": 3500,
+    "rollAnimation": "glow_pulse",
+    "title": "the Galaxy",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0902",
+    "name": "Cosmic Vortex",
+    "rarity": "Galaxy",
+    "odds": 35000,
+    "color": 6514417,
+    "emoji": "🌌",
+    "description": "A galaxy-tier aura radiating with faint galaxy power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.4
+    },
+    "value": 70000,
+    "collectionValue": 3500,
+    "rollAnimation": "glow_pulse",
+    "title": "the Galaxy",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0903",
+    "name": "Warped Expanse",
+    "rarity": "Galaxy",
+    "odds": 35000,
+    "color": 6514417,
+    "emoji": "🪐",
+    "description": "A galaxy-tier aura radiating with faint galaxy power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.4
+    },
+    "value": 70000,
+    "collectionValue": 3500,
+    "rollAnimation": "glow_pulse",
+    "title": "the Galaxy",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0904",
+    "name": "Interstellar Singularity",
+    "rarity": "Galaxy",
+    "odds": 35000,
+    "color": 6514417,
+    "emoji": "🌀",
+    "description": "A galaxy-tier aura radiating with faint galaxy power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.4
+    },
+    "value": 70000,
+    "collectionValue": 3500,
+    "rollAnimation": "glow_pulse",
+    "title": "the Galaxy",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0905",
+    "name": "Nebular Quasar",
+    "rarity": "Galaxy",
+    "odds": 35000,
+    "color": 6514417,
+    "emoji": "🌀",
+    "description": "A galaxy-tier aura radiating with faint galaxy power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.4
+    },
+    "value": 70000,
+    "collectionValue": 3500,
+    "rollAnimation": "glow_pulse",
+    "title": "the Galaxy",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0906",
+    "name": "Nebular Galaxy",
+    "rarity": "Galaxy",
+    "odds": 35000,
+    "color": 6514417,
+    "emoji": "🌀",
+    "description": "A galaxy-tier aura radiating with faint galaxy power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.4
+    },
+    "value": 70000,
+    "collectionValue": 3500,
+    "rollAnimation": "glow_pulse",
+    "title": "the Galaxy",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0907",
+    "name": "Cosmic Galaxy",
+    "rarity": "Galaxy",
+    "odds": 35000,
+    "color": 6514417,
+    "emoji": "🪐",
+    "description": "A galaxy-tier aura radiating with faint galaxy power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.4
+    },
+    "value": 70000,
+    "collectionValue": 3500,
+    "rollAnimation": "glow_pulse",
+    "title": "the Galaxy",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0908",
+    "name": "Warped Quasar",
+    "rarity": "Galaxy",
+    "odds": 35000,
+    "color": 6514417,
+    "emoji": "🌌",
+    "description": "A galaxy-tier aura radiating with faint galaxy power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.4
+    },
+    "value": 70000,
+    "collectionValue": 3500,
+    "rollAnimation": "glow_pulse",
+    "title": "the Galaxy",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0909",
+    "name": "Orbital Expanse",
+    "rarity": "Galaxy",
+    "odds": 35000,
+    "color": 6514417,
+    "emoji": "🌀",
+    "description": "A galaxy-tier aura radiating with faint galaxy power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.4
+    },
+    "value": 70000,
+    "collectionValue": 3500,
+    "rollAnimation": "glow_pulse",
+    "title": "the Galaxy",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0910",
+    "name": "Warped Galaxy",
+    "rarity": "Galaxy",
+    "odds": 35000,
+    "color": 6514417,
+    "emoji": "🪐",
+    "description": "A galaxy-tier aura radiating with faint galaxy power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.4
+    },
+    "value": 70000,
+    "collectionValue": 3500,
+    "rollAnimation": "glow_pulse",
+    "title": "the Galaxy",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0911",
+    "name": "Cosmic Quasar",
+    "rarity": "Galaxy",
+    "odds": 35000,
+    "color": 6514417,
+    "emoji": "🌀",
+    "description": "A galaxy-tier aura radiating with faint galaxy power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.4
+    },
+    "value": 70000,
+    "collectionValue": 3500,
+    "rollAnimation": "glow_pulse",
+    "title": "the Galaxy",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0912",
+    "name": "Nebular Vortex",
+    "rarity": "Galaxy",
+    "odds": 35000,
+    "color": 6514417,
+    "emoji": "🪐",
+    "description": "A galaxy-tier aura radiating with faint galaxy power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.4
+    },
+    "value": 70000,
+    "collectionValue": 3500,
+    "rollAnimation": "glow_pulse",
+    "title": "the Galaxy",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0913",
+    "name": "Stellar Nebula",
+    "rarity": "Galaxy",
+    "odds": 35000,
+    "color": 6514417,
+    "emoji": "🌀",
+    "description": "A galaxy-tier aura radiating with faint galaxy power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.4
+    },
+    "value": 70000,
+    "collectionValue": 3500,
+    "rollAnimation": "glow_pulse",
+    "title": "the Galaxy",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0914",
+    "name": "Orbital Vortex",
+    "rarity": "Galaxy",
+    "odds": 35000,
+    "color": 6514417,
+    "emoji": "🪐",
+    "description": "A galaxy-tier aura radiating with faint galaxy power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.4
+    },
+    "value": 70000,
+    "collectionValue": 3500,
+    "rollAnimation": "glow_pulse",
+    "title": "the Galaxy",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0915",
+    "name": "Stellar Galaxy",
+    "rarity": "Galaxy",
+    "odds": 35000,
+    "color": 6514417,
+    "emoji": "🪐",
+    "description": "A galaxy-tier aura radiating with faint galaxy power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.4
+    },
+    "value": 70000,
+    "collectionValue": 3500,
+    "rollAnimation": "glow_pulse",
+    "title": "the Galaxy",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0916",
+    "name": "Warped Singularity",
+    "rarity": "Galaxy",
+    "odds": 35000,
+    "color": 6514417,
+    "emoji": "🌌",
+    "description": "A galaxy-tier aura radiating with faint galaxy power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.4
+    },
+    "value": 70000,
+    "collectionValue": 3500,
+    "rollAnimation": "glow_pulse",
+    "title": "the Galaxy",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0917",
+    "name": "Stellar Vortex",
+    "rarity": "Galaxy",
+    "odds": 35000,
+    "color": 6514417,
+    "emoji": "🌀",
+    "description": "A galaxy-tier aura radiating with faint galaxy power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.4
+    },
+    "value": 70000,
+    "collectionValue": 3500,
+    "rollAnimation": "glow_pulse",
+    "title": "the Galaxy",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0918",
+    "name": "Cosmic Nebula",
+    "rarity": "Galaxy",
+    "odds": 35000,
+    "color": 6514417,
+    "emoji": "🌀",
+    "description": "A galaxy-tier aura radiating with faint galaxy power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.4
+    },
+    "value": 70000,
+    "collectionValue": 3500,
+    "rollAnimation": "glow_pulse",
+    "title": "the Galaxy",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0919",
+    "name": "Cosmic Expanse",
+    "rarity": "Galaxy",
+    "odds": 35000,
+    "color": 6514417,
+    "emoji": "🌌",
+    "description": "A galaxy-tier aura radiating with faint galaxy power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.4
+    },
+    "value": 70000,
+    "collectionValue": 3500,
+    "rollAnimation": "glow_pulse",
+    "title": "the Galaxy",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0920",
+    "name": "Orbital Nebula",
+    "rarity": "Galaxy",
+    "odds": 35000,
+    "color": 6514417,
+    "emoji": "🌌",
+    "description": "A galaxy-tier aura radiating with faint galaxy power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.4
+    },
+    "value": 70000,
+    "collectionValue": 3500,
+    "rollAnimation": "glow_pulse",
+    "title": "the Galaxy",
+    "passiveAbility": null
+  }
+]

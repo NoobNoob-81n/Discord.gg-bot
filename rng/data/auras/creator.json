@@ -1,0 +1,20 @@
+[
+  {
+    "id": "aura_0969",
+    "name": "Creator",
+    "rarity": "Creator",
+    "odds": 1000000000,
+    "color": 16777215,
+    "emoji": "👨‍💻",
+    "description": "A creator-tier aura radiating with unmistakable creator energy.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.75
+    },
+    "value": 2000000000,
+    "collectionValue": 100000000,
+    "rollAnimation": "epic_flash",
+    "title": "the Creator",
+    "passiveAbility": null
+  }
+]

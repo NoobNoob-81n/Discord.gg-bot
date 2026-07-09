@@ -1,0 +1,326 @@
+[
+  {
+    "id": "aura_0921",
+    "name": "Eternal Abyss",
+    "rarity": "Cosmic",
+    "odds": 150000,
+    "color": 9133302,
+    "emoji": "🛸",
+    "description": "A cosmic-tier aura radiating with faint cosmic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.45
+    },
+    "value": 300000,
+    "collectionValue": 15000,
+    "rollAnimation": "epic_flash",
+    "title": "the Cosmic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0922",
+    "name": "Boundless Horizon",
+    "rarity": "Cosmic",
+    "odds": 150000,
+    "color": 9133302,
+    "emoji": "🌃",
+    "description": "A cosmic-tier aura radiating with faint cosmic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.45
+    },
+    "value": 300000,
+    "collectionValue": 15000,
+    "rollAnimation": "epic_flash",
+    "title": "the Cosmic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0923",
+    "name": "Infinite Abyss",
+    "rarity": "Cosmic",
+    "odds": 150000,
+    "color": 9133302,
+    "emoji": "🛸",
+    "description": "A cosmic-tier aura radiating with faint cosmic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.45
+    },
+    "value": 300000,
+    "collectionValue": 15000,
+    "rollAnimation": "epic_flash",
+    "title": "the Cosmic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0924",
+    "name": "Infinite Infinity",
+    "rarity": "Cosmic",
+    "odds": 150000,
+    "color": 9133302,
+    "emoji": "🌃",
+    "description": "A cosmic-tier aura radiating with faint cosmic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.45
+    },
+    "value": 300000,
+    "collectionValue": 15000,
+    "rollAnimation": "epic_flash",
+    "title": "the Cosmic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0925",
+    "name": "Endless Horizon",
+    "rarity": "Cosmic",
+    "odds": 150000,
+    "color": 9133302,
+    "emoji": "🛸",
+    "description": "A cosmic-tier aura radiating with faint cosmic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.45
+    },
+    "value": 300000,
+    "collectionValue": 15000,
+    "rollAnimation": "epic_flash",
+    "title": "the Cosmic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0926",
+    "name": "Vast Eternity",
+    "rarity": "Cosmic",
+    "odds": 150000,
+    "color": 9133302,
+    "emoji": "☄️",
+    "description": "A cosmic-tier aura radiating with faint cosmic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.45
+    },
+    "value": 300000,
+    "collectionValue": 15000,
+    "rollAnimation": "epic_flash",
+    "title": "the Cosmic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0927",
+    "name": "Endless Eternity",
+    "rarity": "Cosmic",
+    "odds": 150000,
+    "color": 9133302,
+    "emoji": "🌃",
+    "description": "A cosmic-tier aura radiating with faint cosmic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.45
+    },
+    "value": 300000,
+    "collectionValue": 15000,
+    "rollAnimation": "epic_flash",
+    "title": "the Cosmic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0928",
+    "name": "Vast Infinity",
+    "rarity": "Cosmic",
+    "odds": 150000,
+    "color": 9133302,
+    "emoji": "☄️",
+    "description": "A cosmic-tier aura radiating with faint cosmic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.45
+    },
+    "value": 300000,
+    "collectionValue": 15000,
+    "rollAnimation": "epic_flash",
+    "title": "the Cosmic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0929",
+    "name": "Endless Cosmos",
+    "rarity": "Cosmic",
+    "odds": 150000,
+    "color": 9133302,
+    "emoji": "🛸",
+    "description": "A cosmic-tier aura radiating with faint cosmic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.45
+    },
+    "value": 300000,
+    "collectionValue": 15000,
+    "rollAnimation": "epic_flash",
+    "title": "the Cosmic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0930",
+    "name": "Boundless Eternity",
+    "rarity": "Cosmic",
+    "odds": 150000,
+    "color": 9133302,
+    "emoji": "🛸",
+    "description": "A cosmic-tier aura radiating with faint cosmic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.45
+    },
+    "value": 300000,
+    "collectionValue": 15000,
+    "rollAnimation": "epic_flash",
+    "title": "the Cosmic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0931",
+    "name": "Timeless Horizon",
+    "rarity": "Cosmic",
+    "odds": 150000,
+    "color": 9133302,
+    "emoji": "🌃",
+    "description": "A cosmic-tier aura radiating with faint cosmic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.45
+    },
+    "value": 300000,
+    "collectionValue": 15000,
+    "rollAnimation": "epic_flash",
+    "title": "the Cosmic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0932",
+    "name": "Endless Continuum",
+    "rarity": "Cosmic",
+    "odds": 150000,
+    "color": 9133302,
+    "emoji": "🛸",
+    "description": "A cosmic-tier aura radiating with faint cosmic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.45
+    },
+    "value": 300000,
+    "collectionValue": 15000,
+    "rollAnimation": "epic_flash",
+    "title": "the Cosmic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0933",
+    "name": "Eternal Horizon",
+    "rarity": "Cosmic",
+    "odds": 150000,
+    "color": 9133302,
+    "emoji": "🌃",
+    "description": "A cosmic-tier aura radiating with faint cosmic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.45
+    },
+    "value": 300000,
+    "collectionValue": 15000,
+    "rollAnimation": "epic_flash",
+    "title": "the Cosmic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0934",
+    "name": "Vast Abyss",
+    "rarity": "Cosmic",
+    "odds": 150000,
+    "color": 9133302,
+    "emoji": "☄️",
+    "description": "A cosmic-tier aura radiating with faint cosmic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.45
+    },
+    "value": 300000,
+    "collectionValue": 15000,
+    "rollAnimation": "epic_flash",
+    "title": "the Cosmic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0935",
+    "name": "Infinite Continuum",
+    "rarity": "Cosmic",
+    "odds": 150000,
+    "color": 9133302,
+    "emoji": "☄️",
+    "description": "A cosmic-tier aura radiating with faint cosmic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.45
+    },
+    "value": 300000,
+    "collectionValue": 15000,
+    "rollAnimation": "epic_flash",
+    "title": "the Cosmic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0936",
+    "name": "Endless Infinity",
+    "rarity": "Cosmic",
+    "odds": 150000,
+    "color": 9133302,
+    "emoji": "🛸",
+    "description": "A cosmic-tier aura radiating with faint cosmic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.45
+    },
+    "value": 300000,
+    "collectionValue": 15000,
+    "rollAnimation": "epic_flash",
+    "title": "the Cosmic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0937",
+    "name": "Eternal Eternity",
+    "rarity": "Cosmic",
+    "odds": 150000,
+    "color": 9133302,
+    "emoji": "🛸",
+    "description": "A cosmic-tier aura radiating with faint cosmic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.45
+    },
+    "value": 300000,
+    "collectionValue": 15000,
+    "rollAnimation": "epic_flash",
+    "title": "the Cosmic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0938",
+    "name": "Vast Cosmos",
+    "rarity": "Cosmic",
+    "odds": 150000,
+    "color": 9133302,
+    "emoji": "🛸",
+    "description": "A cosmic-tier aura radiating with faint cosmic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.45
+    },
+    "value": 300000,
+    "collectionValue": 15000,
+    "rollAnimation": "epic_flash",
+    "title": "the Cosmic",
+    "passiveAbility": null
+  }
+]

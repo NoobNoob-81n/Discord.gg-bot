@@ -1,0 +1,23 @@
+[
+  {
+    "id": "aura_godlike_noob",
+    "name": "The Godlike Noob",
+    "rarity": "Godlike",
+    "odds": 5000000000,
+    "color": null,
+    "emoji": "🌟",
+    "description": "The single rarest aura in existence. Legends say only one soul may hold it at a time.",
+    "effects": {
+      "luckBonus": 25,
+      "essenceMultiplier": 3
+    },
+    "value": 1000000,
+    "collectionValue": 100000,
+    "rollAnimation": "godlike_rainbow_explosion",
+    "title": "the Godlike",
+    "passiveAbility": "Rebirth Ward — once per day, negates the next failed roll penalty (if any penalty system is added later).",
+    "badge": "🌟 GODLIKE",
+    "isUniqueGlobal": true,
+    "announceOnRoll": true
+  }
+]

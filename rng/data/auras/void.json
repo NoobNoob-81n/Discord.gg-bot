@@ -1,0 +1,218 @@
+[
+  {
+    "id": "aura_0939",
+    "name": "Consuming Oblivion",
+    "rarity": "Void",
+    "odds": 650000,
+    "color": 2039598,
+    "emoji": "🌑",
+    "description": "A void-tier aura radiating with faint void power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.5
+    },
+    "value": 1300000,
+    "collectionValue": 65000,
+    "rollAnimation": "epic_flash",
+    "title": "the Void",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0940",
+    "name": "Black Emptiness",
+    "rarity": "Void",
+    "odds": 650000,
+    "color": 2039598,
+    "emoji": "⚫",
+    "description": "A void-tier aura radiating with faint void power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.5
+    },
+    "value": 1300000,
+    "collectionValue": 65000,
+    "rollAnimation": "epic_flash",
+    "title": "the Void",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0941",
+    "name": "Silent Void",
+    "rarity": "Void",
+    "odds": 650000,
+    "color": 2039598,
+    "emoji": "⚫",
+    "description": "A void-tier aura radiating with faint void power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.5
+    },
+    "value": 1300000,
+    "collectionValue": 65000,
+    "rollAnimation": "epic_flash",
+    "title": "the Void",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0942",
+    "name": "Silent Oblivion",
+    "rarity": "Void",
+    "odds": 650000,
+    "color": 2039598,
+    "emoji": "🕳️",
+    "description": "A void-tier aura radiating with faint void power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.5
+    },
+    "value": 1300000,
+    "collectionValue": 65000,
+    "rollAnimation": "epic_flash",
+    "title": "the Void",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0943",
+    "name": "Empty Emptiness",
+    "rarity": "Void",
+    "odds": 650000,
+    "color": 2039598,
+    "emoji": "⚫",
+    "description": "A void-tier aura radiating with faint void power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.5
+    },
+    "value": 1300000,
+    "collectionValue": 65000,
+    "rollAnimation": "epic_flash",
+    "title": "the Void",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0944",
+    "name": "Consuming Void",
+    "rarity": "Void",
+    "odds": 650000,
+    "color": 2039598,
+    "emoji": "⚫",
+    "description": "A void-tier aura radiating with faint void power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.5
+    },
+    "value": 1300000,
+    "collectionValue": 65000,
+    "rollAnimation": "epic_flash",
+    "title": "the Void",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0945",
+    "name": "Hollow Abyss",
+    "rarity": "Void",
+    "odds": 650000,
+    "color": 2039598,
+    "emoji": "🌑",
+    "description": "A void-tier aura radiating with faint void power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.5
+    },
+    "value": 1300000,
+    "collectionValue": 65000,
+    "rollAnimation": "epic_flash",
+    "title": "the Void",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0946",
+    "name": "Hollow Void",
+    "rarity": "Void",
+    "odds": 650000,
+    "color": 2039598,
+    "emoji": "🌑",
+    "description": "A void-tier aura radiating with faint void power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.5
+    },
+    "value": 1300000,
+    "collectionValue": 65000,
+    "rollAnimation": "epic_flash",
+    "title": "the Void",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0947",
+    "name": "Empty Nullity",
+    "rarity": "Void",
+    "odds": 650000,
+    "color": 2039598,
+    "emoji": "🕳️",
+    "description": "A void-tier aura radiating with faint void power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.5
+    },
+    "value": 1300000,
+    "collectionValue": 65000,
+    "rollAnimation": "epic_flash",
+    "title": "the Void",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0948",
+    "name": "Hollow Emptiness",
+    "rarity": "Void",
+    "odds": 650000,
+    "color": 2039598,
+    "emoji": "🌑",
+    "description": "A void-tier aura radiating with faint void power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.5
+    },
+    "value": 1300000,
+    "collectionValue": 65000,
+    "rollAnimation": "epic_flash",
+    "title": "the Void",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0949",
+    "name": "Black Darkness",
+    "rarity": "Void",
+    "odds": 650000,
+    "color": 2039598,
+    "emoji": "🕳️",
+    "description": "A void-tier aura radiating with faint void power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.5
+    },
+    "value": 1300000,
+    "collectionValue": 65000,
+    "rollAnimation": "epic_flash",
+    "title": "the Void",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0950",
+    "name": "Hollow Nullity",
+    "rarity": "Void",
+    "odds": 650000,
+    "color": 2039598,
+    "emoji": "🌑",
+    "description": "A void-tier aura radiating with faint void power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.5
+    },
+    "value": 1300000,
+    "collectionValue": 65000,
+    "rollAnimation": "epic_flash",
+    "title": "the Void",
+    "passiveAbility": null
+  }
+]

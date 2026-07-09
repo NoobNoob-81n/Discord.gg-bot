@@ -1,0 +1,632 @@
+[
+  {
+    "id": "aura_0861",
+    "name": "Astral Aurora",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "🌠",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0862",
+    "name": "Shining Comet",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "🌠",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0863",
+    "name": "Shining Aurora",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "🌟",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0864",
+    "name": "Skyborn Starlight",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "🌠",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0865",
+    "name": "Starforged Starlight",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "🌟",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0866",
+    "name": "Starforged Aurora",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "⭐",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0867",
+    "name": "Skyborn Aurora",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "🌟",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0868",
+    "name": "Radiant Starlight",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "🌟",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0869",
+    "name": "Shining Starlight",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "🌠",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0870",
+    "name": "Radiant Aurora",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "⭐",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0871",
+    "name": "Shining Nova",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "🌟",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0872",
+    "name": "Astral Starlight",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "⭐",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0873",
+    "name": "Starforged Nova",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "🌠",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0874",
+    "name": "Radiant Constellation",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "🌟",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0875",
+    "name": "Luminous Comet",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "🌠",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0876",
+    "name": "Skyborn Meteor",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "⭐",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0877",
+    "name": "Astral Nova",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "🌟",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0878",
+    "name": "Shining Constellation",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "⭐",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0879",
+    "name": "Luminous Meteor",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "🌟",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0880",
+    "name": "Radiant Comet",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "🌟",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0881",
+    "name": "Starforged Constellation",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "⭐",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0882",
+    "name": "Luminous Aurora",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "🌠",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0883",
+    "name": "Shining Meteor",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "⭐",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0884",
+    "name": "Starforged Comet",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "🌟",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0885",
+    "name": "Astral Constellation",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "🌟",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0886",
+    "name": "Astral Comet",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "🌟",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0887",
+    "name": "Luminous Starlight",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "🌟",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0888",
+    "name": "Radiant Meteor",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "⭐",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0889",
+    "name": "Starforged Meteor",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "🌟",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0890",
+    "name": "Skyborn Nova",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "🌟",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0891",
+    "name": "Radiant Nova",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "⭐",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0892",
+    "name": "Skyborn Constellation",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "🌠",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0893",
+    "name": "Skyborn Comet",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "🌟",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0894",
+    "name": "Astral Meteor",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "🌟",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0895",
+    "name": "Radiant Aurora",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "🌠",
+    "description": "A celestial-tier aura radiating with faint celestial power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.35
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null
+  }
+]

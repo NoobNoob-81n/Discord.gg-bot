@@ -1,0 +1,56 @@
+[
+  {
+    "id": "aura_0964",
+    "name": "Fragmented Error",
+    "rarity": "Glitched",
+    "odds": 75000000,
+    "color": 65280,
+    "emoji": "⚠️",
+    "description": "A glitched-tier aura radiating with faint glitched power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.65
+    },
+    "value": 150000000,
+    "collectionValue": 7500000,
+    "rollAnimation": "epic_flash",
+    "title": "the Glitched",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0965",
+    "name": "Broken Fragment",
+    "rarity": "Glitched",
+    "odds": 75000000,
+    "color": 65280,
+    "emoji": "💾",
+    "description": "A glitched-tier aura radiating with faint glitched power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.65
+    },
+    "value": 150000000,
+    "collectionValue": 7500000,
+    "rollAnimation": "epic_flash",
+    "title": "the Glitched",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0966",
+    "name": "Erroneous Fragment",
+    "rarity": "Glitched",
+    "odds": 75000000,
+    "color": 65280,
+    "emoji": "💾",
+    "description": "A glitched-tier aura radiating with faint glitched power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.65
+    },
+    "value": 150000000,
+    "collectionValue": 7500000,
+    "rollAnimation": "epic_flash",
+    "title": "the Glitched",
+    "passiveAbility": null
+  }
+]

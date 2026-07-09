@@ -1,0 +1,1262 @@
+[
+  {
+    "id": "aura_0741",
+    "name": "Feral Cinder",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "⚡",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0742",
+    "name": "Blazing Cinder",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "⚡",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0743",
+    "name": "Scorching Ember",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "⚡",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0744",
+    "name": "Burning Inferno",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🔥",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0745",
+    "name": "Feral Flare",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🔥",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0746",
+    "name": "Blazing Phoenix",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🟠",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0747",
+    "name": "Infernal Wildfire",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🟠",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0748",
+    "name": "Molten Flare",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🟠",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0749",
+    "name": "Blazing Inferno",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🔥",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0750",
+    "name": "Infernal Phoenix",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🔥",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0751",
+    "name": "Infernal Cinder",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "⚡",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0752",
+    "name": "Blazing Ember",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🔥",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0753",
+    "name": "Molten Wildfire",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🟠",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0754",
+    "name": "Scorching Inferno",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "⚡",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0755",
+    "name": "Feral Wildfire",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🟠",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0756",
+    "name": "Feral Ember",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "⚡",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0757",
+    "name": "Blazing Wildfire",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🟠",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0758",
+    "name": "Molten Cinder",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "⚡",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0759",
+    "name": "Blazing Flare",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🔥",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0760",
+    "name": "Infernal Flare",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🔥",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0761",
+    "name": "Molten Phoenix",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🔥",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0762",
+    "name": "Burning Phoenix",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🟠",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0763",
+    "name": "Molten Inferno",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🔥",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0764",
+    "name": "Molten Ember",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🟠",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0765",
+    "name": "Feral Inferno",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🟠",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0766",
+    "name": "Scorching Phoenix",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "⚡",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0767",
+    "name": "Scorching Wildfire",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🔥",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0768",
+    "name": "Burning Ember",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "⚡",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0769",
+    "name": "Infernal Ember",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "⚡",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0770",
+    "name": "Scorching Flare",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🟠",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0771",
+    "name": "Burning Flare",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "⚡",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0772",
+    "name": "Feral Phoenix",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🟠",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0773",
+    "name": "Scorching Cinder",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🟠",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0774",
+    "name": "Infernal Inferno",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🔥",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0775",
+    "name": "Burning Wildfire",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🔥",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0776",
+    "name": "Molten Phoenix",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "⚡",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0777",
+    "name": "Burning Cinder",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "⚡",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0778",
+    "name": "Feral Wildfire",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "⚡",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0779",
+    "name": "Molten Cinder",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🟠",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0780",
+    "name": "Blazing Cinder",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🔥",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0781",
+    "name": "Blazing Wildfire",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "⚡",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0782",
+    "name": "Molten Wildfire",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🔥",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0783",
+    "name": "Molten Flare",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🔥",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0784",
+    "name": "Feral Cinder",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🔥",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0785",
+    "name": "Blazing Inferno",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🔥",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0786",
+    "name": "Scorching Inferno",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🟠",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0787",
+    "name": "Feral Ember",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "⚡",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0788",
+    "name": "Blazing Phoenix",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🔥",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0789",
+    "name": "Molten Phoenix",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🟠",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0790",
+    "name": "Feral Phoenix",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🔥",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0791",
+    "name": "Molten Wildfire",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "⚡",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0792",
+    "name": "Blazing Flare",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🟠",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0793",
+    "name": "Infernal Flare",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🟠",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0794",
+    "name": "Infernal Inferno",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🟠",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0795",
+    "name": "Scorching Ember",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "⚡",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0796",
+    "name": "Feral Flare",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🟠",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0797",
+    "name": "Burning Flare",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🟠",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0798",
+    "name": "Infernal Ember",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "⚡",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0799",
+    "name": "Scorching Inferno",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🟠",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0800",
+    "name": "Feral Ember",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "⚡",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0801",
+    "name": "Scorching Inferno",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "⚡",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0802",
+    "name": "Blazing Ember",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🟠",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0803",
+    "name": "Feral Wildfire",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "⚡",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0804",
+    "name": "Feral Wildfire",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🔥",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0805",
+    "name": "Infernal Inferno",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "⚡",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0806",
+    "name": "Blazing Flare",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "⚡",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0807",
+    "name": "Burning Ember",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "⚡",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0808",
+    "name": "Infernal Ember",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🔥",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0809",
+    "name": "Feral Inferno",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🟠",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0810",
+    "name": "Blazing Wildfire",
+    "rarity": "Legendary",
+    "odds": 500,
+    "color": 16096779,
+    "emoji": "🟠",
+    "description": "A legendary-tier aura radiating with faint legendary power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 1000,
+    "collectionValue": 50,
+    "rollAnimation": "glow_pulse",
+    "title": "the Legendary",
+    "passiveAbility": null
+  }
+]

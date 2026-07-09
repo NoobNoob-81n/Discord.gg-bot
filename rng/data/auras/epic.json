@@ -1,0 +1,2162 @@
+[
+  {
+    "id": "aura_0531",
+    "name": "Warped Veil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0532",
+    "name": "Mystic Sigil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0533",
+    "name": "Mystic Wraith",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🟣",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0534",
+    "name": "Runic Echo",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0535",
+    "name": "Spectral Wraith",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🟣",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0536",
+    "name": "Enchanted Sigil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0537",
+    "name": "Enchanted Veil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0538",
+    "name": "Enchanted Wraith",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0539",
+    "name": "Enchanted Rune",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🟣",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0540",
+    "name": "Warped Rune",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0541",
+    "name": "Warped Hex",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🟣",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0542",
+    "name": "Arcane Wraith",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🟣",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0543",
+    "name": "Runic Wraith",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🟣",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0544",
+    "name": "Arcane Veil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🟣",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0545",
+    "name": "Mystic Rune",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0546",
+    "name": "Spectral Rune",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0547",
+    "name": "Arcane Hex",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🟣",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0548",
+    "name": "Spectral Hex",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0549",
+    "name": "Warped Wraith",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🟣",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0550",
+    "name": "Spectral Veil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0551",
+    "name": "Mystic Conjure",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0552",
+    "name": "Arcane Sigil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🟣",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0553",
+    "name": "Enchanted Conjure",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0554",
+    "name": "Mystic Hex",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0555",
+    "name": "Spectral Conjure",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🟣",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0556",
+    "name": "Enchanted Echo",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0557",
+    "name": "Mystic Echo",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0558",
+    "name": "Spectral Echo",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0559",
+    "name": "Spectral Sigil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🟣",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0560",
+    "name": "Arcane Conjure",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0561",
+    "name": "Runic Hex",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0562",
+    "name": "Arcane Rune",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0563",
+    "name": "Runic Rune",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0564",
+    "name": "Arcane Echo",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🟣",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0565",
+    "name": "Runic Conjure",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0566",
+    "name": "Runic Sigil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🟣",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0567",
+    "name": "Warped Echo",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🟣",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0568",
+    "name": "Enchanted Hex",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🟣",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0569",
+    "name": "Mystic Veil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🟣",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0570",
+    "name": "Runic Veil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0571",
+    "name": "Mystic Conjure",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0572",
+    "name": "Warped Conjure",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0573",
+    "name": "Runic Veil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🟣",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0574",
+    "name": "Spectral Echo",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0575",
+    "name": "Warped Sigil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0576",
+    "name": "Runic Wraith",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0577",
+    "name": "Spectral Hex",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🟣",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0578",
+    "name": "Mystic Rune",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0579",
+    "name": "Spectral Conjure",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0580",
+    "name": "Spectral Hex",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0581",
+    "name": "Warped Echo",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0582",
+    "name": "Enchanted Sigil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0583",
+    "name": "Spectral Sigil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🟣",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0584",
+    "name": "Warped Sigil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0585",
+    "name": "Spectral Hex",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0586",
+    "name": "Runic Echo",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🟣",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0587",
+    "name": "Spectral Hex",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🟣",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0588",
+    "name": "Arcane Sigil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0589",
+    "name": "Warped Sigil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🟣",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0590",
+    "name": "Enchanted Sigil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🟣",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0591",
+    "name": "Spectral Wraith",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🟣",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0592",
+    "name": "Mystic Rune",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0593",
+    "name": "Runic Echo",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0594",
+    "name": "Warped Rune",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0595",
+    "name": "Spectral Sigil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0596",
+    "name": "Spectral Sigil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🟣",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0597",
+    "name": "Runic Rune",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0598",
+    "name": "Warped Conjure",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0599",
+    "name": "Warped Conjure",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🟣",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0600",
+    "name": "Runic Conjure",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0601",
+    "name": "Enchanted Conjure",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0602",
+    "name": "Runic Veil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0603",
+    "name": "Mystic Rune",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0604",
+    "name": "Arcane Conjure",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0605",
+    "name": "Warped Conjure",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0606",
+    "name": "Warped Sigil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0607",
+    "name": "Warped Echo",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0608",
+    "name": "Enchanted Veil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0609",
+    "name": "Mystic Rune",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0610",
+    "name": "Mystic Echo",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0611",
+    "name": "Spectral Conjure",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0612",
+    "name": "Mystic Echo",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0613",
+    "name": "Runic Veil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0614",
+    "name": "Runic Conjure",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🟣",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0615",
+    "name": "Mystic Wraith",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🟣",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0616",
+    "name": "Warped Rune",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0617",
+    "name": "Arcane Hex",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0618",
+    "name": "Enchanted Wraith",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0619",
+    "name": "Warped Rune",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0620",
+    "name": "Arcane Conjure",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0621",
+    "name": "Mystic Veil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0622",
+    "name": "Runic Wraith",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🟣",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0623",
+    "name": "Spectral Sigil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0624",
+    "name": "Arcane Conjure",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0625",
+    "name": "Runic Sigil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0626",
+    "name": "Enchanted Sigil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0627",
+    "name": "Spectral Rune",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🟣",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0628",
+    "name": "Spectral Hex",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0629",
+    "name": "Runic Veil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0630",
+    "name": "Arcane Rune",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0631",
+    "name": "Arcane Conjure",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0632",
+    "name": "Spectral Echo",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0633",
+    "name": "Mystic Conjure",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0634",
+    "name": "Runic Echo",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0635",
+    "name": "Mystic Veil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0636",
+    "name": "Enchanted Rune",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0637",
+    "name": "Warped Sigil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0638",
+    "name": "Enchanted Conjure",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0639",
+    "name": "Mystic Sigil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0640",
+    "name": "Mystic Sigil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0641",
+    "name": "Enchanted Veil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0642",
+    "name": "Enchanted Hex",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0643",
+    "name": "Spectral Conjure",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🟣",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0644",
+    "name": "Arcane Rune",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0645",
+    "name": "Arcane Rune",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0646",
+    "name": "Mystic Rune",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0647",
+    "name": "Enchanted Sigil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🟣",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0648",
+    "name": "Enchanted Hex",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0649",
+    "name": "Spectral Sigil",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "✨",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0650",
+    "name": "Warped Hex",
+    "rarity": "Epic",
+    "odds": 48,
+    "color": 11032055,
+    "emoji": "🔮",
+    "description": "A epic-tier aura radiating with faint epic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 96,
+    "collectionValue": 5,
+    "rollAnimation": "simple_fade",
+    "title": "the Epic",
+    "passiveAbility": null
+  }
+]

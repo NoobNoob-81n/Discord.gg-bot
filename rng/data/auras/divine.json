@@ -1,0 +1,146 @@
+[
+  {
+    "id": "aura_0951",
+    "name": "Heavenly Providence",
+    "rarity": "Divine",
+    "odds": 3000000,
+    "color": 16766720,
+    "emoji": "✝️",
+    "description": "A divine-tier aura radiating with faint divine power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.55
+    },
+    "value": 6000000,
+    "collectionValue": 300000,
+    "rollAnimation": "epic_flash",
+    "title": "the Divine",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0952",
+    "name": "Holy Divinity",
+    "rarity": "Divine",
+    "odds": 3000000,
+    "color": 16766720,
+    "emoji": "✝️",
+    "description": "A divine-tier aura radiating with faint divine power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.55
+    },
+    "value": 6000000,
+    "collectionValue": 300000,
+    "rollAnimation": "epic_flash",
+    "title": "the Divine",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0953",
+    "name": "Pure Grace",
+    "rarity": "Divine",
+    "odds": 3000000,
+    "color": 16766720,
+    "emoji": "🕊️",
+    "description": "A divine-tier aura radiating with faint divine power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.55
+    },
+    "value": 6000000,
+    "collectionValue": 300000,
+    "rollAnimation": "epic_flash",
+    "title": "the Divine",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0954",
+    "name": "Pure Ascension",
+    "rarity": "Divine",
+    "odds": 3000000,
+    "color": 16766720,
+    "emoji": "✝️",
+    "description": "A divine-tier aura radiating with faint divine power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.55
+    },
+    "value": 6000000,
+    "collectionValue": 300000,
+    "rollAnimation": "epic_flash",
+    "title": "the Divine",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0955",
+    "name": "Heavenly Halo",
+    "rarity": "Divine",
+    "odds": 3000000,
+    "color": 16766720,
+    "emoji": "✝️",
+    "description": "A divine-tier aura radiating with faint divine power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.55
+    },
+    "value": 6000000,
+    "collectionValue": 300000,
+    "rollAnimation": "epic_flash",
+    "title": "the Divine",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0956",
+    "name": "Pure Halo",
+    "rarity": "Divine",
+    "odds": 3000000,
+    "color": 16766720,
+    "emoji": "🕊️",
+    "description": "A divine-tier aura radiating with faint divine power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.55
+    },
+    "value": 6000000,
+    "collectionValue": 300000,
+    "rollAnimation": "epic_flash",
+    "title": "the Divine",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0957",
+    "name": "Blessed Divinity",
+    "rarity": "Divine",
+    "odds": 3000000,
+    "color": 16766720,
+    "emoji": "✝️",
+    "description": "A divine-tier aura radiating with faint divine power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.55
+    },
+    "value": 6000000,
+    "collectionValue": 300000,
+    "rollAnimation": "epic_flash",
+    "title": "the Divine",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0958",
+    "name": "Radiant Providence",
+    "rarity": "Divine",
+    "odds": 3000000,
+    "color": 16766720,
+    "emoji": "🕊️",
+    "description": "A divine-tier aura radiating with faint divine power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.55
+    },
+    "value": 6000000,
+    "collectionValue": 300000,
+    "rollAnimation": "epic_flash",
+    "title": "the Divine",
+    "passiveAbility": null
+  }
+]

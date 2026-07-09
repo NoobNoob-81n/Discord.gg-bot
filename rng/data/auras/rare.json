@@ -1,0 +1,2702 @@
+[
+  {
+    "id": "aura_0381",
+    "name": "Polished Mirror",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0382",
+    "name": "Azure Wave",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0383",
+    "name": "Polished Wave",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0384",
+    "name": "Gleaming Tide",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0385",
+    "name": "Crystal Depth",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0386",
+    "name": "Frosted Frost",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0387",
+    "name": "Azure Frost",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0388",
+    "name": "Azure Depth",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0389",
+    "name": "Gleaming Current",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0390",
+    "name": "Azure Tide",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0391",
+    "name": "Polished Current",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0392",
+    "name": "Azure Mirror",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0393",
+    "name": "Crystal Current",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0394",
+    "name": "Crystal Mirror",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0395",
+    "name": "Gleaming Mirror",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0396",
+    "name": "Crystal Tide",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0397",
+    "name": "Crystal Prism",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0398",
+    "name": "Polished Prism",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0399",
+    "name": "Gleaming Prism",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0400",
+    "name": "Gleaming Frost",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0401",
+    "name": "Frosted Prism",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0402",
+    "name": "Frosted Mirror",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0403",
+    "name": "Frosted Current",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0404",
+    "name": "Azure Current",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0405",
+    "name": "Sapphire Tide",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0406",
+    "name": "Frosted Depth",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0407",
+    "name": "Frosted Tide",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0408",
+    "name": "Sapphire Frost",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0409",
+    "name": "Crystal Frost",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0410",
+    "name": "Sapphire Wave",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0411",
+    "name": "Polished Frost",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0412",
+    "name": "Polished Tide",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0413",
+    "name": "Crystal Wave",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0414",
+    "name": "Sapphire Mirror",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0415",
+    "name": "Sapphire Current",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0416",
+    "name": "Sapphire Depth",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0417",
+    "name": "Sapphire Prism",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0418",
+    "name": "Gleaming Depth",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0419",
+    "name": "Gleaming Wave",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0420",
+    "name": "Polished Depth",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0421",
+    "name": "Frosted Wave",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0422",
+    "name": "Azure Tide",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0423",
+    "name": "Azure Prism",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0424",
+    "name": "Polished Wave",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0425",
+    "name": "Sapphire Tide",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0426",
+    "name": "Azure Prism",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0427",
+    "name": "Sapphire Current",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0428",
+    "name": "Crystal Mirror",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0429",
+    "name": "Azure Frost",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0430",
+    "name": "Crystal Current",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0431",
+    "name": "Sapphire Wave",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0432",
+    "name": "Gleaming Prism",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0433",
+    "name": "Sapphire Depth",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0434",
+    "name": "Polished Frost",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0435",
+    "name": "Azure Depth",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0436",
+    "name": "Azure Mirror",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0437",
+    "name": "Sapphire Frost",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0438",
+    "name": "Crystal Tide",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0439",
+    "name": "Polished Prism",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0440",
+    "name": "Crystal Frost",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0441",
+    "name": "Gleaming Frost",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0442",
+    "name": "Crystal Tide",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0443",
+    "name": "Sapphire Frost",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0444",
+    "name": "Polished Wave",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0445",
+    "name": "Frosted Prism",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0446",
+    "name": "Gleaming Frost",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0447",
+    "name": "Crystal Wave",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0448",
+    "name": "Sapphire Wave",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0449",
+    "name": "Frosted Depth",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0450",
+    "name": "Sapphire Frost",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0451",
+    "name": "Gleaming Tide",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0452",
+    "name": "Crystal Prism",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0453",
+    "name": "Polished Mirror",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0454",
+    "name": "Polished Current",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0455",
+    "name": "Polished Wave",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0456",
+    "name": "Crystal Mirror",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0457",
+    "name": "Frosted Frost",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0458",
+    "name": "Polished Depth",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0459",
+    "name": "Polished Tide",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0460",
+    "name": "Sapphire Frost",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0461",
+    "name": "Gleaming Frost",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0462",
+    "name": "Azure Wave",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0463",
+    "name": "Azure Current",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0464",
+    "name": "Azure Wave",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0465",
+    "name": "Polished Wave",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0466",
+    "name": "Crystal Prism",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0467",
+    "name": "Frosted Depth",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0468",
+    "name": "Polished Depth",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0469",
+    "name": "Frosted Tide",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0470",
+    "name": "Polished Depth",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0471",
+    "name": "Sapphire Depth",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0472",
+    "name": "Frosted Wave",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0473",
+    "name": "Gleaming Frost",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0474",
+    "name": "Sapphire Mirror",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0475",
+    "name": "Gleaming Depth",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0476",
+    "name": "Sapphire Wave",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0477",
+    "name": "Azure Prism",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0478",
+    "name": "Crystal Wave",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0479",
+    "name": "Azure Wave",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0480",
+    "name": "Frosted Prism",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0481",
+    "name": "Azure Prism",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0482",
+    "name": "Azure Depth",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0483",
+    "name": "Crystal Mirror",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0484",
+    "name": "Gleaming Mirror",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0485",
+    "name": "Polished Frost",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0486",
+    "name": "Azure Depth",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0487",
+    "name": "Polished Wave",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0488",
+    "name": "Polished Wave",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0489",
+    "name": "Gleaming Depth",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0490",
+    "name": "Sapphire Frost",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0491",
+    "name": "Polished Wave",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0492",
+    "name": "Sapphire Frost",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0493",
+    "name": "Crystal Wave",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0494",
+    "name": "Polished Current",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0495",
+    "name": "Crystal Tide",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0496",
+    "name": "Gleaming Current",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0497",
+    "name": "Azure Depth",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0498",
+    "name": "Polished Tide",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0499",
+    "name": "Frosted Frost",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0500",
+    "name": "Gleaming Current",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0501",
+    "name": "Frosted Depth",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0502",
+    "name": "Sapphire Prism",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0503",
+    "name": "Sapphire Tide",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0504",
+    "name": "Crystal Current",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0505",
+    "name": "Gleaming Frost",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0506",
+    "name": "Polished Current",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0507",
+    "name": "Crystal Mirror",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0508",
+    "name": "Gleaming Current",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0509",
+    "name": "Frosted Depth",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0510",
+    "name": "Polished Frost",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0511",
+    "name": "Sapphire Prism",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0512",
+    "name": "Azure Depth",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0513",
+    "name": "Gleaming Prism",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0514",
+    "name": "Frosted Current",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0515",
+    "name": "Gleaming Tide",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0516",
+    "name": "Sapphire Tide",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0517",
+    "name": "Crystal Mirror",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0518",
+    "name": "Sapphire Depth",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0519",
+    "name": "Frosted Current",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0520",
+    "name": "Azure Prism",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0521",
+    "name": "Azure Frost",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0522",
+    "name": "Frosted Prism",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0523",
+    "name": "Frosted Mirror",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔵",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0524",
+    "name": "Sapphire Frost",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0525",
+    "name": "Gleaming Mirror",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0526",
+    "name": "Crystal Frost",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0527",
+    "name": "Sapphire Prism",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0528",
+    "name": "Frosted Depth",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0529",
+    "name": "Polished Depth",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "💠",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0530",
+    "name": "Sapphire Current",
+    "rarity": "Rare",
+    "odds": 13,
+    "color": 3900150,
+    "emoji": "🔷",
+    "description": "A rare-tier aura radiating with faint rare power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 26,
+    "collectionValue": 1,
+    "rollAnimation": "simple_fade",
+    "title": "the Rare",
+    "passiveAbility": null
+  }
+]

@@ -1,0 +1,902 @@
+[
+  {
+    "id": "aura_0811",
+    "name": "Berserk Fury",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "❤️‍🔥",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0812",
+    "name": "Crimson Reckoning",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "💢",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0813",
+    "name": "Crimson Bloodlust",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "💢",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0814",
+    "name": "Bloodmoon Bloodlust",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "❤️‍🔥",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0815",
+    "name": "Bloodmoon Fury",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "❤️‍🔥",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0816",
+    "name": "Crimson Fury",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "❤️‍🔥",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0817",
+    "name": "Crimson Havoc",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "❤️‍🔥",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0818",
+    "name": "Berserk Wrath",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "💢",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0819",
+    "name": "Furious Bloodlust",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "❤️‍🔥",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0820",
+    "name": "Crimson Wrath",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "💢",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0821",
+    "name": "Raging Reckoning",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "🔴",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0822",
+    "name": "Vengeful Bloodlust",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "❤️‍🔥",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0823",
+    "name": "Raging Wrath",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "❤️‍🔥",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0824",
+    "name": "Furious Rampage",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "💢",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0825",
+    "name": "Berserk Reckoning",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "❤️‍🔥",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0826",
+    "name": "Bloodmoon Wrath",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "🔴",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0827",
+    "name": "Vengeful Havoc",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "🔴",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0828",
+    "name": "Bloodmoon Rampage",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "❤️‍🔥",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0829",
+    "name": "Berserk Bloodlust",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "💢",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0830",
+    "name": "Bloodmoon Havoc",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "💢",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0831",
+    "name": "Vengeful Rampage",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "🔴",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0832",
+    "name": "Bloodmoon Reckoning",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "❤️‍🔥",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0833",
+    "name": "Raging Havoc",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "🔴",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0834",
+    "name": "Raging Bloodlust",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "💢",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0835",
+    "name": "Berserk Rampage",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "❤️‍🔥",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0836",
+    "name": "Furious Fury",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "🔴",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0837",
+    "name": "Raging Fury",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "🔴",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0838",
+    "name": "Vengeful Reckoning",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "❤️‍🔥",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0839",
+    "name": "Furious Reckoning",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "❤️‍🔥",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0840",
+    "name": "Furious Havoc",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "🔴",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0841",
+    "name": "Berserk Havoc",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "🔴",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0842",
+    "name": "Furious Wrath",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "💢",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0843",
+    "name": "Vengeful Wrath",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "💢",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0844",
+    "name": "Vengeful Fury",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "❤️‍🔥",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0845",
+    "name": "Crimson Rampage",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "💢",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0846",
+    "name": "Bloodmoon Rampage",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "💢",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0847",
+    "name": "Raging Fury",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "💢",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0848",
+    "name": "Raging Rampage",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "💢",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0849",
+    "name": "Raging Reckoning",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "🔴",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0850",
+    "name": "Berserk Wrath",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "🔴",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0851",
+    "name": "Bloodmoon Rampage",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "💢",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0852",
+    "name": "Bloodmoon Fury",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "💢",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0853",
+    "name": "Vengeful Reckoning",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "🔴",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0854",
+    "name": "Berserk Havoc",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "🔴",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0855",
+    "name": "Crimson Reckoning",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "🔴",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0856",
+    "name": "Furious Havoc",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "❤️‍🔥",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0857",
+    "name": "Crimson Wrath",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "🔴",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0858",
+    "name": "Bloodmoon Rampage",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "❤️‍🔥",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0859",
+    "name": "Bloodmoon Reckoning",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "💢",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0860",
+    "name": "Crimson Rampage",
+    "rarity": "Mythic",
+    "odds": 2000,
+    "color": 15680580,
+    "emoji": "🔴",
+    "description": "A mythic-tier aura radiating with faint mythic power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Mythic",
+    "passiveAbility": null
+  }
+]

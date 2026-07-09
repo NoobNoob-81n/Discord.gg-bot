@@ -1,0 +1,38 @@
+[
+  {
+    "id": "aura_0967",
+    "name": "Vanished Shadow",
+    "rarity": "Forgotten",
+    "odds": 350000000,
+    "color": 2960685,
+    "emoji": "🌫️",
+    "description": "A forgotten-tier aura radiating with faint forgotten power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.7000000000000002
+    },
+    "value": 700000000,
+    "collectionValue": 35000000,
+    "rollAnimation": "epic_flash",
+    "title": "the Forgotten",
+    "passiveAbility": null
+  },
+  {
+    "id": "aura_0968",
+    "name": "Silent Echo",
+    "rarity": "Forgotten",
+    "odds": 350000000,
+    "color": 2960685,
+    "emoji": "🌫️",
+    "description": "A forgotten-tier aura radiating with faint forgotten power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.7000000000000002
+    },
+    "value": 700000000,
+    "collectionValue": 35000000,
+    "rollAnimation": "epic_flash",
+    "title": "the Forgotten",
+    "passiveAbility": null
+  }
+]
