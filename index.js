@@ -32,7 +32,7 @@ const fs      = require('fs/promises');
 const fsSync  = require('fs');
 const path    = require('path');
 const rngState = require('./rng/core/rngState');
-const rngCommandRouter = require('./rng-system/core/commandRouter');
+const rngCommandRouter = require('./rng/core/commandRouter');
 const {
     Client, GatewayIntentBits, REST, Routes,
     SlashCommandBuilder, EmbedBuilder,
