@@ -1488,6 +1488,35 @@ const slashCommands = [
     new SlashCommandBuilder().setName('buyarmor').setDescription('🛡️ Buy armor')
         .addStringOption(o=>o.setName('armor').setDescription('Armor set to buy').setRequired(true)
             .addChoices(...ARMOR_SETS.map(a=>({name:`${a.emoji} ${a.name} — ${fmtN(a.price)} coins`,value:a.id})))),
+   // Register new dynamic commands
+const newCommands = [
+    new SlashCommandBuilder()
+        .setName('createcommand')
+        .setDescription('Create a custom command (Owner only)')
+        .addStringOption(o => o.setName('name').setDescription('Command name').setRequired(true))
+        .addStringOption(o => o.setName('description').setDescription('Description').setRequired(false))
+        .addStringOption(o => o.setName('response').setDescription('Response text').setRequired(true)),
+    
+    new SlashCommandBuilder()
+        .setName('permit')
+        .setDescription('Allow a role to use a command (Owner only)')
+        .addRoleOption(o => o.setName('role').setDescription('Role to permit').setRequired(true))
+        .addStringOption(o => o.setName('command').setDescription('Command name').setRequired(true)),
+    
+    new SlashCommandBuilder()
+        .setName('revoke')
+        .setDescription('Revoke permission (Owner only)')
+        .addRoleOption(o => o.setName('role').setDescription('Role').setRequired(true))
+        .addStringOption(o => o.setName('command').setDescription('Command name').setRequired(true)),
+    
+    new SlashCommandBuilder()
+        .setName('listcustom')
+        .setDescription('List custom commands (Owner only)'),
+    
+    new SlashCommandBuilder()
+        .setName('custom')
+        .setDescription('Use a custom command')
+        .addStringOption(o => o.setName('name').setDescription('Custom command name').setRequired(true)),
 
 
 
