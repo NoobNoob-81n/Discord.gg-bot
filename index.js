@@ -611,6 +611,9 @@ class UserData {
         this.biome        = new Map(); // userId -> current biome id
         this.fishXP       = new Map(); // userId -> fishing XP
         this.fishLevel    = new Map(); // userId -> fishing level
+        // === DYNAMIC COMMAND PERMISSION SYSTEM (added) ===
+        this.customCommands = new Map();      // guildId -> Map<cmdName, {desc, response}>
+        this.commandPermissions = new Map();  // guildId -> Map<cmdName, Set<roleId>>
     }
 
     toJSON() {
@@ -703,7 +706,23 @@ class UserData {
             for (const [uid, exp] of Object.entries(obj.noCooldown)) {
                 if (exp > now) this.noCooldown.set(String(uid), Number(exp));
             }
+        // Dynamic commands
+        this.customCommands = new Map();
+        if (obj.customCommands) {
+            for (const [gid, m] of Object.entries(obj.customCommands)) {
+                this.customCommands.set(gid, new Map(Object.entries(m)));
+            }
         }
+        this.commandPermissions = new Map();
+        if (obj.commandPermissions) {
+            for (const [gid, cmds] of Object.entries(obj.commandPermissions)) {
+                const m = new Map();
+                for (const [c, roles] of Object.entries(cmds)) m.set(c, new Set(roles));
+                this.commandPermissions.set(gid, m);
+            }
+        }
+        }
+    
         // Restore Wordle Token balances
         lo(this.wordleTokens, obj.wordleTokens, v=>Number(v)||0);
         lo(this.dashboardTheme, obj.dashboardTheme, v=>String(v));
@@ -2302,6 +2321,53 @@ if (cmd==='mine') {
 
             
 // ── MODERATION ──
+
+if (cmd === 'createcommand') {
+    if (interaction.user.id !== OWNER_ID) return interaction.reply({content:"❌ Owner only!", ephemeral:true});
+    const name = interaction.options.getString('name').toLowerCase();
+    const desc = interaction.options.getString('description') || "Custom command";
+    const response = interaction.options.getString('response');
+    if (!userData.customCommands.has(guildId)) userData.customCommands.set(guildId, new Map());
+    userData.customCommands.get(guildId).set(name, {desc, response});
+    await saveData();
+    return interaction.reply(`✅ Created \`/${name}\` for this server!`);
+}
+
+if (cmd === 'permit') {
+    if (interaction.user.id !== OWNER_ID) return interaction.reply({content:"❌ Owner only!", ephemeral:true});
+    const role = interaction.options.getRole('role');
+    const commandName = interaction.options.getString('command').toLowerCase();
+    if (!userData.commandPermissions.has(guildId)) userData.commandPermissions.set(guildId, new Map());
+    const p = userData.commandPermissions.get(guildId);
+    if (!p.has(commandName)) p.set(commandName, new Set());
+    p.get(commandName).add(role.id);
+    await saveData();
+    return interaction.reply(`✅ **\( {role.name}** can now use \`/ \){commandName}\``);
+}
+
+if (cmd === 'revoke') {
+    if (interaction.user.id !== OWNER_ID) return interaction.reply({content:"❌ Owner only!", ephemeral:true});
+    const role = interaction.options.getRole('role');
+    const commandName = interaction.options.getString('command').toLowerCase();
+    const p = userData.commandPermissions.get(guildId);
+    if (p?.has(commandName)) {
+        p.get(commandName).delete(role.id);
+        await saveData();
+        return interaction.reply(`✅ Removed permission for **\( {role.name}** on \`/ \){commandName}\``);
+    }
+    return interaction.reply("No permission to revoke.");
+}
+
+if (cmd === 'listcustom') {
+    if (interaction.user.id !== OWNER_ID) return interaction.reply({content:"❌ Owner only!", ephemeral:true});
+    const cmds = userData.customCommands.get(guildId);
+    if (!cmds || cmds.size === 0) return interaction.reply("No custom commands.");
+    let text = "**Custom Commands:**\n";
+    cmds.forEach((d, n) => text += `\`/${n}\` → ${d.response.slice(0,80)}...\n`);
+    return interaction.reply(text);
+    }
+
+            
 if (cmd==='warn') {
     if (!isStaff) return interaction.reply({content:'❌ Staff only!',ephemeral:true});
     const target=interaction.options.getUser('user');
@@ -2893,6 +2959,30 @@ if (cmd==='forceboss') {
     return interaction.reply({content:`✅ Spawned: **${b.emoji} ${b.name}** (${fmtN(b.hp)} HP)`});
 }
 
+// === DYNAMIC COMMAND PERMISSION SYSTEM ===
+const guildId = interaction.guildId;
+if (guildId) {
+    const customCmds = userData.customCommands.get(guildId) || new Map();
+    if (customCmds.has(cmd)) {
+        const permMap = userData.commandPermissions.get(guildId) || new Map();
+        const allowedRoles = permMap.get(cmd) || new Set();
+
+        const isOwner = interaction.user.id === OWNER_ID;
+        const isStaffUser = staffSet.has(guildId + ':' + interaction.user.id) || isOwner;
+
+        if (!isOwner && !isStaffUser) {
+            const memberRoles = interaction.member?.roles?.cache?.map(r => r.id) || [];
+            const hasPerm = memberRoles.some(r => allowedRoles.has(r));
+            if (!hasPerm) {
+                return interaction.reply({ content: "❌ You don't have permission for this command.", ephemeral: true });
+            }
+        }
+
+        const data = customCmds.get(cmd);
+        return interaction.reply({ content: data.response });
+    }
+}
+
 // ════════════════════════════════════════════════════════════════
 // FISHING COMMANDS
 // ════════════════════════════════════════════════════════════════
@@ -3430,7 +3520,8 @@ if (cmd==='gathermaterials') {
     mats[mat.id]=(mats[mat.id]||0)+qty; userData.craftMats.set(userId,mats);
     addXP(userId,20); await saveData();
     return interaction.reply({content:'⛏️ Gathered **'+qty+'x '+mat.emoji+' '+mat.name+'**!'});
-        }// ════════════════════════════════════════════════════════════════
+        }
+// ════════════════════════════════════════════════════════════════
 // GUILD COMMANDS
 // ════════════════════════════════════════════════════════════════
 if (cmd==='createguild') {
@@ -3672,7 +3763,7 @@ if (cmd==='battlepass') {
         .setFooter({text:'Earn BP XP by fishing, chatting, and completing quests!'})
     ]});
 }
-        // ════════════════════════════════════════════════════════════════
+// ════════════════════════════════════════════════════════════════
 // MINI-GAME COMMANDS
 // ════════════════════════════════════════════════════════════════
 if (cmd==='hangman') {
@@ -4346,7 +4437,7 @@ client.on('messageCreate', async message => {
                         }
 
         
-// ════════════════════════════════════════════════════════
+        // ════════════════════════════════════════════════════════
         // OWNER/ADMIN PREFIX COMMANDS (converted from slash)
         // Use: !command
         // ════════════════════════════════════════════════════════
