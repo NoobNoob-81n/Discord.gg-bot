@@ -1490,7 +1490,7 @@ const slashCommands = [
             .addChoices(...ARMOR_SETS.map(a=>({name:`${a.emoji} ${a.name} — ${fmtN(a.price)} coins`,value:a.id})))),
    // Register new dynamic commands
 
-    const newCommands = [
+    
     new SlashCommandBuilder()
         .setName('createcommand')
         .setDescription('Create a custom command (Owner only)')
@@ -1513,8 +1513,7 @@ const slashCommands = [
     new SlashCommandBuilder()
         .setName('custom')
         .setDescription('Use a custom command')
-        .addStringOption(o => o.setName('name').setDescription('Custom command name').setRequired(true))
-    ],
+        .addStringOption(o => o.setName('name').setDescription('Custom command name').setRequired(true)),
 
 
 
