@@ -17,6 +17,7 @@ class RngUserData {
         this.fragments    = new Map(); // 🌌 secondary currency (crafting/upgrades later)
         this.luckTickets  = new Map(); // 🎟 consumable, guarantees a luck boost roll
         this.divineShards = new Map(); // 👑 premium/rare currency
+        this.rngCoins      = new Map();
 
         // ── Inventory & collection ──
         this.inventory    = new Map(); // userId -> [{auraId, obtainedAt, rollNumber}, ...]
@@ -95,6 +96,7 @@ class RngUserData {
             fragments: mapToObj(this.fragments),
             luckTickets: mapToObj(this.luckTickets),
             divineShards: mapToObj(this.divineShards),
+            rngCoins: mapToObj(this.rngCoins),
             inventory: mapToObj(this.inventory),
             equipped: mapToObj(this.equipped),
             favorite: mapToObj(this.favorite),
@@ -119,6 +121,7 @@ class RngUserData {
         lo(this.fragments, obj.fragments, (v) => Number(v) || 0);
         lo(this.luckTickets, obj.luckTickets, (v) => Number(v) || 0);
         lo(this.divineShards, obj.divineShards, (v) => Number(v) || 0);
+        lo(this.rngCoins, obj.rngCoins, (v) => Number(v) || 0);
         lo(this.inventory, obj.inventory, (v) => (Array.isArray(v) ? v : []));
         lo(this.equipped, obj.equipped, (v) => v);
         lo(this.favorite, obj.favorite, (v) => v);
@@ -141,3 +144,4 @@ class RngUserData {
 }
 
 module.exports = { RngUserData };
+                 
