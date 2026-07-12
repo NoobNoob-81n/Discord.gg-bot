@@ -25,6 +25,7 @@ const commandHandlers = {
     stats: require('../handlers/stats'),
     history: require('../handlers/history'),
     help: require('../handlers/help'),
+    craft: require('../handlers/craft'),
 
     // Owner-only admin commands
     rngprefix: require('../handlers/admin/rngprefix'),
@@ -34,6 +35,7 @@ const commandHandlers = {
     spawngodlike: require('../handlers/admin/spawngodlike'),
     reloadauras: require('../handlers/admin/reloadauras'),
     rngtest: require('../handlers/admin/rngtest'),
+    ownerpotions: require('../handlers/admin/ownerpotions'),
 };
 
 /**
