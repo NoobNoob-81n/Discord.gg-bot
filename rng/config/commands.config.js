@@ -27,6 +27,7 @@ module.exports = {
     quests:      { permission: PERMISSIONS.EVERYONE },
     weather:     { permission: PERMISSIONS.EVERYONE },
     help:        { permission: PERMISSIONS.EVERYONE },
+    craft:        { permission: PERMISSIONS.EVERYONE },
 
     // Owner-only admin commands
     rngprefix:        { permission: PERMISSIONS.OWNER_ONLY },
@@ -39,6 +40,7 @@ module.exports = {
     spawnevent:       { permission: PERMISSIONS.OWNER_ONLY },
     resetcollection:  { permission: PERMISSIONS.OWNER_ONLY },
     viewrolls:        { permission: PERMISSIONS.OWNER_ONLY },
+    ownerpotions:     { permission: PERMISSIONS.OWNER_ONLY },
     spawngodlike:     { permission: PERMISSIONS.OWNER_ONLY },
     deleteaura:       { permission: PERMISSIONS.OWNER_ONLY },
     reloadauras:      { permission: PERMISSIONS.OWNER_ONLY },
