@@ -1,15 +1,20 @@
 // ════════════════════════════════════════════════════════════════
 // RNG SYSTEM — Constants
-// Every magic string/number used across the RNG system should live
-// here. If you're tempted to hardcode a tier name, currency key, or
-// color somewhere else, it belongs in this file instead.
 // ════════════════════════════════════════════════════════════════
 
 // ── Rarity tier names, in ascending rarity order. ──
+// NEW: 'Developer' and 'Transcendent' added below/above 'Godlike' to
+// support the new material auras (Poseidon, Hades) without reusing
+// 'Godlike', which stays EXCLUSIVE to The Godlike Noob singleton —
+// its singleton-enforcement and rainbow-embed logic assumes only one
+// aura ever holds that tier.
 const TIERS = [
     'Common', 'Uncommon', 'Rare', 'Epic', 'Exotic', 'Legendary',
     'Mythic', 'Celestial', 'Galaxy', 'Cosmic', 'Void', 'Divine',
-    'Ancient', 'Glitched', 'Forgotten', 'Creator', 'Godlike',
+    'Ancient', 'Glitched', 'Forgotten', 'Creator',
+    'Developer',     // NEW — sits between Creator and Godlike
+    'Godlike',       // RESERVED — The Godlike Noob singleton ONLY
+    'Transcendent',  // NEW — sits above Godlike, for material auras rarer than 1-in-1M
 ];
 
 // ── Currency keys ──
@@ -18,7 +23,7 @@ const CURRENCIES = {
     FRAGMENTS: 'fragments',
     LUCK_TICKETS: 'luckTickets',
     DIVINE_SHARDS: 'divineShards',
-    RNG_COINS: 'rngCoins', // NEW — earned by rolling rare (1-in-1000+) auras
+    RNG_COINS: 'rngCoins',
 };
 
 const CURRENCY_DISPLAY = {
@@ -29,7 +34,7 @@ const CURRENCY_DISPLAY = {
     [CURRENCIES.RNG_COINS]: { emoji: '🪙', name: 'RNG Coins' },
 };
 
-// ── Special aura IDs ──
+// ── Special aura IDs — tiers/IDs with unique code-level treatment. ──
 const SPECIAL_AURA_IDS = {
     GODLIKE_NOOB: 'aura_godlike_noob',
 };
@@ -60,14 +65,16 @@ const EVENTS = {
     ON_TRADE: 'onTrade',
     ON_GODLIKE_NOOB_FOUND: 'onGodlikeNoobFound',
     ON_ERROR: 'onError',
-
-    // NEW — potions & quests
     ON_POTION_CONSUMED: 'onPotionConsumed',
     ON_POTION_EXPIRED: 'onPotionExpired',
-    ON_QUEST_PROGRESS: 'onQuestProgress',   // emitted by ANY system (fish, roll, etc.) to report progress
+    ON_QUEST_PROGRESS: 'onQuestProgress',
     ON_QUEST_COMPLETE: 'onQuestComplete',
     ON_DAILY_QUESTS_COMPLETE: 'onDailyQuestsComplete',
-    ON_FISH_CAUGHT: 'onFishCaught', // emitted from index.js's existing fish command — see WIRING_V2.md
+    ON_FISH_CAUGHT: 'onFishCaught',
+
+    // NEW — crafting
+    ON_POTION_CRAFTED: 'onPotionCrafted',
+    ON_CRAFT_FAILED: 'onCraftFailed',
 };
 
 module.exports = {
