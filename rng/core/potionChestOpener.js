@@ -3,7 +3,7 @@
 // Opens potion chests, each independently rolling one potion from
 // POTION_CHEST_ODDS (the weighted table in data/potions.js).
 // ════════════════════════════════════════════════════════════════
-const { POTION_CHEST_ODDS, POTIONS } = require('../data/auras/potions');
+const { POTION_CHEST_ODDS, POTIONS } = require('../data/potions');
 const { logger } = require('./logger');
 
 function rollOnePotion() {

@@ -8,7 +8,7 @@
 //   - exclusive: only one may be active; blocks starting another
 //     until the current one expires
 // ════════════════════════════════════════════════════════════════
-const { POTIONS, STRANGE_POTION_OUTCOMES } = require('../data/auras/potions');
+const { POTIONS, STRANGE_POTION_OUTCOMES } = require('../data/potions');
 const { eventBus } = require('./eventBus');
 const { EVENTS } = require('../constants');
 const { logger } = require('./logger');

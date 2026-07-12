@@ -23,7 +23,7 @@ const { eventBus } = require('./eventBus');
 const { EVENTS } = require('../constants');
 const { logger } = require('./logger');
 const config = require('../config/config');
-const { QUEST_POOL } = require('../data/auras/quests');
+const { QUEST_POOL } = require('../data/quests');
 
 /**
  * Returns today's UTC date string (e.g. "2026-07-10"), used as the
