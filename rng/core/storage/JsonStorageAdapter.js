@@ -4,6 +4,14 @@
 // Implements the StorageAdapter contract — see StorageAdapter.js.
 // Swap this for SqliteAdapter/MongoAdapter later without touching
 // any command or game-logic file.
+//
+// IMPORTANT: defaults to /app/data (the Railway Volume mount path),
+// NOT a path inside the code folder. Railway containers are
+// ephemeral outside the mounted Volume — anything written to the
+// code folder gets wiped on every redeploy. This was the cause of
+// a real data-loss bug (RNG progress resetting on every deploy)
+// until fixed to point here, matching where the main bot's
+// data.json already safely lives.
 // ════════════════════════════════════════════════════════════════
 const fs = require('fs');
 const fsp = require('fs/promises');
@@ -12,7 +20,7 @@ const { StorageAdapter } = require('./StorageAdapter.js');
 const { logger } = require('../logger');
 
 class JsonStorageAdapter extends StorageAdapter {
-    constructor(filePath = path.join(__dirname, '..', 'rng-data.json')) {
+    constructor(filePath = path.join('/app/data', 'rng-data.json')) {
         super();
         this.filePath = filePath;
         this._dirty = false;
