@@ -6,7 +6,7 @@
 //   potions info <potionId>    — view a potion's full details
 // ════════════════════════════════════════════════════════════════
 const { EmbedBuilder } = require('discord.js');
-const { POTIONS } = require('../data/auras/potions');
+const { POTIONS } = require('../data/potions');
 const { consumePotion, getActivePotionEffects } = require('../core/potionEngine');
 const { EMBED_COLORS } = require('../constants');
 

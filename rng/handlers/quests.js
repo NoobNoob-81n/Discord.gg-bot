@@ -4,7 +4,7 @@
 // ════════════════════════════════════════════════════════════════
 const { EmbedBuilder } = require('discord.js');
 const { getDailyQuestStatus } = require('../core/questEngine');
-const { QUEST_POOL } = require('../data/auras/quests');
+const { QUEST_POOL } = require('../data/quests');
 const { EMBED_COLORS } = require('../constants');
 const { progressBar } = require('../utils/embeds');
 
