@@ -1,0 +1,249 @@
+[
+  {
+    "id": "aura_bleeding",
+    "name": "Bleeding",
+    "rarity": "Rare",
+    "odds": 250,
+    "color": 3900150,
+    "emoji": "🩸",
+    "description": "A crafting material aura, dripping with faint crimson energy.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.1
+    },
+    "value": 500,
+    "collectionValue": 25,
+    "rollAnimation": "simple_fade",
+    "title": "the Bleeding",
+    "passiveAbility": null,
+    "isCraftingMaterial": true
+  },
+  {
+    "id": "aura_powered",
+    "name": "Powered",
+    "rarity": "Epic",
+    "odds": 750,
+    "color": 11032055,
+    "emoji": "🔋",
+    "description": "A crafting material aura, humming with contained energy.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.15
+    },
+    "value": 1500,
+    "collectionValue": 75,
+    "rollAnimation": "glow_pulse",
+    "title": "the Powered",
+    "passiveAbility": null,
+    "isCraftingMaterial": true
+  },
+  {
+    "id": "aura_quartz",
+    "name": "Quartz",
+    "rarity": "Legendary",
+    "odds": 2000,
+    "color": 16096779,
+    "emoji": "💎",
+    "description": "A crafting material aura, crystalline and refractive.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.2
+    },
+    "value": 4000,
+    "collectionValue": 200,
+    "rollAnimation": "glow_pulse",
+    "title": "the Quartz",
+    "passiveAbility": null,
+    "isCraftingMaterial": true
+  },
+  {
+    "id": "aura_exotic_material",
+    "name": "Exotic",
+    "rarity": "Exotic",
+    "odds": 5000,
+    "color": 15485081,
+    "emoji": "🌸",
+    "description": "A crafting material aura, unusually vivid and fragrant.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.25
+    },
+    "value": 10000,
+    "collectionValue": 500,
+    "rollAnimation": "glow_pulse",
+    "title": "the Exotic",
+    "passiveAbility": null,
+    "isCraftingMaterial": true
+  },
+  {
+    "id": "aura_celestial_material",
+    "name": "Celestial",
+    "rarity": "Celestial",
+    "odds": 8000,
+    "color": 8490232,
+    "emoji": "🌠",
+    "description": "A crafting material aura, faintly glittering like starlight.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.3
+    },
+    "value": 16000,
+    "collectionValue": 800,
+    "rollAnimation": "glow_pulse",
+    "title": "the Celestial",
+    "passiveAbility": null,
+    "isCraftingMaterial": true
+  },
+  {
+    "id": "aura_bounded",
+    "name": "Bounded",
+    "rarity": "Divine",
+    "odds": 15000,
+    "color": 16766720,
+    "emoji": "🔗",
+    "description": "A crafting material aura, wrapped in binding chains of light.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.4
+    },
+    "value": 30000,
+    "collectionValue": 1500,
+    "rollAnimation": "glow_pulse",
+    "title": "the Bounded",
+    "passiveAbility": null,
+    "isCraftingMaterial": true
+  },
+  {
+    "id": "aura_permafrost",
+    "name": "Permafrost",
+    "rarity": "Cosmic",
+    "odds": 30000,
+    "color": 9133302,
+    "emoji": "❄️",
+    "description": "A crafting material aura, locked in eternal frost.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.5
+    },
+    "value": 60000,
+    "collectionValue": 3000,
+    "rollAnimation": "epic_flash",
+    "title": "the Permafrost",
+    "passiveAbility": null,
+    "isCraftingMaterial": true
+  },
+  {
+    "id": "aura_lost_souls",
+    "name": "Lost Souls",
+    "rarity": "Forgotten",
+    "odds": 50000,
+    "color": 2960685,
+    "emoji": "👻",
+    "description": "A crafting material aura, carrying the weight of the forgotten.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.6
+    },
+    "value": 100000,
+    "collectionValue": 5000,
+    "rollAnimation": "epic_flash",
+    "title": "the Lost Souls",
+    "passiveAbility": null,
+    "isCraftingMaterial": true
+  },
+  {
+    "id": "aura_undead",
+    "name": "Undead",
+    "rarity": "Mythic",
+    "odds": 80000,
+    "color": 15680580,
+    "emoji": "🧟",
+    "description": "A crafting material aura, reanimated and hungering.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.7
+    },
+    "value": 160000,
+    "collectionValue": 8000,
+    "rollAnimation": "epic_flash",
+    "title": "the Undead",
+    "passiveAbility": null,
+    "isCraftingMaterial": true
+  },
+  {
+    "id": "aura_nautilus",
+    "name": "Nautilus",
+    "rarity": "Void",
+    "odds": 120000,
+    "color": 2039598,
+    "emoji": "🐚",
+    "description": "A crafting material aura, spiraling with the depths of the void.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 1.8
+    },
+    "value": 240000,
+    "collectionValue": 12000,
+    "rollAnimation": "epic_flash",
+    "title": "the Nautilus",
+    "passiveAbility": null,
+    "isCraftingMaterial": true
+  },
+  {
+    "id": "aura_zeus",
+    "name": "Zeus",
+    "rarity": "Creator",
+    "odds": 500000,
+    "color": 16777215,
+    "emoji": "⚡",
+    "description": "A crafting material aura, crackling with the King of the Gods' power.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 2
+    },
+    "value": 1000000,
+    "collectionValue": 50000,
+    "rollAnimation": "epic_flash",
+    "title": "the Zeus",
+    "passiveAbility": null,
+    "isCraftingMaterial": true
+  },
+  {
+    "id": "aura_poseidon",
+    "name": "Poseidon",
+    "rarity": "Developer",
+    "odds": 750000,
+    "color": 3066993,
+    "emoji": "🔱",
+    "description": "A crafting material aura, commanding the tides themselves.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 2.2
+    },
+    "value": 1500000,
+    "collectionValue": 75000,
+    "rollAnimation": "epic_flash",
+    "title": "the Poseidon",
+    "passiveAbility": null,
+    "isCraftingMaterial": true
+  },
+  {
+    "id": "aura_hades",
+    "name": "Hades",
+    "rarity": "Transcendent",
+    "odds": 1000000,
+    "color": 1118481,
+    "emoji": "💀",
+    "description": "A crafting material aura, radiating with the dread of the underworld.",
+    "effects": {
+      "luckBonus": 0,
+      "essenceMultiplier": 2.5
+    },
+    "value": 2000000,
+    "collectionValue": 100000,
+    "rollAnimation": "epic_flash",
+    "title": "the Hades",
+    "passiveAbility": null,
+    "isCraftingMaterial": true
+  }
+]
