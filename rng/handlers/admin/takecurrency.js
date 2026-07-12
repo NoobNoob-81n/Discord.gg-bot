@@ -8,8 +8,8 @@ const { logger } = require('../../core/logger');
 
 module.exports = safeCommand('takecurrency', async (message, args, { rngData }) => {
     const target = message.mentions.users.first();
-    const currencyKey = args[1];
-    const amount = Number(args[2]);
+    const currencyKey = args[2];
+    const amount = Number(args[3]);
 
     const validKeys = Object.values(CURRENCIES);
     if (!target || !validKeys.includes(currencyKey) || !Number.isFinite(amount)) {

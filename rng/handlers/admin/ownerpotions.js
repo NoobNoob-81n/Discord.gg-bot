@@ -37,8 +37,8 @@ module.exports = async function ownerPotionsHandler(message, args, { rngData }) 
 
     if (sub === 'give') {
         const target = message.mentions.users.first();
-        const rawPotionId = args[1];
-        const count = Number(args[2]) || 1;
+        const rawPotionId = args[2];
+        const count = Number(args[3]) || 1;
 
         if (!target || !rawPotionId) {
             return message.reply('Usage: `ownerpotions give @user <potionId> <count>`');
