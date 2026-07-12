@@ -56,6 +56,36 @@ const SEASON           = 1;
 // ════════════════════════════════════════════════════════════════
 // ♦️ FISHING DATA TABLES
 // ════════════════════════════════════════════════════════════════
+// === DYNAMIC COMMAND BUILDERS ===
+const dynamicCommands = [
+    new SlashCommandBuilder()
+        .setName('createcommand')
+        .setDescription('Create a custom command (Owner only)')
+        .addStringOption(opt => opt.setName('name').setDescription('Command name').setRequired(true))
+        .addStringOption(opt => opt.setName('description').setDescription('Short description').setRequired(false))
+        .addStringOption(opt => opt.setName('response').setDescription('Response text').setRequired(true)),
+
+    new SlashCommandBuilder()
+        .setName('permit')
+        .setDescription('Allow a role to use a custom command (Owner only)')
+        .addRoleOption(opt => opt.setName('role').setDescription('The role').setRequired(true))
+        .addStringOption(opt => opt.setName('command').setDescription('Command name').setRequired(true)),
+
+    new SlashCommandBuilder()
+        .setName('revoke')
+        .setDescription('Revoke permission (Owner only)')
+        .addRoleOption(opt => opt.setName('role').setDescription('The role').setRequired(true))
+        .addStringOption(opt => opt.setName('command').setDescription('Command name').setRequired(true)),
+
+    new SlashCommandBuilder()
+        .setName('listcustom')
+        .setDescription('List custom commands (Owner only)'),
+
+    new SlashCommandBuilder()
+        .setName('custom')
+        .setDescription('Use a custom command')
+        .addStringOption(opt => opt.setName('name').setDescription('Custom command name').setRequired(true))
+];
 
 const RARITY_COLORS = {
     Common: 0x9E9E9E, Uncommon: 0x4CAF50, Rare: 0x2196F3,
@@ -3007,6 +3037,52 @@ if (guildId) {
         const data = customCmds.get(cmd);
         return interaction.reply({ content: data.response });
     }
+}
+}
+
+        if (cmd === 'createcommand') {
+    if (interaction.user.id !== OWNER_ID) return interaction.reply({content: "❌ Owner only!", ephemeral: true});
+    const name = interaction.options.getString('name').toLowerCase();
+    const desc = interaction.options.getString('description') || "Custom command";
+    const response = interaction.options.getString('response');
+    if (!userData.customCommands.has(guildId)) userData.customCommands.set(guildId, new Map());
+    userData.customCommands.get(guildId).set(name, {desc, response});
+    await saveData();
+    return interaction.reply(`✅ Created \`/${name}\`!`);
+}
+
+if (cmd === 'permit') {
+    if (interaction.user.id !== OWNER_ID) return interaction.reply({content: "❌ Owner only!", ephemeral: true});
+    const role = interaction.options.getRole('role');
+    const commandName = interaction.options.getString('command').toLowerCase();
+    if (!userData.commandPermissions.has(guildId)) userData.commandPermissions.set(guildId, new Map());
+    const p = userData.commandPermissions.get(guildId);
+    if (!p.has(commandName)) p.set(commandName, new Set());
+    p.get(commandName).add(role.id);
+    await saveData();
+    return interaction.reply(`✅ **\( {role.name}** can now use \`/ \){commandName}\``);
+}
+
+if (cmd === 'revoke') {
+    if (interaction.user.id !== OWNER_ID) return interaction.reply({content: "❌ Owner only!", ephemeral: true});
+    const role = interaction.options.getRole('role');
+    const commandName = interaction.options.getString('command').toLowerCase();
+    const p = userData.commandPermissions.get(guildId);
+    if (p && p.has(commandName)) {
+        p.get(commandName).delete(role.id);
+        await saveData();
+        return interaction.reply(`✅ Removed permission for **\( {role.name}** on \`/ \){commandName}\``);
+    }
+    return interaction.reply("No permission found.");
+}
+
+if (cmd === 'listcustom') {
+    if (interaction.user.id !== OWNER_ID) return interaction.reply({content: "❌ Owner only!", ephemeral: true});
+    const cmds = userData.customCommands.get(guildId);
+    if (!cmds || cmds.size === 0) return interaction.reply("No custom commands.");
+    let text = "**Custom Commands:**\n";
+    cmds.forEach((d, n) => text += `\`/${n}\` → ${d.response.slice(0,80)}...\n`);
+    return interaction.reply(text);
 }
 
 // ════════════════════════════════════════════════════════════════
