@@ -1,10 +1,5 @@
 // ════════════════════════════════════════════════════════════════
 // RNG SYSTEM — Tier Config
-// The actual odds/color/emoji-pool DATA for each tier. Tier NAMES
-// (identity) live in constants.js; tier DATA (numbers that might
-// change during balancing) lives here. This separation means
-// balancing the game (e.g. making Epic rarer) never touches
-// constants.js, and renaming a tier never touches this file.
 // ════════════════════════════════════════════════════════════════
 const { TIERS } = require('../constants');
 
@@ -25,15 +20,18 @@ const TIER_CONFIG = {
     Glitched:  { odds: 75000000,    count: 3,   color: 0x00FF00, emojis: ['🟩','💾','⚠️'] },
     Forgotten: { odds: 350000000,   count: 2,   color: 0x2D2D2D, emojis: ['🕸️','🖤','🌫️'] },
     Creator:   { odds: 1000000000,  count: 1,   color: 0xFFFFFF, emojis: ['👨‍💻'] },
-    // Godlike is intentionally excluded here — it's a singleton with
-    // unique mechanics, hand-authored in data/auras/developer.json
-    // rather than generated, so it has no "count" to generate.
+
+    // ── NEW: material-aura-only tiers. count:0 since these tiers have
+    // NO procedurally-generated auras — every aura in them is
+    // hand-authored in data/auras/materials.json (see below). The
+    // generator (generate-auras.js) skips any tier with count:0. ──
+    Developer:     { odds: 750000,    count: 0, color: 0x2ECC71, emojis: ['🔱'] },
+    Transcendent:  { odds: 1000000,   count: 0, color: 0x111111, emojis: ['💀'] },
+
+    // Godlike is intentionally excluded — singleton, hand-authored in
+    // data/auras/developer.json, not part of tier generation.
 };
 
-// Sanity check at load time: every tier in constants.TIERS (except
-// Godlike, which is hand-authored) must have a config entry, and vice
-// versa. This catches typos immediately at startup instead of failing
-// silently mid-game.
 function validateTierConfig() {
     const configuredTiers = Object.keys(TIER_CONFIG);
     const expectedTiers = TIERS.filter((t) => t !== 'Godlike');
