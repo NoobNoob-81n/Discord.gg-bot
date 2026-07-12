@@ -3038,7 +3038,7 @@ if (guildId) {
         return interaction.reply({ content: data.response });
     }
 }
-}
+
 
         if (cmd === 'createcommand') {
     if (interaction.user.id !== OWNER_ID) return interaction.reply({content: "❌ Owner only!", ephemeral: true});
