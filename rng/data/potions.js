@@ -4,13 +4,6 @@
 // future potion lines should follow: tier II = 10x tier I materials,
 // tier III = 100x tier II materials, unless a recipe says otherwise
 // — see data/craftingRecipes.js).
-//
-// NOTE: the original single "Lucky Potion" is renamed to
-// "Luck Potion I" to fit the tier-chain naming convention. If you've
-// already deployed the old name and players own "lucky_potion" in
-// their inventory, that key is kept as an alias — see
-// POTION_ID_ALIASES at the bottom of this file so old inventories
-// don't silently break.
 // ════════════════════════════════════════════════════════════════
 
 const POTIONS = {
