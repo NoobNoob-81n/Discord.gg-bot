@@ -23,11 +23,20 @@ class JsonStorageAdapter extends StorageAdapter {
     constructor(filePath = path.join('/app/data', 'rng-data.json')) {
         super();
         this.filePath = filePath;
+        this.directoryPath = path.dirname(filePath);
         this._dirty = false;
+    }
+
+    async _ensureDirectory() {
+        await fsp.mkdir(this.directoryPath, { recursive: true });
     }
 
     async load() {
         try {
+            // Some hosts do not create /app/data automatically. Create the
+            // parent path before checking for a save file so first startup
+            // and the first autosave both work reliably.
+            await this._ensureDirectory();
             if (!fs.existsSync(this.filePath)) {
                 logger.info(`No existing save file at ${this.filePath} — starting fresh.`);
                 return {};
@@ -42,6 +51,8 @@ class JsonStorageAdapter extends StorageAdapter {
 
     async save(data) {
         try {
+            // Required before writing the temporary file used for atomic save.
+            await this._ensureDirectory();
             const tmpPath = `${this.filePath}.tmp`;
             // Write to a temp file then rename, so a crash mid-write
             // never corrupts the real save file (atomic on most filesystems).
