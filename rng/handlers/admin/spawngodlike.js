@@ -22,6 +22,12 @@ module.exports = safeCommand('spawngodlike', async (message, args, { rngData }) 
         return message.reply('❌ Godlike Noob data could not be found — check data/auras/developer.json.');
     }
 
+    const usage = rngData.getAuraUsage(target.id);
+    const capacity = rngData.getAuraCapacity(target.id);
+    if (usage >= capacity) {
+        return message.reply(`❌ ${target}'s aura storage is full (**${usage}/${capacity}**). They must sell an aura or upgrade storage first.`);
+    }
+
     rngData.addToInventory(target.id, godlikeNoob.id);
     rngData.addToHistory(target.id, godlikeNoob.id);
     claimGodlikeNoob(rngData, target.id);

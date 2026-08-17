@@ -20,6 +20,12 @@ module.exports = safeCommand('spawnaura', async (message, args, { rngData }) => 
 
     if (!match) return message.reply(`❌ No aura found matching "${args.slice(1).join(' ')}".`);
 
+    const usage = rngData.getAuraUsage(target.id);
+    const capacity = rngData.getAuraCapacity(target.id);
+    if (usage >= capacity) {
+        return message.reply(`❌ ${target}'s aura storage is full (**${usage}/${capacity}**). They must sell an aura or upgrade storage first.`);
+    }
+
     rngData.addToInventory(target.id, match.id);
     rngData.addToHistory(target.id, match.id);
     logger.admin(message.author.id, 'spawnaura', { target: target.id, auraId: match.id });
