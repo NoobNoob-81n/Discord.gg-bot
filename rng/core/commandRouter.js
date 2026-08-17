@@ -26,6 +26,8 @@ const commandHandlers = {
     history: require('../handlers/history'),
     help: require('../handlers/help'),
     craft: require('../handlers/craft'),
+    storage: require('../handlers/storage'),
+    sell: require('../handlers/sell'),
 
     // Owner-only admin commands
     rngprefix: require('../handlers/admin/rngprefix'),
