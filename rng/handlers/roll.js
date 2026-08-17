@@ -26,6 +26,15 @@ const lastRollAt = new Map();
 module.exports = safeCommand('roll', async (message, args, { rngData }) => {
     const userId = message.author.id;
 
+    const usedSlots = rngData.getAuraUsage(userId);
+    const capacity = rngData.getAuraCapacity(userId);
+    if (usedSlots >= capacity) {
+        return message.reply(
+            `🎒 Your aura storage is full (**${usedSlots}/${capacity}**). ` +
+            `Use \`${rngData.rngPrefix}storage upgrade\` or \`${rngData.rngPrefix}sell <aura>\` before rolling again.`
+        );
+    }
+
     const now = Date.now();
     const last = lastRollAt.get(userId) || 0;
     const remaining = config.rollCooldownMs - (now - last);
@@ -44,7 +53,7 @@ module.exports = safeCommand('roll', async (message, args, { rngData }) => {
     const godlikeAvailable = isGodlikeNoobAvailable(rngData);
     const aura = rollAura({ userId, luckBonus: totalLuck, godlikeNoobAvailable: godlikeAvailable });
 
-    rngData.addToInventory(userId, aura.id);
+    const storedResult = rngData.recordAuraRoll(userId, aura.id, { store: true });
     rngData.addToHistory(userId, aura.id);
 
     if (aura.id === SPECIAL_AURA_IDS.GODLIKE_NOOB) {
@@ -60,8 +69,8 @@ module.exports = safeCommand('roll', async (message, args, { rngData }) => {
         count: 1,
     });
 
-    const rollNumber = rngData.rollCount.get(userId) || 1;
-    const embed = buildAuraEmbed(aura, { userTag: message.author.tag, rollNumber });
+    const embed = buildAuraEmbed(aura, { userTag: message.author.tag, rollNumber: storedResult.rollNumber });
+    embed.setFooter({ text: `Aura Storage: ${storedResult.usedSlots}/${storedResult.capacity}` });
 
     const coinReward = calculateRngCoinReward(aura.odds);
     if (coinReward > 0) {
