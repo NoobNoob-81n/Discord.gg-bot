@@ -28,6 +28,8 @@ module.exports = {
     weather:     { permission: PERMISSIONS.EVERYONE },
     help:        { permission: PERMISSIONS.EVERYONE },
     craft:        { permission: PERMISSIONS.EVERYONE },
+    storage:      { permission: PERMISSIONS.EVERYONE },
+    sell:         { permission: PERMISSIONS.EVERYONE },
 
     // Owner-only admin commands
     rngprefix:        { permission: PERMISSIONS.OWNER_ONLY },

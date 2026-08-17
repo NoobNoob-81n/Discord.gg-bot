@@ -7,8 +7,20 @@ module.exports = {
     maxHistorySize: 100,
     defaultLuckBonus: 0,
     rollCooldownMs: 1_000,
-    autoRollDefaultIntervalMs: 3_000,
-    autoRollMinIntervalMs: 1_500,
+
+    // ── Aura storage ──
+    defaultAuraStorageSlots: 10,
+    auraStorageSlotsPerUpgrade: 5,
+    auraStorageBaseUpgradeCost: 100,
+    auraStorageUpgradeMultiplier: 2,
+    maxAuraStorageUpgrades: 30,
+
+    // ── Autoroll ──
+    // This is fixed server-side. Player input never changes this value.
+    autoRollIntervalMs: 5_000,
+    autoRollUnlockCost: 10_000,
+    autoSellMinimumRngCoins: 1,
+    autoSellRareRewardRate: 0.25,
     animationSpeedMs: 800,
     godlikeNoobUniqueGlobally: true,
     itemsPerPage: 10,
