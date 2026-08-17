@@ -16,16 +16,24 @@ function progressBar(current, max, length = 10) {
 /** Builds an embed for a single aura roll result. */
 function buildAuraEmbed(aura, { userTag, rollNumber } = {}) {
     const isGodlike = aura.id === SPECIAL_AURA_IDS.GODLIKE_NOOB;
+    const odds = Number(aura.odds ?? aura.chance);
+    const value = Number(aura.value);
+    const oddsText = Number.isFinite(odds) && odds > 0
+        ? `1 in ${odds.toLocaleString()}`
+        : 'Unknown';
+    const valueText = Number.isFinite(value) && value >= 0
+        ? `${value.toLocaleString()} ✨`
+        : 'Unknown';
 
     const embed = new EmbedBuilder()
-        .setTitle(`${aura.emoji} ${aura.name}`)
-        .setDescription(aura.description)
+        .setTitle(`${aura.emoji || '✨'} ${aura.name || 'Unknown Aura'}`)
+        .setDescription(aura.description || 'No description is available for this aura.')
         .addFields(
-            { name: 'Rarity', value: aura.rarity, inline: true },
-            { name: 'Odds', value: `1 in ${aura.odds.toLocaleString()}`, inline: true },
-            { name: 'Value', value: `${aura.value.toLocaleString()} ✨`, inline: true },
+            { name: 'Rarity', value: aura.rarity || 'Unknown', inline: true },
+            { name: 'Odds', value: oddsText, inline: true },
+            { name: 'Value', value: valueText, inline: true },
         )
-        .setColor(isGodlike ? EMBED_COLORS.GODLIKE_RAINBOW_FRAMES[0] : aura.color)
+        .setColor(isGodlike ? EMBED_COLORS.GODLIKE_RAINBOW_FRAMES[0] : (aura.color || EMBED_COLORS.INFO))
         .setTimestamp();
 
     if (userTag) embed.setFooter({ text: rollNumber ? `${userTag} • Roll #${rollNumber}` : userTag });
